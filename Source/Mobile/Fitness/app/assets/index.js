@@ -3,5 +3,6 @@ import eye from './icons/eye.png';
 import eyeHide from './icons/eye-hide.png';
 import google from './icons/google-icon.png';
 import facebook from './icons/facebook-icon.png';
+import meal from './icons/Group.svg';
 
-export {back, eye, eyeHide, google, facebook};
+export {back, eye, eyeHide, google, facebook, meal};

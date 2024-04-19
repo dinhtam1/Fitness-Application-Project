@@ -1,5 +1,5 @@
-import SignInScreen from './auth/SignInScreen'
+import SignInScreen from './auth/signInScreen';
+import SignUpScreen from './auth/signUpScreen';
+import ForgotScreen from './auth/forgotScreen';
 
-export {
-    SignInScreen
-}
+export {SignInScreen, SignUpScreen, ForgotScreen};

@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import {eye, eyeHide} from '../../assets';
+import {colors} from '../../constants/colors';
 
 const FormField = ({
   title,
@@ -16,7 +17,7 @@ const FormField = ({
     <View style={[{marginTop: 8}, otherStyles]}>
       <Text
         style={{
-          color: '#3A4750',
+          color: colors['text'],
           fontWeight: '400',
           fontSize: 16,
           lineHeight: 24,
