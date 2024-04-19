@@ -1,9 +1,9 @@
 import {SignInScreen} from './app/screens';
 import {useFonts} from 'expo-font';
-import {useEffect} from 'react';
 import {View} from 'react-native';
-import SignUpScreen from './app/screens/auth/SignUpScreen';
-import ForgotScreen from './app/screens/auth/ForgotScreen';
+import SignUpScreen from './app/screens/auth/signUpScreen';
+import ForgotScreen from './app/screens/auth/forgotScreen';
+import StackNavigator from './app/navigators/StackNavigator';
 
 export default function App() {
   const [fontsLoaded, error] = useFonts({
@@ -17,17 +17,9 @@ export default function App() {
     'Poppins-SemiBold': require('./app/assets/fonts/Poppins-SemiBold.ttf'),
     'Poppins-Thin': require('./app/assets/fonts/Poppins-Thin.ttf'),
   });
-  useEffect(() => {
-    if (error) throw error;
-    // if (fontsLoaded) {
-    //   SplashScreen.hideAsync();
-    // }
-  }, [fontsLoaded, error]);
-  if (!fontsLoaded) return null;
-  if (!fontsLoaded && !error) return null;
   return (
-    <View>
-      <ForgotScreen />
-    </View>
+    <>
+      <StackNavigator />
+    </>
   );
 }
