@@ -10,6 +10,7 @@ const FormField = ({
   placeholder,
   handleChangeText,
   otherStyles,
+  containStyles,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,24 +30,29 @@ const FormField = ({
       </Text>
 
       <View
-        style={{
-          width: '100%',
-          height: 64,
-          paddingHorizontal: 16,
-          backgroundColor: '#F5F5F5',
-          borderRadius: 16,
-          borderWidth: 2,
-          borderColor: 'rgba(105, 105, 105, 0.25)',
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
+        style={[
+          {
+            width: '100%',
+            height: 64,
+            paddingHorizontal: 16,
+            backgroundColor: '#F5F5F5',
+            borderRadius: 16,
+            borderWidth: 2,
+            borderColor: 'rgba(105, 105, 105, 0.25)',
+            flexDirection: 'row',
+            alignItems: 'center',
+          },
+        ]}>
         <TextInput
-          style={{
-            flex: 1,
-            color: colors['title'],
-            fontSize: 16,
-            fontFamily: fontFamilies['medium'],
-          }}
+          style={[
+            {
+              flex: 1,
+              color: colors['title'],
+              fontSize: 16,
+              fontFamily: fontFamilies['medium'],
+            },
+            containStyles,
+          ]}
           value={value}
           placeholder={placeholder}
           placeholderTextColor={colors['text-placeholder']}

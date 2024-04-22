@@ -1,33 +1,16 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import FormField from '../../components/form/formFieldComponent';
-import CustomButton from '../../components/button/buttonComponent';
-import {AntDesign} from '@expo/vector-icons';
-import {useNavigation} from '@react-navigation/native';
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
 import TextComponent from '../../components/text/textComponent';
+import {button, text, title} from '../../constants/text';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import BackComponent from '../../components/icon/backComponent';
-import {
-  button,
-  placeholder,
-  text,
-  title,
-  titleForm,
-} from '../../constants/text';
+import CustomButton from '../../components/button/buttonComponent';
+import FormField from '../../components/form/formFieldComponent';
 
-export default function ForgotScreen() {
+const VerifyScreen = ({route}) => {
+  const {email} = route.params;
   const [isSubmitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({
-    email: '',
-  });
-  const navigation = useNavigation();
   const submit = async () => {};
   return (
     <SafeAreaView style={{height: '100%', paddingTop: 20}}>
@@ -45,23 +28,20 @@ export default function ForgotScreen() {
               }}
             />
             <TextComponent
-              text={text['sub-forgot-password']}
+              text={`${text['sub-verify']} ${email}`}
               size={15}
               font={fontFamilies['medium']}
             />
           </View>
-          <View style={{paddingVertical: 70}}>
-            <FormField
-              placeholder={placeholder['email']}
-              title={titleForm['email']}
-              handleChangeText={e => setForm({email: e})}
-            />
+          <View style={{flexDirection: 'row', alignSelf: 'center', gap: 20}}>
+            <FormField />
+            <FormField />
+            <FormField />
+            <FormField />
           </View>
           <CustomButton
             title={button['reset-password']}
-            handlePress={() =>
-              navigation.navigate('Verify', {email: form.email})
-            }
+            handlePress={submit}
             isLoading={isSubmitting}
             containerStyles={{marginTop: 30}}
           />
@@ -69,4 +49,6 @@ export default function ForgotScreen() {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
+
+export default VerifyScreen;
