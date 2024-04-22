@@ -8,9 +8,12 @@ import {
 import React, {useState} from 'react';
 import {AntDesign} from '@expo/vector-icons';
 import FormField from '../../components/form/formFieldComponent';
-import {Link, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import CustomButton from '../../components/button/buttonComponent';
-import {facebook, google} from '../../assets';
+import TextComponent from '../../components/text/textComponent';
+import {colors} from '../../constants/colors';
+import {fontFamilies} from '../../constants/fontFamilies';
+import BackComponent from '../../components/icon/backComponent';
 
 const SignUpScreen = () => {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -18,38 +21,24 @@ const SignUpScreen = () => {
   const submit = () => {};
   return (
     <SafeAreaView style={{height: '100%', paddingTop: 20}}>
-      <View
-        style={{
-          left: 20,
-          top: 20,
-          width: '100%',
-          height: 22,
-          zIndex: 10,
-          marginTop: 20,
-        }}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('SignIn');
-          }}>
-          <AntDesign name="left" size={22} color="black" />
-        </TouchableOpacity>
-      </View>
+      <BackComponent />
       <ScrollView>
         <View style={{paddingHorizontal: 20, paddingTop: 20}}>
           <View style={{paddingTop: 30}}>
-            <Text
-              style={{
-                fontSize: 25,
-                fontWeight: 'bold',
-                paddingBottom: 15,
-                color: '#000',
-                fontWeight: '500',
-              }}>
-              CREATE ACCOUNTS
-            </Text>
-            <Text style={{fontSize: 15, paddingBottom: 3, color: '#3A4750'}}>
-              Please enter your credentials to proceed
-            </Text>
+            <TextComponent
+              text="CREATE ACCOUNTS"
+              color={colors['title']}
+              size={24}
+              font={fontFamilies['bold']}
+              styles={{
+                paddingBottom: 20,
+              }}
+            />
+            <TextComponent
+              text={'Please enter your credentials to proceed'}
+              size={15}
+              font={fontFamilies['medium']}
+            />
           </View>
           <View style={{paddingVertical: 20}}>
             <FormField
@@ -60,12 +49,12 @@ const SignUpScreen = () => {
             <FormField
               placeholder={'Enter phone...'}
               title={'Phone'}
-              handleChangeText={e => setForm({...form, password: e})}
+              handleChangeText={e => setForm({...form, phone: e})}
             />
             <FormField
               placeholder={'Enter address...'}
               title={'Email address'}
-              handleChangeText={e => setForm({...form, password: e})}
+              handleChangeText={e => setForm({...form, address: e})}
             />
             <FormField
               placeholder={'Enter password...'}
@@ -80,19 +69,18 @@ const SignUpScreen = () => {
             containerStyles={{marginTop: 20}}
           />
           <View style={{alignItems: 'center', marginVertical: 40}}>
-            <Text style={{fontSize: 14, fontWeight: '400'}}>
+            <Text style={{fontSize: 14, fontFamily: fontFamilies['light']}}>
               Already have an account?{' '}
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('SignIn');
                 }}>
-                <Text
-                  style={{
-                    fontWeight: '700',
-                    transform: [{translateY: 3}],
-                  }}>
-                  Login!
-                </Text>
+                <TextComponent
+                  text={'Login!'}
+                  size={14}
+                  font={fontFamilies['bold']}
+                  styles={{transform: [{translateY: 3}]}}
+                />
               </TouchableOpacity>
             </Text>
           </View>

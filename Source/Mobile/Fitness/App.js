@@ -1,22 +1,30 @@
-import {SignInScreen} from './app/screens';
-import {useFonts} from 'expo-font';
-import {View} from 'react-native';
-import SignUpScreen from './app/screens/auth/signUpScreen';
-import ForgotScreen from './app/screens/auth/forgotScreen';
+import {useCallback} from 'react';
 import StackNavigator from './app/navigators/StackNavigator';
+import {SignInScreen, SplashScreen} from './app/screens';
+import {useFonts} from 'expo-font';
+import * as splashScreen from 'expo-splash-screen';
+// splashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [fontsLoaded, error] = useFonts({
-    'Poppins-Black': require('./app/assets/fonts/Poppins-Black.ttf'),
+  let [fontsLoaded, fontError] = useFonts({
     'Poppins-Bold': require('./app/assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-ExtraBold': require('./app/assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins-ExtraLight': require('./app/assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins-Light': require('./app/assets/fonts/Poppins-Light.ttf'),
-    'Poppins-Medium': require('./app/assets/fonts/Poppins-Medium.ttf'),
     'Poppins-Regular': require('./app/assets/fonts/Poppins-Regular.ttf'),
     'Poppins-SemiBold': require('./app/assets/fonts/Poppins-SemiBold.ttf'),
+    'Poppins-Medium': require('./app/assets/fonts/Poppins-Medium.ttf'),
+    'Poppins-Light': require('./app/assets/fonts/Poppins-Light.ttf'),
+    'Poppins-ExtraLight': require('./app/assets/fonts/Poppins-ExtraLight.ttf'),
+    'Poppins-ExtraBold': require('./app/assets/fonts/Poppins-ExtraBold.ttf'),
+    'Poppins-Black': require('./app/assets/fonts/Poppins-Black.ttf'),
     'Poppins-Thin': require('./app/assets/fonts/Poppins-Thin.ttf'),
   });
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await splashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+  if (!fontsLoaded || fontError) {
+    return null;
+  }
   return (
     <>
       <StackNavigator />

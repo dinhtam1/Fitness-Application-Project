@@ -16,7 +16,7 @@ const TextComponent = props => {
       numberOfLines={numOfLine}
       style={[
         {
-          color: color ?? colors['text-body'],
+          color: color ?? colors['text'],
           flex: flex ?? 0,
           fontSize: size ? size : fontSizeDefault.fontSize,
           fontFamily: font ? font : fontSizeDefault.fontFamily,

@@ -14,6 +14,8 @@ import {Link, useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiLogin} from '../../apis/auth';
 import TextComponent from '../../components/text/textComponent';
+import {fontFamilies} from '../../constants/fontFamilies';
+import {colors} from '../../constants/colors';
 
 export default function SignInScreen() {
   // HANDLE DATA
@@ -75,19 +77,20 @@ export default function SignInScreen() {
       <ScrollView>
         <View style={{paddingHorizontal: 20, paddingTop: 20}}>
           <View style={{paddingTop: 30}}>
-            {/* <Text
-              style={{
-                fontSize: 25,
-                paddingBottom: 15,
-                color: '#000',
-                fontWeight: '500',
-              }}>
-              WELCOME TO PRO FITNESS!
-            </Text> */}
-            <TextComponent text="WELCOME TO PRO FITNESS!" title size={24} />
-            <Text style={{fontSize: 15, color: '#3A4750'}}>
-              Hello there, sign in to continue!
-            </Text>
+            <TextComponent
+              text="WELCOME TO PRO FITNESS!"
+              color={colors['title']}
+              size={24}
+              font={fontFamilies['bold']}
+              styles={{
+                paddingBottom: 20,
+              }}
+            />
+            <TextComponent
+              text={'Hello there, sign in to continue!'}
+              size={15}
+              font={fontFamilies['medium']}
+            />
           </View>
           <View style={{paddingVertical: 20}}>
             <FormField
@@ -106,16 +109,11 @@ export default function SignInScreen() {
               onPress={() => {
                 navigation.navigate('ForgotPassword');
               }}>
-              <Text
-                style={{
-                  fontWeight: '700',
-                  fontSize: 14,
-                }}
-                onPress={() => {
-                  navigation.navigate('ForgotPassword');
-                }}>
-                Forgot password?
-              </Text>
+              <TextComponent
+                text={'Forgot password?'}
+                font={fontFamilies['bold']}
+                size={14}
+              />
             </TouchableOpacity>
           </View>
           <CustomButton
@@ -125,19 +123,18 @@ export default function SignInScreen() {
             containerStyles={{marginTop: 20}}
           />
           <View style={{alignItems: 'center', marginVertical: 40}}>
-            <Text style={{fontSize: 14, fontWeight: '400'}}>
+            <Text style={{fontSize: 14, fontFamily: fontFamilies['light']}}>
               Don't have an account?{' '}
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('SignUp');
                 }}>
-                <Text
-                  style={{
-                    fontWeight: '700',
-                    transform: [{translateY: 3}],
-                  }}>
-                  Register!
-                </Text>
+                <TextComponent
+                  text={'Register!'}
+                  size={14}
+                  font={fontFamilies['bold']}
+                  styles={{transform: [{translateY: 3}]}}
+                />
               </TouchableOpacity>
             </Text>
           </View>
