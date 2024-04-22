@@ -10,6 +10,10 @@ import FormField from '../../components/form/formFieldComponent';
 import CustomButton from '../../components/button/buttonComponent';
 import {AntDesign} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
+import TextComponent from '../../components/text/textComponent';
+import {colors} from '../../constants/colors';
+import {fontFamilies} from '../../constants/fontFamilies';
+import BackComponent from '../../components/icon/backComponent';
 
 export default function ForgotScreen() {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -17,38 +21,26 @@ export default function ForgotScreen() {
   const submit = async () => {};
   return (
     <SafeAreaView style={{height: '100%', paddingTop: 20}}>
-      <View
-        style={{
-          left: 20,
-          top: 20,
-          width: '100%',
-          height: 22,
-          zIndex: 10,
-          marginTop: 20,
-        }}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('SignIn');
-          }}>
-          <AntDesign name="left" size={22} color="black" />
-        </TouchableOpacity>
-      </View>
+      <BackComponent />
       <ScrollView>
         <View style={{paddingHorizontal: 20, paddingTop: 20}}>
           <View style={{paddingTop: 30}}>
-            <Text
-              style={{
-                fontSize: 25,
-                fontWeight: 'bold',
-                paddingBottom: 15,
-                color: '#000',
-                fontWeight: '500',
-              }}>
-              FORGOT PASSWORD
-            </Text>
-            <Text style={{fontSize: 15, paddingBottom: 3, color: '#3A4750'}}>
-              Please enter your email below to reveive your password reset code.
-            </Text>
+            <TextComponent
+              text="FORGOT PASSWORD"
+              color={colors['title']}
+              size={24}
+              font={fontFamilies['bold']}
+              styles={{
+                paddingBottom: 20,
+              }}
+            />
+            <TextComponent
+              text={
+                'Please enter your email below to reveive your password reset code.'
+              }
+              size={15}
+              font={fontFamilies['medium']}
+            />
           </View>
           <View style={{paddingVertical: 70}}>
             <FormField

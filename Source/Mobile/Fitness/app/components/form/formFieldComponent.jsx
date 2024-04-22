@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import {eye, eyeHide} from '../../assets';
 import {colors} from '../../constants/colors';
+import {fontFamilies} from '../../constants/fontFamilies';
 
 const FormField = ({
   title,
@@ -22,6 +23,7 @@ const FormField = ({
           fontSize: 16,
           lineHeight: 24,
           paddingBottom: 8,
+          fontFamily: fontFamilies['regular'],
         }}>
         {title}
       </Text>
@@ -41,13 +43,13 @@ const FormField = ({
         <TextInput
           style={{
             flex: 1,
-            color: 'black',
+            color: colors['title'],
             fontSize: 16,
-            fontFamily: 'Poppins-Semibold',
+            fontFamily: fontFamilies['medium'],
           }}
           value={value}
           placeholder={placeholder}
-          placeholderTextColor="#7B7B8B"
+          placeholderTextColor={colors['text-placeholder']}
           onChangeText={handleChangeText}
           secureTextEntry={title === 'Password' && !showPassword}
           {...props}

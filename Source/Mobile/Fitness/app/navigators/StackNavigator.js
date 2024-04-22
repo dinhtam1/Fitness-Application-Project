@@ -7,7 +7,15 @@ import {FontAwesome5} from '@expo/vector-icons';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {ForgotScreen, SignInScreen, SignUpScreen} from '../screens';
+import {
+  ForgotScreen,
+  SignInScreen,
+  SignUpScreen,
+  Splash2Screen,
+  SplashScreen,
+  Splash3Screen,
+  Splash4Screen,
+} from '../screens';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -83,7 +91,22 @@ const StackNavigator = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="Splash"
-          component={SignInScreen}
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Splash2"
+          component={Splash2Screen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Splash3"
+          component={Splash3Screen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Splash4"
+          component={Splash4Screen}
           options={{headerShown: false}}
         />
         <Stack.Screen

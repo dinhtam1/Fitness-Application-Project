@@ -1,5 +1,7 @@
 import {ActivityIndicator, Image, Text, TouchableOpacity} from 'react-native';
 import {google} from '../../assets';
+import {fontFamilies} from '../../constants/fontFamilies';
+import {colors} from '../../constants/colors';
 
 const CustomButton = ({
   title,
@@ -15,7 +17,7 @@ const CustomButton = ({
       activeOpacity={0.7}
       style={[
         {
-          backgroundColor: '#5D847D',
+          backgroundColor: colors['primary-color'],
           borderRadius: 10,
           minHeight: 62,
           flexDirection: 'row',
@@ -32,9 +34,9 @@ const CustomButton = ({
       <Text
         style={[
           {
-            color: 'white',
-            fontSize: 22,
-            fontWeight: 'regular',
+            color: colors['text-white'],
+            fontSize: 21,
+            fontFamily: fontFamilies['semiBold'],
           },
           textStyles,
         ]}>
@@ -44,9 +46,9 @@ const CustomButton = ({
       {isLoading && (
         <ActivityIndicator
           animating={isLoading}
-          color="#fff"
+          color={colors['text-white']}
           size="small"
-          className="ml-2"
+          style={{marginLeft: 8}}
         />
       )}
     </TouchableOpacity>
