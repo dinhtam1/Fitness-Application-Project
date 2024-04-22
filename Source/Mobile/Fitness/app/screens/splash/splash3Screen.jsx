@@ -1,19 +1,20 @@
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import TextComponent from '../../components/text/textComponent';
-import {fontFamilies} from '../../constants/fontFamilies';
-import {colors} from '../../constants/colors';
 import PaginationComponent from '../../components/common/paginationComponent';
-import {splash4} from '../../assets';
+import {splash3} from '../../assets';
+import {colors} from '../../constants/colors';
+import {fontFamilies} from '../../constants/fontFamilies';
+import {title} from '../../constants/text';
 
 const {width, height} = Dimensions.get('window');
 
-const Splash4Screen = () => {
+const Splash3Screen = () => {
   return (
     <View style={{position: 'relative'}}>
-      <Image source={splash4} style={styles.image} resizeMode="cover" />
+      <Image source={splash3} style={styles.image} resizeMode="cover" />
       <TextComponent
-        text="PERFECT BODY DOING CROSSFIT EXERCISES"
+        text={title['splash3']}
         color={colors['title']}
         size={24}
         font={fontFamilies['bold']}
@@ -25,12 +26,10 @@ const Splash4Screen = () => {
           textAlign: 'center',
         }}
       />
-      <PaginationComponent number={3} navigate={'SignIn'} />
+      <PaginationComponent number={2} navigate={'Splash4'} />
     </View>
   );
 };
-
-export default Splash4Screen;
 
 const styles = StyleSheet.create({
   image: {
@@ -38,3 +37,5 @@ const styles = StyleSheet.create({
     height: height,
   },
 });
+
+export default Splash3Screen;

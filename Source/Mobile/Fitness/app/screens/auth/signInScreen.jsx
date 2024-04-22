@@ -16,6 +16,13 @@ import {apiLogin} from '../../apis/auth';
 import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {colors} from '../../constants/colors';
+import {
+  button,
+  placeholder,
+  text,
+  title,
+  titleForm,
+} from '../../constants/text';
 
 export default function SignInScreen() {
   // HANDLE DATA
@@ -78,7 +85,7 @@ export default function SignInScreen() {
         <View style={{paddingHorizontal: 20, paddingTop: 20}}>
           <View style={{paddingTop: 30}}>
             <TextComponent
-              text="WELCOME TO PRO FITNESS!"
+              text={title['sign-in']}
               color={colors['title']}
               size={24}
               font={fontFamilies['bold']}
@@ -87,20 +94,20 @@ export default function SignInScreen() {
               }}
             />
             <TextComponent
-              text={'Hello there, sign in to continue!'}
+              text={text['sub-sign-in']}
               size={15}
               font={fontFamilies['medium']}
             />
           </View>
           <View style={{paddingVertical: 20}}>
             <FormField
-              placeholder={'Enter email...'}
-              title={'Email address'}
+              placeholder={placeholder['email']}
+              title={titleForm['email']}
               handleChangeText={e => setForm({...form, email: e})}
             />
             <FormField
-              placeholder={'Enter password...'}
-              title={'Password'}
+              placeholder={placeholder['password']}
+              title={titleForm['password']}
               handleChangeText={e => setForm({...form, password: e})}
             />
           </View>
@@ -110,14 +117,14 @@ export default function SignInScreen() {
                 navigation.navigate('ForgotPassword');
               }}>
               <TextComponent
-                text={'Forgot password?'}
+                text={text['forgot-password']}
                 font={fontFamilies['bold']}
                 size={14}
               />
             </TouchableOpacity>
           </View>
           <CustomButton
-            title="LOGIN"
+            title={button['sign-in']}
             handlePress={submit}
             isLoading={isSubmitting}
             containerStyles={{marginTop: 20}}

@@ -6,6 +6,7 @@ import {fontFamilies} from '../../constants/fontFamilies';
 import {colors} from '../../constants/colors';
 import TextComponent from '../../components/text/textComponent';
 import {useNavigation} from '@react-navigation/native';
+import {title} from '../../constants/text';
 
 const {width, height} = Dimensions.get('window');
 
@@ -15,7 +16,7 @@ const SplashScreen = () => {
     <View style={{position: 'relative'}}>
       <Image source={splash1} style={styles.image} resizeMode="cover" />
       <TextComponent
-        text="PRO FITNESS"
+        text={title['splash']}
         color={colors['title']}
         size={24}
         font={fontFamilies['bold']}

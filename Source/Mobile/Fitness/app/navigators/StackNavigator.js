@@ -15,6 +15,8 @@ import {
   SplashScreen,
   Splash3Screen,
   Splash4Screen,
+  verifyScreen,
+  VerifyScreen,
 } from '../screens';
 
 const StackNavigator = () => {
@@ -122,6 +124,11 @@ const StackNavigator = () => {
         <Stack.Screen
           name="ForgotPassword"
           component={ForgotScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Verify"
+          component={VerifyScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
