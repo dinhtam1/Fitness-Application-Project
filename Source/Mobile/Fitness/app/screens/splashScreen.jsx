@@ -1,12 +1,12 @@
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {splash1} from '../../assets';
-import CustomButton from '../../components/button/buttonComponent';
-import {fontFamilies} from '../../constants/fontFamilies';
-import {colors} from '../../constants/colors';
-import TextComponent from '../../components/text/textComponent';
+import {splash1} from '../assets';
+import CustomButton from '../components/button/buttonComponent';
+import {fontFamilies} from '../constants/fontFamilies';
+import {colors} from '../constants/colors';
+import TextComponent from '../components/text/textComponent';
 import {useNavigation} from '@react-navigation/native';
-import {title} from '../../constants/text';
+import {title} from '../constants/text';
 
 const {width, height} = Dimensions.get('window');
 
@@ -47,7 +47,7 @@ const SplashScreen = () => {
           backgroundColor: colors['title'],
         }}
         handlePress={() => {
-          navigation.navigate('Splash2');
+          navigation.navigate('Introduce');
         }}
       />
     </View>
