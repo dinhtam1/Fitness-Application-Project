@@ -16,7 +16,7 @@ export const button = {
 
 export const text = {
   'forgot-password': 'Forgot password?',
-  'sub-sign-in': `'Hello there, sign in to continue!'`,
+  'sub-sign-in': `Hello there, sign in to continue!`,
   'sub-forgot-password':
     'Please enter your email below to reveive your password reset code.',
   'sub-sign-up': 'Please enter your credentials to proceed',

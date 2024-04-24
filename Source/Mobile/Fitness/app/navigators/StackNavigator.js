@@ -9,13 +9,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   ForgotScreen,
+  IntroduceScreen,
   SignInScreen,
   SignUpScreen,
   Splash2Screen,
   SplashScreen,
-  Splash3Screen,
-  Splash4Screen,
-  verifyScreen,
   VerifyScreen,
 } from '../screens';
 
@@ -97,18 +95,8 @@ const StackNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Splash2"
-          component={Splash2Screen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Splash3"
-          component={Splash3Screen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Splash4"
-          component={Splash4Screen}
+          name="Introduce"
+          component={IntroduceScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
