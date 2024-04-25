@@ -10,11 +10,11 @@ const FormField = ({
   placeholder,
   handleChangeText,
   otherStyles,
+  inputStyles,
   containStyles,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-
   return (
     <View style={[{marginTop: 8}, otherStyles]}>
       <Text
@@ -42,8 +42,10 @@ const FormField = ({
             flexDirection: 'row',
             alignItems: 'center',
           },
+          containStyles,
         ]}>
         <TextInput
+          selectTextOnFocus
           style={[
             {
               flex: 1,
@@ -51,7 +53,7 @@ const FormField = ({
               fontSize: 16,
               fontFamily: fontFamilies['medium'],
             },
-            containStyles,
+            inputStyles,
           ]}
           value={value}
           placeholder={placeholder}
