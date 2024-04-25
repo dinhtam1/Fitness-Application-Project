@@ -6,12 +6,14 @@ export const title = {
   splash2: 'PERFECT BODY DOING CROSSFIT EXERCISES',
   splash3: 'SHOT STRONG TIMELESS MAN TRAINING',
   splash4: 'PERFECT BODY DOING CROSSFIT EXERCISES',
+  verify: 'VERIFY ACCOUNT',
 };
 
 export const button = {
   'sign-in': 'LOGIN',
   'reset-password': 'RESET PASSWORD',
   'sign-up': 'CREATE ACCOUNT',
+  resend: 'Resend',
 };
 
 export const text = {

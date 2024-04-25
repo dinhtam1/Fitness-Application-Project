@@ -7,3 +7,6 @@ Create UI for splash
 
 ---- Fitness mobile v1.1.1 - 24 - Apr - 2024---
 Modify UI for splash
+
+---- Fitness mobile v1.2.0 - 25 - Apr - 2024---
+Added UI for verify
