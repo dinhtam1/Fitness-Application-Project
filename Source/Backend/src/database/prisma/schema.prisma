@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId       Int      @id @default(autoincrement()) @db.UnsignedInt
+  full_name    String   @db.VarChar(100)
+  phone_number String   @db.Char(10)
+  email        String   @unique @db.VarChar(100)
+  password     String   @db.Char(128)
+  age          Int
+  weight       Float
+  goal_weight  Float
+  height       Float
+  level        Level
+  goal         Goal
+  create_at    DateTime @default(now())
+  role         Role     @default(USER)
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum Goal {
+  WEIGHT_LOSS
+  GAIN_MUSCLE
+  IMPROVE_FITNESS
+}
+
+model KeyStore {
+  keyStoreId       Int               @id @default(autoincrement())
+  userId           Int               @db.UnsignedInt @unique
+  publicKey        String            @db.Text
+  privateKey       String            @db.Text
+  refreshTokens    RefreshToken[]
+  create_at        DateTime          @default(now())
+}
+
+model RefreshToken {
+  id              Int      @id @default(autoincrement())
+  token           String
+  KeyStoreId      Int
+  KeyStore        KeyStore @relation(fields: [KeyStoreId], references: [keyStoreId])
+}
