@@ -28,9 +28,7 @@ const CustomButton = ({
         isLoading && {opacity: 0.5},
       ]}
       disabled={isLoading}>
-      {icon && (
-        <Image source={icon} style={{width: 24, height: 24, marginRight: 10}} />
-      )}
+      {icon}
       <Text
         style={[
           {

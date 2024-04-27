@@ -8,4 +8,5 @@ export const fontFamilies = {
   thin: 'Poppins-Thin',
   extraLight: 'Poppins-ExtraLight',
   extraBold: 'Poppins-ExtraBold',
+  bebasNeue: 'BeBasNeue-Regular',
 };

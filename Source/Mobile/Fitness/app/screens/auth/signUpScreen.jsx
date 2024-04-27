@@ -20,24 +20,27 @@ import {
   title,
   titleForm,
 } from '../../constants/text';
+import {common} from '../../styles/commonStyles';
 
 const SignUpScreen = () => {
   const [isSubmitting, setSubmitting] = useState(false);
   const navigation = useNavigation();
-  const submit = () => {};
+  const submit = () => {
+    navigation.navigate('Old');
+  };
   return (
-    <SafeAreaView style={{height: '100%', paddingTop: 20}}>
-      <BackComponent />
+    <SafeAreaView style={common.safeAreaView}>
+      <BackComponent nav={'SignIn'} />
       <ScrollView>
-        <View style={{paddingHorizontal: 20, paddingTop: 20}}>
-          <View style={{paddingTop: 30}}>
+        <View style={common.contain}>
+          <View>
             <TextComponent
               text={title['sign-up']}
               color={colors['title']}
-              size={24}
-              font={fontFamilies['bold']}
+              size={30}
+              font={fontFamilies['bebasNeue']}
               styles={{
-                paddingBottom: 20,
+                paddingBottom: 10,
               }}
             />
             <TextComponent
