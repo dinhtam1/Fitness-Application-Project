@@ -9,12 +9,18 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   ForgotScreen,
+  GoalSceen,
+  GoalWeightScreen,
+  HeightScreen,
   IntroduceScreen,
+  LevelScreen,
+  OldScreen,
   SignInScreen,
   SignUpScreen,
-  Splash2Screen,
   SplashScreen,
+  StartScreen,
   VerifyScreen,
+  WeightScreen,
 } from '../screens';
 
 const StackNavigator = () => {
@@ -100,15 +106,51 @@ const StackNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
           name="SignUp"
           component={SignUpScreen}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="Start"
+          component={StartScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Weight"
+          component={WeightScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Old"
+          component={OldScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Height"
+          component={HeightScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Goal"
+          component={GoalSceen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Level"
+          component={LevelScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="GoalWeight"
+          component={GoalWeightScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={{headerShown: false}}
+        />
+
         <Stack.Screen
           name="ForgotPassword"
           component={ForgotScreen}

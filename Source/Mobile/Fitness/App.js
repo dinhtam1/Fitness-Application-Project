@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
 import StackNavigator from './app/navigators/StackNavigator';
-import {SignInScreen, SplashScreen} from './app/screens';
+import {OldScreen, SignInScreen, SplashScreen} from './app/screens';
 import {useFonts} from 'expo-font';
 import * as splashScreen from 'expo-splash-screen';
 // splashScreen.preventAutoHideAsync();
@@ -16,6 +16,7 @@ export default function App() {
     'Poppins-ExtraBold': require('./app/assets/fonts/Poppins-ExtraBold.ttf'),
     'Poppins-Black': require('./app/assets/fonts/Poppins-Black.ttf'),
     'Poppins-Thin': require('./app/assets/fonts/Poppins-Thin.ttf'),
+    'BeBasNeue-Regular': require('./app/assets/fonts/BebasNeue-Regular.ttf'),
   });
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {

@@ -21,6 +21,7 @@ import {
   title,
   titleForm,
 } from '../../constants/text';
+import {common} from '../../styles/commonStyles';
 
 export default function ForgotScreen() {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -30,18 +31,18 @@ export default function ForgotScreen() {
   const navigation = useNavigation();
   const submit = async () => {};
   return (
-    <SafeAreaView style={{height: '100%', paddingTop: 20}}>
+    <SafeAreaView style={common.safeAreaView}>
       <BackComponent />
       <ScrollView>
-        <View style={{paddingHorizontal: 20, paddingTop: 20}}>
-          <View style={{paddingTop: 30}}>
+        <View style={common.contain}>
+          <View>
             <TextComponent
               text={title['forgot-password']}
               color={colors['title']}
-              size={24}
-              font={fontFamilies['bold']}
+              size={30}
+              font={fontFamilies['bebasNeue']}
               styles={{
-                paddingBottom: 20,
+                paddingBottom: 10,
               }}
             />
             <TextComponent

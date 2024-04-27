@@ -14,6 +14,9 @@ export const button = {
   'reset-password': 'RESET PASSWORD',
   'sign-up': 'CREATE ACCOUNT',
   resend: 'Resend',
+  'next-step': 'NEXT STEPS',
+  'get-started': 'GET STARTED!',
+  'finish-step': 'FINISH STEPS',
 };
 
 export const text = {
@@ -23,6 +26,10 @@ export const text = {
     'Please enter your email below to reveive your password reset code.',
   'sub-sign-up': 'Please enter your credentials to proceed',
   'sub-verify': 'Verify your account by entering verification code we sent to',
+  'sub-start':
+    'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.',
+  'sub-start-2':
+    'Sculpt your ideal body, free your true self, transform your life.',
 };
 
 export const placeholder = {
@@ -38,4 +45,20 @@ export const titleForm = {
   password: 'Password',
   address: 'Address',
   name: 'Full Name',
+};
+
+export const step = {
+  'step-2': 'Step 2 of 7',
+  'step-3': 'Step 3 of 7',
+  'step-4': 'Step 4 of 7',
+  'step-5': 'Step 5 of 7',
+  'step-6': 'Step 6 of 7',
+  'step-7': 'Step 7 of 7',
+  'title-2': 'HOW OLD ARE YOU?',
+  'title-3': 'HOW MUCH DO YOU WEIGHT?',
+  'title-4': `WHAT'S YOUR GOAL WEIGHT?`,
+  'title-5': 'HOW MUCH DO YOU HEIGHT?',
+  'title-6': `WHAT'S YOUR FITNESS LEVEL?`,
+  'title-7': `WHAT'S YOUR GOAL?`,
+  'title-start': "LET'S GET STARTED",
 };

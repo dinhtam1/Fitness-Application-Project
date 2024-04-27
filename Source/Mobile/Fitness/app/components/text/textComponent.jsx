@@ -4,8 +4,18 @@ import {colors} from '../../constants/colors';
 import {textStyles} from '../../styles/textStyles';
 
 const TextComponent = props => {
-  const {text, size, flex, font, color, styles, title, numOfLine, align} =
-    props;
+  const {
+    text,
+    size,
+    flex,
+    font,
+    color,
+    styles,
+    title,
+    numOfLine,
+    align,
+    space,
+  } = props;
 
   const fontSizeDefault = title
     ? textStyles['semibold-18']
@@ -22,6 +32,8 @@ const TextComponent = props => {
           fontFamily: font ? font : fontSizeDefault.fontFamily,
           letterSpacing: fontSizeDefault.letterSpacing,
           textAlign: align ?? 'auto',
+          letterSpacing: space ?? 0,
+          
         },
         styles,
       ]}>

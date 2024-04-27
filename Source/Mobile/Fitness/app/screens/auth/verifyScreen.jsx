@@ -12,6 +12,8 @@ import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import BackComponent from '../../components/icon/backComponent';
 import CustomButton from '../../components/button/buttonComponent';
+import {common} from '../../styles/commonStyles';
+import SpaceComponent from '../../components/common/spaceComponent';
 
 const VerifyScreen = ({route}) => {
   const {email} = route.params;
@@ -44,18 +46,18 @@ const VerifyScreen = ({route}) => {
     }
   };
   return (
-    <SafeAreaView style={{height: '100%', paddingTop: 20}}>
+    <SafeAreaView style={common.safeAreaView}>
       <BackComponent />
       <ScrollView>
-        <View style={{paddingHorizontal: 20, paddingTop: 20}}>
-          <View style={{paddingTop: 30}}>
+        <View style={common.contain}>
+          <View>
             <TextComponent
               text={title.verify}
               color={colors['title']}
-              size={24}
-              font={fontFamilies['bold']}
+              size={30}
+              font={fontFamilies['bebasNeue']}
               styles={{
-                paddingBottom: 20,
+                paddingBottom: 10,
               }}
             />
             <TextComponent
@@ -64,6 +66,7 @@ const VerifyScreen = ({route}) => {
               font={fontFamilies['medium']}
             />
           </View>
+          <SpaceComponent height={60} />
           <View style={styles.container}>
             {[...new Array(4)].map((_, i) => (
               <View style={styles.input}>
