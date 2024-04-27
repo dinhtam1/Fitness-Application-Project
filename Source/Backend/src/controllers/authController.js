@@ -8,11 +8,49 @@ const statusCode = require('../constant/appNumber.js')
 const Type = require('../constant/appRequestType.js')
 const signIn = async (req, res, next) => {
     try {
-        console.log("signIn API");
+        var data = null;
+        var requestType = Type.SIGN_IN;
+        const foundUser = await userServices.getUserByEmail(req.body.email);
+        console.log(foundUser);
+        if (!foundUser) {
+            return res.status(400).json({
+                statusCode : statusCode.BAD_REQUEST,
+                message: 'User not already registered',
+                requestType
+            });
+        }
+        const match = await bcrypt.compare(req.body.password, foundUser.password);
+        if (!match) {
+            return res.status(400).json({
+                statusCode : statusCode.BAD_REQUEST,
+                message: 'Authentication failed',
+                requestType
+            });
+        }
+        const privateKey = crypto.randomBytes(64).toString('hex');
+        const publicKey = crypto.randomBytes(64).toString('hex');
+        const { userId } = foundUser;
+        console.log('User ID ====================', userId);
+        const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role }, publicKey, privateKey);
+        // const keyToken = await keyTokenServices.createKeyToken({
+        //     refreshToken: tokens.refreshToken,
+        //     privateKey,
+        //     publicKey,
+        //     userId
+        // })
+        // console.log('keyToken', keyToken)
         return res.status(200).json({
-            message: "sign in API"
+            statusCode : statusCode.SUCCESS,
+            message : 'Login successfully',
+            data : {
+                foundUser,
+                tokens
+            },
+            requestType
         });
-    } catch (error) {
+
+    }
+    catch (error) {
         console.error("Error during sign in:", error);
         return res.status(500).json({
             message: "Internal server error"
