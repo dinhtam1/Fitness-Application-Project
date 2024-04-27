@@ -47,17 +47,10 @@ enum Goal {
 }
 
 model KeyStore {
-  keyStoreId       Int               @id @default(autoincrement())
-  userId           Int               @db.UnsignedInt @unique
-  publicKey        String            @db.Text
-  privateKey       String            @db.Text
-  refreshTokens    RefreshToken[]
-  create_at        DateTime          @default(now())
-}
-
-model RefreshToken {
-  id              Int      @id @default(autoincrement())
-  token           String
-  KeyStoreId      Int
-  KeyStore        KeyStore @relation(fields: [KeyStoreId], references: [keyStoreId])
+  keyStoreId    Int      @id @default(autoincrement())
+  userId        Int      @unique @db.UnsignedInt
+  publicKey     String   @db.Text
+  privateKey    String   @db.Text
+  refreshTokens String   @db.Text
+  create_at     DateTime @default(now())
 }
