@@ -31,4 +31,21 @@ const createUserValidation = (req, res, next) => {
     next();
 };
 
-module.exports = {createUserValidation};
+const signInUserValidation = (req, res, next) => {
+    try {
+        const { error } = userSchema.validate(req.body);
+        if (error) {
+            return res.status(422).send({
+                message: error.message
+            });
+        }
+    } catch (err) {
+        return res.status(500).send({
+            position: "User creation validation Error",
+            msg: "Error from the server",
+        });
+    }
+    next();
+};
+
+module.exports = {createUserValidation,signInUserValidation};

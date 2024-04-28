@@ -51,6 +51,6 @@ model KeyStore {
   userId        Int      @unique @db.UnsignedInt
   publicKey     String   @db.Text
   privateKey    String   @db.Text
-  refreshTokens String   @db.Text
+  refreshToken String   @db.Text
   create_at     DateTime @default(now())
 }

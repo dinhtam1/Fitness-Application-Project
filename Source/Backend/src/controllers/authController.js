@@ -11,11 +11,11 @@ const signIn = async (req, res, next) => {
         var data = null;
         var requestType = Type.SIGN_IN;
         const foundUser = await userServices.getUserByEmail(req.body.email);
-        console.log(foundUser);
         if (!foundUser) {
             return res.status(400).json({
                 statusCode : statusCode.BAD_REQUEST,
                 message: 'User not already registered',
+                data,
                 requestType
             });
         }
@@ -24,21 +24,20 @@ const signIn = async (req, res, next) => {
             return res.status(400).json({
                 statusCode : statusCode.BAD_REQUEST,
                 message: 'Authentication failed',
+                data,
                 requestType
             });
         }
         const privateKey = crypto.randomBytes(64).toString('hex');
         const publicKey = crypto.randomBytes(64).toString('hex');
         const { userId } = foundUser;
-        console.log('User ID ====================', userId);
         const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role }, publicKey, privateKey);
-        // const keyToken = await keyTokenServices.createKeyToken({
-        //     refreshToken: tokens.refreshToken,
-        //     privateKey,
-        //     publicKey,
-        //     userId
-        // })
-        // console.log('keyToken', keyToken)
+        const keyToken = await keyTokenServices.createKeyToken({
+            refreshToken: tokens.refreshToken,
+            privateKey,
+            publicKey,
+            userId
+        })
         return res.status(200).json({
             statusCode : statusCode.SUCCESS,
             message : 'Login successfully',
@@ -51,9 +50,10 @@ const signIn = async (req, res, next) => {
 
     }
     catch (error) {
-        console.error("Error during sign in:", error);
         return res.status(500).json({
-            message: "Internal server error"
+            statusCode : statusCode.INTERNAL_SERVER_ERROR,
+            message: "Internal server error",
+            requestType
         });
     }
 };
@@ -80,10 +80,17 @@ const signUp = async (req, res, next) => {
         if (createUser) {
             const privateKey = crypto.randomBytes(64).toString('hex')
             const publicKey = crypto.randomBytes(64).toString('hex')
+            const tokens = await createTokenPair({
+                userId: createUser.userId, email: createUser.email, role: createUser.role
+            },
+                publicKey,
+                privateKey
+            )
             const keyStore = await keyTokenServices.createKeyToken({
                 userId: createUser.userId,
                 publicKey,
-                privateKey
+                privateKey,
+                refreshToken: tokens.refreshToken
             })
             if (!keyStore) {
                 return res.status(400).json({
@@ -93,12 +100,6 @@ const signUp = async (req, res, next) => {
                     requestType
                 })
             }
-            const tokens = await createTokenPair({
-                userId: createUser.userId, email: createUser.email, role: createUser.role
-            },
-                publicKey,
-                privateKey
-            )
             return res.status(200).json({
                 statusCode: statusCode.CREATED,
                 message: "Create user successfull",
