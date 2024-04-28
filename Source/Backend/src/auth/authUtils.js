@@ -1,23 +1,19 @@
-const NodeRSA = require('node-rsa');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
-// Tạo một cặp khóa RSA mới với kích thước là 2048 bit
-const key = new NodeRSA({b: 2048});
-const privateKey = key.exportKey('private');
-const publicKey = key.exportKey('public');
 
-const createTokenPair = async (payload) => {
+const createTokenPair = async (payload, publicKey, privateKey) => {
     try {
-        const accessToken = jwt.sign(payload, privateKey, {
-            algorithm: 'RS256',
+        const accessToken = await jwt.sign(payload, privateKey, {
+            algorithm: 'HS256',
             expiresIn: '2 days'
         });
-        const refreshToken = jwt.sign(payload, privateKey, {
-            algorithm: 'RS256',
+        const refreshToken = await jwt.sign(payload, privateKey, {
+            algorithm: 'HS256',
             expiresIn: '7 days'
         });
 
-        jwt.verify(accessToken, publicKey, { algorithms: ['RS256'] }, (err, decode) => {
+        jwt.verify(accessToken, privateKey, { algorithms: ['HS256'] }, (err, decode) => {
             if (err) {
                 console.error('error verify ', err)
             } else {
