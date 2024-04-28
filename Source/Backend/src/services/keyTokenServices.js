@@ -2,7 +2,7 @@ const { prisma } = require("../config/prismaDatabase");
 
 const createKeyToken = async ({userId, publicKey, privateKey, refreshToken}) => {
     try {
-        const tokens = await prisma.keyStore.upsert({
+        return tokens = await prisma.keyStore.upsert({
             where: { userId: userId },
             update: { publicKey: publicKey, privateKey: privateKey, refreshToken: refreshToken },
             create: {
@@ -12,7 +12,6 @@ const createKeyToken = async ({userId, publicKey, privateKey, refreshToken}) => 
                 refreshToken
             }
         });
-        return tokens;
     } catch (error) {
         console.log(error);
     }
@@ -20,15 +19,23 @@ const createKeyToken = async ({userId, publicKey, privateKey, refreshToken}) => 
 
 const getKeyTokenByUserId = async (userId) => {
     try {
-        const keyStore = await prisma.keyStore.findUnique({
+        return keyStore = await prisma.keyStore.findUnique({
             where: { userId: userId }
         });
-        return keyStore;
     } catch (error) {
         console.log(error);
  }
 }
+
+const removeKeyById = async (userId) => {
+    return await prisma.keyStore.delete({
+        where: {
+            userId: userId
+        }
+    });
+}
 module.exports = {
     createKeyToken,
-    getKeyTokenByUserId
+    getKeyTokenByUserId,
+    removeKeyById
 }

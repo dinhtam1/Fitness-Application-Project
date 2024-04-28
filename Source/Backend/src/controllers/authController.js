@@ -84,11 +84,8 @@ const signUp = async (req, res, next) => {
         );
 
         if (createUser) {
-
             const privateKey = crypto.randomBytes(64).toString('hex')
             const publicKey = crypto.randomBytes(64).toString('hex')
-            console.log("Private key", privateKey)
-            console.log("Public key", publicKey)
             const tokens = await createTokenPair({
                 userId: createUser.userId, email: createUser.email, role: createUser.role
             },
@@ -101,7 +98,6 @@ const signUp = async (req, res, next) => {
                 privateKey,
                 refreshToken: tokens.refreshToken
             })
-            console.log("privatre key lần 2", keyStore.privateKey)
             if (!keyStore) {
                 return res.status(400).json({
                     statusCode: statusCode.BAD_REQUEST,
@@ -133,6 +129,36 @@ const signUp = async (req, res, next) => {
         });
     }
 };
+
+const logOut = async (req, res, next) => {
+    try {
+        var requestType = Type.LOGOUT
+        var data = null
+        console.log('req.user', req.user);
+        const delKey = await keyTokenServices.removeKeyById(req.user.userId);
+        if (!delKey) {
+            return res.status(400).json({
+                statusCode: statusCode.BAD_REQUEST,
+                message: "Error delete key",
+                data,
+                requestType: Type.LOG_OUT
+            });
+        }
+        return res.status(200).json({
+            statusCode: statusCode.SUCCESS,
+            message: "Logout successfully",
+            data,
+            requestType
+        })
+    } catch (error) {
+        return res.status(500).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+
+}
 
 const decodeToken = async (req, res, next) => {
     var requestType = Type.DECODE_TOKEN;
@@ -178,7 +204,7 @@ const decodeToken = async (req, res, next) => {
             delete decodeUser.iat;
             delete decodeUser.exp;
             return res.status(200).json({
-                statusCode : statusCode.SUCCESS,
+                statusCode: statusCode.SUCCESS,
                 message: 'Decode token successfully',
                 data: decodeUser,
             });
@@ -203,5 +229,6 @@ const decodeToken = async (req, res, next) => {
 module.exports = {
     signIn,
     signUp,
+    logOut,
     decodeToken
 }
