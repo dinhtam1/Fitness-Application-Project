@@ -18,6 +18,17 @@ const createKeyToken = async ({userId, publicKey, privateKey, refreshToken}) => 
     }
 }
 
+const getKeyTokenByUserId = async (userId) => {
+    try {
+        const keyStore = await prisma.keyStore.findUnique({
+            where: { userId: userId }
+        });
+        return keyStore;
+    } catch (error) {
+        console.log(error);
+ }
+}
 module.exports = {
-    createKeyToken
+    createKeyToken,
+    getKeyTokenByUserId
 }
