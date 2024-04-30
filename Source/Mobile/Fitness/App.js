@@ -2,6 +2,7 @@ import {useCallback} from 'react';
 import StackNavigator from './app/navigators/StackNavigator';
 import {useFonts} from 'expo-font';
 import * as splashScreen from 'expo-splash-screen';
+import Toast from 'react-native-toast-message';
 // splashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -27,7 +28,8 @@ export default function App() {
   }
   return (
     <>
-      <StackNavigator />
+      <StackNavigator></StackNavigator>
+      <Toast />
     </>
   );
 }

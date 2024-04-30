@@ -8,14 +8,14 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async function (config) {
-    let localStorageData = await AsyncStorage.getItem('dataUser');
-    // if (localStorageData && typeof localStorageData === 'string') {
-    //   const accessToken = JSON.parse(localStorageData)?.token.replaceAll(
-    //     '"',
-    //     '',
-    //   );
-    //   config.headers.Authorization = `Bearer ${accessToken}`;
-    // }
+    let localStorageData = await AsyncStorage.getItem('token');
+    if (localStorageData && typeof localStorageData === 'string') {
+      const accessToken = JSON.parse(localStorageData)?.token.replaceAll(
+        '"',
+        '',
+      );
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
     return config;
   },
   async function (error) {
@@ -27,12 +27,11 @@ instance.interceptors.response.use(
   function (response) {
     return response.data;
   },
-  function (error) {
-    console.error('Error:', error);
+  async function (error) {
     // const originalRequest = error.config;
     // if (error.response.status === 403 && !originalRequest._retry) {
     //   originalRequest._retry = true;
-    //   const localStorageData = await AsyncStorage.getItem('dataUser');
+    //   const localStorageData = await AsyncStorage.getItem('token');
     //   if (localStorageData && typeof localStorageData === 'string') {
     //     const refreshToken = JSON.parse(
     //       localStorageData,

@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 import FormField from '../../components/form/formFieldComponent';
@@ -25,39 +26,35 @@ import {Controller, useForm} from 'react-hook-form';
 import {EMAIL_REGEX} from '../../constants/regex';
 import {useAuthStore} from '../../store/useAuthStore';
 import {apiRegister} from '../../apis/auth';
-import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../utils/toast';
 
 const SignUpScreen = () => {
+  const navigation = useNavigation();
   const {setForm} = useAuthStore();
   const {
     control,
     handleSubmit,
     formState: {errors, isSubmitting},
   } = useForm();
-  const navigation = useNavigation();
-  // const onSubmit = useCallback(
-  //   async data => {
-  //     setForm(data);
-  //     navigation.navigate('Old');
-  //   },
-  //   [setForm, navigation],
-  // );
-  // const onSubmit = async data => {
-  //   const response = await apiRegister(data);
-  //   console.log(response);
-  //   if (response?.success) {
-  //     console.log('Register success');
-  //   }
-  // };
   const onSubmit = async data => {
     const response = await apiRegister(data);
-    // const response = await axios.post(
-    //   'http://192.168.1.6:3055/auth/sign-up',
-    //   data,
-    // );
-    console.log(response);
-    if (response?.success) {
-      console.log('Register success');
+    console.log(response.statusCode);
+    if (response?.statusCode === 201) {
+      await AsyncStorage.setItem('token', response.data.tokens.accessToken);
+      Toast.show(
+        toastConfig({textMain: response.message, visibilityTime: 2000}),
+      );
+      navigation.navigate('Old');
+    } else {
+      Toast.show(
+        toastConfig({
+          type: 'error',
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
+      );
     }
   };
   return (

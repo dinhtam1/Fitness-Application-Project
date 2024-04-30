@@ -1,5 +1,4 @@
 import axios from '../config/axios';
-// import axios from 'axios';
 
 export const apiLogin = data =>
   axios({

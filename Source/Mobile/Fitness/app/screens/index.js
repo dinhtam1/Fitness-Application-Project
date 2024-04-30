@@ -11,6 +11,7 @@ import HeightScreen from './steps/heightScreen';
 import LevelScreen from './steps/levelScreen';
 import GoalSceen from './steps/goalScreen';
 import StartScreen from './steps/startScreen';
+import HomePageSceen from './home/homePageSceen';
 
 export {
   SignInScreen,
@@ -26,4 +27,5 @@ export {
   LevelScreen,
   GoalSceen,
   StartScreen,
+  HomePageSceen,
 };

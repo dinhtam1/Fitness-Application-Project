@@ -12,6 +12,7 @@ import {
   GoalSceen,
   GoalWeightScreen,
   HeightScreen,
+  HomePageSceen,
   IntroduceScreen,
   LevelScreen,
   OldScreen,
@@ -31,7 +32,7 @@ const StackNavigator = () => {
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={HomePageSceen}
           options={{
             tabBarLabel: 'Home',
             tabBarLabelStyle: {color: '#008E97'},
@@ -159,6 +160,11 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Verify"
           component={VerifyScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomePageSceen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
