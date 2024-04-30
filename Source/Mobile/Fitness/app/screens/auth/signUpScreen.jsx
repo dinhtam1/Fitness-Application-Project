@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import FormField from '../../components/form/formFieldComponent';
 import {useNavigation} from '@react-navigation/native';
 import CustomButton from '../../components/button/buttonComponent';
@@ -21,12 +21,44 @@ import {
   titleForm,
 } from '../../constants/text';
 import {common} from '../../styles/commonStyles';
+import {Controller, useForm} from 'react-hook-form';
+import {EMAIL_REGEX} from '../../constants/regex';
+import {useAuthStore} from '../../store/useAuthStore';
+import {apiRegister} from '../../apis/auth';
+import axios from 'axios';
 
 const SignUpScreen = () => {
-  const [isSubmitting, setSubmitting] = useState(false);
+  const {setForm} = useAuthStore();
+  const {
+    control,
+    handleSubmit,
+    formState: {errors, isSubmitting},
+  } = useForm();
   const navigation = useNavigation();
-  const submit = () => {
-    navigation.navigate('Old');
+  // const onSubmit = useCallback(
+  //   async data => {
+  //     setForm(data);
+  //     navigation.navigate('Old');
+  //   },
+  //   [setForm, navigation],
+  // );
+  // const onSubmit = async data => {
+  //   const response = await apiRegister(data);
+  //   console.log(response);
+  //   if (response?.success) {
+  //     console.log('Register success');
+  //   }
+  // };
+  const onSubmit = async data => {
+    const response = await apiRegister(data);
+    // const response = await axios.post(
+    //   'http://192.168.1.6:3055/auth/sign-up',
+    //   data,
+    // );
+    console.log(response);
+    if (response?.success) {
+      console.log('Register success');
+    }
   };
   return (
     <SafeAreaView style={common.safeAreaView}>
@@ -50,30 +82,83 @@ const SignUpScreen = () => {
             />
           </View>
           <View style={{paddingVertical: 20}}>
-            <FormField
-              placeholder={placeholder['name']}
-              title={titleForm['name']}
-              handleChangeText={e => setForm({...form, email: e})}
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: 'This field cannot empty'},
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['name']}
+                  title={titleForm['name']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="full_name"
             />
-            <FormField
-              placeholder={placeholder['email']}
-              title={titleForm['email']}
-              handleChangeText={e => setForm({...form, phone: e})}
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: 'This field cannot empty'},
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['phone']}
+                  title={titleForm['phone']}
+                  handleChangeText={onChange}
+                  keyboardType="number-pad"
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="phone_number"
             />
-            <FormField
-              placeholder={placeholder['address']}
-              title={titleForm['address']}
-              handleChangeText={e => setForm({...form, address: e})}
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: 'This field cannot empty'},
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: 'Not a valid email',
+                },
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['email']}
+                  title={titleForm['email']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="email"
             />
-            <FormField
-              placeholder={placeholder['password']}
-              title={titleForm['password']}
-              handleChangeText={e => setForm({...form, password: e})}
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: 'This field cannot empty'},
+                minLength: {
+                  value: 8,
+                  message: 'Password must be at least 8 characters',
+                },
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['password']}
+                  title={titleForm['password']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="password"
             />
           </View>
           <CustomButton
             title={button['sign-up']}
-            handlePress={submit}
+            handlePress={handleSubmit(onSubmit)}
             isLoading={isSubmitting}
             containerStyles={{marginTop: 20}}
           />

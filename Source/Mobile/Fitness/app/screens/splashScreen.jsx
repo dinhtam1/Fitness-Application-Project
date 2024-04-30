@@ -1,5 +1,5 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {Button, Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
 import {splash1} from '../assets';
 import CustomButton from '../components/button/buttonComponent';
 import {fontFamilies} from '../constants/fontFamilies';

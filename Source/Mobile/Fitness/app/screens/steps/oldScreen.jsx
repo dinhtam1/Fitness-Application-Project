@@ -1,5 +1,5 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import BackComponent from '../../components/icon/backComponent';
 import TextComponent from '../../components/text/textComponent';
 import PickerComponent from '../../components/picker/pickerComponent';
@@ -8,11 +8,19 @@ import SpaceComponent from '../../components/common/spaceComponent';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {button, step} from '../../constants/text';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
+import {useAuthStore} from '../../store/useAuthStore';
 
 const OldScreen = () => {
   const navigation = useNavigation();
+  const [age, setAge] = useState(null);
+  const {form, setForm} = useAuthStore();
+
+  const onSubmit = () => {
+    // setForm({...form, age});
+    navigation.navigate('Weight');
+  };
   return (
     <SafeAreaView style={common.safeAreaView}>
       <BackComponent skip nav={'SignUp'} />
@@ -40,12 +48,12 @@ const OldScreen = () => {
           />
         </View>
         <View style={common.flex}>
-          <PickerComponent />
+          <PickerComponent onValueChange={value => setAge(value)} />
         </View>
         <CustomButton
           title={button['next-step']}
           containerStyles={{marginBottom: 20}}
-          handlePress={() => navigation.navigate('Weight')}
+          handlePress={onSubmit}
         />
       </View>
     </SafeAreaView>

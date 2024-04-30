@@ -14,11 +14,17 @@ import CustomButton from '../../components/button/buttonComponent';
 import {button, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
+import {useAuthStore} from '../../store/useAuthStore';
 
 const GoalSceen = () => {
   const buttonTitles = ['Weight loss', 'Gain muscle', 'Improve fitness'];
   const navigation = useNavigation();
   const [selectedLevel, setSelectedLevel] = useState('');
+  const {form, setForm} = useAuthStore();
+  const onSubmit = () => {
+    setForm({...form, goal: selectedLevel.toUpperCase()});
+    navigation.navigate('Start');
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
@@ -74,7 +80,7 @@ const GoalSceen = () => {
           <CustomButton
             title={button['finish-step']}
             containerStyles={{marginBottom: 20}}
-            handlePress={() => navigation.navigate('Start')}
+            handlePress={onSubmit}
           />
         </View>
       </SafeAreaView>

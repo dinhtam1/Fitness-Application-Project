@@ -4,7 +4,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import BackComponent from '../../components/icon/backComponent';
 import TextComponent from '../../components/text/textComponent';
 import SpaceComponent from '../../components/common/spaceComponent';
@@ -15,9 +15,16 @@ import FormField from '../../components/form/formFieldComponent';
 import {button, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
+import {useAuthStore} from '../../store/useAuthStore';
 
 const WeightScreen = () => {
   const navigation = useNavigation();
+  const [weight, setWeight] = useState(null);
+  const {form, setForm} = useAuthStore();
+  const onSubmit = () => {
+    // setForm({...form, weight});
+    navigation.navigate('GoalWeight');
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
@@ -56,13 +63,11 @@ const WeightScreen = () => {
               keyboardType="numeric"
               inputStyles={{textAlign: 'center', fontSize: 20}}
               unit={'kg'}
+              handleChangeText={value => setWeight(value)}
             />
           </View>
           <SpaceComponent height={100} />
-          <CustomButton
-            title={button['next-step']}
-            handlePress={() => navigation.navigate('GoalWeight')}
-          />
+          <CustomButton title={button['next-step']} handlePress={onSubmit} />
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

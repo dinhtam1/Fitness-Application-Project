@@ -3,6 +3,8 @@ import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import {eye, eyeHide} from '../../assets';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
+import RowComponent from '../common/rowComponent';
+import TextComponent from '../text/textComponent';
 
 const FormField = ({
   title,
@@ -13,6 +15,7 @@ const FormField = ({
   inputStyles,
   containStyles,
   unit,
+  error,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,7 +32,6 @@ const FormField = ({
         }}>
         {title}
       </Text>
-
       <View
         style={[
           {
@@ -85,6 +87,16 @@ const FormField = ({
           </TouchableOpacity>
         )}
       </View>
+      {error && (
+        <RowComponent justify="flex-start" styles={{paddingTop: 10}}>
+          <TextComponent
+            color={colors['fill-red']}
+            font={fontFamilies['medium']}
+            size={14}
+            text={error}
+          />
+        </RowComponent>
+      )}
     </View>
   );
 };
