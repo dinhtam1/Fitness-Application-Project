@@ -1,16 +1,7 @@
-import {
-  Button,
-  Dimensions,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import ScrollPicker from 'react-native-wheel-scrollview-picker';
 
-import React, {useRef, useState} from 'react';
-import TextComponent from '../text/textComponent';
+import React, {useState} from 'react';
 import {colors} from '../../constants/colors';
 
 const {width, height} = Dimensions.get('window');
@@ -24,18 +15,13 @@ const dataSource = new Array(60)
     const value = start + i;
     return value.toString();
   });
-const PickerComponent = () => {
-  const ref = useRef();
+const PickerComponent = ({onValueChange}) => {
   const [index, setIndex] = useState(0);
-  const onValueChange = (data, selectedIndex) => {
+  const handleValueChange = (data, selectedIndex) => {
     setIndex(selectedIndex);
+    onValueChange(data);
   };
 
-  const onNext = () => {
-    if (index === dataSource.length - 1) return;
-    setIndex(index + 1);
-    ref.current && ref.current.scrollToTargetIndex(index + 1);
-  };
   return (
     <View style={styles.container}>
       <ScrollPicker
@@ -59,7 +45,7 @@ const PickerComponent = () => {
             </View>
           );
         }}
-        onValueChange={onValueChange}
+        onValueChange={handleValueChange}
         wrapperHeight={200}
         itemHeight={40}
         highlightColor="#000"

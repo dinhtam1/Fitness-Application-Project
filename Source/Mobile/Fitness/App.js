@@ -1,6 +1,5 @@
 import {useCallback} from 'react';
 import StackNavigator from './app/navigators/StackNavigator';
-import {OldScreen, SignInScreen, SplashScreen} from './app/screens';
 import {useFonts} from 'expo-font';
 import * as splashScreen from 'expo-splash-screen';
 // splashScreen.preventAutoHideAsync();

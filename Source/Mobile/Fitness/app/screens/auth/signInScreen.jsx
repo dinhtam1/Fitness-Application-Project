@@ -24,59 +24,41 @@ import {
   titleForm,
 } from '../../constants/text';
 import {common} from '../../styles/commonStyles';
+import {Controller, useForm} from 'react-hook-form';
+import {EMAIL_REGEX} from '../../constants/regex';
 
 export default function SignInScreen() {
   // HANDLE DATA
-  const [isSubmitting, setSubmitting] = useState(false);
-  const [isRemember, setIsRemember] = useState(false);
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
+  const {
+    control,
+    handleSubmit,
+    setError,
+    formState: {errors, isSubmitting},
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   /**
    * Navigation
    */
   const navigation = useNavigation();
-  useEffect(() => {
-    const storeData = async () => {
-      try {
-        const response = await AsyncStorage.setItem('dataUser');
-        if (response) {
-          const jsonValue = JSON.parse(response);
-          if (jsonValue.isRemember) {
-            setForm('email', jsonValue.email);
-            setForm('password', jsonValue.password);
-            setIsRemember(jsonValue.isRemember);
-          }
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    storeData();
-  }, [setForm]);
 
   /**
    * Submit funtion
    */
-  const submit = async () => {
-    if (form.email === '' || form.password === '') {
-      Alert.alert('Error', 'Please fill in all fields');
-    }
-
-    const response = await apiLogin(form);
-    if (response?.success) {
-      AsyncStorage.setItem(
-        'dataUser',
-        JSON.stringify({
-          email: form.email,
-          password: form.password,
-          isRemember,
-        }),
-      );
-    } else {
-      AsyncStorage.setItem('dataUser', JSON.stringify({isRemember}));
+  const onSubmit = async data => {
+    try {
+      const response = await apiLogin(data);
+      if (response.success) {
+        setToken(response);
+      }
+    } catch (error) {
+      setError('email', {
+        message: 'This email is already taken',
+      });
     }
   };
   // VIEW
@@ -101,15 +83,45 @@ export default function SignInScreen() {
             />
           </View>
           <View style={{paddingVertical: 20}}>
-            <FormField
-              placeholder={placeholder['email']}
-              title={titleForm['email']}
-              handleChangeText={e => setForm({...form, email: e})}
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: 'This field cannot empty'},
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: 'Not a valid email',
+                },
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['email']}
+                  title={titleForm['email']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="email"
             />
-            <FormField
-              placeholder={placeholder['password']}
-              title={titleForm['password']}
-              handleChangeText={e => setForm({...form, password: e})}
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: 'This field cannot empty'},
+                minLength: {
+                  value: 8,
+                  message: 'Password must be at least 8 characters',
+                },
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['password']}
+                  title={titleForm['password']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="password"
             />
           </View>
           <View style={{alignItems: 'flex-end'}}>
@@ -126,7 +138,7 @@ export default function SignInScreen() {
           </View>
           <CustomButton
             title={button['sign-in']}
-            handlePress={submit}
+            handlePress={handleSubmit(onSubmit)}
             isLoading={isSubmitting}
             containerStyles={{marginTop: 20}}
           />

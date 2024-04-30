@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import BackComponent from '../../components/icon/backComponent';
 import TextComponent from '../../components/text/textComponent';
 import {colors} from '../../constants/colors';
@@ -17,10 +17,16 @@ import CustomButton from '../../components/button/buttonComponent';
 import {button, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
+import {useAuthStore} from '../../store/useAuthStore';
 
 const HeightScreen = () => {
   const navigation = useNavigation();
-
+  const [height, setHeight] = useState(null);
+  const {form, setForm} = useAuthStore();
+  const onSubmit = () => {
+    setForm({...form, height});
+    navigation.navigate('Level');
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
@@ -60,13 +66,11 @@ const HeightScreen = () => {
               keyboardType="numeric"
               inputStyles={{textAlign: 'center', fontSize: 20}}
               unit={'cm'}
+              handleChangeText={value => setHeight(value)}
             />
           </View>
           <SpaceComponent height={100} />
-          <CustomButton
-            title={button['next-step']}
-            handlePress={() => navigation.navigate('Level')}
-          />
+          <CustomButton title={button['next-step']} handlePress={onSubmit} />
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

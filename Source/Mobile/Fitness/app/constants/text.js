@@ -45,6 +45,7 @@ export const titleForm = {
   password: 'Password',
   address: 'Address',
   name: 'Full Name',
+  phone: 'Phone',
 };
 
 export const step = {

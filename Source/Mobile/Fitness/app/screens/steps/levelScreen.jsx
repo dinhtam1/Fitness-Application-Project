@@ -15,12 +15,17 @@ import CustomButton from '../../components/button/buttonComponent';
 import {button, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
+import {useAuthStore} from '../../store/useAuthStore';
 
 const LevelScreen = () => {
   const buttonTitles = ['BEGINNER', 'INTERMEDIATE', 'ADVANCED'];
   const navigation = useNavigation();
-
   const [selectedLevel, setSelectedLevel] = useState('');
+  const {form, setForm} = useAuthStore();
+  const onSubmit = () => {
+    setForm({...form, level: selectedLevel});
+    navigation.navigate('Goal');
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
@@ -76,7 +81,7 @@ const LevelScreen = () => {
           <CustomButton
             title={button['next-step']}
             containerStyles={{marginBottom: 20}}
-            handlePress={() => navigation.navigate('Goal')}
+            handlePress={onSubmit}
           />
         </View>
       </SafeAreaView>
