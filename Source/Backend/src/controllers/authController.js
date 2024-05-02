@@ -321,7 +321,54 @@ const verifyOTP = async (req, res, next) => {
         }
 
     } catch (error) {
+        return res.status(500).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+}
 
+const forgotPassword = async (req, res, next) => {
+    var requestType = Type.FORGOT_PASSWORD;
+    var data = null;
+    try {
+        console.log(req.user);
+        const new_password = req.body.new_password;
+        const confirm_password =  req.body.confirm_password;
+        console.log(new_password , confirm_password);
+        if(new_password !== confirm_password){
+            return res.status(200).json({
+                statusCode: statusCode.SUCCESS,
+                message: 'Password not match',
+                data,
+                requestType
+            });
+        }
+        const hashedPassword = await bcrypt.hash(new_password, constant.SALT_ROUNDS);
+        console.log(hashedPassword)
+        const updatePassword = await userServices.updatePasswordbyEmail(req.user.email, hashedPassword)
+        if(!updatePassword){
+            return res.status(200).json({
+                statusCode: statusCode.SUCCESS,
+                message: 'Error update password',
+                data,
+                requestType
+            });
+        }
+        return res.status(200).json({
+            statusCode: statusCode.SUCCESS,
+            message: 'Forgot password successfully',
+            data,
+            requestType
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
     }
 }
 
@@ -333,4 +380,5 @@ module.exports = {
     decodeToken,
     sendOTP,
     verifyOTP,
+    forgotPassword
 }
