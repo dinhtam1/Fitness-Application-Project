@@ -32,7 +32,7 @@ const verifyToken = async (req, res , next) => {
         if (!accessToken) {
             return res.status(400).json({
                 statusCode: statusCode.BAD_REQUEST,
-                message: 'accessToken not found',
+                message: 'You are not authenticated',
                 data,
                 requestType
             });

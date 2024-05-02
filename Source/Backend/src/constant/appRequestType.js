@@ -3,8 +3,9 @@ const SIGN_IN = 1;
 const VERIFY_ACCOUNT = 2;
 const LOGOUT = 3;
 const DECODE_TOKEN = 4;
-const FORGOT_PASSWORD = 5   ;
-
+const SEND_OTP = 5
+const VERIFY_OTP = 6;
+const FORGOT_PASSWORD = 7;
 
 module.exports = {
     SIGN_UP,
@@ -12,5 +13,7 @@ module.exports = {
     VERIFY_ACCOUNT,
     LOGOUT,
     DECODE_TOKEN,
+    SEND_OTP,
+    VERIFY_OTP,
     FORGOT_PASSWORD
 };
