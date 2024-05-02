@@ -6,7 +6,8 @@ const HEADER = {
     CLIENT_ID: 'x-client-id',
     AUTHORIZATION: 'authorization',
 }
-const verifyToken = async (req, res , next) => {
+
+const verifyToken = async (req, res, next) => {
     var requestType = Type.DECODE_TOKEN;
     var data = null;
     try {
@@ -19,6 +20,7 @@ const verifyToken = async (req, res , next) => {
                 requestType
             });
         }
+
         const keyStore = await keyTokenServices.getKeyTokenByUserId(userId);
         if (!keyStore) {
             return res.status(400).json({
@@ -28,6 +30,7 @@ const verifyToken = async (req, res , next) => {
                 requestType
             });
         }
+
         const accessToken = req.headers[HEADER.AUTHORIZATION];
         if (!accessToken) {
             return res.status(400).json({
@@ -37,29 +40,31 @@ const verifyToken = async (req, res , next) => {
                 requestType
             });
         }
-        try {
-            const decodeUser = jwt.verify(accessToken, keyStore.privateKey, { algorithms: ['HS256'] });
+
+        jwt.verify(accessToken, keyStore.privateKey, { algorithms: ['HS256'] }, (err, decodeUser) => {
+            if (err) {
+                return res.status(500).json({
+                    statusCode: statusCode.INTERNAL_SERVER_ERROR,
+                    message: 'Error verifying token',
+                    data,
+                    requestType
+                });
+            }
+
             if (userId !== decodeUser.userId) {
-                return res.status(400).json({
-                    statusCode: statusCode.BAD_REQUEST,
+                return res.status(200).json({
+                    statusCode: statusCode.SUCCESS,
                     message: 'Invalid User',
                     data,
                     requestType
                 });
             }
+
             delete decodeUser.iat;
             delete decodeUser.exp;
             req.user = decodeUser;
             next();
-        } catch (err) {
-            console.error('error verify ', err);
-            return res.status(500).json({
-                statusCode: statusCode.INTERNAL_SERVER_ERROR,
-                message: 'Error verifying token',
-                data,
-                requestType
-            });
-        }
+        });
     } catch (error) {
         return res.status(500).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
@@ -69,4 +74,4 @@ const verifyToken = async (req, res , next) => {
     }
 }
 
-module.exports = {verifyToken};
+module.exports = { verifyToken };
