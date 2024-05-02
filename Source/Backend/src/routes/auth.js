@@ -8,5 +8,7 @@ authRouter.post('/sign-up',authValidation.createUserValidation, authController.s
 authRouter.post('/sign-in', authController.signIn);
 authRouter.post('/log-out',authMiddleware.verifyToken, authController.logOut);
 authRouter.post('/decode-token', authController.decodeToken);
+authRouter.post('/send-otp', authController.sendOTP);
+authRouter.post('/verify-otp', authController.verifyOTP);
 
 module.exports = authRouter;

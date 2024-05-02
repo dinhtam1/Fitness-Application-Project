@@ -23,8 +23,11 @@
     "dotenv": "^16.4.5",
     "joi": "^17.13.0",
     "jsonwebtoken": "^9.0.2",
+    "moment-timezone": "^0.5.45",
     "node-rsa": "^1.1.1",
-    "prisma": "^5.12.1"
+    "nodemailer": "^6.9.13",
+    "prisma": "^5.12.1",
+    "randomatic": "^3.1.1"
   },
   "prisma": {
     "schema": "./src/database/prisma/schema.prisma"

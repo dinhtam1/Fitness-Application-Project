@@ -14,19 +14,22 @@ datasource db {
 }
 
 model User {
-  userId       Int      @id @default(autoincrement()) @db.UnsignedInt
-  full_name    String   @db.VarChar(100)
-  phone_number String   @db.Char(10)
-  email        String   @unique @db.VarChar(100)
-  password     String   @db.Char(128)
-  age          Int
-  weight       Float
-  goal_weight  Float
-  height       Float
-  level        Level
-  goal         Goal
-  create_at    DateTime @default(now())
-  role         Role     @default(USER)
+  userId        Int       @id @default(autoincrement()) @db.UnsignedInt
+  full_name     String    @db.VarChar(100)
+  phone_number  String    @db.Char(10)
+  email         String    @unique @db.VarChar(100)
+  password      String    @db.Char(128)
+  age           Int?
+  weight        Float?
+  goal_weight   Float?
+  height        Float?
+  level         Level?
+  goal          Goal?
+  create_at     DateTime  @default(now())
+  role          Role      @default(USER)
+  OTP           String?   @db.Char(4)
+  otp_expiry_at DateTime?
+  is_verified   Boolean   @default(false)
 }
 
 enum Role {
@@ -47,10 +50,10 @@ enum Goal {
 }
 
 model KeyStore {
-  keyStoreId    Int      @id @default(autoincrement())
-  userId        Int      @unique @db.UnsignedInt
-  publicKey     String   @db.Text
-  privateKey    String   @db.Text
+  keyStoreId   Int      @id @default(autoincrement())
+  userId       Int      @unique @db.UnsignedInt
+  publicKey    String   @db.Text
+  privateKey   String   @db.Text
   refreshToken String   @db.Text
-  create_at     DateTime @default(now())
+  create_at    DateTime @default(now())
 }
