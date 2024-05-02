@@ -40,16 +40,16 @@ const checkEmail = async (email) => {
 
 const sendOTPtoEmail = async (email, otp) => {
     try {
-
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'appfitness22@gmail.com',
-                pass: 'vbhg nxtf vgub nvue'
+                
+                user: process.env.USERNAME_EMAIL,
+                pass: process.env.PASS_EMAIL
             }
         });
         const mailOptions = {
-            from: 'appfitness22@gmail.com',
+            from: process.env.USERNAME_EMAIL,
             to: email,
             subject: 'Your OTP',
             text: `Your OTP is ${otp}, it will expire in 5 minutes. Please do not share it with anyone.`
@@ -76,7 +76,6 @@ const sendOTPtoEmail = async (email, otp) => {
 const saveOTPbyEmail = async (email, OTP) => {
     const otp_expiry_at = new Date();
     otp_expiry_at.setMinutes(otp_expiry_at.getMinutes() + 5);
-    console.log(otp_expiry_at);
     try {
         return await prisma.user.update({
             where: { email: email },
@@ -114,8 +113,6 @@ const setStatusVerify = async (email) => {
         console.log(e);
         return false;
     }
-
-
 }
 
 module.exports = {
