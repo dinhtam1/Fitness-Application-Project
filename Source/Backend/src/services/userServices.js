@@ -43,7 +43,7 @@ const sendOTPtoEmail = async (email, otp) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                
+
                 user: process.env.USERNAME_EMAIL,
                 pass: process.env.PASS_EMAIL
             }
@@ -115,6 +115,17 @@ const setStatusVerify = async (email) => {
     }
 }
 
+const updatePasswordbyEmail = async (email, password) => {
+    try {
+        return await prisma.user.update({
+            where: { email: email },
+            data: { password }
+        })
+    } catch (error) {
+        return false
+    }
+}
+
 module.exports = {
     createUser,
     getUserByEmail,
@@ -122,5 +133,6 @@ module.exports = {
     saveOTPbyEmail,
     getOTPbyEmail,
     checkEmail,
-    setStatusVerify
+    setStatusVerify,
+    updatePasswordbyEmail
 }

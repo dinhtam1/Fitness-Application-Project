@@ -10,5 +10,6 @@ authRouter.post('/log-out',authMiddleware.verifyToken, authController.logOut);
 authRouter.post('/decode-token', authController.decodeToken);
 authRouter.post('/send-otp', authController.sendOTP);
 authRouter.post('/verify-otp', authController.verifyOTP);
+authRouter.post('/forgot-password',authValidation.forgotPasswordValidation, authMiddleware.verifyToken, authController.forgotPassword);
 
 module.exports = authRouter;
