@@ -314,7 +314,8 @@ const verifyOTP = async (req, res, next) => {
                 statusCode: statusCode.SUCCESS,
                 message: 'Verify successfully',
                 data: {
-                    tokens
+                    tokens,
+                    userId
                 },
                 requestType
             });
