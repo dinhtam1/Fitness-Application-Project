@@ -1,5 +1,5 @@
 const { prisma } = require("../config/prismaDatabase");
-
+const jwt = require('jsonwebtoken');
 const createKeyToken = async ({userId, publicKey, privateKey, refreshToken}) => {
     try {
         return tokens = await prisma.keyStore.upsert({
@@ -34,8 +34,24 @@ const removeKeyById = async (userId) => {
         }
     });
 }
+
+const verifyRefreshToken = (refreshToken, privateKey) => {
+    return new Promise((resolve, reject) => {
+        jwt.verify(refreshToken, privateKey, { algorithms: ['HS256'] }, (err, decodeUser) => {
+            if (err) {
+                console.log(err);
+                reject(err);
+            } else {
+                resolve(decodeUser);
+            }
+        });
+    }).catch((error) => {
+        console.log(error);
+    });
+};
 module.exports = {
     createKeyToken,
     getKeyTokenByUserId,
-    removeKeyById
+    removeKeyById,
+    verifyRefreshToken
 }
