@@ -373,6 +373,63 @@ const forgotPassword = async (req, res, next) => {
     }
 }
 
+const renewToken = async (req,res,next) => {
+    try {
+        var data = null;
+        var requestType = Type.RENEW_TOKEN;
+        const {refreshToken , userId} = req.body;
+        console.log(refreshToken);
+        console.log(userId);
+        if(!refreshToken) {
+            return res.status(200).json({
+                statusCode: statusCode.SUCCESS,
+                message: 'Refresh token not found',
+                data,
+                requestType
+            });
+        }
+        if(!userId) {
+            return res.status(200).json({
+                statusCode: statusCode.SUCCESS,
+                message: 'User not found',
+                data,
+                requestType
+            });
+        }
+        const keyStore = await keyTokenServices.getKeyTokenByUserId(userId);
+        const payload = await keyTokenServices.verifyRefreshToken(refreshToken , keyStore.privateKey);
+        delete payload.iat;
+        delete payload.exp;
+        if(!payload){
+            return res.status(200).json({
+                statusCode: statusCode.SUCCESS,
+                message: 'Invalid refresh token',
+                data,
+                requestType
+            });
+        }
+        const token = await createTokenPair(payload ,undefined, keyStore.privateKey)
+        const keyToken = await keyTokenServices.createKeyToken({
+            refreshToken: token.refreshToken,
+            privateKey:keyStore.privateKey,
+            publicKey:keyStore.publicKey,
+            userId
+        })
+        return res.status(200).json({
+            statusCode: statusCode.SUCCESS,
+            message: 'Renew token successfully',
+            data : token,
+            requestType
+        })
+    } catch (error) {
+        return res.status(500).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+}
+
 
 module.exports = {
     signIn,
@@ -381,5 +438,6 @@ module.exports = {
     decodeToken,
     sendOTP,
     verifyOTP,
-    forgotPassword
+    forgotPassword,
+    renewToken
 }

@@ -8,6 +8,7 @@ const SEND_OTP = 6;
 const VERIFY_OTP = 7;
 const FORGOT_PASSWORD = 8;
 const VIEW_PROFILE = 9;
+const RENEW_TOKEN = 10;
 module.exports = {
     VALIDATION,
     SIGN_UP,
@@ -18,5 +19,6 @@ module.exports = {
     SEND_OTP,
     VERIFY_OTP,
     FORGOT_PASSWORD,
-    VIEW_PROFILE
+    VIEW_PROFILE,
+    RENEW_TOKEN
 };
