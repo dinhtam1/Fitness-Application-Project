@@ -11,5 +11,6 @@ authRouter.post('/decode-token', authController.decodeToken);
 authRouter.post('/send-otp', authController.sendOTP);
 authRouter.post('/verify-otp', authController.verifyOTP);
 authRouter.put('/forgot-password',authValidation.forgotPasswordValidation, authMiddleware.verifyToken, authController.forgotPassword);
+authRouter.post('/renew-token', authController.renewToken);
 
 module.exports = authRouter;

@@ -7,7 +7,7 @@ const userSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     age: Joi.number().integer().positive().strict(),
-    gender: Joi.string().valid('male', 'female'),
+    gender: Joi.string().valid('MALE', 'FEMALE'),
     weight: Joi.number().positive().strict(),
     goal_weight: Joi.number().positive().strict(),
     height: Joi.number().positive().strict(),
