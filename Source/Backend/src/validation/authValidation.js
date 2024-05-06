@@ -1,3 +1,4 @@
+const Type = require('../constant/appRequestType.js')
 const Joi = require('joi');
 const statusCode = require('../constant/appNumber.js')
 const userSchema = Joi.object({
@@ -6,6 +7,7 @@ const userSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     age: Joi.number().integer().positive().strict(),
+    gender: Joi.string().valid('male', 'female'),
     weight: Joi.number().positive().strict(),
     goal_weight: Joi.number().positive().strict(),
     height: Joi.number().positive().strict(),
@@ -24,7 +26,8 @@ const createUserValidation = (req, res, next) => {
         if (error) {
             return res.status(200).send({
                 statusCode: statusCode.SUCCESS,
-                message: error.message
+                message: error.message,
+                requestType: Type.VALIDATION
             });
         }
     } catch (error) {
@@ -42,7 +45,8 @@ const signInUserValidation = (req, res, next) => {
         if (error) {
             return res.status(200).send({
                 statusCode: statusCode.SUCCESS,
-                message: error.message
+                message: error.message,
+                requestType: Type.VALIDATION
             });
         }
     } catch (error) {
@@ -60,7 +64,8 @@ const forgotPasswordValidation = (req, res, next) => {
         if (error) {
             return res.status(200).send({
                 statusCode: statusCode.SUCCESS,
-                message: error.message
+                message: error.message,
+                requestType: Type.VALIDATION
             });
         }
     } catch (error) {
