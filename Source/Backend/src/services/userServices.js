@@ -126,6 +126,29 @@ const updatePasswordbyEmail = async (email, password) => {
     }
 }
 
+const getUserByUserId = async (userId) => {
+    try {
+        return await prisma.user.findUnique({
+            where: {
+                userId: userId
+            },
+            select: {
+                full_name: true,
+                phone_number:true,
+                email:true,
+                weight: true,
+                height: true,
+                gender: true,
+                age: true,
+            }
+        });
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+
+}
+
 module.exports = {
     createUser,
     getUserByEmail,
@@ -134,5 +157,6 @@ module.exports = {
     getOTPbyEmail,
     checkEmail,
     setStatusVerify,
-    updatePasswordbyEmail
+    updatePasswordbyEmail,
+    getUserByUserId
 }

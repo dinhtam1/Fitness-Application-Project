@@ -20,6 +20,7 @@ model User {
   email         String    @unique @db.VarChar(100)
   password      String    @db.Char(128)
   age           Int?
+  gender        Gender?
   weight        Float?
   goal_weight   Float?
   height        Float?
@@ -30,6 +31,11 @@ model User {
   OTP           String?   @db.Char(4)
   otp_expiry_at DateTime?
   is_verified   Boolean   @default(false)
+}
+
+enum Gender {
+  MALE
+  FEMALE
 }
 
 enum Role {
