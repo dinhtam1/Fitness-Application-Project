@@ -1,8 +1,11 @@
-import {useCallback} from 'react';
+import {useCallback, useState} from 'react';
 import StackNavigator from './app/navigators/StackNavigator';
 import {useFonts} from 'expo-font';
 import * as splashScreen from 'expo-splash-screen';
 import Toast from 'react-native-toast-message';
+import {NavigationContainer} from '@react-navigation/native';
+import AppRoutes from './app/navigators/AppRoutes';
+import {HomePageSceen} from './app/screens';
 // splashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -26,9 +29,13 @@ export default function App() {
   if (!fontsLoaded || fontError) {
     return null;
   }
+
   return (
     <>
-      <StackNavigator></StackNavigator>
+      {/* <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer> */}
+      <HomePageSceen />
       <Toast />
     </>
   );

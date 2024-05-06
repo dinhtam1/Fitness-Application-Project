@@ -26,39 +26,35 @@ import {
 import {common} from '../../styles/commonStyles';
 import {Controller, useForm} from 'react-hook-form';
 import {EMAIL_REGEX} from '../../constants/regex';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../utils/toast';
 
 export default function SignInScreen() {
   // HANDLE DATA
+  const navigation = useNavigation();
   const {
     control,
     handleSubmit,
     setError,
     formState: {errors, isSubmitting},
-  } = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
-
-  /**
-   * Navigation
-   */
-  const navigation = useNavigation();
-
-  /**
-   * Submit funtion
-   */
+  } = useForm();
   const onSubmit = async data => {
-    try {
-      const response = await apiLogin(data);
-      if (response.success) {
-        setToken(response);
-      }
-    } catch (error) {
-      setError('email', {
-        message: 'This email is already taken',
-      });
+    const response = await apiLogin(data);
+    console.log(response.statusCode);
+    if (response.statusCode === 200) {
+      await AsyncStorage.setItem('token', response.data.tokens.accessToken);
+      Toast.show(
+        toastConfig({textMain: response.message, visibilityTime: 2000}),
+      );
+      navigation.navigate('Home');
+    } else {
+      Toast.show(
+        toastConfig({
+          type: 'error',
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
+      );
     }
   };
   // VIEW
@@ -107,10 +103,10 @@ export default function SignInScreen() {
               control={control}
               rules={{
                 required: {value: true, message: 'This field cannot empty'},
-                minLength: {
-                  value: 8,
-                  message: 'Password must be at least 8 characters',
-                },
+                // minLength: {
+                //   value: 8,
+                //   message: 'Password must be at least 8 characters',
+                // },
               }}
               render={({field: {onChange, value, name}}) => (
                 <FormField

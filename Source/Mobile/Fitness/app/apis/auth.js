@@ -2,7 +2,7 @@ import axios from '../config/axios';
 
 export const apiLogin = data =>
   axios({
-    url: '/auth/login',
+    url: '/auth/sign-in',
     method: 'post',
     data,
   });

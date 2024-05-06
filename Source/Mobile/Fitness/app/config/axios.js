@@ -8,14 +8,14 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async function (config) {
-    let localStorageData = await AsyncStorage.getItem('token');
-    if (localStorageData && typeof localStorageData === 'string') {
-      const accessToken = JSON.parse(localStorageData)?.token.replaceAll(
-        '"',
-        '',
-      );
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
+    // let localStorageData = await AsyncStorage.getItem('token');
+    // if (localStorageData && typeof localStorageData === 'string') {
+    //   const accessToken = JSON.parse(localStorageData)?.token.replaceAll(
+    //     '"',
+    //     '',
+    //   );
+    //   config.headers.Authorization = `Bearer ${accessToken}`;
+    // }
     return config;
   },
   async function (error) {
@@ -28,6 +28,7 @@ instance.interceptors.response.use(
     return response.data;
   },
   async function (error) {
+    console.error('error', error);
     // const originalRequest = error.config;
     // if (error.response.status === 403 && !originalRequest._retry) {
     //   originalRequest._retry = true;

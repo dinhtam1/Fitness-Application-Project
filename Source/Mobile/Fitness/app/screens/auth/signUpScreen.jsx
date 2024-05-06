@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 import FormField from '../../components/form/formFieldComponent';
@@ -40,7 +39,6 @@ const SignUpScreen = () => {
   } = useForm();
   const onSubmit = async data => {
     const response = await apiRegister(data);
-    console.log(response.statusCode);
     if (response?.statusCode === 201) {
       await AsyncStorage.setItem('token', response.data.tokens.accessToken);
       Toast.show(

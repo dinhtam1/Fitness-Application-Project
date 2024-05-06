@@ -5,6 +5,7 @@ import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import RowComponent from '../common/rowComponent';
 import TextComponent from '../text/textComponent';
+import {Feather} from '@expo/vector-icons';
 
 const FormField = ({
   title,
@@ -16,6 +17,7 @@ const FormField = ({
   containStyles,
   unit,
   error,
+  icon,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,6 +49,14 @@ const FormField = ({
           },
           containStyles,
         ]}>
+        {icon === 'search' && (
+          <Feather
+            name="search"
+            size={24}
+            color="black"
+            style={{marginRight: 10}}
+          />
+        )}
         <TextInput
           selectTextOnFocus
           style={[
