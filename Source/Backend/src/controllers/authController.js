@@ -4,14 +4,32 @@ const bcrypt = require('bcrypt');
 const constant = require('../constant/appNumber.js');
 const { createTokenPair } = require('../auth/authUtils');
 const crypto = require('crypto');
-const statusCode = require('../constant/appNumber.js')
-const Type = require('../constant/appRequestType.js')
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const randomatic = require('randomatic');
+
+const statusCode = require('../constant/appNumber.js')
+const Type = require('../constant/appRequestType.js')
+const appString = require('../constant/appString.js')
 const HEADER = {
     CLIENT_ID: 'x-client-id',
     AUTHORIZATION: 'authorization',
+}
+const algorithm = {
+    HS256 : 'HS256',
+}
+const NUMBER = {
+    randomBytes : 64,
+    lengthOTP : 4
+}
+const STRING = {
+    hex : 'hex'
+}
+const TYPE_RANDOM = {
+    string : '?',
+    number : '0',
+    string_upper : 'A',
+    all_type : '*'
 }
 
 const signIn = async (req, res, next) => {
@@ -20,24 +38,24 @@ const signIn = async (req, res, next) => {
         var requestType = Type.SIGN_IN;
         const foundUser = await userServices.getUserByEmail(req.body.email);
         if (!foundUser) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'User not already registered',
+                message: appString.USER_NOT_REGISTERED,
                 data,
                 requestType
             });
         }
         const match = await bcrypt.compare(req.body.password, foundUser.password);
         if (!match) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Authentication failed',
+                message: appString.AUTHENTICATION_FAILED,
                 data,
                 requestType
             });
         }
-        const privateKey = crypto.randomBytes(64).toString('hex');
-        const publicKey = crypto.randomBytes(64).toString('hex');
+        const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
+        const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
         const { userId } = foundUser;
         const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role }, publicKey, privateKey);
         const keyToken = await keyTokenServices.createKeyToken({
@@ -46,9 +64,9 @@ const signIn = async (req, res, next) => {
             publicKey,
             userId
         })
-        return res.status(200).json({
+        return res.status(statusCode.SUCCESS).json({
             statusCode: statusCode.SUCCESS,
-            message: 'Login successfully',
+            message: appString.LOGIN_SUCCESSFUL,
             data: {
                 foundUser,
                 tokens
@@ -58,9 +76,9 @@ const signIn = async (req, res, next) => {
 
     }
     catch (error) {
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
-            message: "Internal server error",
+            message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
     }
@@ -72,9 +90,9 @@ const signUp = async (req, res, next) => {
         var requestType = Type.SIGN_UP
         const user = await userServices.getUserByEmail(req.body.email);
         if (user) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: "User already registered",
+                message: appString.USER_ALREADY_REGISTERED,
                 data,
                 requestType
             });
@@ -86,8 +104,8 @@ const signUp = async (req, res, next) => {
         );
 
         if (createUser) {
-            const privateKey = crypto.randomBytes(64).toString('hex')
-            const publicKey = crypto.randomBytes(64).toString('hex')
+            const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex)
+            const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex)
             const tokens = await createTokenPair({
                 userId: createUser.userId, email: createUser.email, role: createUser.role
             },
@@ -101,31 +119,30 @@ const signUp = async (req, res, next) => {
                 refreshToken: tokens.refreshToken
             })
             if (!keyStore) {
-                return res.status(200).json({
+                return res.status(statusCode.SUCCESS).json({
                     statusCode: statusCode.SUCCESS,
-                    message: "KeyStore not created",
+                    message: appString.KEYSTORE_NOT_CREATED,
                     data,
                     requestType
                 })
             }
-            return res.status(201).json({
+            return res.status(statusCode.CREATED).json({
                 statusCode: statusCode.CREATED,
-                message: "Create user successfull",
+                message: appString.CREATE_USER_SUCCESSFUL,
                 data: { createUser, tokens },
                 requestType
             });
         }
-        return res.status(400).json({
+        return res.status(statusCode.BAD_REQUEST).json({
             statusCode: statusCode.BAD_REQUEST,
-            message: "Error creating user",
+            message: appString.ERROR_CREATING_USER,
             data,
             requestType
         });
     } catch (error) {
-        console.error("Error during sign up:", error);
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
-            message: "Internal server error",
+            message: appString.INTERNAL_SERVER_ERROR,
             requestType
 
         });
@@ -138,23 +155,23 @@ const logOut = async (req, res, next) => {
         var data = null
         const delKey = await keyTokenServices.removeKeyById(req.user.userId);
         if (!delKey) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: "Error delete key",
+                message: appString.ERROR_DELETE_KEY,
                 data,
                 requestType
             });
         }
-        return res.status(200).json({
+        return res.status(statusCode.SUCCESS).json({
             statusCode: statusCode.SUCCESS,
-            message: "Logout successfully",
+            message: appString.LOGOUT_SUCCESSFUL,
             data,
             requestType
         })
     } catch (error) {
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
-            message: error.message,
+            message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
     }
@@ -167,61 +184,60 @@ const decodeToken = async (req, res, next) => {
     try {
         const userId = Number(req.headers[HEADER.CLIENT_ID]);
         if (!userId) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'User not found',
+                message: appString.USER_NOT_FOUND,
                 data,
                 requestType
             });
         }
         const keyStore = await keyTokenServices.getKeyTokenByUserId(userId);
         if (!keyStore) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'KeyStore not found',
+                message: appString.KEYSTORE_NOT_FOUND,
                 data,
                 requestType
             });
         }
         const accessToken = req.headers[HEADER.AUTHORIZATION];
         if (!accessToken) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'accessToken not found',
+                message: appString.ACCESS_TOKEN_NOT_FOUND,
                 data,
                 requestType
             });
         }
         try {
-            const decodeUser = jwt.verify(accessToken, keyStore.privateKey, { algorithms: ['HS256'] });
+            const decodeUser = jwt.verify(accessToken, keyStore.privateKey, { algorithms: [algorithm.HS256] });
             if (userId !== decodeUser.userId) {
-                return res.status(200).json({
+                return res.status(statusCode.SUCCESS).json({
                     statusCode: statusCode.SUCCESS,
-                    message: 'Invalid User',
+                    message: appString.INVALID_USER,
                     data,
                     requestType
                 });
             }
             delete decodeUser.iat;
             delete decodeUser.exp;
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Decode token successfully',
+                message: appString.DECODE_TOKEN_SUCCESSFUL,
                 data: decodeUser,
             });
         } catch (err) {
-            console.error('error verify ', err);
-            return res.status(500).json({
+            return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
                 statusCode: statusCode.INTERNAL_SERVER_ERROR,
-                message: 'Error verifying token',
+                message: appString.ERROR_VERIFYING_TOKEN,
                 data,
                 requestType
             });
         }
     } catch (error) {
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
-            message: error.message,
+            message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
     }
@@ -230,46 +246,46 @@ const decodeToken = async (req, res, next) => {
 const sendOTP = async (req, res, next) => {
     try {
         const email = req.body.email;
-        const OTP = randomatic('0', 4);
+        const OTP = randomatic(TYPE_RANDOM.number, NUMBER.lengthOTP);
         var requestType = Type.SEND_OTP;
         const checkEmail = await userServices.checkEmail(email);
         if (!checkEmail) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Email does not exist',
+                message: appString.EMAIL_DOES_NOT_EXIST,
                 checkEmail,
                 requestType
             });
         }
         const sendOTP = await userServices.sendOTPtoEmail(email, OTP);
         if (!sendOTP) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Error sending OTP',
+                message: appString.ERROR_SENDING_OTP,
                 sendOTP,
                 requestType
             });
         }
         const saveOTP = await userServices.saveOTPbyEmail(email, OTP);
         if (!saveOTP) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Error saving OTP',
+                message: appString.ERROR_SAVING_OTP,
                 saveOTP,
                 requestType
             });
         }
-        return res.status(200).json({
+        return res.status(statusCode.SUCCESS).json({
             statusCode: statusCode.SUCCESS,
-            message: 'OTP sent successfully',
+            message: appString.OTP_SENT_SUCCESSFULLY,
             sendOTP,
             requestType
         })
     }
     catch (error) {
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
-            message: error.message,
+            message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
     }
@@ -283,24 +299,24 @@ const verifyOTP = async (req, res, next) => {
         var requestType = Type.VERIFY_OTP;
         const OTPUser = await userServices.getOTPbyEmail(email);
         if (!OTPUser) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Not Found OTP',
+                message: appString.OTP_NOT_FOUND,
                 OTPUser,
                 requestType
             });
         }
         if (OTP !== OTPUser.OTP || OTPUser.otp_expiry_at < currentTime) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Invalid OTP',
+                message: appString.INVALID_OTP,
                 requestType
             });
         }
         if (OTP == OTPUser.OTP && OTPUser.otp_expiry_at > currentTime) {
             const foundUser = await userServices.getUserByEmail(email);
-            const privateKey = crypto.randomBytes(64).toString('hex');
-            const publicKey = crypto.randomBytes(64).toString('hex');
+            const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
+            const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
             const { userId } = foundUser;
             const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role }, publicKey, privateKey);
             const keyToken = await keyTokenServices.createKeyToken({
@@ -310,9 +326,9 @@ const verifyOTP = async (req, res, next) => {
                 userId
             })
             const statusVerify = await userServices.setStatusVerify(email);
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Verify successfully',
+                message: appString.VERIFY_SUCCESSFUL,
                 data: {
                     tokens,
                     userId
@@ -322,9 +338,9 @@ const verifyOTP = async (req, res, next) => {
         }
 
     } catch (error) {
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
-            message: error.message,
+            message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
     }
@@ -339,9 +355,9 @@ const forgotPassword = async (req, res, next) => {
         const confirm_password =  req.body.confirm_password;
         console.log(new_password , confirm_password);
         if(new_password !== confirm_password){
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Password not match',
+                message: appString.PASSWORD_NOT_MATCH,
                 data,
                 requestType
             });
@@ -350,24 +366,24 @@ const forgotPassword = async (req, res, next) => {
         console.log(hashedPassword)
         const updatePassword = await userServices.updatePasswordbyEmail(req.user.email, hashedPassword)
         if(!updatePassword){
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Error update password',
+                message: appString.ERROR_UPDATE_PASSWORD,
                 data,
                 requestType
             });
         }
-        return res.status(200).json({
+        return res.status(statusCode.SUCCESS).json({
             statusCode: statusCode.SUCCESS,
-            message: 'Forgot password successfully',
+            message: appString.FORGOT_PASSWORD_SUCCESSFUL,
             data,
             requestType
         });
 
     } catch (error) {
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
-            message: error.message,
+            message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
     }
@@ -381,17 +397,17 @@ const renewToken = async (req,res,next) => {
         console.log(refreshToken);
         console.log(userId);
         if(!refreshToken) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Refresh token not found',
+                message: appString.REFRESH_TOKEN_NOT_FOUND,
                 data,
                 requestType
             });
         }
         if(!userId) {
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'User not found',
+                message: USER_NOT_FOUND,
                 data,
                 requestType
             });
@@ -401,9 +417,9 @@ const renewToken = async (req,res,next) => {
         delete payload.iat;
         delete payload.exp;
         if(!payload){
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'Invalid refresh token',
+                message: appString.INVALID_REFRESH_TOKEN,
                 data,
                 requestType
             });
@@ -415,16 +431,16 @@ const renewToken = async (req,res,next) => {
             publicKey:keyStore.publicKey,
             userId
         })
-        return res.status(200).json({
+        return res.status(statusCode.SUCCESS).json({
             statusCode: statusCode.SUCCESS,
-            message: 'Renew token successfully',
+            message: appString.RENEW_TOKEN_SUCCESSFUL,
             data : token,
             requestType
         })
     } catch (error) {
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
-            message: error.message,
+            message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
     }

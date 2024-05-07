@@ -1,7 +1,7 @@
 const userServices = require('../services/userServices');
 const statusCode = require('../constant/appNumber.js')
 const Type = require('../constant/appRequestType.js')
-
+const appString = require('../constant/appString.js')
 const getUsers = async (req, res) => {
     try {
         var data = null;
@@ -9,21 +9,21 @@ const getUsers = async (req, res) => {
         const userId = req.user.userId;
         const user = await userServices.getUserByUserId(userId)
         if(!user){
-            return res.status(200).json({
+            return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: 'User not found',
+                message: appString.USER_NOT_FOUND,
                 data,
                 requestType
             });
         }
-        return res.status(200).json({
+        return res.status(statusCode.SUCCESS).json({
             statusCode: statusCode.SUCCESS,
-            message: 'View profile successfully',
+            message: appString.VIEW_PROFILE_SUCCESSFUL,
             data: user,
             requestType
         });
     } catch (error) {
-        return res.status(500).json({
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
             message: error.message,
             requestType

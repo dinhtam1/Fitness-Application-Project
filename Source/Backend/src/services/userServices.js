@@ -2,16 +2,24 @@ const { prisma } = require('../config/prismaDatabase');
 const nodemailer = require('nodemailer');
 const moment = require('moment-timezone');
 const { date } = require('joi');
+const appString = require('../constant/appString.js')
+
+const style = {
+    divStyle: 'style="text-align: center;"',
+    pStyle: 'style="color: black; font-size: 24px"'
+}
+const service = {
+    gmail: 'gmail',
+}
+
 const createUser = async (user) => {
     try {
         return await prisma.user.create({
             data: user
         });
     } catch (e) {
-        console.log(e)
         return false
     };
-
 };
 
 const getUserByEmail = async (email) => {
@@ -41,9 +49,8 @@ const checkEmail = async (email) => {
 const sendOTPtoEmail = async (email, otp) => {
     try {
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            service: service.gmail,
             auth: {
-
                 user: process.env.USERNAME_EMAIL,
                 pass: process.env.PASS_EMAIL
             }
@@ -51,8 +58,11 @@ const sendOTPtoEmail = async (email, otp) => {
         const mailOptions = {
             from: process.env.USERNAME_EMAIL,
             to: email,
-            subject: 'Your OTP',
-            text: `Your OTP is ${otp}, it will expire in 5 minutes. Please do not share it with anyone.`
+            subject: appString.SUBJECT_EMAIL,
+            html: `<div ${style.divStyle}>
+                <p ${style.pStyle}>${appString.CONTENT_EMAIL}</p>
+                <h1>${otp}</h1>
+            </div>`
         };
 
         const sendOTP = async () => {
@@ -68,7 +78,6 @@ const sendOTPtoEmail = async (email, otp) => {
 
     }
     catch (error) {
-        console.log(error);
         return false;
     }
 }
@@ -82,7 +91,6 @@ const saveOTPbyEmail = async (email, OTP) => {
             data: { OTP: OTP, otp_expiry_at },
         });
     } catch (e) {
-        console.log(e);
         return false;
     }
 }
@@ -110,7 +118,6 @@ const setStatusVerify = async (email) => {
             data: { is_verified: true },
         });
     } catch (e) {
-        console.log(e);
         return false;
     }
 }
@@ -134,8 +141,8 @@ const getUserByUserId = async (userId) => {
             },
             select: {
                 full_name: true,
-                phone_number:true,
-                email:true,
+                phone_number: true,
+                email: true,
                 weight: true,
                 height: true,
                 gender: true,
@@ -143,10 +150,8 @@ const getUserByUserId = async (userId) => {
             }
         });
     } catch (e) {
-        console.log(e)
         return false
     }
-
 }
 
 module.exports = {
