@@ -7,67 +7,26 @@ import {
   View,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
-import TextComponent from '../../../components/text/textComponent';
-import {colors} from '../../../constants/colors';
-import {fontFamilies} from '../../../constants/fontFamilies';
-import {banner1} from '../../../assets';
-import RowComponent from '../../../components/common/rowComponent';
+import RowComponent from './rowComponent';
+import TextComponent from '../text/textComponent';
+import {fontFamilies} from '../../constants/fontFamilies';
+import {colors} from '../../constants/colors';
+import {banner1} from '../../assets';
+import {EvilIcons} from '@expo/vector-icons';
 
-const dataGoal = [
-  {
-    id: 1,
-    text: 'Loose Weight',
-  },
-  {
-    id: 2,
-    text: 'Gain Weight',
-  },
-  {
-    id: 3,
-    text: 'Build Muscle',
-  },
-  {
-    id: 4,
-    text: 'Stay Fit',
-  },
-  {
-    id: 5,
-    text: 'Stay Healthy',
-  },
-  {
-    id: 6,
-    text: 'Body Building',
-  },
-];
-
-const dataCategories = [
-  {
-    id: 1,
-    text: 'Cardio',
-  },
-  {
-    id: 2,
-    text: 'Strength',
-  },
-  {
-    id: 3,
-    text: 'Yoga',
-  },
-  {
-    id: 4,
-    text: 'Pilates',
-  },
-  {
-    id: 5,
-    text: 'Crossfit',
-  },
-  {
-    id: 6,
-    text: 'Zumba',
-  },
-];
-
-const CategoryHorizontal = ({title, image, ...props}) => {
+const HorizontalComponent = ({
+  title,
+  image,
+  data,
+  widthImage,
+  heightImage,
+  radius,
+  padleft,
+  all,
+  absolute,
+  relative,
+  ...props
+}) => {
   const scrollRef = useRef < ScrollView > null;
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRef = useRef([]);
@@ -90,7 +49,7 @@ const CategoryHorizontal = ({title, image, ...props}) => {
           color={colors['primary-color-black']}
           styles={{marginBottom: 10, marginTop: 20}}
         />
-        {image && (
+        {all ? (
           <TouchableOpacity>
             <TextComponent
               text={'See all'}
@@ -99,6 +58,8 @@ const CategoryHorizontal = ({title, image, ...props}) => {
               color={colors['primary-color-black']}
             />
           </TouchableOpacity>
+        ) : (
+          <View></View>
         )}
       </RowComponent>
       <ScrollView
@@ -107,29 +68,57 @@ const CategoryHorizontal = ({title, image, ...props}) => {
         contentContainerStyle={{
           gap: 15,
           paddingVertical: 10,
-          marginBottom: 10,
+          marginBottom: 20,
         }}>
         {image
-          ? dataCategories.map((item, index) => (
+          ? data.map((item, index) => (
               <TouchableOpacity
                 key={index}
                 ref={el => (itemRef.current[index] = el)}
                 onPress={() => handleSelectCategory(index)}>
-                <Image source={banner1} style={styles.image} />
-                <TextComponent
-                  size={14}
-                  styles={[
-                    activeIndex === index
-                      ? styles.imageBtnTxtActive
-                      : styles.imageBtnTxt,
-                    {marginTop: 10},
+                <Image
+                  source={banner1}
+                  style={[
+                    styles.image,
+                    {
+                      width: widthImage ?? 60,
+                      height: heightImage ?? 60,
+                      borderRadius: radius ?? 50,
+                    },
                   ]}
-                  text={item.text}
-                  font={fontFamilies['medium']}
+                  resizeMode="contain"
                 />
+                <View
+                  style={{
+                    position: absolute ? 'absolute' : '',
+                    bottom: 20,
+                    width: 100,
+                  }}>
+                  <TextComponent
+                    size={14}
+                    styles={[
+                      activeIndex === index
+                        ? styles.imageBtnTxtActive
+                        : styles.imageBtnTxt,
+                      {
+                        marginTop: 10,
+                      },
+                    ]}
+                    text={'Be Free'}
+                    font={fontFamilies['medium']}
+                  />
+                  <RowComponent>
+                    <EvilIcons
+                      name="clock"
+                      size={22}
+                      color={colors['color-icon-1']}
+                    />
+                    <TextComponent unit={'min'} text={'20'} />
+                  </RowComponent>
+                </View>
               </TouchableOpacity>
             ))
-          : dataGoal.map((item, index) => (
+          : data.map((item, index) => (
               <TouchableOpacity
                 key={index}
                 ref={el => (itemRef.current[index] = el)}
@@ -155,7 +144,7 @@ const CategoryHorizontal = ({title, image, ...props}) => {
   );
 };
 
-export default CategoryHorizontal;
+export default HorizontalComponent;
 
 const styles = StyleSheet.create({
   categoryBtn: {
@@ -187,13 +176,9 @@ const styles = StyleSheet.create({
     color: colors['text-white'],
   },
   image: {
-    width: 60,
-    height: 60,
-    borderRadius: 50,
     marginRight: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
   },
   imageBtnTxt: {
     color: colors['primary-color-black'],

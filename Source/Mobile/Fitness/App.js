@@ -5,7 +5,12 @@ import * as splashScreen from 'expo-splash-screen';
 import Toast from 'react-native-toast-message';
 import {NavigationContainer} from '@react-navigation/native';
 import AppRoutes from './app/navigators/AppRoutes';
-import {HomePageSceen} from './app/screens';
+import {
+  CategorySceen,
+  HomePageSceen,
+  SignInScreen,
+  TrainingScreen,
+} from './app/screens';
 // splashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -35,7 +40,10 @@ export default function App() {
       {/* <NavigationContainer>
         <AppRoutes />
       </NavigationContainer> */}
-      <HomePageSceen />
+      {/* <StackNavigator /> */}
+      {/* <CategorySceen /> */}
+      <TrainingScreen />
+      {/* <SignInScreen /> */}
       <Toast />
     </>
   );

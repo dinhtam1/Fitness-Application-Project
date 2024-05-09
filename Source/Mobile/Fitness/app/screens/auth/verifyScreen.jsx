@@ -10,7 +10,7 @@ import TextComponent from '../../components/text/textComponent';
 import {button, text, title} from '../../constants/text';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
-import BackComponent from '../../components/icon/backComponent';
+import BackComponent from '../../components/header/backComponent';
 import CustomButton from '../../components/button/buttonComponent';
 import {common} from '../../styles/commonStyles';
 import SpaceComponent from '../../components/common/spaceComponent';

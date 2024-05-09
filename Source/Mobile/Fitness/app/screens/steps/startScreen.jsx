@@ -1,6 +1,6 @@
 import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import BackComponent from '../../components/icon/backComponent';
+import BackComponent from '../../components/header/backComponent';
 import SpaceComponent from '../../components/common/spaceComponent';
 import TextComponent from '../../components/text/textComponent';
 import CustomButton from '../../components/button/buttonComponent';

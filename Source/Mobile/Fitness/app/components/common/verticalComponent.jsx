@@ -1,19 +1,19 @@
-import {Image, ScrollView, TouchableOpacity, View} from 'react-native';
-import React, {useRef, useState} from 'react';
-import TextComponent from '../../../components/text/textComponent';
-import {colors} from '../../../constants/colors';
-import {fontFamilies} from '../../../constants/fontFamilies';
 import {
-  exercise1,
-  exercise2,
-  exercise3,
-  exercise4,
-  meal1,
-  meal2,
-} from '../../../assets';
-import RowComponent from '../../../components/common/rowComponent';
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {EvilIcons} from '@expo/vector-icons';
 import {SimpleLineIcons} from '@expo/vector-icons';
+import {exercise1, exercise2, meal1, meal2} from '../../assets';
+import React, {useRef, useState} from 'react';
+import {fontFamilies} from '../../constants/fontFamilies';
+import RowComponent from './rowComponent';
+import {colors} from '../../constants/colors';
+import TextComponent from '../text/textComponent';
 
 const dataGoal = [
   {
@@ -25,6 +25,20 @@ const dataGoal = [
   },
   {
     id: 2,
+    text: 'Athlete Practicing Monochrome',
+    level: 'Beginner',
+    minutes: '30',
+    image: exercise2,
+  },
+  {
+    id: 3,
+    text: 'Athlete Practicing Monochrome',
+    level: 'Beginner',
+    minutes: '30',
+    image: exercise2,
+  },
+  {
+    id: 4,
     text: 'Athlete Practicing Monochrome',
     level: 'Beginner',
     minutes: '30',
@@ -47,7 +61,15 @@ const dataMeal = [
   },
 ];
 
-const CategoryVertical = ({title, meal, unit, full, ...props}) => {
+const VerticalComponent = ({
+  title,
+  meal,
+  unit,
+  full,
+  all,
+  padleft,
+  ...props
+}) => {
   const scrollRef = useRef < ScrollView > null;
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRef = useRef([]);
@@ -66,7 +88,8 @@ const CategoryVertical = ({title, meal, unit, full, ...props}) => {
       <TouchableOpacity
         key={index}
         ref={el => (itemRef.current[index] = el)}
-        onPress={() => handleSelectCategory(index)}>
+        onPress={() => handleSelectCategory(index)}
+        style={{paddingVertical: 10, paddingLeft: padleft ?? 0}}>
         <Image
           source={item.image}
           resizeMode="contain"
@@ -129,7 +152,8 @@ const CategoryVertical = ({title, meal, unit, full, ...props}) => {
       <TouchableOpacity
         key={index}
         ref={el => (itemRef.current[index] = el)}
-        onPress={() => handleSelectCategory(index)}>
+        onPress={() => handleSelectCategory(index)}
+        style={{marginBottom: 20}}>
         <RowComponent justify="flex-start" gap={30}>
           <Image
             source={item.image}
@@ -196,34 +220,30 @@ const CategoryVertical = ({title, meal, unit, full, ...props}) => {
           size={22}
           font={fontFamilies['bebasNeue']}
           color={colors['primary-color-black']}
-          styles={{marginBottom: 10, marginTop: 20}}
+          styles={{marginTop: 20}}
         />
-
-        <TouchableOpacity>
-          <TextComponent
-            text={'See all'}
-            font={fontFamilies['bold']}
-            size={14}
-            color={colors['primary-color-black']}
-          />
-        </TouchableOpacity>
+        {all ? (
+          <TouchableOpacity>
+            <TextComponent
+              text={'See all'}
+              font={fontFamilies['bold']}
+              size={14}
+              color={colors['primary-color-black']}
+            />
+          </TouchableOpacity>
+        ) : (
+          <></>
+        )}
       </RowComponent>
-      <ScrollView
-        horizontal={false}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{
-          gap: 15,
-          paddingVertical: 10,
-          marginBottom: 10,
-        }}>
-        {full
-          ? meal
-            ? renderFullImage(dataMeal)
-            : renderFullImage(dataGoal)
-          : renderHaflImage(dataMeal)}
-      </ScrollView>
+      {full
+        ? meal
+          ? renderFullImage(dataMeal)
+          : renderFullImage(dataGoal)
+        : renderHaflImage(dataMeal)}
     </View>
   );
 };
 
-export default CategoryVertical;
+export default VerticalComponent;
+
+const styles = StyleSheet.create({});

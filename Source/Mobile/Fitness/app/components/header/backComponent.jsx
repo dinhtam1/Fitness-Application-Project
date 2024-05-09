@@ -5,9 +5,10 @@ import {useNavigation} from '@react-navigation/native';
 import TextComponent from '../text/textComponent';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
+
 const BackComponent = props => {
-  const {skip, nav} = props;
-  const navigation = useNavigation();
+  const {skip, nav, filter, title} = props;
+  // const navigation = useNavigation();
   return (
     <View
       style={{
@@ -25,12 +26,18 @@ const BackComponent = props => {
         }}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(nav);
+            // navigation.navigate(nav);
           }}>
           <AntDesign name="left" size={22} color="black" />
         </TouchableOpacity>
       </View>
-      {skip && (
+      <TextComponent
+        text={title}
+        font={fontFamilies['bebasNeue']}
+        size={25}
+        color={colors['text-2']}
+      />
+      {skip ? (
         <TouchableOpacity onPress={() => navigation.navigate('Start')}>
           <TextComponent
             text={'Skip'}
@@ -39,6 +46,10 @@ const BackComponent = props => {
             size={16}
           />
         </TouchableOpacity>
+      ) : filter ? (
+        <AntDesign name="filter" size={24} color="black" />
+      ) : (
+        <View></View>
       )}
     </View>
   );

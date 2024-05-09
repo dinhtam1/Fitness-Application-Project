@@ -1,6 +1,6 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import BackComponent from '../../components/icon/backComponent';
+import BackComponent from '../../components/header/backComponent';
 import TextComponent from '../../components/text/textComponent';
 import PickerComponent from '../../components/picker/pickerComponent';
 import CustomButton from '../../components/button/buttonComponent';

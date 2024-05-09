@@ -12,6 +12,8 @@ import LevelScreen from './steps/levelScreen';
 import GoalSceen from './steps/goalScreen';
 import StartScreen from './steps/startScreen';
 import HomePageSceen from './home/homePageSceen';
+import TrainingScreen from './training/trainingScreen';
+import CategorySceen from './categories/categoryScreen';
 
 export {
   SignInScreen,
@@ -28,4 +30,6 @@ export {
   GoalSceen,
   StartScreen,
   HomePageSceen,
+  TrainingScreen,
+  CategorySceen,
 };

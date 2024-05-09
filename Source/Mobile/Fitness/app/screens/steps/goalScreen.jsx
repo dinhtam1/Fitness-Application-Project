@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import BackComponent from '../../components/icon/backComponent';
+import BackComponent from '../../components/header/backComponent';
 import TextComponent from '../../components/text/textComponent';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';

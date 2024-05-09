@@ -13,7 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import TextComponent from '../../components/text/textComponent';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
-import BackComponent from '../../components/icon/backComponent';
+import BackComponent from '../../components/header/backComponent';
 import {
   button,
   placeholder,
