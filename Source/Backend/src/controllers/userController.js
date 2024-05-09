@@ -31,4 +31,45 @@ const getUsers = async (req, res) => {
     }
 }
 
-module.exports = {getUsers};
+const updatedUser = async (req, res) => {
+    try {
+        var data = null;
+        var requestType = Type.UPDATE_PROFILE;
+        const userId = req.user.userId;
+        const user = await userServices.getUserByUserId(userId)
+        if(!user){
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.SUCCESS,
+                message: appString.USER_NOT_FOUND,
+                data,
+                requestType
+            });
+        }
+        const updatedUser = await userServices.updateUser(userId, req.updateInfoUser)
+        if(!updatedUser){
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.SUCCESS,
+                message: appString.ERROR_UPDATE_USER,
+                data,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.UPDATE_PROFILE_SUCCESSFUL,
+            data: updatedUser,
+            requestType
+        });
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+}
+
+module.exports = {
+    getUsers,
+    updatedUser
+};
