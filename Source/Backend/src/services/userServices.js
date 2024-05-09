@@ -154,6 +154,20 @@ const getUserByUserId = async (userId) => {
     }
 }
 
+const updateUser = async(userId, data) => {
+    try {
+        return await prisma.user.update({
+            where : {
+                userId: userId
+            },
+            data : data
+            
+        })
+    } catch (error) {
+        return false
+    }
+}
+
 module.exports = {
     createUser,
     getUserByEmail,
@@ -163,5 +177,6 @@ module.exports = {
     checkEmail,
     setStatusVerify,
     updatePasswordbyEmail,
-    getUserByUserId
+    getUserByUserId,
+    updateUser
 }

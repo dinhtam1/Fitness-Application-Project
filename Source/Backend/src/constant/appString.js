@@ -32,6 +32,21 @@ const NOT_AUTHENTICATED = "You are not authenticated";
 const SUBJECT_EMAIL = "Please confirm your email on Fitness";
 const CONTENT_EMAIL = "Please use the code below to verify your email. The code will expire in 5 minutes."
 const EXIT_SERVER = "Exit server Express";
+const UPDATE_PROFILE_SUCCESSFUL = "Update profile successfully";
+const ERROR_UPDATE_USER = "Error updating profile";
+const FULL_NAME_PATTERN = "Full name must not contain numbers or special characters";
+const PHONE_NUMBER_LENGTH = "Phone number must have 10 characters";
+const PHONE_NUMBER_ONLY_NUMBERS = "Phone numbers contain only numbers";
+const AGE_MUST_BE_NUMBER = "Age must be a number";
+const AGE_MUST_BE_INTEGER = "Age must be an integer";
+const AGE_MUST_BE_POSITIVE = "Age must be a positive number";
+const GENDER_INVALID = "Gender must be either 'MALE' or 'FEMALE'";
+const WEIGHT_MUST_BE_NUMBER = "Weight must be a number";
+const WEIGHT_MUST_BE_POSITIVE = "Weight must be a positive number";
+const HEIGHT_MUST_BE_NUMBER = "Height must be a number";
+const HEIGHT_MUST_BE_POSITIVE = "Height must be a positive number";
+const LEVEL_INVALID = "Level must be either 'BEGINNER', 'INTERMEDIATE', or 'ADVANCED'";
+const GOAL_INVALID = "Goal must be either 'WEIGHT_LOSS', 'MUSCLE_GAIN', or 'FITNESS'";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -66,5 +81,20 @@ module.exports = {
     NOT_AUTHENTICATED,
     SUBJECT_EMAIL,
     CONTENT_EMAIL,
-    EXIT_SERVER
+    EXIT_SERVER,
+    UPDATE_PROFILE_SUCCESSFUL,
+    ERROR_UPDATE_USER,
+    FULL_NAME_PATTERN,
+    PHONE_NUMBER_LENGTH,
+    PHONE_NUMBER_ONLY_NUMBERS,
+    AGE_MUST_BE_NUMBER,
+    AGE_MUST_BE_INTEGER,
+    AGE_MUST_BE_POSITIVE,
+    GENDER_INVALID,
+    WEIGHT_MUST_BE_NUMBER,
+    WEIGHT_MUST_BE_POSITIVE,
+    HEIGHT_MUST_BE_NUMBER,
+    HEIGHT_MUST_BE_POSITIVE,
+    LEVEL_INVALID,
+    GOAL_INVALID
 };
