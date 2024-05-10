@@ -3,8 +3,8 @@ const Joi = require('joi');
 const statusCode = require('../constant/appNumber.js')
 const appString = require('../constant/appString.js')
 const GENDER = {
-    MALE: 'MALE',
-    FEMALE: 'FEMALE',
+    MALE: 'male',
+    FEMALE: 'female',
 }
 const LEVEL = {
     BEGINNER: 'BEGINNER',
