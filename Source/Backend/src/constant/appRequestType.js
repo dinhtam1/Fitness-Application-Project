@@ -10,6 +10,8 @@ const FORGOT_PASSWORD = 8;
 const VIEW_PROFILE = 9;
 const RENEW_TOKEN = 10;
 const UPDATE_PROFILE = 11;
+const GET_CATEGORY = 12;
+const GET_EXERCISE = 13;
 module.exports = {
     VALIDATION,
     SIGN_UP,
@@ -22,5 +24,7 @@ module.exports = {
     FORGOT_PASSWORD,
     VIEW_PROFILE,
     RENEW_TOKEN,
-    UPDATE_PROFILE
+    UPDATE_PROFILE,
+    GET_CATEGORY,
+    GET_EXERCISE
 };

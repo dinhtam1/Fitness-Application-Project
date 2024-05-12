@@ -13,7 +13,7 @@ const LEVEL = {
 }
 const GOAL = {
     WEIGHT_LOSS: 'WEIGHT_LOSS',
-    MUSCLE_GAIN: 'MUSCLE_GAIN',
+    MUSCLE_GAIN: 'GAIN_MUSCLE',
     FITNESS: 'FITNESS',
 }
 const NUMBER = {

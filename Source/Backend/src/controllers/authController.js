@@ -57,7 +57,7 @@ const signIn = async (req, res, next) => {
         const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
         const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
         const { userId } = foundUser;
-        const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role }, publicKey, privateKey);
+        const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role, goal : foundUser.goal, level: foundUser.level, gender: foundUser.gender }, publicKey, privateKey);
         const keyToken = await keyTokenServices.createKeyToken({
             refreshToken: tokens.refreshToken,
             privateKey,
@@ -104,10 +104,11 @@ const signUp = async (req, res, next) => {
         );
 
         if (createUser) {
+            console.log(createUser);
             const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex)
             const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex)
             const tokens = await createTokenPair({
-                userId: createUser.userId, email: createUser.email, role: createUser.role
+                userId: createUser.userId, email: createUser.email, role: createUser.role, goal : createUser.goal, level: createUser.level, gender : createUser.gender
             },
                 publicKey,
                 privateKey
@@ -318,7 +319,7 @@ const verifyOTP = async (req, res, next) => {
             const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
             const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
             const { userId } = foundUser;
-            const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role }, publicKey, privateKey);
+            const tokens = await createTokenPair({userId, email: foundUser.email, role: foundUser.role, goal : foundUser.goal, level: foundUser.level, gender : foundUser.gender}, publicKey, privateKey);
             const keyToken = await keyTokenServices.createKeyToken({
                 refreshToken: tokens.refreshToken,
                 privateKey,
