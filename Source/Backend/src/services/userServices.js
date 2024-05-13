@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const moment = require('moment-timezone');
 const { date } = require('joi');
 const appString = require('../constant/appString.js')
-
+const userHelper = require('../helpers/userHelper.js')
 const style = {
     divStyle: 'style="text-align: center;"',
     pStyle: 'style="color: black; font-size: 24px"'
@@ -14,10 +14,13 @@ const service = {
 
 const createUser = async (user) => {
     try {
+        const calories = userHelper.calculatorCalories(user.weight, user.height, user.age, user.gender, user.level);
+        user.calories = calories;
         return await prisma.user.create({
             data: user
         });
     } catch (e) {
+        console.log(e);
         return false
     };
 };
