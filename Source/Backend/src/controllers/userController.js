@@ -3,9 +3,9 @@ const statusCode = require('../constant/appNumber.js')
 const Type = require('../constant/appRequestType.js')
 const appString = require('../constant/appString.js')
 const getUsers = async (req, res) => {
+    var data = null;
+    var requestType = Type.VIEW_PROFILE;
     try {
-        var data = null;
-        var requestType = Type.VIEW_PROFILE;
         const userId = req.user.userId;
         const user = await userServices.getUserByUserId(userId)
         if(!user){
@@ -32,9 +32,9 @@ const getUsers = async (req, res) => {
 }
 
 const updatedUser = async (req, res) => {
+    var data = null;
+    var requestType = Type.UPDATE_PROFILE;
     try {
-        var data = null;
-        var requestType = Type.UPDATE_PROFILE;
         const userId = req.user.userId;
         const user = await userServices.getUserByUserId(userId)
         if(!user){

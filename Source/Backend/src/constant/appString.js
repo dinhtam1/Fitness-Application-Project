@@ -49,6 +49,10 @@ const LEVEL_INVALID = "Level must be either 'BEGINNER', 'INTERMEDIATE', or 'ADVA
 const GOAL_INVALID = "Goal must be either 'WEIGHT_LOSS', 'MUSCLE_GAIN', or 'FITNESS'";
 const EXERCISE_NOT_FOUND = "Exercises not found";
 const GET_EXERCISE_SUCCESSFUL = "Get Exercises successfully"
+const GET_DETAIL_EXERCISE_SUCCESSFUL = "Get detail exercise successfully";
+const ERROR_INSERTING_ROW = "Error inserting row";
+const CSV_FILE_PROCESSED = "CSV file successfully processed";
+const ERROR_PROCESSING_CSV_FILE = "Error processing CSV file";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -100,5 +104,9 @@ module.exports = {
     LEVEL_INVALID,
     GOAL_INVALID,
     EXERCISE_NOT_FOUND,
-    GET_EXERCISE_SUCCESSFUL
+    GET_EXERCISE_SUCCESSFUL,
+    GET_DETAIL_EXERCISE_SUCCESSFUL,
+    ERROR_INSERTING_ROW,
+    CSV_FILE_PROCESSED,
+    ERROR_PROCESSING_CSV_FILE
 };

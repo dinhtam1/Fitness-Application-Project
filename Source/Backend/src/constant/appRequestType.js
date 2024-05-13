@@ -12,6 +12,7 @@ const RENEW_TOKEN = 10;
 const UPDATE_PROFILE = 11;
 const GET_CATEGORY = 12;
 const GET_EXERCISE = 13;
+const GET_DETAIL_EXERCISE = 14;
 module.exports = {
     VALIDATION,
     SIGN_UP,
@@ -26,5 +27,6 @@ module.exports = {
     RENEW_TOKEN,
     UPDATE_PROFILE,
     GET_CATEGORY,
-    GET_EXERCISE
+    GET_EXERCISE,
+    GET_DETAIL_EXERCISE
 };

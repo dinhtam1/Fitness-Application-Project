@@ -2,17 +2,20 @@ const { Gender } = require('@prisma/client');
 const { prisma } = require('../config/prismaDatabase.js');
 const exerciseHelper = require('../helpers/exerciseHelper.js');
 const LEVEL_CONSTANT = {
-    BEGINNER : 'BEGINNER',
-    ADVANCED : 'ADVANCED',
+    BEGINNER: 'BEGINNER',
+    ADVANCED: 'ADVANCED',
 }
 const GOAL_CONSTANT = {
-    WEIGHT_LOSS : 'WEIGHT_LOSS',
-    GAIN_MUSCLE : 'GAIN_MUSCLE',
+    WEIGHT_LOSS: 'WEIGHT_LOSS',
+    GAIN_MUSCLE: 'GAIN_MUSCLE',
 }
 const GOAL_WEIGHT_CONSTANT = {
-    WEIGHT_GAIN : '+weight',
-    WEIGHT_LOSS : '-weight',
+    WEIGHT_GAIN: '+weight',
+    WEIGHT_LOSS: '-weight',
+    LOSE : 'Lose',
+    GAIN : 'Gain'
 }
+
 
 const POPULAR_CATEGORY = ['Yoga', 'Cardio', 'Bodyweight'];
 
@@ -121,18 +124,37 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
         }
         return result;
     } catch (e) {
-        console.log(e)
         return false;
     }
 };
 
 const getDetailExercise = async (exerciseId) => {
     try {
-        return await prisma.exercise.findUnique({
+        const exercise = await prisma.exercise.findUnique({
             where: {
                 exerciseId: exerciseId
+            },
+            select: {
+                caloriesBurned: true,
+                duration: true,
+                video_center: true,
+                video_side: true,
+                image: true,
+                ordering: true,
+                equipmentName: true,
             }
         });
+        console.log(exercise.video_center);
+        exercise.name = exerciseHelper.getNamebyUrl(exercise.video_center);
+        if (exercise.ordering === GOAL_WEIGHT_CONSTANT.WEIGHT_LOSS) {
+            exercise.ordering = GOAL_WEIGHT_CONSTANT.LOSE;
+        } else if (exercise.ordering === GOAL_WEIGHT_CONSTANT.WEIGHT_GAIN) {
+            exercise.ordering = GOAL_WEIGHT_CONSTANT.GAIN;
+        }
+        exercise.weight = exercise.ordering;
+        delete exercise.ordering;
+
+        return exercise;
     } catch (e) {
         return false
     };

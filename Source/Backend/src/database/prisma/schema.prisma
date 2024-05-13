@@ -85,17 +85,19 @@ model equipment {
 }
 
 model Exercise {
-  exerciseId    Int           @id @default(autoincrement()) @db.UnsignedInt
-  musclesId     Int
-  musclesName   String        @db.VarChar(100)
-  equipmentId   Int
-  gender        Gender
-  ordering      String
-  equipmentName String
-  image         String        @db.Text
-  video_center  String        @db.Text
-  video_side    String        @db.Text
-  create_at     DateTime      @default(now())
-  muscle_group  muscle_groups @relation(fields: [musclesId], references: [musclesId])
-  equipment     equipment     @relation(fields: [equipmentId], references: [equipmentId])
+  exerciseId     Int           @id @default(autoincrement()) @db.UnsignedInt
+  musclesId      Int
+  musclesName    String        @db.VarChar(100)
+  equipmentId    Int
+  gender         Gender
+  ordering       String
+  equipmentName  String
+  duration       Int
+  caloriesBurned Int
+  image          String        @db.Text
+  video_center   String        @db.Text
+  video_side     String        @db.Text
+  create_at      DateTime      @default(now())
+  muscle_group   muscle_groups @relation(fields: [musclesId], references: [musclesId])
+  equipment      equipment     @relation(fields: [equipmentId], references: [equipmentId])
 }
