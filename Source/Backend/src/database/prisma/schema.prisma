@@ -26,6 +26,7 @@ model User {
   height        Float?
   level         Level?
   goal          Goal?
+  calories      Float?
   create_at     DateTime   @default(now())
   role          Role       @default(USER)
   OTP           String?    @db.Char(4)
