@@ -1,18 +1,21 @@
 const { Gender } = require('@prisma/client');
 const { prisma } = require('../config/prismaDatabase.js');
 const exerciseHelper = require('../helpers/exerciseHelper.js');
-const LEVEL = {
-    BEGINNER : 'Beginner',
-    ADVANCED : 'Advanced',
+const LEVEL_CONSTANT = {
+    BEGINNER: 'BEGINNER',
+    ADVANCED: 'ADVANCED',
 }
-const GOAL = {
-    WEIGHT_LOSS : 'WEIGHT_LOSS',
-    GAIN_MUSCLE : 'GAIN_MUSCLE',
+const GOAL_CONSTANT = {
+    WEIGHT_LOSS: 'WEIGHT_LOSS',
+    GAIN_MUSCLE: 'GAIN_MUSCLE',
 }
-const GOAL_WEIGHT = {
-    WEIGHT_GAIN : '+weight',
-    WEIGHT_LOSS : '-weight',
+const GOAL_WEIGHT_CONSTANT = {
+    WEIGHT_GAIN: '+weight',
+    WEIGHT_LOSS: '-weight',
+    LOSE : 'Lose',
+    GAIN : 'Gain'
 }
+
 
 const POPULAR_CATEGORY = ['Yoga', 'Cardio', 'Bodyweight'];
 
@@ -48,18 +51,18 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
         let start = (page - 1) * limit;
         var condition = {};
         switch (goal) {
-            case GOAL.WEIGHT_LOSS:
-                goal = GOAL_WEIGHT.WEIGHT_LOSS;
+            case GOAL_CONSTANT.WEIGHT_LOSS:
+                goal = GOAL_WEIGHT_CONSTANT.WEIGHT_LOSS;
                 break;
-            case GOAL.GAIN_MUSCLE:
-                goal = GOAL_WEIGHT.WEIGHT_GAIN;
+            case GOAL_CONSTANT.GAIN_MUSCLE:
+                goal = GOAL_WEIGHT_CONSTANT.WEIGHT_GAIN;
                 break;
         }
         switch (level) {
-            case level.BEGINNER:
+            case LEVEL_CONSTANT.BEGINNER:
                 level = 0;
                 break;
-            case level.ADVANCED:
+            case LEVEL_CONSTANT.ADVANCED:
                 level = 1;
                 break;
         }
@@ -113,9 +116,9 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
             result[i].name = exerciseHelper.getNamebyUrl(result[i].video_center);
             delete result[i].video_center;
             if (result[i].muscle_group.level === 0) {
-                result[i].level = LEVEL.BEGINNER;
+                result[i].level = LEVEL_CONSTANT.BEGINNER;
             } else if (result[i].muscle_group.level === 1) {
-                result[i].level = LEVEL.ADVANCED;
+                result[i].level = LEVEL_CONSTANT.ADVANCED;
             }
             delete result[i].muscle_group;
         }
@@ -127,11 +130,31 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
 
 const getDetailExercise = async (exerciseId) => {
     try {
-        return await prisma.exercise.findUnique({
+        const exercise = await prisma.exercise.findUnique({
             where: {
                 exerciseId: exerciseId
+            },
+            select: {
+                caloriesBurned: true,
+                duration: true,
+                video_center: true,
+                video_side: true,
+                image: true,
+                ordering: true,
+                equipmentName: true,
             }
         });
+        console.log(exercise.video_center);
+        exercise.name = exerciseHelper.getNamebyUrl(exercise.video_center);
+        if (exercise.ordering === GOAL_WEIGHT_CONSTANT.WEIGHT_LOSS) {
+            exercise.ordering = GOAL_WEIGHT_CONSTANT.LOSE;
+        } else if (exercise.ordering === GOAL_WEIGHT_CONSTANT.WEIGHT_GAIN) {
+            exercise.ordering = GOAL_WEIGHT_CONSTANT.GAIN;
+        }
+        exercise.weight = exercise.ordering;
+        delete exercise.ordering;
+
+        return exercise;
     } catch (e) {
         return false
     };

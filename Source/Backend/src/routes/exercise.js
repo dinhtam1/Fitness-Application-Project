@@ -5,6 +5,6 @@ const authValidation = require('../validation/authValidation');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 exerciseRouter.get('/category', authMiddleware.verifyToken, exerciseController.getCategory)
-exerciseRouter.get('/exercise', authMiddleware.verifyToken, exerciseController.getExercise)
-exerciseRouter.get('/exercise/:id', authMiddleware.verifyToken, exerciseController.getDetailExercise)
+exerciseRouter.get('/', authMiddleware.verifyToken, exerciseController.getExercise)
+exerciseRouter.get('/:id', authMiddleware.verifyToken, exerciseController.getDetailExercise)
 module.exports = exerciseRouter;

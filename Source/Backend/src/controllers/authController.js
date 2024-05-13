@@ -33,9 +33,9 @@ const TYPE_RANDOM = {
 }
 
 const signIn = async (req, res, next) => {
+    var data = null;
+    var requestType = Type.SIGN_IN;
     try {
-        var data = null;
-        var requestType = Type.SIGN_IN;
         const foundUser = await userServices.getUserByEmail(req.body.email);
         if (!foundUser) {
             return res.status(statusCode.SUCCESS).json({
@@ -85,9 +85,9 @@ const signIn = async (req, res, next) => {
 };
 
 const signUp = async (req, res, next) => {
+    var data = null;
+    var requestType = Type.SIGN_UP
     try {
-        var data = null;
-        var requestType = Type.SIGN_UP
         const user = await userServices.getUserByEmail(req.body.email);
         if (user) {
             return res.status(statusCode.SUCCESS).json({
@@ -151,9 +151,9 @@ const signUp = async (req, res, next) => {
 };
 
 const logOut = async (req, res, next) => {
+    var requestType = Type.LOGOUT
+    var data = null
     try {
-        var requestType = Type.LOGOUT
-        var data = null
         const delKey = await keyTokenServices.removeKeyById(req.user.userId);
         if (!delKey) {
             return res.status(statusCode.SUCCESS).json({
@@ -245,10 +245,10 @@ const decodeToken = async (req, res, next) => {
 }
 
 const sendOTP = async (req, res, next) => {
+    var requestType = Type.SEND_OTP;
     try {
         const email = req.body.email;
         const OTP = randomatic(TYPE_RANDOM.number, NUMBER.lengthOTP);
-        var requestType = Type.SEND_OTP;
         const checkEmail = await userServices.checkEmail(email);
         if (!checkEmail) {
             return res.status(statusCode.SUCCESS).json({
@@ -293,11 +293,11 @@ const sendOTP = async (req, res, next) => {
 }
 
 const verifyOTP = async (req, res, next) => {
+    var requestType = Type.VERIFY_OTP;
     try {
         const currentTime = new Date();
         const OTP = req.body.OTP;
         const email = req.body.email;
-        var requestType = Type.VERIFY_OTP;
         const OTPUser = await userServices.getOTPbyEmail(email);
         if (!OTPUser) {
             return res.status(statusCode.SUCCESS).json({
@@ -391,9 +391,9 @@ const forgotPassword = async (req, res, next) => {
 }
 
 const renewToken = async (req,res,next) => {
+    var data = null;
+    var requestType = Type.RENEW_TOKEN;
     try {
-        var data = null;
-        var requestType = Type.RENEW_TOKEN;
         const {refreshToken , userId} = req.body;
         console.log(refreshToken);
         console.log(userId);
