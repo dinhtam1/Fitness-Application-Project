@@ -47,6 +47,8 @@ const HEIGHT_MUST_BE_NUMBER = "Height must be a number";
 const HEIGHT_MUST_BE_POSITIVE = "Height must be a positive number";
 const LEVEL_INVALID = "Level must be either 'BEGINNER', 'INTERMEDIATE', or 'ADVANCED'";
 const GOAL_INVALID = "Goal must be either 'WEIGHT_LOSS', 'MUSCLE_GAIN', or 'FITNESS'";
+const EXERCISE_NOT_FOUND = "Exercises not found";
+const GET_EXERCISE_SUCCESSFUL = "Get Exercises successfully"
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -96,5 +98,7 @@ module.exports = {
     HEIGHT_MUST_BE_NUMBER,
     HEIGHT_MUST_BE_POSITIVE,
     LEVEL_INVALID,
-    GOAL_INVALID
+    GOAL_INVALID,
+    EXERCISE_NOT_FOUND,
+    GET_EXERCISE_SUCCESSFUL
 };
