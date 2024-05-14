@@ -131,15 +131,18 @@ const HomePageSceen = () => {
             <Banner />
             <HorizontalComponent data={dataGoal1} title={'SELECT YOUR GOAL'} />
             <HorizontalComponent
+              all
               title={'CATEGORY'}
               image
               data={dataCategories}
+              nav={'Category'}
             />
             <VerticalComponent
               all
               full
               title={'Popular Exercise'}
               unit={'min'}
+              nav={'FullExercise'}
             />
             <VerticalComponent
               full

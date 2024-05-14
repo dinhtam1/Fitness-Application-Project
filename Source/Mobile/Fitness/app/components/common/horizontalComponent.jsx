@@ -11,8 +11,9 @@ import RowComponent from './rowComponent';
 import TextComponent from '../text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {colors} from '../../constants/colors';
-import {banner1} from '../../assets';
+import {banner1, splash2, exercise2} from '../../assets';
 import {EvilIcons} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 
 const HorizontalComponent = ({
   title,
@@ -25,11 +26,15 @@ const HorizontalComponent = ({
   all,
   absolute,
   relative,
+  nav,
+  vertical,
   ...props
 }) => {
   const scrollRef = useRef < ScrollView > null;
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRef = useRef([]);
+
+  // const navigation = useNavigation();
 
   const handleSelectCategory = index => {
     const selected = itemRef.current[index];
@@ -50,7 +55,10 @@ const HorizontalComponent = ({
           styles={{marginBottom: 10, marginTop: 20}}
         />
         {all ? (
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(nav);
+            }}>
             <TextComponent
               text={'See all'}
               font={fontFamilies['bold']}
@@ -63,7 +71,7 @@ const HorizontalComponent = ({
         )}
       </RowComponent>
       <ScrollView
-        horizontal={true}
+        horizontal={vertical ? false : true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
           gap: 15,
@@ -77,7 +85,7 @@ const HorizontalComponent = ({
                 ref={el => (itemRef.current[index] = el)}
                 onPress={() => handleSelectCategory(index)}>
                 <Image
-                  source={banner1}
+                  source={exercise2}
                   style={[
                     styles.image,
                     {
@@ -89,11 +97,12 @@ const HorizontalComponent = ({
                   resizeMode="contain"
                 />
                 <View
-                  style={{
-                    position: absolute ? 'absolute' : '',
-                    bottom: 20,
-                    width: 100,
-                  }}>
+                // style={{
+                //   position: absolute ? 'absolute' : '',
+                //   bottom: 20,
+                //   width: 100,
+                // }}
+                >
                   <TextComponent
                     size={14}
                     styles={[
@@ -104,17 +113,17 @@ const HorizontalComponent = ({
                         marginTop: 10,
                       },
                     ]}
-                    text={'Be Free'}
+                    text={item.text}
                     font={fontFamilies['medium']}
                   />
-                  <RowComponent>
+                  {/* <RowComponent>
                     <EvilIcons
                       name="clock"
                       size={22}
                       color={colors['color-icon-1']}
                     />
                     <TextComponent unit={'min'} text={'20'} />
-                  </RowComponent>
+                  </RowComponent> */}
                 </View>
               </TouchableOpacity>
             ))
@@ -182,10 +191,12 @@ const styles = StyleSheet.create({
   },
   imageBtnTxt: {
     color: colors['primary-color-black'],
-    textAlign: 'center',
+    // textAlign: 'center',
+    marginTop: 10,
   },
   imageBtnTxtActive: {
     color: colors['primary-color-black'],
-    textAlign: 'center',
+    // textAlign: 'center',
+    marginTop: 10,
   },
 });

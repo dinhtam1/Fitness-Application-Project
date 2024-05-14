@@ -22,6 +22,8 @@ import {
   StartScreen,
   VerifyScreen,
   WeightScreen,
+  FullExerciseScreen,
+  CategoryScreen,
 } from '../screens';
 
 const StackNavigator = () => {
@@ -97,10 +99,16 @@ const StackNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="Home"
+          component={HomePageSceen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="Splash"
           component={SplashScreen}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
           name="Introduce"
           component={IntroduceScreen}
@@ -163,8 +171,13 @@ const StackNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Home"
-          component={HomePageSceen}
+          name="FullExercise"
+          component={FullExerciseScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Category"
+          component={CategoryScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

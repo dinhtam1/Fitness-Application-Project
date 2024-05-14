@@ -14,6 +14,7 @@ import {fontFamilies} from '../../constants/fontFamilies';
 import RowComponent from './rowComponent';
 import {colors} from '../../constants/colors';
 import TextComponent from '../text/textComponent';
+import {useNavigation} from '@react-navigation/native';
 
 const dataGoal = [
   {
@@ -68,11 +69,14 @@ const VerticalComponent = ({
   full,
   all,
   padleft,
+  nav,
   ...props
 }) => {
   const scrollRef = useRef < ScrollView > null;
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRef = useRef([]);
+
+  // const navigation = useNavigation();
 
   const handleSelectCategory = index => {
     const selected = itemRef.current[index];
@@ -223,7 +227,10 @@ const VerticalComponent = ({
           styles={{marginTop: 20}}
         />
         {all ? (
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(nav);
+            }}>
             <TextComponent
               text={'See all'}
               font={fontFamilies['bold']}

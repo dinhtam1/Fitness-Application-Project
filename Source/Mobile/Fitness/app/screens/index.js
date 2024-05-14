@@ -13,7 +13,9 @@ import GoalSceen from './steps/goalScreen';
 import StartScreen from './steps/startScreen';
 import HomePageSceen from './home/homePageSceen';
 import TrainingScreen from './training/trainingScreen';
-import CategorySceen from './categories/categoryScreen';
+import CategoryScreen from './categories/categoryScreen';
+import FullExerciseScreen from './exercise/fullExerciseScreen';
+import DetailExerciseScreen from './exercise/detailExerciseScreen';
 
 export {
   SignInScreen,
@@ -31,5 +33,7 @@ export {
   StartScreen,
   HomePageSceen,
   TrainingScreen,
-  CategorySceen,
+  CategoryScreen,
+  FullExerciseScreen,
+  DetailExerciseScreen,
 };

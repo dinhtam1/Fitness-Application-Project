@@ -44,7 +44,7 @@ const SignUpScreen = () => {
       Toast.show(
         toastConfig({textMain: response.message, visibilityTime: 2000}),
       );
-      navigation.navigate('Old');
+      navigation.navigate('HomePageSceen');
     } else {
       Toast.show(
         toastConfig({

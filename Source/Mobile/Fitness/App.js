@@ -6,9 +6,12 @@ import Toast from 'react-native-toast-message';
 import {NavigationContainer} from '@react-navigation/native';
 import AppRoutes from './app/navigators/AppRoutes';
 import {
-  CategorySceen,
+  CategoryScreen,
+  DetailExerciseScreen,
+  FullExerciseScreen,
   HomePageSceen,
   SignInScreen,
+  SignUpScreen,
   TrainingScreen,
 } from './app/screens';
 // splashScreen.preventAutoHideAsync();
@@ -41,9 +44,7 @@ export default function App() {
         <AppRoutes />
       </NavigationContainer> */}
       {/* <StackNavigator /> */}
-      {/* <CategorySceen /> */}
-      <TrainingScreen />
-      {/* <SignInScreen /> */}
+      <DetailExerciseScreen />
       <Toast />
     </>
   );
