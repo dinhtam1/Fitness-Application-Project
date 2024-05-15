@@ -3,6 +3,24 @@ const statusCode = require('../constant/appNumber.js')
 const Type = require('../constant/appRequestType.js')
 const appString = require('../constant/appString.js')
 
+const LEVEL_CONSTANT = {
+    BEGINNER: 'BEGINNER',
+    ADVANCED: 'ADVANCED',
+}
+
+const GOAL_CONSTANT = {
+    WEIGHT_LOSS: 'WEIGHT_LOSS',
+    GAIN_MUSCLE: 'GAIN_MUSCLE',
+}
+
+const CONVERT = {
+    BEGINNER: "Beginner",
+    ADVANCED: "Advanced",
+    LOSE : "Lose",
+    GAIN : "Gain"
+
+}
+
 const getCategory = async (req, res) => {
     var data = null;
     var requestType = Type.GET_CATEGORY;
@@ -91,10 +109,47 @@ const getDetailExercise = async (req, res) => {
         });
     }
 }
+ 
+const getResultExercise = async (req, res) => {
+    var requestType = Type.GET_RESULT_EXERCISE;
+    var data = null;
+    try {
+        const userId = req.user.userId;
+        const exerciseId = req.params.id;
+        const result = await exerciseServices.getResultExercise(exerciseId)
+        if(!result) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.SUCCESS,
+                message: appString.EXERCISE_NOT_FOUND,
+                data,
+                requestType
+            });
+        }
+        result.weight = req.user.weight;
+        if(req.user.level === LEVEL_CONSTANT.BEGINNER) result.level = CONVERT.BEGINNER
+        if(req.user.level === LEVEL_CONSTANT.ADVANCED) result.level = CONVERT.ADVANCED
+        if(req.user.goal === GOAL_CONSTANT.WEIGHT_LOSS) result.goal = CONVERT.LOSE
+        if(req.user.goal === GOAL_CONSTANT.GAIN_MUSCLE) result.goal = CONVERT.GAIN
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.GET_RESULT_EXERCISE_SUCCESSFUL,
+            data: result,
+            requestType
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: appString.INTERNAL_SERVER_ERROR,
+            requestType
+        });
+    }
+}
 
 
 module.exports = {
     getCategory,
     getExercise,
-    getDetailExercise
+    getDetailExercise,
+    getResultExercise
 };
