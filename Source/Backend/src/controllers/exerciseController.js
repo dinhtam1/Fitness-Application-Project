@@ -66,9 +66,15 @@ const getDetailExercise = async (req, res) => {
     try {
         const { goal, level,gender } = req.user
         const exerciseId = parseInt(req.params.id);
-        console.log(exerciseId);
         const exercise = await exerciseServices.getDetailExercise(exerciseId)
         exercise.level = level;
+        if(!exercise){
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.SUCCESS,
+                message: appString.EXERCISE_NOT_FOUND,
+                requestType
+            });
+        }
         return res.status(statusCode.SUCCESS).json({
             statusCode: statusCode.SUCCESS,
             message: appString.GET_DETAIL_EXERCISE_SUCCESSFUL,
