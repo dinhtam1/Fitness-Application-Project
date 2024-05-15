@@ -3,8 +3,31 @@ const { prisma } = require('../config/prismaDatabase.js');
 
 const getDashboard = async (userId) => {
     try {
-        return await prisma.dashboard.findById(userId)
+        const today = new Date();
+        const day = new Date(today.toISOString().split('T')[0] + 'T00:00:00Z');
+        const dashboard = await prisma.dashboard.findFirst({
+            where: {
+                userId: userId,
+                day: {
+                    equals: day
+                }
+            },
+            select : {
+                time_practice : true,
+                time_sleep : true,
+                calories_burned : true
+            }
+        });
+        if(!dashboard) {
+            return {
+                time_practice : 0,
+                time_sleep : 0,
+                calories_burned : 0,
+            }
+        }
+        return dashboard;
     } catch (error) {
+        console.log(error);
         return false;
     }
 }
