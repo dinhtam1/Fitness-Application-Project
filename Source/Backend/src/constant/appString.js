@@ -55,6 +55,8 @@ const CSV_FILE_PROCESSED = "CSV file successfully processed";
 const ERROR_PROCESSING_CSV_FILE = "Error processing CSV file";
 const UPDATE_DASHBOARD_SUCCESSFUL = "Update dashboard successfully"
 const UPDATE_DASHBOARD_FAILED = "Update dashboard failed"
+const DASHBOARD_NOT_FOUND = "Dashboard not found"
+const GET_DASHBOARD_SUCCESSFUL = "Get dashboard successfully"
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -112,5 +114,7 @@ module.exports = {
     CSV_FILE_PROCESSED,
     ERROR_PROCESSING_CSV_FILE,
     UPDATE_DASHBOARD_SUCCESSFUL,
-    UPDATE_DASHBOARD_FAILED
+    UPDATE_DASHBOARD_FAILED,
+    DASHBOARD_NOT_FOUND,
+    GET_DASHBOARD_SUCCESSFUL
 };
