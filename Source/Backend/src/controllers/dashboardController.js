@@ -8,19 +8,22 @@ const getDashboard = async (req, res) => {
     var data = null;
     try {
         const userId = req.user.userId;
-        const category = await dashboardServices.getDashboard(userId)
-        if (!category) {
+        const dashboard = await dashboardServices.getDashboard(userId)
+        if (!dashboard) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: appString.CATEGORY_NOT_FOUND,
+                message: appString.DASHBOARD_NOT_FOUND,
                 data,
                 requestType
             });
         }
+        dashboard.weight = req.user.weight;
+        dashboard.height = req.user.height;
+        dashboard.level = req.user.level;
         return res.status(statusCode.SUCCESS).json({
             statusCode: statusCode.SUCCESS,
-            message: appString.GET_CATEGORY_SUCCESSFUL,
-            data: category,
+            message: appString.GET_DASHBOARD_SUCCESSFUL,
+            data: dashboard,
             requestType
         });
     } catch (error) {
