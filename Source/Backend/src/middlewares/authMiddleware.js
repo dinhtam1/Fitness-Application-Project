@@ -9,7 +9,7 @@ const HEADER = {
     AUTHORIZATION: 'authorization',
 }
 const algorithm = {
-    HS256 : 'HS256',
+    HS256: 'HS256',
 }
 
 const verifyToken = async (req, res, next) => {

@@ -12,8 +12,8 @@ const GOAL_CONSTANT = {
 const GOAL_WEIGHT_CONSTANT = {
     WEIGHT_GAIN: '+weight',
     WEIGHT_LOSS: '-weight',
-    LOSE : 'Lose',
-    GAIN : 'Gain'
+    LOSE: 'Lose',
+    GAIN: 'Gain'
 }
 
 
@@ -160,10 +160,29 @@ const getDetailExercise = async (exerciseId) => {
     };
 };
 
+const getResultExercise = async (exerciseId) => {
+    try {
+        return await prisma.exercise.findUnique({
+            where: {
+                exerciseId: parseInt(exerciseId)
+            },
+            select : {
+                duration : true,
+                caloriesBurned : true,
+                equipmentName : true,
+            }
+        });
+    } catch (e) {
+        console.log(e)
+        return false;
+    }
+
+}
 
 module.exports = {
     getCategory,
     getExercise,
-    getDetailExercise
+    getDetailExercise,
+    getResultExercise
 
 }
