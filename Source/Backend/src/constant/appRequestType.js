@@ -13,6 +13,8 @@ const UPDATE_PROFILE = 11;
 const GET_CATEGORY = 12;
 const GET_EXERCISE = 13;
 const GET_DETAIL_EXERCISE = 14;
+const GET_DASHBOARD = 15;
+const UPDATE_DASHBOARD = 16;
 module.exports = {
     VALIDATION,
     SIGN_UP,
@@ -28,5 +30,7 @@ module.exports = {
     UPDATE_PROFILE,
     GET_CATEGORY,
     GET_EXERCISE,
-    GET_DETAIL_EXERCISE
+    GET_DETAIL_EXERCISE,
+    GET_DASHBOARD,
+    UPDATE_DASHBOARD
 };

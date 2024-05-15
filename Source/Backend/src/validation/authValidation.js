@@ -97,7 +97,7 @@ const createUserValidation = (req, res, next) => {
         if (error) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: error.message,
+                message: error.message.replace(/\\/g, '').replace(/"/g, ''),
                 requestType
             });
         }
@@ -124,7 +124,7 @@ const userUpdateValidation = (req, res, next) => {
 
         req.updateInfoUser = value;
         console.log(req.updateInfoUser);
-    } catch (err) {
+    } catch (error) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.INTERNAL_SERVER_ERROR,
             message: error.message,
@@ -141,7 +141,7 @@ const signInUserValidation = (req, res, next) => {
         if (error) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: error.message,
+                message: error.message.replace(/\\/g, '').replace(/"/g, ''),
                 requestType
             });
         }
@@ -162,7 +162,7 @@ const forgotPasswordValidation = (req, res, next) => {
         if (error) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: error.message,
+                message: error.message.replace(/\\/g, '').replace(/"/g, ''),
                 requestType
             });
         }

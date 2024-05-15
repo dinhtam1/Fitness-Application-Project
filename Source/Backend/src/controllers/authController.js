@@ -57,7 +57,7 @@ const signIn = async (req, res, next) => {
         const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
         const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
         const { userId } = foundUser;
-        const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role, goal : foundUser.goal, level: foundUser.level, gender: foundUser.gender }, publicKey, privateKey);
+        const tokens = await createTokenPair({ userId, email: foundUser.email, role: foundUser.role, goal : foundUser.goal, level: foundUser.level, gender: foundUser.gender, weight : foundUser.weight }, publicKey, privateKey);
         const keyToken = await keyTokenServices.createKeyToken({
             refreshToken: tokens.refreshToken,
             privateKey,
@@ -68,7 +68,7 @@ const signIn = async (req, res, next) => {
             statusCode: statusCode.SUCCESS,
             message: appString.LOGIN_SUCCESSFUL,
             data: {
-                foundUser,
+                user : foundUser,
                 tokens
             },
             requestType
@@ -108,7 +108,7 @@ const signUp = async (req, res, next) => {
             const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex)
             const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex)
             const tokens = await createTokenPair({
-                userId: createUser.userId, email: createUser.email, role: createUser.role, goal : createUser.goal, level: createUser.level, gender : createUser.gender
+                userId: createUser.userId, email: createUser.email, role: createUser.role, goal : createUser.goal, level: createUser.level, gender : createUser.gender, weight : createUser.weight
             },
                 publicKey,
                 privateKey
@@ -130,7 +130,7 @@ const signUp = async (req, res, next) => {
             return res.status(statusCode.CREATED).json({
                 statusCode: statusCode.CREATED,
                 message: appString.CREATE_USER_SUCCESSFUL,
-                data: { createUser, tokens },
+                data: { user : createUser, tokens },
                 requestType
             });
         }
@@ -319,7 +319,7 @@ const verifyOTP = async (req, res, next) => {
             const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
             const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex);
             const { userId } = foundUser;
-            const tokens = await createTokenPair({userId, email: foundUser.email, role: foundUser.role, goal : foundUser.goal, level: foundUser.level, gender : foundUser.gender}, publicKey, privateKey);
+            const tokens = await createTokenPair({userId, email: foundUser.email, role: foundUser.role, goal : foundUser.goal, level: foundUser.level, gender : foundUser.gender, weight : foundUser.weight}, publicKey, privateKey);
             const keyToken = await keyTokenServices.createKeyToken({
                 refreshToken: tokens.refreshToken,
                 privateKey,

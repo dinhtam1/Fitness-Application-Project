@@ -53,6 +53,8 @@ const GET_DETAIL_EXERCISE_SUCCESSFUL = "Get detail exercise successfully";
 const ERROR_INSERTING_ROW = "Error inserting row";
 const CSV_FILE_PROCESSED = "CSV file successfully processed";
 const ERROR_PROCESSING_CSV_FILE = "Error processing CSV file";
+const UPDATE_DASHBOARD_SUCCESSFUL = "Update dashboard successfully"
+const UPDATE_DASHBOARD_FAILED = "Update dashboard failed"
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -108,5 +110,7 @@ module.exports = {
     GET_DETAIL_EXERCISE_SUCCESSFUL,
     ERROR_INSERTING_ROW,
     CSV_FILE_PROCESSED,
-    ERROR_PROCESSING_CSV_FILE
+    ERROR_PROCESSING_CSV_FILE,
+    UPDATE_DASHBOARD_SUCCESSFUL,
+    UPDATE_DASHBOARD_FAILED
 };

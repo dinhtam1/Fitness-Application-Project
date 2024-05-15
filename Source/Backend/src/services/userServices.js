@@ -14,7 +14,10 @@ const service = {
 
 const createUser = async (user) => {
     try {
-        const calories = userHelper.calculatorCalories(user.weight, user.height, user.age, user.gender, user.level);
+        var calories = 0
+        if (user.weight && user.height && user.age && user.gender && user.level) {
+            calories = userHelper.calculatorCalories(user.weight, user.height, user.age, user.gender, user.level);
+        }
         user.calories = calories;
         return await prisma.user.create({
             data: user
@@ -157,17 +160,20 @@ const getUserByUserId = async (userId) => {
     }
 }
 
-const updateUser = async(userId, data) => {
+const updateUser = async (userId, data) => {
     try {
-        return await prisma.user.update({
-            where : {
+        if (data.weight && data.height && data.age && data.gender && data.level) {
+            data.calories = userHelper.calculatorCalories(data.weight, data.height, data.age, data.gender, data.level);
+        }
+        await prisma.user.update({
+            where: {
                 userId: userId
             },
-            data : data
-            
-        })
+            data: data
+        });
+        return true;
     } catch (error) {
-        return false
+        return false;
     }
 }
 
