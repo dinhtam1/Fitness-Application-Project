@@ -11,7 +11,7 @@ const getDashboard = async (req, res) => {
         const dashboard = await dashboardServices.getDashboard(userId)
         if (!dashboard) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.DASHBOARD_NOT_FOUND,
                 data,
                 requestType
@@ -28,7 +28,7 @@ const getDashboard = async (req, res) => {
         });
     } catch (error) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
@@ -42,7 +42,7 @@ const updateDashboard = async (req, res) => {
         const updatedDashboard = await dashboardServices.updateDashboard(req.user, req.updateDashboard)
         if(!updatedDashboard) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.UPDATE_DASHBOARD_FAILED,
                 data,
                 requestType
@@ -56,7 +56,7 @@ const updateDashboard = async (req, res) => {
         })
     } catch (error) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });

@@ -28,7 +28,7 @@ const getCategory = async (req, res) => {
         const category = await exerciseServices.getCategory()
         if (!category) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.CATEGORY_NOT_FOUND,
                 data,
                 requestType
@@ -58,7 +58,7 @@ const getExercise = async (req, res) => {
         const exercises = await exerciseServices.getExercise(category, page,gender, goal, level,muscle_name);
         if (!exercises) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.EXERCISE_NOT_FOUND,
                 data,
                 requestType
@@ -72,7 +72,7 @@ const getExercise = async (req, res) => {
         });
     } catch (error) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
@@ -88,7 +88,7 @@ const getDetailExercise = async (req, res) => {
         exercise.level = level;
         if(!exercise){
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.EXERCISE_NOT_FOUND,
                 requestType
             });
@@ -119,7 +119,7 @@ const getResultExercise = async (req, res) => {
         const result = await exerciseServices.getResultExercise(exerciseId)
         if(!result) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.EXERCISE_NOT_FOUND,
                 data,
                 requestType
@@ -139,13 +139,12 @@ const getResultExercise = async (req, res) => {
     } catch (error) {
         console.log(error)
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: appString.INTERNAL_SERVER_ERROR,
             requestType
         });
     }
 }
-
 
 module.exports = {
     getCategory,

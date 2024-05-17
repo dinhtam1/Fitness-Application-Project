@@ -10,7 +10,7 @@ const getUsers = async (req, res) => {
         const user = await userServices.getUserByUserId(userId)
         if(!user){
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.USER_NOT_FOUND,
                 data,
                 requestType
@@ -39,7 +39,7 @@ const updatedUser = async (req, res) => {
         const user = await userServices.getUserByUserId(userId)
         if(!user){
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.USER_NOT_FOUND,
                 data,
                 requestType
@@ -48,7 +48,7 @@ const updatedUser = async (req, res) => {
         const updatedUser = await userServices.updateUser(userId, req.updateInfoUser)
         if(!updatedUser){
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: appString.ERROR_UPDATE_USER,
                 data,
                 requestType
