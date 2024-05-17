@@ -96,14 +96,14 @@ const createUserValidation = (req, res, next) => {
         const { error } = userSchema.validate(req.body);
         if (error) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: error.message.replace(/\\/g, '').replace(/"/g, ''),
                 requestType
             });
         }
     } catch (error) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: error.message,
             requestType
         });
@@ -116,7 +116,7 @@ const userUpdateValidation = (req, res, next) => {
         const { error, value } = userUpdateSchema.validate(req.body);
         if (error) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: error.stack,
                 requestType
             });
@@ -126,7 +126,7 @@ const userUpdateValidation = (req, res, next) => {
         console.log(req.updateInfoUser);
     } catch (error) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: error.message,
             requestType
         });
@@ -140,14 +140,14 @@ const signInUserValidation = (req, res, next) => {
         const { error } = userSchema.validate(req.body);
         if (error) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: error.message.replace(/\\/g, '').replace(/"/g, ''),
                 requestType
             });
         }
     } catch (error) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: error.message,
             requestType
         });
@@ -161,14 +161,14 @@ const forgotPasswordValidation = (req, res, next) => {
         const { error } = passwordSchema.validate(req.body);
         if (error) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: error.message.replace(/\\/g, '').replace(/"/g, ''),
                 requestType
             });
         }
     } catch (error) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: error.message,
             requestType
         });

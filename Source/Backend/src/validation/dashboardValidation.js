@@ -14,7 +14,7 @@ const dashboardUpdateValidation = (req, res, next) => {
         const { error, value } = dashboardUpdateSchema.validate(req.body);
         if (error) {
             return res.status(statusCode.SUCCESS).json({
-                statusCode: statusCode.SUCCESS,
+                statusCode: statusCode.FAIL,
                 message: error.message.replace(/\\/g, '').replace(/"/g, ''),
                 requestType
             });
@@ -23,7 +23,7 @@ const dashboardUpdateValidation = (req, res, next) => {
         req.updateDashboard = value;
     } catch (err) {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            statusCode: statusCode.FAIL,
             message: err.message,
             requestType
         });
