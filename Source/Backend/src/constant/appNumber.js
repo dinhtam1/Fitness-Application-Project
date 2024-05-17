@@ -1,4 +1,5 @@
 const SALT_ROUNDS = 10;
+const FAIL = 100;
 const SUCCESS = 200;
 const CREATED = 201;
 const BAD_REQUEST = 400;
@@ -37,5 +38,6 @@ module.exports = {
     TOO_MANY_REQUESTS,
     SERVICE_UNAVAILABLE,
     GATEWAY_TIMEOUT,
-    UNPROCESSABLE_ENTITY
+    UNPROCESSABLE_ENTITY,
+    FAIL
 };
