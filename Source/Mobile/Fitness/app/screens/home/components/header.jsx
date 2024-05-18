@@ -20,10 +20,10 @@ import {header} from '../../../assets';
 
 const {width, height} = Dimensions.get('window');
 
-const Header = ({backround, ...props}) => {
+const Header = ({background, ...props}) => {
   return (
     <>
-      {backround && (
+      {background && (
         <ImageBackground
           source={header}
           style={{
@@ -35,7 +35,7 @@ const Header = ({backround, ...props}) => {
       )}
       <View
         style={
-          backround
+          background
             ? {paddingHorizontal: 20, paddingTop: 30, position: 'absolute'}
             : {
                 paddingHorizontal: 20,
@@ -54,7 +54,7 @@ const Header = ({backround, ...props}) => {
               <Feather
                 name="menu"
                 size={26}
-                color={backround ? 'white' : 'black'}
+                color={background ? 'white' : 'black'}
               />
             </TouchableOpacity>
             <Image source={splash1} resizeMode="cover" style={styles.image} />
@@ -63,11 +63,11 @@ const Header = ({backround, ...props}) => {
             <MaterialIcons
               name="notifications-none"
               size={26}
-              color={backround ? 'white' : 'black'}
+              color={background ? 'white' : 'black'}
             />
           </TouchableOpacity>
         </RowComponent>
-        {backround && (
+        {background && (
           <>
             <TextComponent
               text={'Hello, Good Morning'}
@@ -84,7 +84,7 @@ const Header = ({backround, ...props}) => {
             />
           </>
         )}
-        {backround && (
+        {background && (
           <FormField
             placeholder={'Search'}
             icon={'search'}

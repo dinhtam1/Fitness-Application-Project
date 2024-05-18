@@ -76,9 +76,10 @@ const VerticalComponent = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRef = useRef([]);
 
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
   const handleSelectCategory = index => {
+    navigation.navigate(meal ? 'DetailMeal' : 'DetailExercise');
     const selected = itemRef.current[index];
     setActiveIndex(index);
 
@@ -151,7 +152,7 @@ const VerticalComponent = ({
     ));
   };
 
-  const renderHaflImage = data => {
+  const renderHalfImage = data => {
     return data.map((item, index) => (
       <TouchableOpacity
         key={index}
@@ -246,7 +247,7 @@ const VerticalComponent = ({
         ? meal
           ? renderFullImage(dataMeal)
           : renderFullImage(dataGoal)
-        : renderHaflImage(dataMeal)}
+        : renderHalfImage(dataMeal)}
     </View>
   );
 };

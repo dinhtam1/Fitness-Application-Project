@@ -24,6 +24,9 @@ import {
   WeightScreen,
   FullExerciseScreen,
   CategoryScreen,
+  ChangePassword,
+  DetailExerciseScreen,
+  DetailMealScreen,
 } from '../screens';
 
 const StackNavigator = () => {
@@ -99,11 +102,6 @@ const StackNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={HomePageSceen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
           name="Splash"
           component={SplashScreen}
           options={{headerShown: false}}
@@ -154,17 +152,18 @@ const StackNavigator = () => {
           component={GoalWeightScreen}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
           name="SignIn"
           component={SignInScreen}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="ForgotPassword"
           component={ForgotScreen}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
           name="Verify"
           component={VerifyScreen}
@@ -178,6 +177,26 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Category"
           component={CategoryScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ChangePassword"
+          component={ChangePassword}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomePageSceen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="DetailExercise"
+          component={DetailExerciseScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="DetailMeal"
+          component={DetailMealScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

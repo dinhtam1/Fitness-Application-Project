@@ -16,6 +16,14 @@ import TrainingScreen from './training/trainingScreen';
 import CategoryScreen from './categories/categoryScreen';
 import FullExerciseScreen from './exercise/fullExerciseScreen';
 import DetailExerciseScreen from './exercise/detailExerciseScreen';
+import ProgressExerciseScreen from './exercise/progressExerciseScreen';
+import ResultScreen from './exercise/resultScreen';
+import DashboardScreen from './dashboard/dashboardScreen';
+import ProfileScreen from './profile/profileScreen';
+import DetailMealScreen from './meal/detailMealScreen';
+import NotificationScreen from './notification/notificationScreen';
+import SettingScreen from './setting/settingScreen';
+import ChangePassword from './profile/changePassword';
 
 export {
   SignInScreen,
@@ -36,4 +44,12 @@ export {
   CategoryScreen,
   FullExerciseScreen,
   DetailExerciseScreen,
+  ProgressExerciseScreen,
+  ResultScreen,
+  DashboardScreen,
+  ProfileScreen,
+  DetailMealScreen,
+  NotificationScreen,
+  SettingScreen,
+  ChangePassword,
 };

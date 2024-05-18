@@ -22,17 +22,37 @@ import {
   titleForm,
 } from '../../constants/text';
 import {common} from '../../styles/commonStyles';
+import {Controller, useForm} from 'react-hook-form';
+import {EMAIL_REGEX} from '../../constants/regex';
+import {apiLogin, apiSendOTP} from '../../apis/auth';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../utils/toast';
 
 export default function ForgotScreen() {
-  const [isSubmitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({
-    email: '',
-  });
   const navigation = useNavigation();
-  const submit = async () => {};
+  const {
+    control,
+    handleSubmit,
+    setError,
+    formState: {errors, isSubmitting},
+  } = useForm();
+  const onSubmit = async data => {
+    const response = await apiSendOTP(data);
+    if (response.statusCode === 200) {
+      navigation.navigate('Verify', {email: data.email});
+    } else {
+      Toast.show(
+        toastConfig({
+          type: 'error',
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
+      );
+    }
+  };
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent />
+      <BackComponent nav={'SignIn'} />
       <ScrollView>
         <View style={common.contain}>
           <View>
@@ -52,17 +72,30 @@ export default function ForgotScreen() {
             />
           </View>
           <View style={{paddingVertical: 70}}>
-            <FormField
-              placeholder={placeholder['email']}
-              title={titleForm['email']}
-              handleChangeText={e => setForm({email: e})}
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: 'This field cannot empty'},
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: 'Not a valid email',
+                },
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['email']}
+                  title={titleForm['email']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="email"
             />
           </View>
           <CustomButton
             title={button['reset-password']}
-            handlePress={() =>
-              navigation.navigate('Verify', {email: form.email})
-            }
+            handlePress={handleSubmit(onSubmit)}
             isLoading={isSubmitting}
             containerStyles={{marginTop: 30}}
           />

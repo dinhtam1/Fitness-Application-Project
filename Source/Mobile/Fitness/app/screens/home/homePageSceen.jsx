@@ -125,7 +125,7 @@ const HomePageSceen = () => {
                 outputRange: [1, 0],
               }),
             }}>
-            <Header backround />
+            <Header background />
           </Animated.View>
           <Animated.View style={{paddingLeft: 40, paddingRight: 20}}>
             <Banner />

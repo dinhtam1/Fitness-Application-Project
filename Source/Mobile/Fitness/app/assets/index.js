@@ -17,6 +17,7 @@ import exercise3 from './images/exercise3.png';
 import exercise4 from './images/exercise4.png';
 import meal1 from './images/meal1.png';
 import meal2 from './images/meal2.png';
+import heart from './images/Heart-grapf.png';
 
 export {
   back,
@@ -38,4 +39,5 @@ export {
   exercise4,
   meal1,
   meal2,
+  heart,
 };

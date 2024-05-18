@@ -7,12 +7,21 @@ import {NavigationContainer} from '@react-navigation/native';
 import AppRoutes from './app/navigators/AppRoutes';
 import {
   CategoryScreen,
+  ChangePassword,
+  DashboardScreen,
   DetailExerciseScreen,
+  DetailMealScreen,
   FullExerciseScreen,
   HomePageSceen,
+  NotificationScreen,
+  ProfileScreen,
+  ProgressExerciseScreen,
+  ResultScreen,
+  SettingScreen,
   SignInScreen,
   SignUpScreen,
   TrainingScreen,
+  VerifyScreen,
 } from './app/screens';
 // splashScreen.preventAutoHideAsync();
 
@@ -43,8 +52,7 @@ export default function App() {
       {/* <NavigationContainer>
         <AppRoutes />
       </NavigationContainer> */}
-      {/* <StackNavigator /> */}
-      <DetailExerciseScreen />
+      <StackNavigator />
       <Toast />
     </>
   );

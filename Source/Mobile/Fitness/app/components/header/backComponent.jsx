@@ -8,7 +8,7 @@ import {fontFamilies} from '../../constants/fontFamilies';
 
 const BackComponent = props => {
   const {skip, nav, filter, title} = props;
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -24,10 +24,7 @@ const BackComponent = props => {
           zIndex: 10,
           backgroundColor: 'transparent',
         }}>
-        <TouchableOpacity
-          onPress={() => {
-            // navigation.navigate(nav);
-          }}>
+        <TouchableOpacity onPress={() => navigation.navigate(nav)}>
           <AntDesign name="left" size={22} color="black" />
         </TouchableOpacity>
       </View>

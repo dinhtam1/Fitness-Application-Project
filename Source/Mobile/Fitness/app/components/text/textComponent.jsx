@@ -42,18 +42,18 @@ const TextComponent = props => {
           styles,
         ]}>
         {text}
+        {unit && (
+          <Text
+            style={{
+              color: colors['title'],
+              fontSize: 14,
+              fontFamily: fontFamilies['regular'],
+            }}>
+            {' '}
+            {unit}
+          </Text>
+        )}
       </Text>
-      {unit && (
-        <Text
-          style={{
-            color: colors['title'],
-            fontSize: 14,
-            fontFamily: fontFamilies['regular'],
-          }}>
-          {' '}
-          {unit}
-        </Text>
-      )}
     </>
   );
 };

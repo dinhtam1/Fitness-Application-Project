@@ -8,9 +8,12 @@ export const colors = {
   'primary-color': '#5D847D',
   'primary-color-black': '#000000',
   border: 'rgba(105, 105, 105, 0.25)',
+  'border-2': 'rgba(105, 105, 105, 0.05)',
+  'border-3': 'rgba(105, 105, 105, 0.15)',
   'fill-red': '#FF4C5E',
   'background-white': '#FFFFFF',
   'icon-blur': '#AFB4B8',
   'primary-color-light': '#F1F1F1',
   'color-icon-1': '#00ADB5',
+  toggle: '#9D9D9D',
 };

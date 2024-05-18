@@ -40,9 +40,12 @@ export default function SignInScreen() {
   } = useForm();
   const onSubmit = async data => {
     const response = await apiLogin(data);
-    console.log(response.statusCode);
     if (response.statusCode === 200) {
       await AsyncStorage.setItem('token', response.data.tokens.accessToken);
+      await AsyncStorage.setItem(
+        'dataUser',
+        JSON.stringify(response.data.user),
+      );
       Toast.show(
         toastConfig({textMain: response.message, visibilityTime: 2000}),
       );

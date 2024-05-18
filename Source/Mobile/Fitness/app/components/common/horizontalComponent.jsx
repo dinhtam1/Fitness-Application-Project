@@ -34,7 +34,7 @@ const HorizontalComponent = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRef = useRef([]);
 
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
   const handleSelectCategory = index => {
     const selected = itemRef.current[index];

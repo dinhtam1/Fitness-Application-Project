@@ -38,6 +38,8 @@ export const placeholder = {
   name: 'Enter name...',
   phone: 'Enter phone...',
   address: 'Enter address...',
+  new_password: 'Enter new password...',
+  confirm_password: 'Enter confirm password...',
 };
 
 export const titleForm = {
@@ -46,6 +48,8 @@ export const titleForm = {
   address: 'Address',
   name: 'Full Name',
   phone: 'Phone',
+  newPassword: 'New Password',
+  confirmPassword: 'Confirm Password',
 };
 
 export const step = {
