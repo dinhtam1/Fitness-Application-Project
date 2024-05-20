@@ -1,20 +1,23 @@
-import csv
-import requests
-from bs4 import BeautifulSoup
 import os
+import requests
+import csv
+from bs4 import BeautifulSoup
 
+# Change to your directory
 os.chdir('d:\\Fitness-Application-Project\\Source\\Backend\\src\\database\\data\\crawlData')
 print(os.getcwd())
 url_template = "https://www.foodiesfeed.com/?s={}"
 
-with open('food.csv', 'r') as file:
-    reader = csv.DictReader(file)
-    foods = list(reader)
+# Specify the directory you want to use
+directory = 'D:\\Fitness-Application-Project\\Source\\Backend\\src\\database\\data\\crawlData\\food\\images'
+
+# Get a list of all folder names in the directory
+folder_names = [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]
 
 foods_with_images = []
 
-for food in foods:
-    url = url_template.format(food['Food'])
+for food in folder_names:
+    url = url_template.format(food)
 
     response = requests.get(url)
     response.raise_for_status()
@@ -25,13 +28,14 @@ for food in foods:
     if image:
         image_url = image.find('img')['src']
         print("Food image link:", image_url)
-        food['food_image'] = image_url
-        foods_with_images.append(food)
-    else:
-        print("No image found")
+        food_dict = {'Food': food, 'Food_image': image_url}
+        foods_with_images.append(food_dict)
 
-with open('food_with_images.csv', 'w', newline='') as file:
-    fieldnames = foods_with_images[0].keys()
-    writer = csv.DictWriter(file, fieldnames=fieldnames)
+# Write the data to a CSV file
+with open('food.csv', 'w', newline='') as csvfile:
+    fieldnames = ['Food', 'Food_image']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
     writer.writeheader()
-    writer.writerows(foods_with_images)
+    for food in foods_with_images:
+        writer.writerow(food)
