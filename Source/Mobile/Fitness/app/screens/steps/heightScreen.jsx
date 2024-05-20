@@ -33,14 +33,14 @@ const HeightScreen = () => {
         <BackComponent skip nav={'GoalWeight'} />
         <View style={common.contain}>
           <TextComponent
-            text={step['step-5']}
+            text={step['step-6']}
             color={colors['text-2']}
             size={15}
             font={fontFamilies['medium']}
           />
           <SpaceComponent height={10} />
           <TextComponent
-            text={step['title-5']}
+            text={step['title-6']}
             color={colors['title']}
             size={30}
             font={fontFamilies['bebasNeue']}

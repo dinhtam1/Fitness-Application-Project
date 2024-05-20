@@ -7,12 +7,13 @@ export const apiLogin = data =>
     data,
   });
 
-export const apiRegister = async data =>
+export const apiRegister = async data => 
   axios({
     url: '/v1/api/auth/sign-up',
     method: 'post',
     data,
   });
+;
 
 export const apiSendOTP = async data =>
   axios({

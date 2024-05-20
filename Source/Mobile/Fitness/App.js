@@ -12,6 +12,7 @@ import {
   DetailExerciseScreen,
   DetailMealScreen,
   FullExerciseScreen,
+  GenderScreen,
   HomePageSceen,
   NotificationScreen,
   ProfileScreen,

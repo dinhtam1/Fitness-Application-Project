@@ -9,10 +9,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   ForgotScreen,
-  GoalSceen,
+  GoalScreen,
   GoalWeightScreen,
   HeightScreen,
-  HomePageSceen,
+  HomePageScreen,
   IntroduceScreen,
   LevelScreen,
   OldScreen,
@@ -27,6 +27,7 @@ import {
   ChangePassword,
   DetailExerciseScreen,
   DetailMealScreen,
+  GenderScreen,
 } from '../screens';
 
 const StackNavigator = () => {
@@ -37,7 +38,7 @@ const StackNavigator = () => {
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
-          component={HomePageSceen}
+          component={HomePageScreen}
           options={{
             tabBarLabel: 'Home',
             tabBarLabelStyle: {color: '#008E97'},
@@ -133,13 +134,18 @@ const StackNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="Gender"
+          component={GenderScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="Height"
           component={HeightScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
           name="Goal"
-          component={GoalSceen}
+          component={GoalScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -186,7 +192,7 @@ const StackNavigator = () => {
         />
         <Stack.Screen
           name="Home"
-          component={HomePageSceen}
+          component={HomePageScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen

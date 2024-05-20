@@ -5,13 +5,13 @@ import SplashScreen from './splashScreen';
 import IntroduceScreen from './introduction/introduceScreen';
 import VerifyScreen from './auth/verifyScreen';
 import OldScreen from './steps/oldScreen';
-import WeightScreen from './steps/weighScreen';
+import WeightScreen from './steps/weightScreen';
 import GoalWeightScreen from './steps/goalWeightScreen';
 import HeightScreen from './steps/heightScreen';
 import LevelScreen from './steps/levelScreen';
-import GoalSceen from './steps/goalScreen';
+import GoalScreen from './steps/goalScreen';
 import StartScreen from './steps/startScreen';
-import HomePageSceen from './home/homePageSceen';
+import HomePageScreen from './home/homePageScreen';
 import TrainingScreen from './training/trainingScreen';
 import CategoryScreen from './categories/categoryScreen';
 import FullExerciseScreen from './exercise/fullExerciseScreen';
@@ -24,6 +24,7 @@ import DetailMealScreen from './meal/detailMealScreen';
 import NotificationScreen from './notification/notificationScreen';
 import SettingScreen from './setting/settingScreen';
 import ChangePassword from './profile/changePassword';
+import GenderScreen from './steps/genderScreen';
 
 export {
   SignInScreen,
@@ -37,9 +38,9 @@ export {
   GoalWeightScreen,
   HeightScreen,
   LevelScreen,
-  GoalSceen,
+  GoalScreen,
   StartScreen,
-  HomePageSceen,
+  HomePageScreen,
   TrainingScreen,
   CategoryScreen,
   FullExerciseScreen,
@@ -52,4 +53,5 @@ export {
   NotificationScreen,
   SettingScreen,
   ChangePassword,
+  GenderScreen,
 };

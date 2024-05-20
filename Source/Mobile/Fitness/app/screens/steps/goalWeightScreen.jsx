@@ -31,14 +31,14 @@ const GoalWeightScreen = () => {
         <BackComponent skip nav={'Weight'} />
         <View style={common.contain}>
           <TextComponent
-            text={step['step-4']}
+            text={step['step-5']}
             color={colors['text-2']}
             size={15}
             font={fontFamilies['medium']}
           />
           <SpaceComponent height={10} />
           <TextComponent
-            text={step['title-4']}
+            text={step['title-5']}
             color={colors['title']}
             size={30}
             font={fontFamilies['bebasNeue']}

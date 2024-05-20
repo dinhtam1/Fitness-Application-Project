@@ -4,7 +4,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import BackComponent from '../../components/header/backComponent';
 import TextComponent from '../../components/text/textComponent';
 import {colors} from '../../constants/colors';
@@ -15,15 +15,55 @@ import {button, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
 import {useAuthStore} from '../../store/useAuthStore';
+import {apiUpdateProfile} from '../../apis/user';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../utils/toast';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const GoalSceen = () => {
-  const buttonTitles = ['Weight loss', 'Gain muscle', 'Improve fitness'];
+const GoalScreen = () => {
+  const buttonTitles = ['Weight_loss', 'Muscle_gain'];
   const navigation = useNavigation();
   const [selectedLevel, setSelectedLevel] = useState('');
+  const [isChange, setIsChange] = useState(false);
   const {form, setForm} = useAuthStore();
-  const onSubmit = () => {
+
+  const onSubmit = async () => {
     setForm({...form, goal: selectedLevel.toUpperCase()});
-    navigation.navigate('Start');
+    console.log(form);
+    setIsChange(true);
+    const token = await AsyncStorage.getItem('token');
+    const userId = await AsyncStorage.getItem('dataUser');
+    const response = await apiUpdateProfile(
+      {
+        age: +form.age,
+        weight: +form.weight,
+        height: +form.height,
+        gender: form.gender,
+        // goal_weight: +form.goal_weight,
+        level: form.level,
+        goal: form.goal,
+      },
+      JSON.parse(userId).userId,
+      token,
+    );
+    if (response?.statusCode === 200) {
+      navigation.navigate('Start');
+      Toast.show(toastConfig({textMain: 'Successfully', visibilityTime: 2000}));
+    } else {
+      console.log(response.message);
+      Toast.show(
+        toastConfig({
+          type: 'error',
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
+      );
+    }
+  };
+
+  const handleClickButton = goal => {
+    setSelectedLevel(goal);
+    setForm({...form, goal: goal.toUpperCase()});
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -39,14 +79,14 @@ const GoalSceen = () => {
           ]}>
           <View>
             <TextComponent
-              text={step['step-7']}
+              text={step['step-8']}
               color={colors['text-2']}
               size={15}
               font={fontFamilies['medium']}
             />
             <SpaceComponent height={10} />
             <TextComponent
-              text={step['title-7']}
+              text={step['title-8']}
               color={colors['title']}
               size={30}
               font={fontFamilies['bebasNeue']}
@@ -56,8 +96,8 @@ const GoalSceen = () => {
             {buttonTitles.map((item, index) => (
               <CustomButton
                 key={index}
-                title={item}
-                handlePress={() => setSelectedLevel(item)}
+                title={item.replace('_', ' ')}
+                handlePress={() => handleClickButton(item)} // Modified line
                 containerStyles={{
                   marginBottom: 20,
                   backgroundColor:
@@ -88,4 +128,4 @@ const GoalSceen = () => {
   );
 };
 
-export default GoalSceen;
+export default GoalScreen;

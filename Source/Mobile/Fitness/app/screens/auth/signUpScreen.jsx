@@ -39,12 +39,16 @@ const SignUpScreen = () => {
   } = useForm();
   const onSubmit = async data => {
     const response = await apiRegister(data);
-    if (response?.statusCode === 201) {
+    if (response?.statusCode === 200) {
       await AsyncStorage.setItem('token', response.data.tokens.accessToken);
+      await AsyncStorage.setItem(
+        'dataUser',
+        JSON.stringify(response.data.user),
+      );
       Toast.show(
         toastConfig({textMain: response.message, visibilityTime: 2000}),
       );
-      navigation.navigate('HomePageSceen');
+      navigation.navigate('Old');
     } else {
       Toast.show(
         toastConfig({

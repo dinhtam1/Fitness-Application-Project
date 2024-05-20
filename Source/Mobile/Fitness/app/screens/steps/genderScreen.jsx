@@ -2,34 +2,35 @@ import {
   Keyboard,
   SafeAreaView,
   StyleSheet,
+  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import React, {useState} from 'react';
+import {common} from '../../styles/commonStyles';
 import BackComponent from '../../components/header/backComponent';
 import TextComponent from '../../components/text/textComponent';
+import {button, step} from '../../constants/text';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import SpaceComponent from '../../components/common/spaceComponent';
 import CustomButton from '../../components/button/buttonComponent';
-import {button, step} from '../../constants/text';
-import {useNavigation} from '@react-navigation/native';
-import {common} from '../../styles/commonStyles';
 import {useAuthStore} from '../../store/useAuthStore';
+import {useNavigation} from '@react-navigation/native';
 
-const LevelScreen = () => {
-  const buttonTitles = ['BEGINNER', 'ADVANCED'];
+const GenderScreen = () => {
+  const buttonTitles = ['MALE', 'FEMALE'];
   const navigation = useNavigation();
-  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selected, setSelected] = useState('');
   const {form, setForm} = useAuthStore();
   const onSubmit = () => {
-    setForm({...form, level: selectedLevel});
-    navigation.navigate('Goal');
+    setForm({...form, gender: selected.toLowerCase()});
+    navigation.navigate('Weight');
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent skip nav={'Height'} />
+        <BackComponent skip />
         <View
           style={[
             common.contain,
@@ -40,29 +41,29 @@ const LevelScreen = () => {
           ]}>
           <View>
             <TextComponent
-              text={step['step-7']}
+              text={step['step-3']}
               color={colors['text-2']}
               size={15}
               font={fontFamilies['medium']}
             />
             <SpaceComponent height={10} />
             <TextComponent
-              text={step['title-7']}
+              text={step['title-3']}
               color={colors['title']}
               size={30}
               font={fontFamilies['bebasNeue']}
             />
           </View>
           <View>
-            {buttonTitles.map((title, index) => (
+            {buttonTitles.map((item, index) => (
               <CustomButton
                 key={index}
-                title={title}
-                handlePress={() => setSelectedLevel(title)}
+                title={item}
+                handlePress={() => setSelected(item)}
                 containerStyles={{
                   marginBottom: 20,
                   backgroundColor:
-                    selectedLevel === title
+                    selected === item
                       ? colors['primary-color-black']
                       : 'transparent',
                   borderWidth: 1,
@@ -70,7 +71,7 @@ const LevelScreen = () => {
                 }}
                 textStyles={{
                   color:
-                    selectedLevel === title
+                    selected === item
                       ? colors['text-white']
                       : colors['primary-color-black'],
                   fontSize: 18,
@@ -89,6 +90,4 @@ const LevelScreen = () => {
   );
 };
 
-export default LevelScreen;
-
-const styles = StyleSheet.create({});
+export default GenderScreen;

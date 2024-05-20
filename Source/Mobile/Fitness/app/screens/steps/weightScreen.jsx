@@ -22,7 +22,7 @@ const WeightScreen = () => {
   const [weight, setWeight] = useState(null);
   const {form, setForm} = useAuthStore();
   const onSubmit = () => {
-    // setForm({...form, weight});
+    setForm({...form, weight});
     navigation.navigate('GoalWeight');
   };
   return (
@@ -31,14 +31,14 @@ const WeightScreen = () => {
         <BackComponent skip nav={'Old'} />
         <View style={common.contain}>
           <TextComponent
-            text={step['step-3']}
+            text={step['step-4']}
             color={colors['text-2']}
             size={15}
             font={fontFamilies['medium']}
           />
           <SpaceComponent height={10} />
           <TextComponent
-            text={step['title-3']}
+            text={step['title-4']}
             color={colors['title']}
             size={30}
             font={fontFamilies['bebasNeue']}

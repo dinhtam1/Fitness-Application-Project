@@ -18,8 +18,8 @@ const OldScreen = () => {
   const {form, setForm} = useAuthStore();
 
   const onSubmit = () => {
-    // setForm({...form, age});
-    navigation.navigate('Weight');
+    setForm({...form, age});
+    navigation.navigate('Gender');
   };
   return (
     <SafeAreaView style={common.safeAreaView}>
