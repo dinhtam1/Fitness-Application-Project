@@ -121,6 +121,7 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
         const result = await prisma.exercise.findMany({
             where: condition,
             select: {
+                exerciseId : true,
                 image: true,
                 video_center: true,
                 muscle_group: {
