@@ -79,6 +79,34 @@ const getExercise = async (req, res) => {
     }
 }
 
+const getMuscleName = async (req, res) => {
+    var requestType = Type.GET_MUSCLE_NAME;
+    var data = null;
+    try {
+        data = await exerciseServices.getMuscleName()
+        if(!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.MUSCLE_NOT_FOUND,
+                data,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.GET_MUSCLE_NAME_SUCCESSFUL,
+            data,
+            requestType
+        })
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.FAIL,
+            message: appString.INTERNAL_SERVER_ERROR,
+            requestType
+        });
+    }
+}
+
 const getDetailExercise = async (req, res) => {
     const requestType = Type.GET_DETAIL_EXERCISE;
     try {
@@ -149,6 +177,7 @@ const getResultExercise = async (req, res) => {
 module.exports = {
     getCategory,
     getExercise,
+    getMuscleName,
     getDetailExercise,
     getResultExercise
 };
