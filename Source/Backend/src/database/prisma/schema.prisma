@@ -109,10 +109,24 @@ model Dashboard {
   userId          Int       @db.UnsignedInt
   time_sleep      Int       @default(0)
   calories_burned Float     @default(0)
+  calories_loaded Float     @default(0)
   time_practice   Int       @default(0)
   weight          Float?
   level           Level?
   day             DateTime? @default(now())
   user            User      @relation(fields: [userId], references: [userId])
   create_at       DateTime  @default(now())
+}
+
+model Meal {
+  mealId         Int      @id @default(autoincrement()) @db.UnsignedInt
+  meal_name      String
+  calories       Float
+  protein        Float
+  fat            Float
+  carb           Float
+  meal_image     String
+  description    String   @db.Text
+  last_meal_date DateTime?
+  create_at      DateTime @default(now())
 }

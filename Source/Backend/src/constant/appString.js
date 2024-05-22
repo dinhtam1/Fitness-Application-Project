@@ -60,6 +60,9 @@ const GET_DASHBOARD_SUCCESSFUL = "Get dashboard successfully";
 const GET_RESULT_EXERCISE_SUCCESSFUL = "Get result successfully";
 const MUSCLE_NOT_FOUND = "Muscle not found";
 const GET_MUSCLE_NAME_SUCCESSFUL =  "Get muscle name successfully";
+const MEAL_NOT_FOUND = "Meal not found";
+const GET_MEAL_SUCCESSFUL = "Get meal successfully";
+const ENOUGH_CALORIES = "You've had enough calories for today";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -122,5 +125,8 @@ module.exports = {
     GET_DASHBOARD_SUCCESSFUL,
     GET_RESULT_EXERCISE_SUCCESSFUL,
     MUSCLE_NOT_FOUND,
-    GET_MUSCLE_NAME_SUCCESSFUL
+    GET_MUSCLE_NAME_SUCCESSFUL,
+    MEAL_NOT_FOUND,
+    GET_MEAL_SUCCESSFUL,
+    ENOUGH_CALORIES
 };

@@ -3,8 +3,10 @@ const { PrismaClient } = require('@prisma/client');
 // const { insertDataExercise } = require('./exercise.js');
 const { insertDataEquipment } = require('./equipment.js');
 const { insertDataMuscleGroup } = require('./muscle-group.js');
-const { importDataFromCSV } = require('./exercise.js');
-const csvFilePath = 'src/database/data/crawlData/videos.csv';
+const { importDataExerciseFromCSV } = require('./exercise.js');
+const { importDataMealFromCsv } = require('./meal.js');
+const exerciseFilePath = 'src/database/data/crawlData/videos.csv';
+const mealFilePath = 'src/database/data/crawlData/food.csv';
 
 
 const prisma = new PrismaClient();
@@ -12,10 +14,14 @@ const prisma = new PrismaClient();
 const insertData = async () => {
     await insertDataEquipment();
     await insertDataMuscleGroup();
-    await importDataFromCSV(csvFilePath)
+    await importDataExerciseFromCSV(exerciseFilePath)
     .catch((error) => {
         console.error('Error importing data:', error);
     });
+    await importDataMealFromCsv(mealFilePath)
+    .catch((error) => {
+        console.error('Error importing data:', error);
+    })
 }
 
 insertData()

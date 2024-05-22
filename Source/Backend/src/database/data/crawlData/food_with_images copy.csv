@@ -1,0 +1,446 @@
+Food,Serving,Calories,food_image
+Artichoke,1 artichoke (128 g),60 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/08/artichoke-close-up.jpg
+Arugula,1 leaf (2 g),1 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/09/salad-of-pumpkin-arugula-and-blue-cheese.jpg
+Asparagus,1 spear (12 g),2 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/04/asian-asparagus.jpg
+Beetroot,1 beet (82 g),35 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/chicken-breast-steaks-with-beetroot.jpg
+Bell Pepper,1 pepper (73 g),15 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/stuffed-bell-pepper-rice.jpg
+Black Olives,1 olive (2.7 g),2 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/pasta-fusilli-with-fresh-black-olives-and-tomatoes.jpg
+Broccoli,1 bunch (608 g),207 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/pan-with-broccoli-brussel-sprouts-and-tomatoes.jpg
+Brussels Sprouts,1 sprout (19 g),8 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/brussels-sprout-salad.jpg
+Cabbage,1 head (908 g),227 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/red-cabbage.jpg
+Capsicum,1 pepper (45 g),12 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/02/capsicum.jpg
+Carrot,1 carrot (61 g),25 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/carrot-raisin-salad.jpg
+Cauliflower,1 floweret (13 g),3 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/paleo-chicken-breast-with-mashed-cauliflower.jpg
+Celery,1 stalk (40 g),6 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/11/wonderful-healthy-celery.jpg
+Chard,1 leaf (48 g),9 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/10/choosing-red-swiss-chard-in-a-grocery-store.jpg
+Cherry Tomato,1 cherry tomato (20 g),20 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/10/detail-of-cherry-tomatoes-with-drops-of-water-and-spaghetti.jpg
+Chinese Cabbage,1 head (840 g),134 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/red-cabbage.jpg
+Collard Greens,"1 cup, raw (36 g)",12 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/05/greens-alley-in-a-grocery-store.jpg
+Corn,1 cup (154 g),562 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/popcorn-detail-on-a-white-background.jpg
+Creamed Spinach,1 cup (200 g),148 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/07/pork-stuffed-with-spinach.jpg
+Cucumber,1 cucumber (410 g),66 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/glass-of-homemade-cucumber-lemonade.jpg
+Eggplant,1 eggplant (458 g),115 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/11/wonderful-healthy-eggplant.jpg
+Garlic,1 clove (3 g),4 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/08/dirty-garlic-on-a-market.jpg
+Green Beans,1 cup (110 g),34 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/05/greens-alley-in-a-grocery-store.jpg
+Green Olives,1 olive (2.7 g),2 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/05/greens-alley-in-a-grocery-store.jpg
+Green Onion,1 green onion (15 g),5 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/05/greens-alley-in-a-grocery-store.jpg
+Horseradish,1 tbsp (15 g),7 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/11/cabbage-roll-with-roasted-vegetables-and-horseradish-sauce.jpg
+Kale,"1 cup, chopped (67 g)",33 cal,https://www.foodiesfeed.com/wp-content/uploads/2022/07/chopped-curly-kale-in-a-wooden-bowl.jpg
+Kohlrabi,1 kohlrabi (400 g),108 cal,https://www.foodiesfeed.com/wp-content/uploads/2022/07/purple-and-green-mix-of-kohlrabi.jpg
+Leek,1 leek (89 g),54 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/fresh-cut-leek.jpg
+Lettuce,1 head (600 g),90 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/08/fresh-green-lettuce-in-a-grocery-store.jpg
+Mushrooms,1 mushroom (5.4 g),1 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/11/colorful-broccoli-mushrooms-mix.jpg
+Mustard Greens,"1 cup, chopped (56 g)",15 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/05/greens-alley-in-a-grocery-store.jpg
+Olives,1 olive (2.7 g),2 cal,https://www.foodiesfeed.com/wp-content/uploads/2022/11/tapas-bar-with-hummus-and-olives.jpg
+Onion,1 onion (85 g),34 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/11/onions-on-onions-on-onions.jpg
+Peas,1 cup (98 g),79 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/01/green-peas.jpg
+Pepper,1 pepper (75 g),20 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/stuffed-bell-pepper-rice.jpg
+Potato,1 potato (213 g),164 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/chicken-schnitzel-with-mashed-potatoes.jpg
+Pumpkin,1 pumpkin (196 g),51 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Radishes,1 radish (4.5 g),1 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/08/holding-fresh-radishes-in-hand-1.jpg
+Red Cabbage,1 leaf (22 g),7 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/red-cabbage.jpg
+Spinach,1 bunch (340 g),78 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/07/pork-stuffed-with-spinach.jpg
+Squash,1 squash (196 g),88 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Sweet Potato,1 potato (130 g),112 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/chicken-schnitzel-with-mashed-potatoes.jpg
+Tomato,1 tomato (111 g),20 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/pasta-tomatoes-and-other-italian-ingredients-1.jpg
+Turnip Greens,1 turnip green (170 g),34 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/09/turnip.jpg
+Turnips,1 turnip (122 g),34 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/09/turnips-in-love.jpg
+Wasabi,1 root (169 g),184 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/10/sushi-nigiri-and-maki-with-wasabi-on-a-summer-party.jpg
+Winter Squash,1 squash (431 g),147 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Zucchini,1 zucchini (196 g),33 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/potatoes-with-mushrooms-and-zucchini.jpg
+Acai,1 oz. (28.35 g),20 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/01/acai-smoothie-bowls.jpg
+Apple,1 apple (182 g),95 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/roastbeef-with-grilled-pineapple-and-greens.jpg
+Apricot,1 apricot (35 g),17 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/04/short-drink-with-dried-apricot.jpg
+Avocado,1 avocado (200 g),320 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/fresh-figs-and-avocado.jpg
+Banana,1 banana (125 g),111 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/peanut-butter-and-banana-smoothie.jpg
+Blackberries,1 cup (144 g),62 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/torta-primavera.jpg
+Blood Oranges,1 serving (140 g),70 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/03/salmon-and-blood-orange-bruschettas.jpg
+Blueberries,1 cup (148 g),84 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/11/peeled-almonds-with-coconut-and-blueberries.jpg
+Cherries,1 cherry (8 g),4 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/dark-red-cherries-on-a-market.jpg
+Custard Apple,1 custard apple (135 g),136 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/07/delicious-eclairs-on-a-plate-decorated-with-dried-raspberries.jpg
+Dates,1 date (7.1 g),20 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/07/cup-coffee.jpg
+Figs,1 fig (50 g),37 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/fresh-figs-and-avocado.jpg
+Fruit salad,1 cup (249 g),125 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/06/salad-in-a-salad-bar-scaled.jpg
+Grapes,1 cup (151 g),104 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/02/cheese-with-honey-salty-biscuits-and-grapes.jpg
+Jujube,1 oz. (28.35 g),22 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/red-jujube.jpg
+Kiwi,1 liwi (183 g),112 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/three-layer-smoothie-from-banana-kiwi-and-strawberry-on-a-wooden-background.jpg
+Lemon,1 lemon (58 g),17 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/citruses-for-a-homemade-lemonade.jpg
+Lime,1 lime (67 g),20 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/11/lime-posset-with-fresh-fruits.jpg
+Mandarin Oranges,1 mandarin orange (88 g),47 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/fresh-mandarins.jpg
+Mango,1 mango (336 g),202 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/ripe-mango-on-a-mango-tree.jpg
+Nectarine,1 nectarine (150 g),66 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/09/fresh-fruit-in-summer.jpg
+Olives,1 olive (2.7 g),2 cal,https://www.foodiesfeed.com/wp-content/uploads/2022/11/tapas-bar-with-hummus-and-olives.jpg
+Orange,1 orange (131 g),62 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/fresh-parsley-and-oranges.jpg
+Passion Fruit,1 passoin fruit (18 g),17 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/09/passion-fruit.jpg
+Peach,1 peach (150 g),59 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/09/peaches-on-a-peach-background.jpg
+Pear,1 pear (178 g),101 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/08/homemade-poppy-seed-almond-cake-with-pears.jpg
+Persimmon,1 fruit (25 g),32 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/12/persimmon-kaki-fruit.jpg
+Physalis,1 berry (5 g),2 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/05/physalis-fruit-close-up.jpg
+Pineapple,1 pineapple (905 g),453 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/roastbeef-with-grilled-pineapple-and-greens.jpg
+Plantains,1 plantain (179 g),218 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/08/paleo-chicken-skewers-with-plantains.jpg
+Plum,1 plum (66 g),30 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/spicy-plum-pie.jpg
+Pomegranate,1 pomegranate (282 g),234 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/02/berries.jpg
+Raisins,1 cup (145 g),434 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/07/cinnamon-and-maple-syrup-cake.jpg
+Rambutan,1 rambutan (9 g),7 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/rambutan-fruit-close-up.jpg
+Raspberries,1 cup (123 g),64 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/raspberries-at-a-market.jpg
+Rhubarb,1 stalk (51 g),11 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/homemade-rhubarb-cake-1.jpg
+Strawberries,1 cup (152 g),49 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/06/cutted-strawberries.jpg
+Tamarind,1 tamarind (2 g),5 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/09/tamarind.jpg
+Tangerine,1 tangerine (88 g),47 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/01/girl-peeling-tangerine.jpg
+Watermelon,1 wedge (286 g),86 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/girl-eating-watermelon-outside.jpg
+Baby Back Ribs,1 serving (139 g),360 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/wooden-plate-with-lamb-ribs.jpg
+Bacon and Eggs,1 serving (214 g),539 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/08/high-protein-brunch-with-poached-eggs-beans-and-bacon.jpg
+Baked Beans,1 cup (260 g),244 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/04/beef-with-green-beans-and-vegetables-rissotto.jpg
+BBQ Ribs,1 rib (141 g),360 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/wooden-plate-with-lamb-ribs.jpg
+Beef Stew,1 cup (196 g),186 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/beef-potato-stew.jpg
+Black Pudding,1 pudding (40 g),101 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/09/chia-pudding.jpg
+Black Rice,1/2 cup (100 g),323 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/stuffed-bell-pepper-rice.jpg
+Brown Rice,1 cup (185 g),670 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/melting-chocolate-brownie.jpg
+Burrito,1 burrito (200 g),326 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/04/mexican-burrito-with-cream.jpg
+Butter Chicken,1 tray (350 g),490 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/peanut-butter-and-banana-smoothie.jpg
+California Roll,1 roll (35 g),33 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/sushi-yam-california-rolls-3.jpg
+Chicken Caesar Salad,1 salad (309 g),392 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/09/caesar-salad-with-chicken.jpg
+Chicken Fried Steak,1 steak (280 g),423 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/fried-chicken-commercial.jpg
+Chicken Marsala,1 serving (2301 g),2209 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+Chicken Parmesan,1 piece (227 g),250 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/02/parmesan-cheese.jpg
+Chicken Pot Pie,1 pie (302 g),673 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/chicken-schnitzel-with-mashed-potatoes.jpg
+Chicken Tikka Masala,1 serving (241 g),195 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+Chili con Carne,1 cup (253 g),266 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/10/hanging-dried-chili-peppers.jpg
+Cobb Salad,1 serving (536 g),632 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/06/salad-in-a-salad-bar-scaled.jpg
+Collard Greens,1 cup (45 g),13 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/05/greens-alley-in-a-grocery-store.jpg
+Corn Dog,1 item (175 g),438 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/popcorn-detail-on-a-white-background.jpg
+Corned Beef Hash,1 can (213 g),349 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/03/eating-hash-browns-with-eggs-for-breakfast.jpg
+Cottage Pie,1 pie (376 g),523 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/spicy-plum-pie.jpg
+Deviled Eggs,1/2 egg (31 g),62 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/08/high-protein-brunch-with-poached-eggs-beans-and-bacon.jpg
+Dim Sum,1 piece (19 g),37 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/08/eating-chinese-steamed-and-fried-buns-with-chopsticks-1.jpg
+Enchiladas,1 enchilada (192 g),323 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/12/eating-enchiladas-outside.jpg
+Fajita,1 serving (248 g),290 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/01/chicken-fajitas-in-a-mexican-restaurant.jpg
+Fish and Chips,1 serving (300 g),585 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/potato-and-beetroot-chips.jpg
+Fried Rice,1 serving (356 g),662 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/10/fried-rice-with-egg-and-spring-onion.jpg
+Fried Shrimp,1 shrimp (27 g),75 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/shrimp-dishes-in-bubba-gump-restaurant-1.jpg
+Grilled Cheese Sandwich,1 sandwich (136 g),392 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/grilled-cheese-sandwich.jpg
+Ham and Cheese Sandwich,1 sandwich (146 g),352 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/deli-ham-sandwich.jpg
+Hummus,1 cup (246 g),435 cal,https://www.foodiesfeed.com/wp-content/uploads/2022/11/tapas-bar-with-hummus-and-olives.jpg
+Kebab,1 kebab (360 g),774 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/shish-kebab-on-a-skewer-with-vegetables.jpg
+Mac and Cheese,1 serving (189 g),699 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/camembert-cheese-macro-shot.jpg
+Macaroni and Cheese,1 serving (189 g),699 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/03/tasting-cheese-in-a-cheese-factory-1.jpg
+Mashed Potatoes,1 cup (210 g),174 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/chicken-schnitzel-with-mashed-potatoes.jpg
+Meat Pie,1 pie (120 g),290 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/spicy-plum-pie.jpg
+Naan,1 bread (84 g),260 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/close-up-of-butter-chicken-indian-dish.jpg
+Orange Chicken,1 serving (162 g),420 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/03/chicken-legs-with-tomatoes-peppers-and-oranges-1.jpg
+Pad Thai,1 cup (250 g),375 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/08/shrimps-pad-thai.jpg
+Paella,1/2 package (128 g),200 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/06/seafood-paella-close-up-scaled.jpg
+Pea Soup,1 cup (253 g),190 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Peanut Butter Sandwich,1 sandwich (49 g),200 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/peanut-butter-and-banana-smoothie.jpg
+Peking Duck,1/2 duck (178 g),401 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/barbecued-grilled-dark-ramen.jpg
+Philly Cheese Steak,1 sandwich (120 g),300 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/03/tasting-cheese-in-a-cheese-factory-1.jpg
+Pizza,1 slice (102 g),272 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Pork Chop,1 chop (131 g),295 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/roasted-pork-belly.jpg
+Potato Salad,1/3 cup (95 g),136 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/chicken-schnitzel-with-mashed-potatoes.jpg
+Pulled Pork Sandwich,1 sandwich (261 g),551 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/11/pulled-pork-sandwich-with-cheese-sauce-1.jpg
+Ramen,"1 package, dry (85 g)",380 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/barbecued-grilled-dark-ramen.jpg
+Ravioli,5 ravioli (66 g),134 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/making-homemade-ravioli.jpg
+Reuben Sandwich,1 sandwich (308 g),641 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/argentinian-beef-steak-sandwich.jpg
+Roast Beef,1 slice (21 g),23 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/cutting-roastbeef.jpg
+Roast Dinner,1 slice (121 g),240 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/roasted-pork-belly.jpg
+Sausage Roll,1 roll (103 g),361 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/sausage-rolls.jpg
+Sausage Rolls,1 roll (34 g),101 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/sausage-rolls.jpg
+Shepherds Pie,1 pie (227 g),159 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/spicy-plum-pie.jpg
+Shrimp Cocktail,1 oz. (28 g),130 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/gin-and-tonic-cocktail-with-orange-and-thyme.jpg
+Spaghetti Bolognese,1 serving (283 g),374 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/pasta-spaghetti-with-basil-and-a-wooden-spoon.jpg
+Spring Roll,1 roll (140 g),350 cal,https://www.foodiesfeed.com/wp-content/uploads/2022/06/vietnamese-spring-rolls-on-a-table.jpg
+Spring Rolls,1 roll (140 g),350 cal,https://www.foodiesfeed.com/wp-content/uploads/2022/06/vietnamese-spring-rolls-on-a-table.jpg
+Taco,1 taco (98 g),213 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/09/tasty-chicken-tacos-with-cheese.jpg
+Tandoori Chicken,1 serving (175 g),198 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+Yorkshire Pudding,1 pudding (15 g),83 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/09/chia-pudding.jpg
+Brown Rice,1 cup (195 g),757 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/melting-chocolate-brownie.jpg
+Corn Waffles,1 waffle (40 g),110 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/chocolate-waffles-and-coffee.jpg
+Couscous,1 cup (173 g),650 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/tambaqui-grelhado-com-cuscuz-marroquino.jpg
+Cracker,1 cracker (7 g),35 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/easy-gravlax-appetizer.jpg
+Durum Wheat Semolina,1 tbsp (30 g),119 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/homemade-bakery-cereal-full-sight-bun.jpg
+Gluten,1 oz. (28 g),104 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/11/glutenfree-dumbling-1.jpg
+Grissini,1 grissini (5 g),20 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/04/grissini-e1621347370952.jpg
+Millet Flour,1 cup (140 g),521 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/bread-with-wheat-and-flour.jpg
+Oat Bran,1 cup (94 g),231 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/cup-of-oatmeal-with-berries-and-coconut.jpg
+Pearl Barley,1 cup (157 g),553 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/01/pearly-white-porcelain-teapot-and-cup.jpg
+Polenta,1 cup (150 g),549 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/04/italian-corn-polenta-with-cheese-and-basil.jpg
+Prawn Crackers,1 cracker (3 g),16 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/korean-spicy-seafood-soup-with-king-prawns.jpg
+Pretzel Sticks,20 sticks (12 g),46 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/06/eating-pretzel-with-sesame-seeds-scaled.jpg
+Quinoa,1 cup (170 g),626 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/04/potato-quinoa-patties.jpg
+Rye Bran,1 cup (150 g),422 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/homemade-artisan-sourdough-bread.jpg
+Savoury Biscuits,40 grams (40 g),139 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/02/orange-madeleine-cakes.jpg
+Sunflower Seeds,1 cup (140 g),818 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/07/nourishing-seeds.jpg
+Tortilla,1 tortilla (197 g),467 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/10/tortilla-chips-with-salsa.jpg
+Tortilla Chips,20 chips (32 g),160 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/10/tortilla-chips-with-salsa.jpg
+Wheat Bran,1 cup (58 g),125 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/homemade-bakery-cereal-full-sight-bun.jpg
+Wheat Germ,1 cup (113 g),432 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/homemade-bakery-cereal-full-sight-bun.jpg
+Wheat Gluten,1 tsp (3 g),10 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/homemade-bakery-cereal-full-sight-bun.jpg
+Wheat Semolina,1 cup (167 g),601 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/homemade-bakery-cereal-full-sight-bun.jpg
+Wheat Starch,1 cup (110 g),386 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/homemade-bakery-cereal-full-sight-bun.jpg
+Whole Grain Wheat,1 cup (120 g),407 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/perfect-wholegrain-bread.jpg
+Wholegrain Oat,1 cup (80 g),300 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/perfect-wholegrain-bread.jpg
+Almond Oil,1 tbsp (14 ml),123 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/11/peeled-almonds-with-coconut-and-blueberries.jpg
+Apricot Kernel Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/04/short-drink-with-dried-apricot.jpg
+Argan Oil,1 tbsp (14 ml),125 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Avocado Oil,1 tbsp (14 ml),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Babassu Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Canola Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Coconut Oil,1 tbsp (14 ml),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/05/fresh-coconut.jpg
+Corn Oil,1 tbsp (15 ml),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/popcorn-detail-on-a-white-background.jpg
+Cottonseed Oil,1 tbsp (14 ml),123 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Flaxseed Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Grape Seed Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Hazelnut Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/05/hazelnuts-in-a-mixer.jpg
+Linseed Oil,1 tbsp (14 ml),117 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Menhaden Oil,1 tbsp (14 ml),128 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Mustard Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Oat Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/cup-of-oatmeal-with-berries-and-coconut.jpg
+Olive Oil,1 tbsp (15 ml),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/extra-virgin-olive-oil-with-olives-in-a-small-bowl.jpg
+Palm Kernel Oil,1 tbsp (14 ml),123 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/01/holding-donut-near-palm-trees.jpg
+Palm Oil,1 tbsp (14 ml),123 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/01/holding-donut-near-palm-trees.jpg
+Peanut Oil,1 tbsp (14 ml),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/peanut-butter-and-banana-smoothie.jpg
+Poppy Seed Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/black-coffee-with-poppy-seed-strudel.jpg
+Pumpkin Seed Oil,1 tbsp (14 ml),123 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Rice Bran Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/stuffed-bell-pepper-rice.jpg
+Safflower Oil,1 tbsp (14 ml),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Salmon Oil,1 tbsp (14 ml),128 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Sesame Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/03/loaf-of-bread-with-black-sesame-seeds-in-a-bakery.jpg
+Shea Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Soy Oil,1 tbsp (14 ml),123 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/fried-salmon-with-sweet-soy-sauce-in-a-korean-restaurant.jpg
+Sunflower Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Tomato Seed Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/pasta-tomatoes-and-other-italian-ingredients-1.jpg
+Vegetable Oil,1 tbsp (15 ml),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/azeite-aromatizado-com-alho.jpg
+Walnut Oil,1 tbsp (14 ml),124 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/walnuts-in-a-jar.jpg
+Wheat Germ Oil,1 tbsp (14 ml),130 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/homemade-bakery-cereal-full-sight-bun.jpg
+Alphabet Soup,1 cup (248 g),62 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Bean Stew,1 cup (252 g),335 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/beef-potato-stew.jpg
+Beef Bouillon,1 cup (240 g),7 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/12/ground-beef-rice-bowl.jpg
+Beef Noodle Soup,1 cup (244 g),83 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Beef Soup,1 cup (213 g),70 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Broccoli Cheese Soup,1 can (303 g),264 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Broccoli Soup,1 cup (237 g),206 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Cabbage Soup,1 cup (245 g),69 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Carrot Ginger Soup,1 serving (381 g),95 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Carrot Soup,1 serving (381 g),95 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Chicken Bouillon,1 cup (241 g),10 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+Chicken Broth,1 cup (244 g),39 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/03/homemade-chicken-broth-with-vegetables.jpg
+Chicken Gumbo Soup,1 cup (244 g),56 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Chicken Noodle Soup,1 cup (248 g),62 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Chicken Stock,1 cup (244 g),39 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+Chicken Vegetable Soup,1 cup (248 g),77 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Chicken with Rice Soup,1 cup (243 g),58 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Cream of Asparagus Soup,1 cup (244 g),85 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Cream of Broccoli Soup,1 serving (310 g),140 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Cream of Celery Soup,1 cup (248 g),92 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/11/wonderful-healthy-celery.jpg
+Cream of Chicken Soup,1 cup (244 g),117 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Cream of Mushroom Soup,1 cup (248 g),97 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/creamy-mushroom-soup.jpg
+Cream of Onion Soup,1 cup (244 g),107 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Cream of Potato Soup,1 cup (244 g),73 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Creamy Chicken Noodle Soup,1 cup (245 g),56 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/creamy-mushroom-soup.jpg
+French Onion Soup,1 cup (243 g),56 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Golden Mushroom Soup,1 cup (248 g),161 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/mushroom-soup.jpg
+Instant Ramen,1 package (85 g),371 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/barbecued-grilled-dark-ramen.jpg
+Lentil Soup,1 cup (248 g),139 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/red-lentils-soup-with-tomatoes-sour-cream-and-mint.jpg
+Lobster Bisque Soup,1 cup (248 g),248 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Meatball Soup,1 cup (245 g),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Minestrone,1 cup (241 g),82 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/minestrone-soup.jpg
+Mushroom Soup,1 cup (244 g),85 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/mushroom-soup.jpg
+Noodle Soup,1 cup (244 g),83 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Onion Soup,1 cup (243 g),56 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Oxtail Soup,1 cup (244 g),68 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Pea Soup,1 cup (253 g),190 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Potato Soup,1 serving (240 g),192 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Pumpkin Soup,1 cup (245 g),71 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Ramen,1 package (85 g),371 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/barbecued-grilled-dark-ramen.jpg
+Scotch Broth,1 cup (241 g),80 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/03/homemade-chicken-broth-with-vegetables.jpg
+Thai Soup,1 cup (245 g),147 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/extremely-hot-thai-soup.jpg
+Tomato Rice Soup,1 cup (247 g),116 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Tomato Soup,1 cup (248 g),74 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Vegetable Beef Soup,1 cup (244 g),76 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Vegetable Broth,1 cup (235 g),12 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/03/homemade-chicken-broth-with-vegetables.jpg
+Vegetable Soup,1 cup (241 g),67 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Vegetable Stock,1 cup (235 g),12 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/chicken-steak-with-vegetables-and-beer.jpg
+Wedding Soup,1 cup (245 g),130 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/pumpkin-soup.jpg
+Ben and Jerry’s,1 scoop (92 g),210 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/03/letter-cake.jpg
+Butter Pecan Ice Cream,1 scoop (113 g),280 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/peanut-butter-and-banana-smoothie.jpg
+Chocolate Chip Ice Cream,1 scoop (72 g),155 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/mint-chocolate-ice-cream-studio-shot.jpg
+Chocolate Ice Cream,1 scoop (72 g),156 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/mint-chocolate-ice-cream-studio-shot.jpg
+Coffee Ice Cream,1 scoop (72 g),170 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/08/coffee.jpg
+Cold Stone Creamery,1 scoop (142 g),329 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/gin-and-tonic-cocktail-with-orange-and-thyme.jpg
+Cookie Dough Ice Cream,1/2 cup (65 g),130 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/07/eclairs-in-foil-container.jpg
+Dairy Milk McFlurry,1 mcflurry (183 g),340 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/homemade-ricotta-cheese.jpg
+Double Rainbow,1 scoop (72 g),185 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/07/double-beef-burger.jpg
+French Vanilla Ice Cream,1 scoop (72 g),145 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/10/ice-cream-cone.jpg
+Healthy Choice,1 bar (64 g),80 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/05/balanced-diet.jpg
+Hot Fudge Sundae,1 sundae (179 g),333 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/ice-cream-sundae-with-fresh-fruits.jpg
+Ice Cream Sandwich,1 bar (112 g),265 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/open-sandwich-with-salmon-cream-avocado.jpg
+Ice Cream Sundae,1 sundae (178 g),253 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/ice-cream-sundae-with-fresh-fruits.jpg
+Ice Milk,1 scoop (103 g),164 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/milk-and-cookies.jpg
+Magnum Almond,1 magnum (86 g),271 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/11/peeled-almonds-with-coconut-and-blueberries.jpg
+Magnum Double Caramel,1 magnum (86 g),305 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/05/pudim-de-leite-condensado.jpg
+Magnum Double Chocolate,1 magnum (86 g),327 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/07/double-beef-burger.jpg
+Magnum Gold,1 magnum (85 g),290 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/03/iced-black-coffee-with-golden-spoon.jpg
+Magnum White,1 magnum (86 g),255 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/white-muffin-with-blueberries-on-a-white-background.jpg
+McFlurry Oreo,1 mcflurry (183 g),340 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/oreo-close-up.jpg
+Mini Milk,1 mini milk (25 g),30 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/milk-and-cookies.jpg
+Mint Chocolate Chip Ice Cream,1 scoop (72 g),172 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/mint-chocolate-ice-cream-studio-shot.jpg
+Rocky Road Ice Cream,1 scoop (113 g),290 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/10/two-scoops-of-creamy-ice-cream-1.jpg
+Snickers Ice Cream,1 bar (50 g),180 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/10/two-scoops-of-creamy-ice-cream-1.jpg
+Soft Serve,1 cup (86 g),191 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/10/toasted-bread-with-soft-cheese-walnuts-and-honey.jpg
+Strawberry Ice Cream,1 scoop (72 g),170 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/strawberry-ice-cream-cone.jpg
+Strawberry Sundae,1 sundae (178 g),281 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/ice-cream-sundae-with-fresh-fruits.jpg
+Sundae,1 scoop (72 g),155 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/ice-cream-sundae-with-fresh-fruits.jpg
+Turkey Hill,1 sandwich (70 g),190 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/woman-cutting-turkey-thigh.jpg
+Vanilla Cone,1 cone (142 g),230 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/10/ice-cream-cone.jpg
+Vanilla Ice Cream,1 scoop (72 g),145 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/10/ice-cream-cone.jpg
+Cannelloni,2 oz. (56 g),82 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/cannelloni-de-beringela.jpg
+Cellophane Noodles,1 cup (140 g),491 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/06/oyster-sauce-noodles-with-beef-meat-scaled.jpg
+Cheese Tortellini,1 cup (113 g),329 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/03/tasting-cheese-in-a-cheese-factory-1.jpg
+Dumpling Dough,2 oz. (56 g),55 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/czech-roasted-duck-with-sauerkraut-and-dumplings.jpg
+Durum Wheat Semolina,2 oz. (56 g),222 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/homemade-bakery-cereal-full-sight-bun.jpg
+Egg Noodles,1 cup (38 g),146 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/08/high-protein-brunch-with-poached-eggs-beans-and-bacon.jpg
+Fusilli,2 oz. (56 g),197 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/pasta-fusilli-prepared-for-cooking.jpg
+Glass Noodles,2 oz. (56 g),108 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/07/woman-eating-beet-glass-noodles.jpg
+Linguine,2 oz. (56 g),200 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/fresh-pasta-linguine-with-dill-and-vegetables.jpg
+Low Carb Pasta,2 oz. (56 g),158 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/cauliflower-rice-low-carb.jpg
+Penne,2 oz. (56 g),197 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/food6.jpg
+Penne Rigate,2 oz. (56 g),207 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/food6.jpg
+Pierogi,3 pierogi (100 g),200 cal,https://www.foodiesfeed.com/wp-content/uploads/2022/11/baked-pierogies.jpg
+Ravioli,2 oz. (56 g),43 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/making-homemade-ravioli.jpg
+Rigatoni,2 oz. (56 g),198 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/07/pasta-rigatoni-meal.jpg
+Shirataki Noodles,2 oz. (56 g),10 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/06/oyster-sauce-noodles-with-beef-meat-scaled.jpg
+Soy Noodles,2 oz. (56 g),121 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/fried-salmon-with-sweet-soy-sauce-in-a-korean-restaurant.jpg
+Spaghetti,2 oz. (56 g),207 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/pasta-spaghetti-with-basil-and-a-wooden-spoon.jpg
+Spinach Tortellini,1 cup (102 g),320 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/07/pork-stuffed-with-spinach.jpg
+Tagliatelle,2 oz. (56 g),207 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/pasta-tagliatelle-with-asparagus-and-tomatoes.jpg
+Whole Grain Noodles,2 oz. (56 g),194 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/perfect-wholegrain-bread.jpg
+Whole Grain Spaghetti,2 oz. (56 g),197 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/perfect-wholegrain-bread.jpg
+BBQ Chicken Pizza,1 slice (132 g),309 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+BBQ Pizza,1 slice (140 g),314 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Beef Pizza,1 slice (235 g),714 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Bianca Pizza,1 slice (187 g),460 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Buffalo Chicken Pizza,1 slice (238 g),600 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Calabrese Pizza,1 slice (108 g),254 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Capricciosa Pizza,1 slice (74 g),192 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Cheese Pizza,1 slice (63 g),168 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/01/the-mushroom-pizza.jpg
+Chicken Pizza,1 slice (132 g),309 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Deep Dish Pizza,1 slice (118 g),313 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Dominos Philly Cheese Steak Pizza,1 slice (159 g),356 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/01/the-mushroom-pizza.jpg
+Four Cheese Pizza,1 slice (113 g),250 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/01/the-mushroom-pizza.jpg
+Goat Cheese Pizza,1 slice (63 g),138 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/grilled-goat-cheese-salad.jpg
+Grilled Pizza,1 slice (124 g),280 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Hawaiian Pizza,1 slice (134 g),154 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/hawaiian-poke-bowl.jpg
+Margherita Pizza,1 slice (63 g),173 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Mozzarella Pizza,1 slice (62 g),154 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/09/homemade-pizza.jpg
+Mushroom Pizza,1 slice (288 g),611 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/crusty-pizza-with-salami-mushrooms-and-onion.jpg
+Napoli Pizza,1 slice (123 g),248 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+New York Style Pizza,1 slice (103 g),174 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/empty-champagne-glasses-on-new-years-eve.jpg
+Pepperoni Pizza,1 slice (71 g),181 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Pizza Dough,2 oz. (57 g),130 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/making-dough.jpg
+Pizza Hut Stuffed Crust Pizza,1 slice (149 g),380 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/stuffed-bell-pepper-rice.jpg
+Pizza Hut Supreme Pizza,1 slice (123 g),305 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Pizza Rolls,1 roll (14 g),35 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/11/vegetable-tortilla-roll-ups.jpg
+Quattro Formaggi Pizza,1 slice (133 g),330 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Red Pepper Pizza,1 slice (86 g),165 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/stuffed-bell-pepper-rice.jpg
+Salami Pizza,1 slice (71 g),181 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/08/pizza-salami-close-up.jpg
+Sausage Pizza,1 slice (72 g),177 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/02/pizza-with-italian-sausage.jpg
+Seafood Pizza,1 slice (76 g),186 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/08/muscles.jpg
+Shrimp Pizza,1 slice (91 g),190 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/03/cooking-shrimps-with-spinach-outside-camping-1.jpg
+Sicilian Pizza,1 slice (133 g),321 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Spinach Feta Pizza,1 slice (62 g),150 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/06/salad-with-shrimps-and-feta-cheese-1-scaled.jpg
+Spinach Pizza,1 slice (62 g),145 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/07/pork-stuffed-with-spinach.jpg
+Stuffed Crust Pizza,1 slice (149 g),380 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/06/stuffed-bell-pepper-rice.jpg
+Tarte Flambée,1 square (56 g),142 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/11/pumpkin-tarte-flambee.jpg
+Thin Crust Pizza,1 slice (60 g),157 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/crusty-pizza-with-salami-mushrooms-and-onion.jpg
+Tuna Pizza,1 slice (125 g),318 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/tuna-at-a-market.jpg
+Vegetable Pizza,1 slice (156 g),399 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Vegetarian Pizza,1 slice (156 g),399 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/vegan-pizza.jpg
+Veggie Pizza,1 slice (114 g),263 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/veggies-soup.jpg
+White Pizza,1 slice (232 g),571 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Asian Pear,1 pear (178 g),75 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/08/homemade-poppy-seed-almond-cake-with-pears.jpg
+Avocado,1 avocado (200 g),320 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/fresh-figs-and-avocado.jpg
+Banana,1 banana (125 g),111 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/peanut-butter-and-banana-smoothie.jpg
+Cantaloupe Melon,1 wedge (69 g),23 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/girl-eating-watermelon-outside.jpg
+Casaba Melon,1 wedge (125 g),35 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/girl-eating-watermelon-outside.jpg
+Dragon Fruit,1 dragonfruit (200 g),120 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/02/pitaya-dragon-fruit-at-a-market-in-philippines.jpg
+Durian,1 durian (602 g),885 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/exotic-fruit-store-at-night.jpg
+Galia Melon,1 melon (130 g),30 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/girl-eating-watermelon-outside.jpg
+Grapefruit,1/2 grapefruit (123 g),52 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/11/grapefruit-juice.jpg
+Kiwi,1 kiwi (183 g),112 cal,https://www.foodiesfeed.com/wp-content/uploads/2020/04/three-layer-smoothie-from-banana-kiwi-and-strawberry-on-a-wooden-background.jpg
+Mandarin Oranges,1 madarin orange (90 g),48 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/fresh-mandarins.jpg
+Mango,1 mango (336 g),202 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/ripe-mango-on-a-mango-tree.jpg
+Mangosteen,1 serving (80 g),58 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/09/baskets-of-rambutan-mangosteen-and-tangerines.jpg
+Maraschino Cherries,1 cherry (5 g),8 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/09/dark-red-cherries-on-a-market.jpg
+Passion Fruit,1 passion fruit (18 g),17 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/09/passion-fruit.jpg
+Pineapple,1 pineapple (905 g),453 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/roastbeef-with-grilled-pineapple-and-greens.jpg
+Pink Grapefruit,1/2 grapefruit (123 g),52 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/11/grapefruit-juice.jpg
+Plantain,1 plantain (179 g),218 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/08/paleo-chicken-skewers-with-plantains.jpg
+Pomegranate,1 pomegranate (282 g),234 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/02/berries.jpg
+Prickly Pear,"1 pad, peeled (19 g)",8 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/08/homemade-poppy-seed-almond-cake-with-pears.jpg
+Rambutan,1 rambutan (9 g),7 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/01/rambutan-fruit-close-up.jpg
+Soursop Fruit,1 soursop fruit (625 g),413 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/09/red-apples-grapefruit-raspberries-and-other-fruits.jpg
+Star Fruit,1 starfruit (91 g),28 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/08/star-fruit.jpg
+Tamarind,1 tamarind (2 g),5 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/09/tamarind.jpg
+Watermelon,1 wedge (286 g),86 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/girl-eating-watermelon-outside.jpg
+Arby’s Grand Turkey Club,1 sandwich (233 g),489 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/woman-cutting-turkey-thigh.jpg
+Arby’s Roast Beef Classic,1 burger (154 g),360 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/cutting-roastbeef.jpg
+Arby’s Roast Beef Max,1 burger (154 g),360 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/cutting-roastbeef.jpg
+BBQ Rib,1 rib (67 g),142 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/wooden-plate-with-lamb-ribs.jpg
+Bean Burrito,1 burrito (190 g),380 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/04/mexican-burrito-with-cream.jpg
+Big N’ Tasty,1 sandwich (232 g),517 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/09/tasty-chicken-tacos-with-cheese.jpg
+Burger King Angry Whopper,1 burger (290 g),740 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Burger King Double Whopper,1 burger (374 g),894 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Burger King Double Whopper with Cheese,1 sandwich (399 g),994 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Burger King Original Chicken Sandwich,1 sandwich (219 g),659 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Burger King Premium Alaskan Fish Sandwich,1 burger (228 g),591 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Burger King Triple Whopper,1 burger (547 g),1471 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Burger King Whopper,1 burger (291 g),672 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Burger King Whopper Jr.,1 burger (148 g),346 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Burger King Whopper with Cheese,1 burger (315 g),759 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Cheeseburger,1 burger (156 g),410 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/bacon-cheeseburger-close-up.jpg
+Chicken Breast,1 piece (71 g),116 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/paleo-chicken-breast-with-mashed-cauliflower.jpg
+Chicken Fajita,1 sandwich (222 g),326 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/01/chicken-fajitas-in-a-mexican-restaurant.jpg
+Chicken McNuggets,1 nugget (16 g),48 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+Chicken Nuggets,1 piece (20 g),59 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+Chicken Pizziola,1 sandwich (320 g),451 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+Chicken Sandwich,1 sandwich (170 g),410 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/argentinian-beef-steak-sandwich.jpg
+Chicken Teriyaki Sandwich,1 sandwich (266 g),367 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/argentinian-beef-steak-sandwich.jpg
+Chicken Wings,1 piece (29 g),94 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/08/crispy-spicy-chicken-wings.jpg
+Chop Suey,1 serving (340 g),585 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/05/noodles-with-wooden-chopsticks.jpg
+Curly Fries,1 serving (128 g),398 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/fresh-curly-kale.jpg
+Double Cheeseburger,1 burger (155 g),414 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/double-cheeseburger.jpg
+Egg Roll,1 roll (80 g),200 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/08/high-protein-brunch-with-poached-eggs-beans-and-bacon.jpg
+Falafel,1 patty (17 g),57 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/04/maoz-falafel.jpg
+Filet-o-Fish,1 sandwich (142 g),400 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/filet-mignon-with-greens.jpg
+Fish and Chips,1 serving (300 g),585 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/potato-and-beetroot-chips.jpg
+Fish Sandwich,1 sandwich (158 g),431 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/open-sandwich-with-salmon-cream-avocado.jpg
+French Fries,1 serving (71 g),222 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/01/beef-steaks-with-french-fries.jpg
+Grilled Chicken Salad,1 salad (305 g),268 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/grilled-whole-chicken.jpg
+Ham Sandwich,1 sandwich (146 g),352 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/05/deli-ham-sandwich.jpg
+Hamburger,1 sandwich (110 g),279 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Hot Dog,1 hot dog (116 g),312 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/08/hot-dog-in-hands-2.jpg
+Italian BMT,1 sandwich (224 g),410 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/03/basic-italian-pizza-margherita.jpg
+Lasagna,1 piece (130 g),172 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/lasagna-single-serving-on-a-white-plate-in-a-restaurant.jpg
+McDonald’s Big Mac,1 burger (219 g),561 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/colorful-macarons-tower.jpg
+McDonald’s Cheeseburger,1 sandwich (114 g),300 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/bacon-cheeseburger-close-up.jpg
+McDonald’s Chicken Nuggets,1 nugget (16 g),48 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/grilling-chicken-satay.jpg
+McDonald’s Double Cheeseburger,1 burger (155 g),437 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/double-cheeseburger.jpg
+McDonald’s Filet-o-Fish,1 sandwich (142 g),391 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/04/filet-mignon-with-greens.jpg
+McDonald’s McMuffi Egg,1 burger (129 g),290 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/08/high-protein-brunch-with-poached-eggs-beans-and-bacon.jpg
+McDonald’s Mighty Wings,1 wing (31 g),95 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/08/crispy-spicy-chicken-wings.jpg
+Meatball Sandwich,1 sandwich (299 g),481 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/03/spaghetti-with-meatballs-and-cheese.jpg
+Nachos with Cheese,10 nachos (188 g),575 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/12/nachos-close-up.jpg
+Onion Rings,1 ring (6.5 g),25 cal,https://www.foodiesfeed.com/wp-content/uploads/2016/11/onions-on-onions-on-onions.jpg
+Smoked Salmon,1 oz. (28.35 g),44 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/02/healthy-smoked-salmon-sandwich.jpg
+Spicy Italian,1 sandwich (219 g),480 cal,https://www.foodiesfeed.com/wp-content/uploads/2019/08/girl-pouring-a-spicy-sauce.jpg
+Subway Club Sandwich,1 sandwich (238 g),312 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/argentinian-beef-steak-sandwich.jpg
+Tortilla Wrap,1 wrap (63 g),171 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/08/chicken-avocado-wraps.jpg
+Tuna,1 oz. (28.35 g),24 cal,https://www.foodiesfeed.com/wp-content/uploads/2015/05/tuna-at-a-market.jpg
+Turkey,1 oz. (28.35 g),29 cal,https://www.foodiesfeed.com/wp-content/uploads/2017/07/woman-cutting-turkey-thigh.jpg
+Veggie Burger,1 burger (215 g),389 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg
+Veggie Delight,1 sandwich (166 g),229 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/veggies-soup.jpg
+Veggie Patty,1 sandwich (247 g),963 cal,https://www.foodiesfeed.com/wp-content/uploads/2018/12/veggies-soup.jpg
+Wendy’s Jr. Bacon Cheeseburger,1 burger (161 g),420 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/bacon-cheeseburger-close-up.jpg
+Wendy’s Jr. Cheeseburger,1 burger (129 g),290 cal,https://www.foodiesfeed.com/wp-content/uploads/2023/03/bacon-cheeseburger-close-up.jpg
+Wendy’s Son of Baconator,1 burger (218 g),700 cal,https://www.foodiesfeed.com/wp-content/uploads/2021/07/delicious-eclairs-on-a-plate-decorated-with-dried-raspberries.jpg
+Zinger Burger,1 sandwich (202 g),517 cal,https://www.foodiesfeed.com/wp-content/uploads/2024/01/best-burger-in-town.jpg

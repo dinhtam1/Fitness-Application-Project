@@ -16,6 +16,7 @@ const GET_DETAIL_EXERCISE = 14;
 const GET_DASHBOARD = 15;
 const UPDATE_DASHBOARD = 16;
 const GET_RESULT_EXERCISE = 17;
+const GET_MEAL = 18;
 const GET_MUSCLE_NAME = 19;
 module.exports = {
     VALIDATION,

@@ -14,6 +14,7 @@ df['Calories'] = None
 df['Protein'] = None
 df['Fat'] = None
 df['Carb'] = None
+df['Description'] = None  # Add a new column for description
 
 # Define the base URL
 base_url = "https://api.edamam.com/api/food-database/parser?nutrition-type=logging&app_id=07d50733&app_key=80fcb49b500737827a9a23f7049653b9&ingr="
@@ -44,12 +45,14 @@ for index, row in df.iterrows():
         procnt = food_data.get("PROCNT")
         fat = food_data.get("FAT")
         chocdf = food_data.get("CHOCDF")
+        description = data["parsed"][0]["food"].get("foodContentsLabel", "") # Extract the description
 
         # Update the DataFrame with the crawled data
         df.at[index, 'Calories'] = enerc_kcal
         df.at[index, 'Protein'] = procnt
         df.at[index, 'Fat'] = fat
         df.at[index, 'Carb'] = chocdf
+        df.at[index, 'Description'] = description  # Assign the description to the new column
     else:
         print(f"Error: Failed to retrieve nutrition data for {name}.")
         rows_to_drop.append(index)
