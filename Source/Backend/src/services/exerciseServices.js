@@ -60,7 +60,7 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
     try {
         level = LEVEL_CONSTANT.BEGINNER
         const limit = parseInt(process.env.LIMIT_GET_EXERCISE);
-        if (page < 0 || !!page == false) page = 1;
+        if (isNaN(page) || page < 1) page = 1;
         let start = (page - 1) * limit;
         var condition = {};
         switch (goal) {
