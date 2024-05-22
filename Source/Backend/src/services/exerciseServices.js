@@ -115,7 +115,9 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
                     select: {
                         level: true
                     }
-                }
+                },
+                duration : true,
+                caloriesBurned: true
             },
             skip: start,
             take: limit,
