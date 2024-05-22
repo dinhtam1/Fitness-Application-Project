@@ -89,6 +89,7 @@ const userUpdateSchema = Joi.object({
         .messages({
             [ERROR_FIELDS.ANY_ONLY]: appString.GOAL_INVALID
         }),
+    goal_weight: Joi.number().positive().strict(),
 });
 
 const createUserValidation = (req, res, next) => {

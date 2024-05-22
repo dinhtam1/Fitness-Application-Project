@@ -46,6 +46,7 @@ const getCategory = async () => {
 
 const getExercise = async (category, page, gender, goal, level, muscle_name) => {
     try {
+        level = LEVEL_CONSTANT.BEGINNER
         const limit = parseInt(process.env.LIMIT_GET_EXERCISE);
         if (page < 0 || !!page == false) page = 1;
         let start = (page - 1) * limit;
@@ -66,6 +67,7 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
                 level = 1;
                 break;
         }
+        console.log(level);
         let levels = [level];
         if (level === 1 && level !== level.BEGINNER) {
             levels.push(0);
@@ -74,28 +76,35 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
             case undefined || null || '':
                 condition = {
                     equipmentName: category,
-                    ordering: goal,
                     muscle_group: {
                         level: {
                             in: levels
                         }
-                    },
-                    gender
+                    }
                 };
+                if (goal) {
+                    condition.ordering = goal;
+                }
+                if (gender) {
+                    condition.gender = gender;
+                }
                 break;
             default:
                 condition = {
                     equipmentName: category,
-                    ordering: goal,
                     muscle_group: {
                         level: {
                             in: levels
                         },
                     },
-                    musclesName: muscle_name,
-                    gender
+                    musclesName: muscle_name
                 };
-
+                if (goal) {
+                    condition.ordering = goal;
+                }
+                if (gender) {
+                    condition.gender = gender;
+                }
         }
         const result = await prisma.exercise.findMany({
             where: condition,
@@ -124,6 +133,7 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
         }
         return result;
     } catch (e) {
+        console.log(e)
         return false;
     }
 };
@@ -166,10 +176,10 @@ const getResultExercise = async (exerciseId) => {
             where: {
                 exerciseId: parseInt(exerciseId)
             },
-            select : {
-                duration : true,
-                caloriesBurned : true,
-                equipmentName : true,
+            select: {
+                duration: true,
+                caloriesBurned: true,
+                equipmentName: true,
             }
         });
     } catch (e) {
