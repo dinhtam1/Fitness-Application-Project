@@ -43,6 +43,18 @@ const getCategory = async () => {
     }
 }
 
+const getMuscleName = async() => {
+    try {
+        return await prisma.muscle_groups.findMany({
+            select: {
+                musclesName: true
+            }
+        });
+    } catch (e) {
+        return false;
+    }
+
+}
 
 const getExercise = async (category, page, gender, goal, level, muscle_name) => {
     try {
@@ -194,6 +206,7 @@ const getResultExercise = async (exerciseId) => {
 module.exports = {
     getCategory,
     getExercise,
+    getMuscleName,
     getDetailExercise,
     getResultExercise
 
