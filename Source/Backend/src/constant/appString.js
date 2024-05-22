@@ -58,6 +58,8 @@ const UPDATE_DASHBOARD_FAILED = "Update dashboard failed";
 const DASHBOARD_NOT_FOUND = "Dashboard not found";
 const GET_DASHBOARD_SUCCESSFUL = "Get dashboard successfully";
 const GET_RESULT_EXERCISE_SUCCESSFUL = "Get result successfully";
+const MUSCLE_NOT_FOUND = "Muscle not found";
+const GET_MUSCLE_NAME_SUCCESSFUL =  "Get muscle name successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -118,5 +120,7 @@ module.exports = {
     UPDATE_DASHBOARD_FAILED,
     DASHBOARD_NOT_FOUND,
     GET_DASHBOARD_SUCCESSFUL,
-    GET_RESULT_EXERCISE_SUCCESSFUL
+    GET_RESULT_EXERCISE_SUCCESSFUL,
+    MUSCLE_NOT_FOUND,
+    GET_MUSCLE_NAME_SUCCESSFUL
 };
