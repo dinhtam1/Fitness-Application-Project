@@ -27,7 +27,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-async function importDataFromCSV(filePath) {
+async function importDataExerciseFromCSV(filePath) {
     try {
         const rows = [];
         fs.createReadStream(filePath)
@@ -55,4 +55,4 @@ async function importDataFromCSV(filePath) {
         prisma.$disconnect();
     }
 }
-module.exports = { importDataFromCSV };
+module.exports = { importDataExerciseFromCSV };
