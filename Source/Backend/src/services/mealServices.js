@@ -129,11 +129,51 @@ const getMeal = async (userId, time_meal, page, limit) => {
 
         return paginatedMeals;
     } catch (error) {
-        console.log(error);
+        return false;
+    }
+}
+
+const getDetailMeal = async (mealId) => {
+    try {
+        const meal = await prisma.meal.findUnique({
+            where: {
+                mealId: mealId
+            },
+            select: {
+                meal_name: true,
+                calories : true,
+                protein : true,
+                fat : true,
+                carb :  true,
+                meal_image: true,
+                description : true
+            }
+        });
+
+        if (meal) {
+            meal.calories = Math.round(meal.calories * 100) / 100;
+            meal.protein = Math.round(meal.protein * 100) / 100;
+            meal.fat = Math.round(meal.fat * 100) / 100;
+            meal.carb = Math.round(meal.carb * 100) / 100;
+
+            if (meal.meal_name) {
+                meal.meal_name = meal.meal_name
+                    .split('_')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+            }
+            if(meal.description) {
+                meal.description = meal.description.replace(/;/g, ",");
+            }
+        }
+        return meal;
+    } catch (error) {
+        console.log(error)
         return false;
     }
 }
 
 module.exports = {
-    getMeal
+    getMeal,
+    getDetailMeal
 }
