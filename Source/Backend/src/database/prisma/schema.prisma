@@ -21,9 +21,9 @@ model User {
   password      String      @db.Char(128)
   age           Int?
   gender        Gender?
-  weight        Float?
-  goal_weight   Float?
-  height        Float?
+  weight        Float?      @default(0)
+  goal_weight   Float?      @default(0)
+  height        Float?      @default(0)
   level         Level?
   goal          Goal?
   calories      Float?
@@ -119,14 +119,14 @@ model Dashboard {
 }
 
 model Meal {
-  mealId         Int      @id @default(autoincrement()) @db.UnsignedInt
+  mealId         Int       @id @default(autoincrement()) @db.UnsignedInt
   meal_name      String
   calories       Float
   protein        Float
   fat            Float
   carb           Float
   meal_image     String
-  description    String   @db.Text
+  description    String    @db.Text
   last_meal_date DateTime?
-  create_at      DateTime @default(now())
+  create_at      DateTime  @default(now())
 }

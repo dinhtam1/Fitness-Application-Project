@@ -2,9 +2,9 @@ const { prisma } = require("../config/prismaDatabase");
 const mealHelper = require('../helpers/mealHelper.js');
 const mealCache = {};
 
-const getMeal = async (userId, page) => {
+const getMeal = async (userId, page, limit) => {
     try {
-        const limit = parseInt(process.env.LIMIT_GET_MEAL);
+        limit = limit || parseInt(process.env.LIMIT_GET_MEAL);
         if (page < 0 || !!page == false) page = 1;
         let start = (page - 1) * limit;
 
