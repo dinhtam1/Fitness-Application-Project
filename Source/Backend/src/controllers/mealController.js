@@ -6,15 +6,16 @@ const getMeal = async (req, res) => {
     var data = null;
     var requestType = Type.GET_MEAL;
     try {
-        data = await mealServices.getMeal(req.user.userId, req.query.page, req.query.limit);
-        if(!data) {
+        const { time_meal, page, limit } = req.query;
+        data = await mealServices.getMeal(req.user.userId, time_meal, page, limit);
+        if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
                 message: appString.MEAL_NOT_FOUND,
                 requestType
             });
         }
-        if(data.length === 0){
+        if (data.length === 0) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
                 message: appString.ENOUGH_CALORIES,

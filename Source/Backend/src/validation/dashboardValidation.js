@@ -7,7 +7,8 @@ var requestType = Type.VALIDATION;
 const dashboardUpdateSchema = Joi.object({
     time_sleep: Joi.number().positive().strict(),
     time_practice: Joi.number().positive().strict(),
-    calories_burned: Joi.number().positive().strict()
+    calories_burned: Joi.number().positive().strict(),
+    calories_loaded: Joi.number().positive().strict(),
 });
 const dashboardUpdateValidation = (req, res, next) => {
     try {

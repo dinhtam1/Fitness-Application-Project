@@ -1,10 +1,14 @@
 const { prisma } = require("../config/prismaDatabase");
 const mealHelper = require('../helpers/mealHelper.js');
 const mealCache = {};
-
-const getMeal = async (userId, page, limit) => {
+const TIME_MEAL = {
+    BREAKFAST: 'breakfast',
+    LUNCH: 'lunch',
+    DINNER: 'dinner'
+}
+const getMeal = async (userId, time_meal, page, limit) => {
     try {
-        limit = limit || parseInt(process.env.LIMIT_GET_MEAL);
+        limit = parseInt(limit) || parseInt(process.env.LIMIT_GET_MEAL);
         if (page < 0 || !!page == false) page = 1;
         let start = (page - 1) * limit;
 
@@ -28,7 +32,6 @@ const getMeal = async (userId, page, limit) => {
             return false;
         }
         let remainingCalories = Math.max(0, calories - calories_loaded);
-        console.log("remainingCalories", remainingCalories)
         const currentDate = new Date().toISOString().split('T')[0];
         // const currentDate = new Date();
         // currentDate.setDate(currentDate.getDate() + 1);
@@ -84,12 +87,13 @@ const getMeal = async (userId, page, limit) => {
                 const breakfastMeals = mealHelper.shuffleMeals([...filteredMeals]);
                 const lunchMeals = mealHelper.shuffleMeals([...filteredMeals]);
                 const dinnerMeals = mealHelper.shuffleMeals([...filteredMeals]);
-
+                const fullMeals = mealHelper.shuffleMeals([...filteredMeals]);
                 // Store the meals in the cache
                 mealCache[userId] = {
                     breakfastMeals,
                     lunchMeals,
                     dinnerMeals,
+                    fullMeals,
                     mealCount: filteredMeals.length,
                     date: currentDate
                 };
@@ -98,12 +102,29 @@ const getMeal = async (userId, page, limit) => {
 
         // Get the meals from the cache
         const meals = mealCache[userId];
-        // Perform pagination on the cached meals
+        let selectedMeals = [];
+        if (time_meal) {
+            switch (time_meal) {
+                case TIME_MEAL.BREAKFAST:
+                    selectedMeals = meals.breakfastMeals;
+                    break;
+                case TIME_MEAL.LUNCH:
+                    selectedMeals = meals.lunchMeals;
+                    break;
+                case TIME_MEAL.DINNER:
+                    selectedMeals = meals.dinnerMeals;
+                    break;
+                default:
+                    selectedMeals = mealHelper.shuffleMeals([...meals.breakfastMeals, ...meals.lunchMeals, ...meals.dinnerMeals]);
+                    break;
+            }
+        } else {
+            selectedMeals = meals.fullMeals;
+        }
+        // Perform pagination on the selected meals
         const paginatedMeals = {
-            breakfastMeals: meals.breakfastMeals.slice(start, start + limit),
-            lunchMeals: meals.lunchMeals.slice(start, start + limit),
-            dinnerMeals: meals.dinnerMeals.slice(start, start + limit),
-            mealCount: meals.mealCount,
+            meals: selectedMeals.slice(start, start + limit),
+            mealCount: selectedMeals.length,
         };
 
         return paginatedMeals;
