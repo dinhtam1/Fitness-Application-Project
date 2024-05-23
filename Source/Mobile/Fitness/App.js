@@ -54,6 +54,7 @@ export default function App() {
         <AppRoutes />
       </NavigationContainer> */}
       <StackNavigator />
+      {/* <ProfileScreen /> */}
       <Toast />
     </>
   );

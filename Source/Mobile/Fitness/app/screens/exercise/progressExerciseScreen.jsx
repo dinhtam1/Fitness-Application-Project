@@ -21,6 +21,8 @@ import SpaceComponent from '../../components/common/spaceComponent';
 import {colors} from '../../constants/colors';
 import {FontAwesome} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
+import {apiUpdateDashboard} from '../../apis/dashboard';
+import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 
 const {width, height} = Dimensions.get('window');
 
@@ -28,6 +30,8 @@ const ProgressExerciseScreen = ({route}) => {
   const {exercise} = route.params;
   const navigation = useNavigation();
   const initialCountdownTime = exercise.duration * 60;
+  const {user} = useUserStore();
+  const {token} = useAuthStore();
   const [countdown, setCountdown] = useState(initialCountdownTime);
   const [isStop, setIsStop] = useState(true);
   const sound = new Audio.Sound();
@@ -52,8 +56,18 @@ const ProgressExerciseScreen = ({route}) => {
   const handleStart = () => {
     setIsStop(!isStop);
   };
+
   const handleResult = () => {
-    navigation.navigate('Result', {exercise: exercise});
+    const fetchData = async () => {
+      const response = await apiUpdateDashboard(user.userId, token, {
+        time_practice: exercise.duration,
+        calories_burned: exercise.caloriesBurned,
+      });
+      if (response.statusCode === 200) {
+        navigation.navigate('Result', {exercise: exercise});
+      }
+    };
+    fetchData();
   };
   return (
     <ScrollView>

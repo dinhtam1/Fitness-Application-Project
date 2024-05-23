@@ -13,7 +13,7 @@ export const apiDashboard = (userId, token) =>
 export const apiUpdateDashboard = (userId, token, data) =>
   axios({
     url: `/v1/api/dashboard`,
-    method: 'get',
+    method: 'put',
     data,
     headers: {
       Authorization: token,

@@ -4,16 +4,18 @@ import BackComponent from '../../components/header/backComponent';
 import {meal1, meal2} from '../../assets';
 import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
+import {useUserStore} from '../../store/useAuthStore';
 
 const ProfileScreen = () => {
+  const {user} = useUserStore();
   return (
     <SafeAreaView>
-      <BackComponent title={'PROFILE'} />
+      {/* <BackComponent title={'PROFILE'} edit /> */}
       <View style={{paddingHorizontal: 20}}>
         <View style={{marginTop: 10, alignItems: 'center'}}>
           <Image source={meal1} resizeMethod="contain" style={styles.image} />
           <TextComponent
-            text={'DHRUVIT'}
+            text={user?.name}
             size={20}
             font={fontFamilies['semibold']}
           />
@@ -30,7 +32,7 @@ const ProfileScreen = () => {
               alignItems: 'center',
             }}>
             <TextComponent
-              text={'55'}
+              text={user?.weight}
               unit={'kg'}
               size={17}
               styles={{marginBottom: 5}}
@@ -42,7 +44,7 @@ const ProfileScreen = () => {
               alignItems: 'center',
             }}>
             <TextComponent
-              text={'170'}
+              text={user?.height}
               unit={'cm'}
               size={17}
               styles={{marginBottom: 5}}
@@ -51,7 +53,7 @@ const ProfileScreen = () => {
           </View>
           <View style={{alignItems: 'center'}}>
             <TextComponent
-              text={'18'}
+              text={user?.age}
               unit={'year'}
               size={17}
               styles={{marginBottom: 5}}
@@ -61,7 +63,7 @@ const ProfileScreen = () => {
         </View>
         <View style={{marginTop: 60}}>
           <TextComponent
-            text={'MACRONUTIENT GOALS'}
+            text={'MICRONUTRIENT GOALS'}
             size={26}
             font={fontFamilies['bebasNeue']}
           />
