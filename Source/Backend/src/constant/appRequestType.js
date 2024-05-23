@@ -18,6 +18,7 @@ const UPDATE_DASHBOARD = 16;
 const GET_RESULT_EXERCISE = 17;
 const GET_MEAL = 18;
 const GET_MUSCLE_NAME = 19;
+const GET_DETAIL_MEAL = 20;
 module.exports = {
     VALIDATION,
     SIGN_UP,
@@ -38,5 +39,6 @@ module.exports = {
     UPDATE_DASHBOARD,
     GET_RESULT_EXERCISE,
     GET_MEAL,
-    GET_MUSCLE_NAME
+    GET_MUSCLE_NAME,
+    GET_DETAIL_MEAL
 };
