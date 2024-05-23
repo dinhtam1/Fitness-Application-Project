@@ -18,6 +18,7 @@ import exercise4 from './images/exercise4.png';
 import meal1 from './images/meal1.png';
 import meal2 from './images/meal2.png';
 import heart from './images/Heart-grapf.png';
+import notification from './sounds/notification.mp3';
 
 export {
   back,
@@ -40,4 +41,5 @@ export {
   meal1,
   meal2,
   heart,
+  notification,
 };

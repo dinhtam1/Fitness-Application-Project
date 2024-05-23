@@ -7,25 +7,49 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
-import {exercise1, exercise2, header} from '../../assets';
+import React, {useEffect, useState} from 'react';
 import {SimpleLineIcons} from '@expo/vector-icons';
 import {EvilIcons} from '@expo/vector-icons';
 import {colors} from '../../constants/colors';
 import TextComponent from '../../components/text/textComponent';
 import CustomButton from '../../components/button/buttonComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
+import {useAuthStore, useUserStore} from '../../store/useAuthStore';
+import {apiExerciseDetail} from '../../apis';
+import {Video} from 'expo-av';
+import SpaceComponent from '../../components/common/spaceComponent';
+import {useNavigation} from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 
-const DetailExerciseScreen = () => {
+const DetailExerciseScreen = ({route}) => {
+  const navigation = useNavigation();
+  const {exerciseId} = route.params;
+  const {token} = useAuthStore();
+  const [exercise, setExercise] = useState({});
+  const {user} = useUserStore();
+  const [status, setStatus] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await apiExerciseDetail(user.userId, token, exerciseId);
+      if (response.statusCode === 200) {
+        setExercise(response.data);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleStart = () => {
+    navigation.navigate('Progress', {exercise: exercise});
+  };
+
   return (
     <ScrollView>
       <ImageBackground
-        source={exercise2}
+        src={exercise.image}
         style={{
           width: width,
           height: height / 2.8,
-          backgroundColor: 'red',
         }}></ImageBackground>
       <View
         style={{
@@ -49,7 +73,7 @@ const DetailExerciseScreen = () => {
             style={{marginRight: 5}}
           />
           <TextComponent
-            text={'135'}
+            text={exercise.caloriesBurned}
             unit={'kcal'}
             size={20}
             font={fontFamilies['medium']}
@@ -59,7 +83,7 @@ const DetailExerciseScreen = () => {
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <EvilIcons name="clock" size={30} color={'black'} />
           <TextComponent
-            text={'135'}
+            text={exercise.duration}
             unit={'min'}
             size={20}
             font={fontFamilies['medium']}
@@ -79,7 +103,10 @@ const DetailExerciseScreen = () => {
               styles={{marginBottom: 5}}
             />
             <View style={{borderRadius: 10, backgroundColor: colors['border']}}>
-              <TextComponent text={'Beginner'} styles={styles.text} />
+              <TextComponent
+                text={exercise?.level || 'BEGINNER'}
+                styles={styles.text}
+              />
             </View>
           </View>
           <View style={{alignItems: 'center'}}>
@@ -89,7 +116,10 @@ const DetailExerciseScreen = () => {
               styles={{marginBottom: 5}}
             />
             <View style={{borderRadius: 10, backgroundColor: colors['border']}}>
-              <TextComponent text={'Cardio'} styles={styles.text} />
+              <TextComponent
+                text={exercise.equipmentName}
+                styles={styles.text}
+              />
             </View>
           </View>
           <View style={{alignItems: 'center'}}>
@@ -99,13 +129,13 @@ const DetailExerciseScreen = () => {
               styles={{marginBottom: 5}}
             />
             <View style={{borderRadius: 10, backgroundColor: colors['border']}}>
-              <TextComponent text={'Lose'} styles={styles.text} />
+              <TextComponent text={exercise.weight} styles={styles.text} />
             </View>
           </View>
         </View>
         <View style={{marginTop: 20}}>
           <TextComponent
-            text={'EXERCISES WITH SITTING DUMBELLS'}
+            text={exercise.name}
             size={20}
             font={fontFamilies['semibold']}
             styles={{width: width / 1.5, marginBottom: 5}}
@@ -120,15 +150,28 @@ const DetailExerciseScreen = () => {
             styles={{width: width / 1.2, marginBottom: 5}}
           />
         </View>
-        <View style={{marginTop: 40}}>
-          <Image source={exercise1} style={styles.image} resizeMethod="cover" />
-          <Image source={exercise1} style={styles.image} resizeMethod="cover" />
-          <Image source={exercise1} style={styles.image} resizeMethod="cover" />
-          <Image source={exercise1} style={styles.image} resizeMethod="cover" />
-          <Image source={exercise1} style={styles.image} resizeMethod="cover" />
+        <View style={{marginVertical: 40}}>
+          <Video
+            style={styles.video}
+            source={{uri: exercise.video_side}}
+            isLooping
+            useNativeControls
+            onPlaybackStatusUpdate={setStatus}
+            resizeMode="cover"
+          />
+          <SpaceComponent height={20} />
+          <Video
+            style={styles.video}
+            source={{uri: exercise.video_center}}
+            isLooping
+            useNativeControls
+            onPlaybackStatusUpdate={setStatus}
+            resizeMode="cover"
+          />
         </View>
         <CustomButton
           title={'START NOW'}
+          handlePress={handleStart}
           containerStyles={{marginBottom: 40}}
         />
       </View>
@@ -150,5 +193,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 200,
     marginBottom: 30,
+  },
+  video: {
+    width: '100%',
+    height: 200,
   },
 });

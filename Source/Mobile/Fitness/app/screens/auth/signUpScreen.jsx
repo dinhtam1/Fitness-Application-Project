@@ -23,7 +23,7 @@ import {
 import {common} from '../../styles/commonStyles';
 import {Controller, useForm} from 'react-hook-form';
 import {EMAIL_REGEX} from '../../constants/regex';
-import {useAuthStore} from '../../store/useAuthStore';
+import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import {apiRegister} from '../../apis/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
@@ -31,20 +31,19 @@ import {toastConfig} from '../../utils/toast';
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
-  const {setForm} = useAuthStore();
+  const {setToken} = useAuthStore();
+  const {setUser, user} = useUserStore();
   const {
     control,
     handleSubmit,
     formState: {errors, isSubmitting},
   } = useForm();
+
   const onSubmit = async data => {
     const response = await apiRegister(data);
     if (response?.statusCode === 200) {
-      await AsyncStorage.setItem('token', response.data.tokens.accessToken);
-      await AsyncStorage.setItem(
-        'dataUser',
-        JSON.stringify(response.data.user),
-      );
+      setToken(response.data.tokens.accessToken);
+      setUser(response.data.user);
       Toast.show(
         toastConfig({textMain: response.message, visibilityTime: 2000}),
       );

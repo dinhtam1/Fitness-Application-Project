@@ -67,7 +67,7 @@ const PaginationComponent = props => {
         data={data}
         ref={flatlistRef}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item, index) => item.id || index.toString()}
         horizontal={true}
         pagingEnabled={true}
         onScroll={handleScroll}

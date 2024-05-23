@@ -15,6 +15,7 @@ import {banner1, splash2, exercise2} from '../../assets';
 import {EvilIcons} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 
+
 const HorizontalComponent = ({
   title,
   image,

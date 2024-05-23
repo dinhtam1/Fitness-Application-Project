@@ -2,6 +2,7 @@ import {
   FlatList,
   Image,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,84 +11,49 @@ import {
 import React, {useState} from 'react';
 import BackComponent from '../../components/header/backComponent';
 import FormField from '../../components/form/formFieldComponent';
-import {exercise2} from '../../assets';
 import {colors} from '../../constants/colors';
 import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
+import {useCategoriesStore} from '../../store/useAuthStore';
 
-const dataCategories = [
-  {
-    id: 1,
-    text: 'Cardio',
-  },
-  {
-    id: 2,
-    text: 'Strength',
-  },
-  {
-    id: 3,
-    text: 'Yoga',
-  },
-  {
-    id: 4,
-    text: 'Pilates',
-  },
-  {
-    id: 5,
-    text: 'Crossfit',
-  },
-  {
-    id: 6,
-    text: 'Zumba',
-  },
-];
-
-const CategorySceen = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const CategoryScreen = () => {
+  const {categories} = useCategoriesStore();
   return (
     <SafeAreaView>
-      <BackComponent title={'CATEGORIES'} />
-      <View style={{paddingHorizontal: 20}}>
-        <FormField
-          placeholder={'Search'}
-          icon={'search'}
-          otherStyles={{marginTop: 0}}
-        />
-        <View
-          style={{
-            marginTop: 30,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-          }}>
-          {dataCategories.map((item, index) => (
-            <TouchableOpacity
-              // ref={el => (itemRef.current[index] = el)}
-              // onPress={() => handleSelectCategory(index)}
-              style={{marginBottom: 20}}>
-              <Image source={exercise2} style={styles.image} />
-              <TextComponent
-                size={14}
-                styles={[
-                  activeIndex === index
-                    ? styles.imageBtnTxtActive
-                    : styles.imageBtnTxt,
-                  {
-                    marginTop: 20,
-                  },
-                ]}
-                text={item.text}
-                font={fontFamilies['medium']}
-              />
-            </TouchableOpacity>
-          ))}
+      <BackComponent title={'CATEGORIES'} nav={'Home'} />
+      <ScrollView style={{marginBottom: 40}}>
+        <View style={{paddingHorizontal: 20}}>
+          <FormField
+            placeholder={'Search'}
+            icon={'search'}
+            otherStyles={{marginTop: 0}}
+          />
+          <View
+            style={{
+              marginTop: 30,
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'space-around',
+            }}>
+            {categories.map((item, index) => (
+              <TouchableOpacity style={{marginBottom: 20}}>
+                <Image src={item.image} style={styles.image} />
+                <TextComponent
+                  size={14}
+                  styles={styles.imageBtnTxt}
+                  text={item.equipmentName}
+                  font={fontFamilies['medium']}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default CategorySceen;
+export default CategoryScreen;
 
 const styles = StyleSheet.create({
   image: {
@@ -99,11 +65,6 @@ const styles = StyleSheet.create({
     width: 120,
   },
   imageBtnTxt: {
-    color: colors['primary-color-black'],
-    textAlign: 'center',
-    marginTop: 10,
-  },
-  imageBtnTxtActive: {
     color: colors['primary-color-black'],
     textAlign: 'center',
     marginTop: 10,

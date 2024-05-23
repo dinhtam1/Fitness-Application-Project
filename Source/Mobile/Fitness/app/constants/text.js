@@ -69,3 +69,11 @@ export const step = {
   'title-8': `WHAT'S YOUR GOAL?`,
   'title-start': "LET'S GET STARTED",
 };
+
+export const titleHome = {
+  'title-1': 'SELECT YOUR GOAL',
+  'title-2': 'CATEGORY',
+  'title-3': 'POPULAR EXERCISES',
+  'title-4': 'MEAL PLANS',
+  'title-5': 'ADDITIONAL EXERCISES',
+};

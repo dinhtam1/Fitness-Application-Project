@@ -1,5 +1,5 @@
 import {View, TouchableWithoutFeedback, Keyboard, Animated} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {globalStyles} from '../../styles/globalStyles';
 import Header from './components/header';
 
@@ -7,37 +7,18 @@ import Banner from './components/banner';
 import HorizontalComponent from '../../components/common/horizontalComponent';
 import VerticalComponent from '../../components/common/verticalComponent';
 import {exercise1, exercise2, meal1, meal2} from '../../assets';
-
-const dataGoal = [
-  {
-    id: 1,
-    text: 'Full Shot Man Stretching Arm',
-    level: 'Beginner',
-    minutes: '30',
-    image: exercise1,
-  },
-  {
-    id: 2,
-    text: 'Athlete Practicing Monochrome',
-    level: 'Beginner',
-    minutes: '30',
-    image: exercise2,
-  },
-  {
-    id: 3,
-    text: 'Athlete Practicing Monochrome',
-    level: 'Beginner',
-    minutes: '30',
-    image: exercise2,
-  },
-  {
-    id: 4,
-    text: 'Athlete Practicing Monochrome',
-    level: 'Beginner',
-    minutes: '30',
-    image: exercise2,
-  },
-];
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useStore} from 'zustand';
+import {
+  useAuthStore,
+  useCategoriesStore,
+  useUserStore,
+} from '../../store/useAuthStore';
+import {apiCategory} from '../../apis';
+import Category from './components/category';
+import TextComponent from '../../components/text/textComponent';
+import Goal from './components/goal';
+import {titleHome} from '../../constants/text';
 
 const dataMeal = [
   {
@@ -54,62 +35,24 @@ const dataMeal = [
   },
 ];
 
-const dataGoal1 = [
-  {
-    id: 1,
-    text: 'Loose Weight',
-  },
-  {
-    id: 2,
-    text: 'Gain Weight',
-  },
-  {
-    id: 3,
-    text: 'Build Muscle',
-  },
-  {
-    id: 4,
-    text: 'Stay Fit',
-  },
-  {
-    id: 5,
-    text: 'Stay Healthy',
-  },
-  {
-    id: 6,
-    text: 'Body Building',
-  },
-];
+const HomePageScreen = () => {
+  const {user} = useUserStore();
+  const {token} = useAuthStore();
+  const {categories, setCategories} = useCategoriesStore();
 
-const dataCategories = [
-  {
-    id: 1,
-    text: 'Cardio',
-  },
-  {
-    id: 2,
-    text: 'Strength',
-  },
-  {
-    id: 3,
-    text: 'Yoga',
-  },
-  {
-    id: 4,
-    text: 'Pilates',
-  },
-  {
-    id: 5,
-    text: 'Crossfit',
-  },
-  {
-    id: 6,
-    text: 'Zumba',
-  },
-];
-
-const HomePageSceen = () => {
   const scrollY = new Animated.Value(0);
+
+  useEffect(() => {
+    const fetchData = async token => {
+      const response = await apiCategory(user.userId, token);
+      if (response.statusCode === 200) {
+        setCategories(response.data);
+      }
+    };
+    if (token) {
+      fetchData(token);
+    }
+  }, [token]);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Animated.ScrollView
@@ -129,12 +72,12 @@ const HomePageSceen = () => {
           </Animated.View>
           <Animated.View style={{paddingLeft: 40, paddingRight: 20}}>
             <Banner />
-            <HorizontalComponent data={dataGoal1} title={'SELECT YOUR GOAL'} />
-            <HorizontalComponent
+            <Goal title={titleHome['title-1']} />
+            <Category
               all
-              title={'CATEGORY'}
+              title={titleHome['title-2']}
               image
-              data={dataCategories}
+              data={categories}
               nav={'Category'}
             />
             <VerticalComponent
@@ -160,4 +103,4 @@ const HomePageSceen = () => {
   );
 };
 
-export default HomePageSceen;
+export default HomePageScreen;

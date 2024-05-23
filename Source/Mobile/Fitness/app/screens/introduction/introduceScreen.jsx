@@ -13,17 +13,17 @@ const IntroduceScreen = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselData = [
     {
-      id: '01',
+      id: '1',
       image: splash2,
       title: title['splash2'],
     },
     {
-      id: '02',
+      id: '2',
       image: splash3,
       title: title['splash3'],
     },
     {
-      id: '03',
+      id: '3',
       image: splash4,
       title: title['splash4'],
     },

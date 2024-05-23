@@ -28,7 +28,10 @@ import {
   DetailExerciseScreen,
   DetailMealScreen,
   GenderScreen,
+  ProgressExerciseScreen,
+  ResultScreen,
 } from '../screens';
+import {useAuthStore} from '../store/useAuthStore';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -99,6 +102,7 @@ const StackNavigator = () => {
       </Tab.Navigator>
     );
   }
+  const {token} = useAuthStore();
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -107,7 +111,6 @@ const StackNavigator = () => {
           component={SplashScreen}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="Introduce"
           component={IntroduceScreen}
@@ -203,6 +206,16 @@ const StackNavigator = () => {
         <Stack.Screen
           name="DetailMeal"
           component={DetailMealScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Progress"
+          component={ProgressExerciseScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Result"
+          component={ResultScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

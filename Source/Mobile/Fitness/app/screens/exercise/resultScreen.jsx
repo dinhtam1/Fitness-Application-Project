@@ -5,35 +5,13 @@ import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {colors} from '../../constants/colors';
 import CustomButton from '../../components/button/buttonComponent';
+import moment from 'moment';
+import {useUserStore} from '../../store/useAuthStore';
 
-const data = [
-  {
-    text: 'Total time',
-    value: '15 min',
-  },
-  {
-    text: 'Total calories',
-    value: '5 kcal',
-  },
-  {
-    text: 'Level',
-    value: 'Beginner',
-  },
-  {
-    text: 'Category',
-    value: 'Cardio',
-  },
-  {
-    text: 'Weight',
-    value: 'Lose',
-  },
-  {
-    text: 'Total weight',
-    value: '5 kg',
-  },
-];
-
-const ResultScreen = () => {
+const ResultScreen = ({route}) => {
+  const {exercise} = route.params;
+  const {user} = useUserStore();
+  console.log('exercise', exercise);
   return (
     <SafeAreaView>
       <BackComponent title={'RESULT'} />
@@ -45,14 +23,14 @@ const ResultScreen = () => {
           color={colors['title']}
         />
         <TextComponent
-          text={'Exercises with Sitting Dumbbells'}
+          text={`Exercises with ${exercise.name}`}
           size={17}
           font={fontFamilies['semibold']}
           color={colors['text-2']}
           styles={{marginTop: 10}}
         />
         <TextComponent
-          text={'Completed on 24/12/2022'}
+          text={`Completed on ${moment().format('L')}`}
           size={17}
           styles={{marginTop: 10}}
         />
@@ -70,31 +48,99 @@ const ResultScreen = () => {
             marginTop: 30,
             flexWrap: 'wrap',
           }}>
-          {data.map((item, index) => (
-            <View
-              key={index}
-              style={{
-                backgroundColor: colors['primary-color-light'],
-                width: 170,
-                marginBottom: 30,
-                alignItems: 'center',
-                borderRadius: 10,
-                paddingVertical: 20,
-              }}>
-              <TextComponent
-                text={item.text}
-                size={16}
-                font={fontFamilies['semibold']}
-                color={colors['text-3']}
-              />
-              <TextComponent
-                text={item.value}
-                size={17}
-                font={fontFamilies['regular']}
-                color={colors['text-2']}
-              />
-            </View>
-          ))}
+          <View style={styles.container}>
+            <TextComponent
+              text={'Total Time'}
+              size={16}
+              font={fontFamilies['semibold']}
+              color={colors['text-3']}
+            />
+            <TextComponent
+              text={exercise.duration}
+              size={17}
+              font={fontFamilies['regular']}
+              color={colors['text-2']}
+              unit={'min'}
+              styles={styles.text}
+            />
+          </View>
+          <View style={styles.container}>
+            <TextComponent
+              text={'Total Calories'}
+              size={16}
+              font={fontFamilies['semibold']}
+              color={colors['text-3']}
+            />
+            <TextComponent
+              text={exercise.caloriesBurned}
+              size={17}
+              font={fontFamilies['regular']}
+              color={colors['text-2']}
+              unit={'kcal'}
+              styles={styles.text}
+            />
+          </View>
+          <View style={styles.container}>
+            <TextComponent
+              text={'Total Level'}
+              size={16}
+              font={fontFamilies['semibold']}
+              color={colors['text-3']}
+            />
+            <TextComponent
+              text={exercise.level}
+              size={17}
+              font={fontFamilies['regular']}
+              color={colors['text-2']}
+              styles={styles.text}
+            />
+          </View>
+          <View style={styles.container}>
+            <TextComponent
+              text={'Category'}
+              size={16}
+              font={fontFamilies['semibold']}
+              color={colors['text-3']}
+            />
+            <TextComponent
+              text={exercise.equipmentName}
+              size={17}
+              font={fontFamilies['regular']}
+              color={colors['text-2']}
+              styles={styles.text}
+            />
+          </View>
+          <View style={styles.container}>
+            <TextComponent
+              text={'Weight'}
+              size={16}
+              font={fontFamilies['semibold']}
+              color={colors['text-3']}
+            />
+            <TextComponent
+              text={exercise.weight}
+              size={17}
+              font={fontFamilies['regular']}
+              color={colors['text-2']}
+              styles={styles.text}
+            />
+          </View>
+          <View style={styles.container}>
+            <TextComponent
+              text={'Total Weight'}
+              size={16}
+              font={fontFamilies['semibold']}
+              color={colors['text-3']}
+            />
+            <TextComponent
+              text={user.weight}
+              size={17}
+              font={fontFamilies['regular']}
+              color={colors['text-2']}
+              unit={'kg'}
+              styles={styles.text}
+            />
+          </View>
         </View>
         <CustomButton title={'SAVE'} containerStyles={{marginTop: 20}} />
       </View>
@@ -104,4 +150,16 @@ const ResultScreen = () => {
 
 export default ResultScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors['border-4'],
+    width: 170,
+    marginBottom: 30,
+    alignItems: 'center',
+    borderRadius: 10,
+    paddingVertical: 20,
+  },
+  text: {
+    marginTop: 5,
+  },
+});

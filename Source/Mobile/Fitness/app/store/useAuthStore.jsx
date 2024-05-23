@@ -23,3 +23,13 @@ export const useAuthStore = create(
     },
   ),
 );
+
+export const useUserStore = create(set => ({
+  user: null,
+  setUser: userData => set({user: userData}),
+}));
+
+export const useCategoriesStore = create(set => ({
+  categories: [],
+  setCategories: categoriesData => set({categories: categoriesData}),
+}));

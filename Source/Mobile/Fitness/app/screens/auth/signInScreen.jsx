@@ -28,6 +28,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {EMAIL_REGEX} from '../../constants/regex';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
+import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 
 export default function SignInScreen() {
   // HANDLE DATA
@@ -38,14 +39,14 @@ export default function SignInScreen() {
     setError,
     formState: {errors, isSubmitting},
   } = useForm();
+
+  const {setUser} = useUserStore();
+  const {setToken} = useAuthStore();
   const onSubmit = async data => {
     const response = await apiLogin(data);
     if (response.statusCode === 200) {
-      await AsyncStorage.setItem('token', response.data.tokens.accessToken);
-      await AsyncStorage.setItem(
-        'dataUser',
-        JSON.stringify(response.data.user),
-      );
+      setToken(response.data.tokens.accessToken);
+      setUser(response.data.user);
       Toast.show(
         toastConfig({textMain: response.message, visibilityTime: 2000}),
       );

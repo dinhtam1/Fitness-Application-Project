@@ -14,7 +14,7 @@ import CustomButton from '../../components/button/buttonComponent';
 import {button, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
-import {useAuthStore} from '../../store/useAuthStore';
+import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import {apiUpdateProfile} from '../../apis/user';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
@@ -24,15 +24,10 @@ const GoalScreen = () => {
   const buttonTitles = ['Weight_loss', 'Muscle_gain'];
   const navigation = useNavigation();
   const [selectedLevel, setSelectedLevel] = useState('');
-  const [isChange, setIsChange] = useState(false);
-  const {form, setForm} = useAuthStore();
-
+  const {form, setForm, token} = useAuthStore();
+  const {user} = useUserStore();
   const onSubmit = async () => {
     setForm({...form, goal: selectedLevel.toUpperCase()});
-    console.log(form);
-    setIsChange(true);
-    const token = await AsyncStorage.getItem('token');
-    const userId = await AsyncStorage.getItem('dataUser');
     const response = await apiUpdateProfile(
       {
         age: +form.age,
@@ -43,14 +38,13 @@ const GoalScreen = () => {
         level: form.level,
         goal: form.goal,
       },
-      JSON.parse(userId).userId,
+      user.userId,
       token,
     );
     if (response?.statusCode === 200) {
       navigation.navigate('Start');
       Toast.show(toastConfig({textMain: 'Successfully', visibilityTime: 2000}));
     } else {
-      console.log(response.message);
       Toast.show(
         toastConfig({
           type: 'error',
@@ -97,7 +91,7 @@ const GoalScreen = () => {
               <CustomButton
                 key={index}
                 title={item.replace('_', ' ')}
-                handlePress={() => handleClickButton(item)} // Modified line
+                handlePress={() => handleClickButton(item)}
                 containerStyles={{
                   marginBottom: 20,
                   backgroundColor:
