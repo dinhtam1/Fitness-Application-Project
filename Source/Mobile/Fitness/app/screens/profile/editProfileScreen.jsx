@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
+import CustomButton from '../../components/button/buttonComponent';
 import BackComponent from '../../components/header/backComponent';
 import {exercise1} from '../../assets';
 import {Controller, useForm} from 'react-hook-form';
@@ -17,6 +18,7 @@ import {Feather} from '@expo/vector-icons';
 import {Dropdown} from 'react-native-element-dropdown';
 import {colors} from '../../constants/colors';
 import TextComponent from '../../components/text/textComponent';
+import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 
 const data = [
   {id: 1, value: 'Beginner'},
@@ -24,7 +26,19 @@ const data = [
   {id: 3, value: 'Advanced'},
 ];
 
+const dataGender = [
+  {id: 1, value: 'male'},
+  {id: 2, value: 'female'},
+];
+
+const dataGoal = [
+  {id: 1, value: 'WEIGHT LOSS'},
+  {id: 2, value: 'GAIN MUSCLE'},
+];
+
 const EditProfileScreen = () => {
+  const {user} = useUserStore();
+  const {token} = useAuthStore();
   const {
     control,
     handleSubmit,
@@ -32,175 +46,190 @@ const EditProfileScreen = () => {
     formState: {errors, isSubmitting},
   } = useForm();
   const [isFocus, setIsFocus] = useState(false);
+
+  const onSubmit = async data => {};
   return (
     <SafeAreaView>
       <BackComponent title={'EDIT PROFILE'} nav={'Home'} />
-      <View style={{paddingHorizontal: 20, marginTop: 20}}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <TouchableOpacity
-            style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Image source={exercise1} resizeMode="cover" style={styles.image} />
-            <Feather
-              name="camera"
-              size={40}
-              color="white"
-              style={styles.icon}
-            />
-          </TouchableOpacity>
-          <View style={{paddingVertical: 20}}>
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['email']}
-                  title={'Full Name'}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{paddingHorizontal: 20, marginTop: 20, marginBottom: 40}}>
+        <TouchableOpacity
+          style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Image source={exercise1} resizeMode="cover" style={styles.image} />
+          <Feather name="camera" size={40} color="white" style={styles.icon} />
+        </TouchableOpacity>
+        <View style={{paddingVertical: 20}}>
+          <Controller
+            control={control}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['name']}
+                title={'Full Name'}
+                handleChangeText={onChange}
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="full_name"
+          />
+          <Controller
+            control={control}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['phone']}
+                title={'Phone'}
+                handleChangeText={onChange}
+                keyboardType="number-pad"
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="phone_number"
+          />
+          <Controller
+            control={control}
+            render={({field: {onChange, value, name}}) => (
+              <>
+                <TextComponent
+                  text={'Fitness Level'}
+                  size={16}
+                  styles={{marginVertical: 10}}
                 />
-              )}
-              name="full_name"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['password']}
-                  title={'Phone'}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
+                <View style={styles.container}>
+                  <Dropdown
+                    style={[styles.dropdown]}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={styles.selectedTextStyle}
+                    iconStyle={styles.iconStyle}
+                    data={data}
+                    maxHeight={200}
+                    labelField="value"
+                    valueField="value"
+                    placeholder={user.level}
+                    value={value}
+                    onFocus={() => setIsFocus(true)}
+                    onBlur={() => setIsFocus(false)}
+                    onChange={item => onChange(item.value)}
+                  />
+                </View>
+              </>
+            )}
+            name="level"
+          />
+          <Controller
+            control={control}
+            render={({field: {onChange, value, name}}) => (
+              <>
+                <TextComponent
+                  text={'Fitness Goal'}
+                  size={16}
+                  styles={{marginVertical: 10}}
                 />
-              )}
-              name="phone"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <>
-                  <TextComponent text={'Fitness Level'} size={16} />
-                  <View style={styles.container}>
-                    <Dropdown
-                      style={[
-                        styles.dropdown,
-                        isFocus && {borderColor: colors['primary-color-black']},
-                      ]}
-                      placeholderStyle={styles.placeholderStyle}
-                      selectedTextStyle={styles.selectedTextStyle}
-                      iconStyle={styles.iconStyle}
-                      data={data}
-                      maxHeight={200}
-                      labelField="value"
-                      valueField="value"
-                      placeholder={'Beginner'}
-                      value={value}
-                      onFocus={() => setIsFocus(true)}
-                      onBlur={() => setIsFocus(false)}
-                      onChange={item => {
-                        setIsFocus(false);
-                      }}
-                    />
-                  </View>
-                </>
-              )}
-              name="level"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['password']}
-                  title={titleForm['password']}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
+                <View style={styles.container}>
+                  <Dropdown
+                    style={[styles.dropdown]}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={styles.selectedTextStyle}
+                    iconStyle={styles.iconStyle}
+                    data={dataGoal}
+                    maxHeight={200}
+                    labelField="value"
+                    valueField="value"
+                    placeholder={user.goal}
+                    value={value}
+                    onFocus={() => setIsFocus(true)}
+                    onBlur={() => setIsFocus(false)}
+                    onChange={item => onChange(item.value)}
+                  />
+                </View>
+              </>
+            )}
+            name="goal"
+          />
+          <Controller
+            control={control}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['weight']}
+                title={'Weight (kg)'}
+                handleChangeText={onChange}
+                keyboardType="number-pad"
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="weight"
+          />
+          <Controller
+            control={control}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['height']}
+                title={'Height (cm)'}
+                handleChangeText={onChange}
+                keyboardType="number-pad"
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="height"
+          />
+          <Controller
+            control={control}
+            rules={{
+              required: {value: true, message: 'This field cannot empty'},
+            }}
+            render={({field: {onChange, value, name}}) => (
+              <>
+                <TextComponent
+                  text={'Gender'}
+                  size={16}
+                  styles={{marginVertical: 10}}
                 />
-              )}
-              name="goal"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['password']}
-                  title={'Weight (kg)'}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
-                />
-              )}
-              name="weight"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-                // minLength: {
-                //   value: 8,
-                //   message: 'Password must be at least 8 characters',
-                // },
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['password']}
-                  title={'Height (cm)'}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
-                />
-              )}
-              name="height"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['password']}
-                  title={'Height (cm)'}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
-                />
-              )}
-              name="gender"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['password']}
-                  title={'Height (cm)'}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
-                />
-              )}
-              name="age"
-            />
-          </View>
-        </ScrollView>
-      </View>
+                <View style={styles.container}>
+                  <Dropdown
+                    style={[styles.dropdown]}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={styles.selectedTextStyle}
+                    iconStyle={styles.iconStyle}
+                    data={dataGender}
+                    maxHeight={200}
+                    labelField="value"
+                    valueField="value"
+                    placeholder={user.gender}
+                    value={value}
+                    onFocus={() => setIsFocus(true)}
+                    onBlur={() => setIsFocus(false)}
+                    onChange={item => onChange(item.value)}
+                  />
+                </View>
+              </>
+            )}
+            name="gender"
+          />
+          <Controller
+            control={control}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['age']}
+                title={'Age'}
+                handleChangeText={onChange}
+                keyboardType="number-pad"
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="age"
+          />
+        </View>
+        <CustomButton
+          handlePress={handleSubmit(onSubmit)}
+          isLoading={isSubmitting}
+          title={'SAVE'}
+          containerStyles={{marginVertical: 30}}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -220,14 +249,15 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: 'transparent',
-    marginTop: 20,
   },
   dropdown: {
-    height: 50,
+    height: 64,
     borderColor: 'gray',
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 10,
+    borderWidth: 2,
+    borderColor: 'rgba(105, 105, 105, 0.25)',
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    alignItems: 'center',
   },
   label: {
     position: 'absolute',

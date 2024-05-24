@@ -40,6 +40,9 @@ export const placeholder = {
   address: 'Enter address...',
   new_password: 'Enter new password...',
   confirm_password: 'Enter confirm password...',
+  age: 'Enter age...',
+  weight: 'Enter weight...',
+  height: 'Enter height...',
 };
 
 export const titleForm = {
