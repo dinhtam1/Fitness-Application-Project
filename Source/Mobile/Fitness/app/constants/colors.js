@@ -16,5 +16,6 @@ export const colors = {
   'icon-blur': '#AFB4B8',
   'primary-color-light': '#F1F1F1',
   'color-icon-1': '#00ADB5',
+  'color-bottom-tab': '#AFB4B8',
   toggle: '#9D9D9D',
 };

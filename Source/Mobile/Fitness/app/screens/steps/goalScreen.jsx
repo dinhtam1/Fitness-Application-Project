@@ -21,11 +21,12 @@ import {toastConfig} from '../../utils/toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const GoalScreen = () => {
-  const buttonTitles = ['Weight_loss', 'Muscle_gain'];
+  const buttonTitles = ['Weight_loss', 'Gain_muscle'];
   const navigation = useNavigation();
   const [selectedLevel, setSelectedLevel] = useState('');
   const {form, setForm, token} = useAuthStore();
   const {user} = useUserStore();
+  console.log(form);
   const onSubmit = async () => {
     setForm({...form, goal: selectedLevel.toUpperCase()});
     const response = await apiUpdateProfile(
@@ -34,7 +35,7 @@ const GoalScreen = () => {
         weight: +form.weight,
         height: +form.height,
         gender: form.gender,
-        // goal_weight: +form.goal_weight,
+        goal_weight: +form.goal_weight,
         level: form.level,
         goal: form.goal,
       },

@@ -19,11 +19,13 @@ import FormField from '../../../components/form/formFieldComponent';
 import {header} from '../../../assets';
 import {useUserStore} from '../../../store/useAuthStore';
 import moment from 'moment';
+import {useNavigation} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('window');
 
 const Header = ({background, ...props}) => {
   const user = useUserStore(state => state.user);
+  const navigation = useNavigation();
   const [currentTimeOfDay, setCurrentTimeOfDay] = useState('');
   useEffect(() => {
     const updateTime = () => {
@@ -83,9 +85,12 @@ const Header = ({background, ...props}) => {
                 color={background ? 'white' : 'black'}
               />
             </TouchableOpacity>
-            <Image source={splash1} resizeMode="cover" style={styles.image} />
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ProfileUser')}>
+              <Image source={splash1} resizeMode="cover" style={styles.image} />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
             <MaterialIcons
               name="notifications-none"
               size={26}

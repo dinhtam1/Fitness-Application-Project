@@ -4,6 +4,7 @@ import {Entypo} from '@expo/vector-icons';
 import {AntDesign} from '@expo/vector-icons';
 import {Ionicons} from '@expo/vector-icons';
 import {FontAwesome5} from '@expo/vector-icons';
+import {FontAwesome6} from '@expo/vector-icons';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
@@ -30,79 +31,129 @@ import {
   GenderScreen,
   ProgressExerciseScreen,
   ResultScreen,
+  MealPlanScreen,
+  ProfileScreen,
+  EditProfileScreen,
+  NotificationScreen,
 } from '../screens';
-import {useAuthStore} from '../store/useAuthStore';
+import {colors} from '../constants/colors';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   function BottomTabs() {
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarStyle: {borderTopWidth: 0, padding: 10, height: 60},
+          tabBarActiveTintColor: 'black', // This line changes the active text color to black
+          tabBarInactiveTintColor: colors['color-bottom-tab'], // This line changes the inactive text color to color-bottom-tab
+        }}>
         <Tab.Screen
-          name="Home"
+          name="HomeScreen"
           component={HomePageScreen}
           options={{
             tabBarLabel: 'Home',
-            tabBarLabelStyle: {color: '#008E97'},
+            tabBarLabelStyle: styles.text,
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
-                <Entypo name="home" size={24} color="#008E97" />
+                <Entypo name="home" size={24} color="black" />
               ) : (
-                <AntDesign name="home" size={24} color="black" />
+                <AntDesign
+                  name="home"
+                  size={24}
+                  color={colors['color-bottom-tab']}
+                />
               ),
           }}
         />
         <Tab.Screen
           name="Meal"
-          component={HomeScreen}
+          component={MealPlanScreen}
           options={{
             tabBarLabel: 'Meal',
-            tabBarLabelStyle: {color: '#008E97'},
+            tabBarLabelStyle: styles.text,
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <Ionicons name="fast-food" size={24} color="black" />
               ) : (
-                <Ionicons name="fast-food-outline" size={24} color="black" />
+                <Ionicons
+                  name="fast-food-outline"
+                  size={24}
+                  color={colors['color-bottom-tab']}
+                />
               ),
           }}
         />
         <Tab.Screen
           name="Camera"
-          component={HomeScreen}
+          component={HomePageScreen}
           options={{
             tabBarLabel: 'Camera',
-            tabBarLabelStyle: {color: '#008E97'},
+            tabBarLabelStyle: styles.text,
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <Ionicons name="camera" size={24} color="black" />
               ) : (
-                <Ionicons name="camera-outline" size={24} color="black" />
+                <Ionicons
+                  name="camera-outline"
+                  size={24}
+                  color={colors['color-bottom-tab']}
+                />
+              ),
+          }}
+        />
+        <Tab.Screen
+          name="Exercise"
+          component={FullExerciseScreen}
+          listeners={({navigation}) => ({
+            tabPress: event => {
+              event.preventDefault();
+
+              navigation.navigate('Exercise', {category: 'Dumbbells'});
+            },
+          })}
+          options={{
+            tabBarLabel: 'Exercise',
+            tabBarLabelStyle: styles.text,
+            headerShown: false,
+            tabBarIcon: ({focused}) =>
+              focused ? (
+                <FontAwesome6 name="dumbbell" size={24} color="black" />
+              ) : (
+                <FontAwesome6
+                  name="dumbbell"
+                  size={24}
+                  color={colors['color-bottom-tab']}
+                />
               ),
           }}
         />
         <Tab.Screen
           name="Profile"
-          component={HomeScreen}
+          component={ProfileScreen}
           options={{
             tabBarLabel: 'Profile',
-            tabBarLabelStyle: {color: '#008E97'},
+            tabBarLabelStyle: styles.text,
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <FontAwesome5 name="user-alt" size={24} color="black" />
               ) : (
-                <FontAwesome5 name="user" size={24} color="black" />
+                <FontAwesome5
+                  name="user"
+                  size={24}
+                  color={colors['color-bottom-tab']}
+                />
               ),
           }}
         />
       </Tab.Navigator>
     );
   }
-  const {token} = useAuthStore();
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -195,7 +246,7 @@ const StackNavigator = () => {
         />
         <Stack.Screen
           name="Home"
-          component={HomePageScreen}
+          component={BottomTabs}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -218,9 +269,36 @@ const StackNavigator = () => {
           component={ResultScreen}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="ProfileUser"
+          component={ProfileScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfileScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MealPlan"
+          component={MealPlanScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Notification"
+          component={NotificationScreen}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+});
 
 export default StackNavigator;

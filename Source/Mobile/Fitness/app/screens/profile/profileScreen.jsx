@@ -8,14 +8,15 @@ import {useUserStore} from '../../store/useAuthStore';
 
 const ProfileScreen = () => {
   const {user} = useUserStore();
+  console.log(user);
   return (
     <SafeAreaView>
-      {/* <BackComponent title={'PROFILE'} edit /> */}
+      <BackComponent title={'PROFILE'} edit nav={'Home'} />
       <View style={{paddingHorizontal: 20}}>
         <View style={{marginTop: 10, alignItems: 'center'}}>
           <Image source={meal1} resizeMethod="contain" style={styles.image} />
           <TextComponent
-            text={user?.name}
+            text={user?.full_name}
             size={20}
             font={fontFamilies['semibold']}
           />

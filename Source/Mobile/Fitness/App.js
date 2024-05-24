@@ -6,6 +6,7 @@ import Toast from 'react-native-toast-message';
 import {NavigationContainer} from '@react-navigation/native';
 import AppRoutes from './app/navigators/AppRoutes';
 import {
+  CameraScreen,
   CategoryScreen,
   ChangePassword,
   DashboardScreen,
@@ -14,6 +15,7 @@ import {
   FullExerciseScreen,
   GenderScreen,
   HomePageSceen,
+  MealPlanScreen,
   NotificationScreen,
   ProfileScreen,
   ProgressExerciseScreen,
@@ -54,7 +56,7 @@ export default function App() {
         <AppRoutes />
       </NavigationContainer> */}
       <StackNavigator />
-      {/* <ProfileScreen /> */}
+      {/* <CameraScreen /> */}
       <Toast />
     </>
   );

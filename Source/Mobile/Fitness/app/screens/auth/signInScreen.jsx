@@ -11,7 +11,6 @@ import FormField from '../../components/form/formFieldComponent';
 import CustomButton from '../../components/button/buttonComponent';
 
 import {Link, useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiLogin} from '../../apis/auth';
 import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
@@ -38,7 +37,12 @@ export default function SignInScreen() {
     handleSubmit,
     setError,
     formState: {errors, isSubmitting},
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: 'heloqua110333@gmail.com',
+      password: '123456',
+    },
+  });
 
   const {setUser} = useUserStore();
   const {setToken} = useAuthStore();

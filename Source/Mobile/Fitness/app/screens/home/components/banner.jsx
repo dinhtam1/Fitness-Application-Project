@@ -1,4 +1,11 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {banner, banner1, banner2} from '../../../assets/index';
 import {LinearGradient} from 'expo-linear-gradient';
@@ -6,9 +13,12 @@ import TextComponent from '../../../components/text/textComponent';
 import {colors} from '../../../constants/colors';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import CustomButton from '../../../components/button/buttonComponent';
+import {useNavigation} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('window');
 const Banner = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -25,6 +35,9 @@ const Banner = () => {
         space={-0.5}
       />
       <CustomButton
+        handlePress={() =>
+          navigation.navigate('FullExercise', {category: 'Dumbbells'})
+        }
         title={'Start Exercise'}
         containerStyles={styles.button}
         textStyles={{fontSize: 14}}

@@ -25,6 +25,9 @@ import NotificationScreen from './notification/notificationScreen';
 import SettingScreen from './setting/settingScreen';
 import ChangePassword from './profile/changePassword';
 import GenderScreen from './steps/genderScreen';
+import MealPlanScreen from './meal/mealPlanScreen';
+import EditProfileScreen from './profile/editProfileScreen';
+import CameraScreen from './camera/cameraScreen';
 
 export {
   SignInScreen,
@@ -54,4 +57,7 @@ export {
   SettingScreen,
   ChangePassword,
   GenderScreen,
+  MealPlanScreen,
+  EditProfileScreen,
+  CameraScreen,
 };

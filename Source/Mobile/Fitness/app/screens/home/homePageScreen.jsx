@@ -4,11 +4,8 @@ import {globalStyles} from '../../styles/globalStyles';
 import Header from './components/header';
 
 import Banner from './components/banner';
-import HorizontalComponent from '../../components/common/horizontalComponent';
 import VerticalComponent from '../../components/common/verticalComponent';
 import {exercise1, exercise2, meal1, meal2} from '../../assets';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useStore} from 'zustand';
 import {
   useAuthStore,
   useCategoriesStore,
@@ -16,9 +13,10 @@ import {
 } from '../../store/useAuthStore';
 import {apiCategory} from '../../apis';
 import Category from './components/category';
-import TextComponent from '../../components/text/textComponent';
 import Goal from './components/goal';
 import {titleHome} from '../../constants/text';
+import {apiMeal} from '../../apis/meal';
+import MealPlan from './components/mealPlan';
 
 const dataMeal = [
   {
@@ -39,14 +37,19 @@ const HomePageScreen = () => {
   const {user} = useUserStore();
   const {token} = useAuthStore();
   const {categories, setCategories} = useCategoriesStore();
+  const [meals, setMeals] = useState([]);
 
   const scrollY = new Animated.Value(0);
 
   useEffect(() => {
     const fetchData = async token => {
       const response = await apiCategory(user.userId, token);
-      if (response.statusCode === 200) {
+      const meal = await apiMeal(user.userId, token, {
+        limit: 2,
+      });
+      if (response.statusCode === 200 && meal.statusCode === 200) {
         setCategories(response.data);
+        setMeals(meal.data.meals);
       }
     };
     if (token) {
@@ -72,7 +75,6 @@ const HomePageScreen = () => {
           </Animated.View>
           <Animated.View style={{paddingLeft: 40, paddingRight: 20}}>
             <Banner />
-            <Goal title={titleHome['title-1']} />
             <Category
               all
               title={titleHome['title-2']}
@@ -87,14 +89,7 @@ const HomePageScreen = () => {
               unit={'min'}
               nav={'FullExercise'}
             />
-            <VerticalComponent
-              full
-              title={'Meal Plans'}
-              meal
-              all
-              unit={'kcal'}
-              data={dataMeal}
-            />
+            <MealPlan data={meals} />
             <VerticalComponent title={'Additional Exercise'} unit={'kcal'} />
           </Animated.View>
         </View>
