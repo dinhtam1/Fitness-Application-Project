@@ -1,6 +1,7 @@
 const authRouter = require('./auth');
 const userRouter = require('./user');
 const exerciseRouter = require('./exercise');
+const statisticRouter = require('./statistic');
 const dashboardRouter = require('./dashboard');
 const mealRouter = require('./meal');
 
@@ -10,6 +11,7 @@ app.use('/v1/api/auth', authRouter);
 app.use('/v1/api/user', userRouter);
 app.use('/v1/api/exercise', exerciseRouter);
 app.use('/v1/api/meal', mealRouter);
+app.use('/v1/api/statistic', statisticRouter);
 app.use('/v1/api/dashboard', dashboardRouter);
 
 }
