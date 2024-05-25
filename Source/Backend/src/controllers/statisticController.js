@@ -10,28 +10,31 @@ moment.locale('en', {
 });
 
 const getCalorieStatistics = async (req, res) => {
-    const requestType = Type.GET_CALORIE_STATISTICS
-    var data = null;
+    const requestType = Type.GET_CALORIE_STATISTICS;
     try {
         let startDate, endDate;
-    const { period } = req.query;
-    switch (period) {
-        case 'week':
-            startDate = moment().startOf('week').toDate();
-            endDate = moment().endOf('week').toDate();
-            break;
-        case 'month':
+        let returnDayNames = false;
+        const { period, start, end } = req.query;
+        if (period === 'week') {
+            startDate = moment().startOf('isoWeek').add(1, 'day').toDate();
+            endDate = moment().endOf('isoWeek').add(1, 'day').toDate();
+            returnDayNames = true;
+        } else if (period === 'month') {
             startDate = moment().startOf('month').toDate();
             endDate = moment().endOf('month').toDate();
-            break;
-        default:
-            const [start, end] = period.split(':');
-            startDate = new Date(start);
-            endDate = new Date(end);
-            break;
-    }
-        data = await analysisServices.getCalorieStatistics(req.user.userId, startDate, endDate);
-        console.log(data)
+        } else if (start && end) {
+            startDate = moment(start, 'DD/MM/YYYY').toDate();
+            endDate = moment(end, 'DD/MM/YYYY').toDate();
+        } else {
+            return res.status(statusCode.BAD_REQUEST).json({
+                statusCode: statusCode.FAIL,
+                message: appString.INVALID_PERIOD,
+                requestType
+            });
+        }
+        console.log("start ", startDate, "end", endDate);
+        const data = await analysisServices.getCalorieStatistics(req.user.userId, startDate, endDate, returnDayNames);
+        console.log(data);
         if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
@@ -55,7 +58,7 @@ const getCalorieStatistics = async (req, res) => {
             requestType
         });
     }
-}
+};
 
 
 module.exports = {
