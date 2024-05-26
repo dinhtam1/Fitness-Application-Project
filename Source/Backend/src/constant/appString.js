@@ -63,6 +63,9 @@ const GET_MUSCLE_NAME_SUCCESSFUL =  "Get muscle name successfully";
 const MEAL_NOT_FOUND = "Meal not found";
 const GET_MEAL_SUCCESSFUL = "Get meal successfully";
 const ENOUGH_CALORIES = "You've had enough calories for today";
+const GET_DETAIL_MEAL_SUCCESSFUL = "Get detail meal successfully";
+const GET_CALORIE_STATISTICS_SUCCESFUL = "Get calorie statistics successfully";
+const CALORIE_STATISTICS_NOT_FOUND = "Calorie statistics not found";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -128,5 +131,8 @@ module.exports = {
     GET_MUSCLE_NAME_SUCCESSFUL,
     MEAL_NOT_FOUND,
     GET_MEAL_SUCCESSFUL,
-    ENOUGH_CALORIES
+    ENOUGH_CALORIES,
+    GET_DETAIL_MEAL_SUCCESSFUL,
+    GET_CALORIE_STATISTICS_SUCCESFUL,
+    CALORIE_STATISTICS_NOT_FOUND
 };
