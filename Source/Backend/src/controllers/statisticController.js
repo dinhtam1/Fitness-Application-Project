@@ -9,32 +9,39 @@ moment.locale('en', {
     }
 });
 
+const PERIOD = {
+    WEEK: 'week',
+    MONTH: 'month',
+    DAY : 'day'
+}
+const PERIOD_TYPE = {
+    WEEK: 'isoweek',
+    MONTH: 'month',
+    DAY : 'DD/MM/YYYY'
+}
+
 const getCalorieStatistics = async (req, res) => {
     const requestType = Type.GET_CALORIE_STATISTICS;
     try {
         let startDate, endDate;
         let returnDayNames = false;
         const { period, start, end } = req.query;
-        if (period === 'week') {
-            startDate = moment().startOf('isoWeek').add(1, 'day').toDate();
-            endDate = moment().endOf('isoWeek').add(1, 'day').toDate();
+        if (period === PERIOD.WEEK) {
+            startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
             returnDayNames = true;
-        } else if (period === 'month') {
-            startDate = moment().startOf('month').toDate();
-            endDate = moment().endOf('month').toDate();
+        } else if (period === PERIOD.MONTH) {
+            startDate = moment().startOf(PERIOD_TYPE.MONTH).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.MONTH).toDate();
         } else if (start && end) {
-            startDate = moment(start, 'DD/MM/YYYY').toDate();
-            endDate = moment(end, 'DD/MM/YYYY').toDate();
+            startDate = moment(start, PERIOD_TYPE.DAY).toDate();
+            endDate = moment(end, PERIOD_TYPE.DAY).toDate();
         } else {
-            return res.status(statusCode.BAD_REQUEST).json({
-                statusCode: statusCode.FAIL,
-                message: appString.INVALID_PERIOD,
-                requestType
-            });
+            startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            returnDayNames = true;
         }
-        console.log("start ", startDate, "end", endDate);
         const data = await analysisServices.getCalorieStatistics(req.user.userId, startDate, endDate, returnDayNames);
-        console.log(data);
         if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
@@ -51,7 +58,6 @@ const getCalorieStatistics = async (req, res) => {
             });
         }
     } catch (error) {
-        console.log(error);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.FAIL,
             message: appString.INTERNAL_SERVER_ERROR,

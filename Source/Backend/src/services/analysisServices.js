@@ -19,8 +19,6 @@ const getCalorieStatistics = async (userId, start_time, end_time, returnDayNames
                 calories_loaded: true
             }
         });
-        console.log(statistics);
-        // Create an array to store the statistics
         const result = [];
 
         // Iterate over the statistics and populate the result array
@@ -45,7 +43,6 @@ const getCalorieStatistics = async (userId, start_time, end_time, returnDayNames
             }
             currentDateIterator.setDate(currentDateIterator.getDate() + 1);
         }
-
         // Sort the result array by day of the week
         if (!returnDayNames) {
             result.sort((a, b) => new Date(a.date) - new Date(b.date));
