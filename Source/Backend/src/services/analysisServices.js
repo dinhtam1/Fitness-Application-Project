@@ -3,7 +3,6 @@ const dayOrder = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 const getCalorieStatistics = async (userId, start_time, end_time, returnDayNames) => {
     try {
-        console.log(userId, start_time, end_time);
         const statistics = await prisma.dashboard.findMany({
             where: {
                 userId: userId,

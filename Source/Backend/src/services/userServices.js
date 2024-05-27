@@ -4,12 +4,39 @@ const moment = require('moment-timezone');
 const { date } = require('joi');
 const appString = require('../constant/appString.js')
 const userHelper = require('../helpers/userHelper.js')
+const { initializeApp } = require("firebase/app");
+const { getStorage, ref, uploadBytes, getDownloadURL } = require("firebase/storage");
+const fs = require('fs');
+const util = require('util');
+const readFile = util.promisify(fs.readFile);
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    measurementId: process.env.FIREBASE_MEASUREMENT_ID
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Storage
+const storage = getStorage(app);
 const style = {
     divStyle: 'style="text-align: center;"',
     pStyle: 'style="color: black; font-size: 24px"'
 }
 const service = {
     gmail: 'gmail',
+}
+const TYPE = {
+    PNG : 'image/png',
+    AVT : 'avatars'
 }
 
 const createUser = async (user) => {
@@ -23,7 +50,6 @@ const createUser = async (user) => {
             data: user
         });
     } catch (e) {
-        console.log(e);
         return false
     };
 };
@@ -153,6 +179,7 @@ const getUserByUserId = async (userId) => {
                 height: true,
                 gender: true,
                 age: true,
+                avatar_url : true,
             }
         });
     } catch (e) {
@@ -160,10 +187,17 @@ const getUserByUserId = async (userId) => {
     }
 }
 
-const updateUser = async (userId, data) => {
+const updateUser = async (userId, data, avatarImage) => {
     try {
         if (data.weight && data.height && data.age && data.gender && data.level) {
             data.calories = userHelper.calculatorCalories(data.weight, data.height, data.age, data.gender, data.level);
+        }
+        if (avatarImage && avatarImage.buffer) {
+            const blob = new Blob([avatarImage.buffer], { type: TYPE.PNG });
+            const storage = getStorage();
+            const storageRef = ref(storage, `${TYPE.AVT}/${userId}`);
+            await uploadBytes(storageRef, blob);
+            data.avatar_url = await getDownloadURL(storageRef);
         }
         await prisma.user.update({
             where: {

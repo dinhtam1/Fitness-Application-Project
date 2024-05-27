@@ -43,7 +43,6 @@ async function importDataExerciseFromCSV(filePath) {
                 try {
                     const promises = rows.map(row => prisma.exercise.create({ data: row }));
                     await Promise.all(promises);
-                    console.log(appString.CSV_FILE_PROCESSED);
                 } catch (error) {
                     console.error(appString.ERROR_INSERTING_ROW, error);
                 } finally {

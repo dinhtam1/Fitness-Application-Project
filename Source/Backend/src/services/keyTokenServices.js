@@ -42,7 +42,6 @@ const verifyRefreshToken = (refreshToken, privateKey) => {
     return new Promise((resolve, reject) => {
         jwt.verify(refreshToken, privateKey, { algorithms: [algorithm.HS256] }, (err, decodeUser) => {
             if (err) {
-                console.log(err);
                 reject(err);
             } else {
                 resolve(decodeUser);

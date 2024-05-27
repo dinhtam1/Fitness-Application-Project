@@ -104,7 +104,6 @@ const signUp = async (req, res, next) => {
         );
 
         if (createUser) {
-            console.log(createUser);
             const privateKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex)
             const publicKey = crypto.randomBytes(NUMBER.randomBytes).toString(STRING.hex)
             const tokens = await createTokenPair({
@@ -362,7 +361,6 @@ const forgotPassword = async (req, res, next) => {
             });
         }
         const hashedPassword = await bcrypt.hash(new_password, constant.SALT_ROUNDS);
-        console.log(hashedPassword)
         const updatePassword = await userServices.updatePasswordbyEmail(req.user.email, hashedPassword)
         if(!updatePassword){
             return res.status(statusCode.SUCCESS).json({
@@ -393,8 +391,6 @@ const renewToken = async (req,res,next) => {
     var requestType = Type.RENEW_TOKEN;
     try {
         const {refreshToken , userId} = req.body;
-        console.log(refreshToken);
-        console.log(userId);
         if(!refreshToken) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
