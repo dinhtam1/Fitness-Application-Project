@@ -27,7 +27,6 @@ const getDashboard = async (userId) => {
         }
         return dashboard;
     } catch (error) {
-        console.log(error);
         return false;
     }
 }

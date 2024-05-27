@@ -48,7 +48,6 @@ const verifyToken = async (req, res, next) => {
 
         jwt.verify(accessToken, keyStore.privateKey, { algorithms: [algorithm.HS256] }, (err, decodeUser) => {
             if (err) {
-                console.log(err)
                 return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
                     statusCode: statusCode.FAIL,
                     message: appString.ERROR_VERIFYING_TOKEN,

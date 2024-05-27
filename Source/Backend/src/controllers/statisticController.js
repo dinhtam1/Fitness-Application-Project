@@ -3,10 +3,9 @@ const statusCode = require('../constant/appNumber.js')
 const Type = require('../constant/appRequestType.js')
 const appString = require('../constant/appString.js')
 const moment = require('moment');
-moment.locale('en', {
-    week: {
-        dow: 1, // Monday is the first day of the week
-    }
+
+moment.updateLocale('en', {
+    // your custom configuration here
 });
 
 const PERIOD = {

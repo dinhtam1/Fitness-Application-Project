@@ -165,7 +165,6 @@ const getResultExercise = async (req, res) => {
             requestType
         })
     } catch (error) {
-        console.log(error)
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
             statusCode: statusCode.FAIL,
             message: appString.INTERNAL_SERVER_ERROR,

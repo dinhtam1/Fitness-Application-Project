@@ -79,7 +79,6 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
                 level = 1;
                 break;
         }
-        console.log(level);
         let levels = [level];
         if (level === 1 && level !== level.BEGINNER) {
             levels.push(0);
@@ -148,7 +147,6 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
         }
         return result;
     } catch (e) {
-        console.log(e)
         return false;
     }
 };
@@ -169,7 +167,6 @@ const getDetailExercise = async (exerciseId) => {
                 equipmentName: true,
             }
         });
-        console.log(exercise.video_center);
         exercise.name = exerciseHelper.getNamebyUrl(exercise.video_center);
         if (exercise.ordering === GOAL_WEIGHT_CONSTANT.WEIGHT_LOSS) {
             exercise.ordering = GOAL_WEIGHT_CONSTANT.LOSE;

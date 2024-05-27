@@ -27,6 +27,7 @@ model User {
   level         Level?
   goal          Goal?
   calories      Float?
+  avatar_url    String?
   create_at     DateTime    @default(now())
   role          Role        @default(USER)
   OTP           String?     @db.Char(4)
