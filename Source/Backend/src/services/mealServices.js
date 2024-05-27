@@ -168,7 +168,6 @@ const getDetailMeal = async (mealId) => {
         }
         return meal;
     } catch (error) {
-        console.log(error)
         return false;
     }
 }

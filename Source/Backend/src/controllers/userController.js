@@ -2,13 +2,14 @@ const userServices = require('../services/userServices');
 const statusCode = require('../constant/appNumber.js')
 const Type = require('../constant/appRequestType.js')
 const appString = require('../constant/appString.js')
+
 const getUsers = async (req, res) => {
     var data = null;
     var requestType = Type.VIEW_PROFILE;
     try {
         const userId = req.user.userId;
         const user = await userServices.getUserByUserId(userId)
-        if(!user){
+        if (!user) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
                 message: appString.USER_NOT_FOUND,
@@ -31,10 +32,15 @@ const getUsers = async (req, res) => {
     }
 }
 
+
+
+
+
 const updatedUser = async (req, res) => {
     var data = null;
     var requestType = Type.UPDATE_PROFILE;
     try {
+        const avatarImage = req.file;
         const userId = req.user.userId;
         const user = await userServices.getUserByUserId(userId)
         if(!user){
@@ -45,7 +51,7 @@ const updatedUser = async (req, res) => {
                 requestType
             });
         }
-        const updatedUser = await userServices.updateUser(userId, req.updateInfoUser)
+        const updatedUser = await userServices.updateUser(userId, req.body, avatarImage)
         if(!updatedUser){
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
