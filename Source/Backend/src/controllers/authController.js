@@ -163,7 +163,7 @@ const logOut = async (req, res, next) => {
             });
         }
         return res.status(statusCode.SUCCESS).json({
-            statusCode: statusCode.FAIL,
+            statusCode: statusCode.SUCCESS,
             message: appString.LOGOUT_SUCCESSFUL,
             data,
             requestType
