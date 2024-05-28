@@ -6,7 +6,7 @@ const TIME_MEAL = {
     LUNCH: 'lunch',
     DINNER: 'dinner'
 }
-const getMeal = async (userId, time_meal, page, limit) => {
+const getMeal = async (userId, time_meal, page, limit, return_random) => {
     try {
         limit = parseInt(limit) || parseInt(process.env.LIMIT_GET_MEAL);
         if (page < 0 || !!page == false) page = 1;
@@ -65,8 +65,17 @@ const getMeal = async (userId, time_meal, page, limit) => {
                         mealId: true,
                         meal_name: true,
                         calories: true,
-                        meal_image: true
+                        protein : true,
+                        fat : true,
+                        carb : true,
+                        meal_image: true,
                     }
+                });
+                allMeals.forEach(meal => {
+                    meal.meal_name = meal.meal_name
+                        .split('_')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
                 });
                 if (allMeals.length === 0) {
                     return [];
@@ -121,6 +130,11 @@ const getMeal = async (userId, time_meal, page, limit) => {
         } else {
             selectedMeals = meals.fullMeals;
         }
+        
+        if (return_random) {
+            selectedMeals = mealHelper.shuffleMeals([...selectedMeals]);
+        }
+        
         // Perform pagination on the selected meals
         const paginatedMeals = {
             meals: selectedMeals.slice(start, start + limit),
@@ -141,12 +155,12 @@ const getDetailMeal = async (mealId) => {
             },
             select: {
                 meal_name: true,
-                calories : true,
-                protein : true,
-                fat : true,
-                carb :  true,
+                calories: true,
+                protein: true,
+                fat: true,
+                carb: true,
                 meal_image: true,
-                description : true
+                description: true
             }
         });
 
@@ -162,7 +176,7 @@ const getDetailMeal = async (mealId) => {
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(' ');
             }
-            if(meal.description) {
+            if (meal.description) {
                 meal.description = meal.description.replace(/;/g, ",");
             }
         }

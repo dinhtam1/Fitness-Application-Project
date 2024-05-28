@@ -6,8 +6,8 @@ const getMeal = async (req, res) => {
     var data = null;
     var requestType = Type.GET_MEAL;
     try {
-        const { time_meal, page, limit } = req.query;
-        data = await mealServices.getMeal(req.user.userId, time_meal, page, limit);
+        const { time_meal, page, limit, return_random } = req.query;
+        data = await mealServices.getMeal(req.user.userId, time_meal, page, limit,return_random);
         if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
