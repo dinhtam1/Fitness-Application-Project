@@ -12,17 +12,19 @@ const getDashboard = async (userId) => {
                     equals: day
                 }
             },
-            select : {
-                time_practice : true,
-                time_sleep : true,
-                calories_burned : true
+            select: {
+                time_practice: true,
+                time_sleep: true,
+                calories_burned: true,
+                exercise_complete: true
             }
         });
-        if(!dashboard) {
+        if (!dashboard) {
             return {
-                time_practice : 0,
-                time_sleep : 0,
-                calories_burned : 0,
+                time_practice: 0,
+                time_sleep: 0,
+                calories_burned: 0,
+                exercise_complete: 0
             }
         }
         return dashboard;
@@ -48,7 +50,8 @@ const updateDashboard = async (user, data) => {
                 time_practice: existingDashboard.time_practice + data.time_practice,
                 time_sleep: data.time_sleep,
                 weight: user.weight,
-                level: user.level
+                level: user.level,
+                exercise_complete: existingDashboard.exercise_complete + (data.time_practice && data.calories_burned ? 1 : 0)
             };
             return await prisma.dashboard.update({
                 where: {
@@ -62,6 +65,7 @@ const updateDashboard = async (user, data) => {
                 userId: user.userId,
                 weight: user.weight,
                 level: user.level,
+                exercise_complete: data.time_practice && data.calories_burned ? 1 : 0,
                 ...data,
             };
             return await prisma.dashboard.create({
