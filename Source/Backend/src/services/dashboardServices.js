@@ -12,17 +12,19 @@ const getDashboard = async (userId) => {
                     equals: day
                 }
             },
-            select : {
-                time_practice : true,
-                time_sleep : true,
-                calories_burned : true
+            select: {
+                time_practice: true,
+                time_sleep: true,
+                calories_burned: true,
+                exercise_complete: true
             }
         });
-        if(!dashboard) {
+        if (!dashboard) {
             return {
-                time_practice : 0,
-                time_sleep : 0,
-                calories_burned : 0,
+                time_practice: 0,
+                time_sleep: 0,
+                calories_burned: 0,
+                exercise_complete: 0
             }
         }
         return dashboard;

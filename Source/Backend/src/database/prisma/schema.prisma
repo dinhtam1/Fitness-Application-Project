@@ -106,17 +106,18 @@ model Exercise {
 }
 
 model Dashboard {
-  dashboardId     Int       @id @default(autoincrement()) @db.UnsignedInt
-  userId          Int       @db.UnsignedInt
-  time_sleep      Int       @default(0)
-  calories_burned Float     @default(0)
-  calories_loaded Float     @default(0)
-  time_practice   Int       @default(0)
-  weight          Float?
-  level           Level?
-  day             DateTime? @default(now())
-  user            User      @relation(fields: [userId], references: [userId])
-  create_at       DateTime  @default(now())
+  dashboardId       Int       @id @default(autoincrement()) @db.UnsignedInt
+  userId            Int       @db.UnsignedInt
+  time_sleep        Int       @default(0)
+  calories_burned   Float     @default(0)
+  calories_loaded   Float     @default(0)
+  time_practice     Int       @default(0)
+  weight            Float?
+  level             Level?
+  exercise_complete Int       @default(0)
+  day               DateTime? @default(now())
+  user              User      @relation(fields: [userId], references: [userId])
+  create_at         DateTime  @default(now())
 }
 
 model Meal {
