@@ -50,7 +50,8 @@ const updateDashboard = async (user, data) => {
                 time_practice: existingDashboard.time_practice + data.time_practice,
                 time_sleep: data.time_sleep,
                 weight: user.weight,
-                level: user.level
+                level: user.level,
+                exercise_complete: existingDashboard.exercise_complete + (data.time_practice && data.calories_burned ? 1 : 0)
             };
             return await prisma.dashboard.update({
                 where: {
@@ -64,6 +65,7 @@ const updateDashboard = async (user, data) => {
                 userId: user.userId,
                 weight: user.weight,
                 level: user.level,
+                exercise_complete: data.time_practice && data.calories_burned ? 1 : 0,
                 ...data,
             };
             return await prisma.dashboard.create({
