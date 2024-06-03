@@ -66,6 +66,7 @@ const ENOUGH_CALORIES = "You've had enough calories for today";
 const GET_DETAIL_MEAL_SUCCESSFUL = "Get detail meal successfully";
 const GET_CALORIE_STATISTICS_SUCCESFUL = "Get calorie statistics successfully";
 const CALORIE_STATISTICS_NOT_FOUND = "Calorie statistics not found";
+const GET_NUTRITION_SUCCESSFUL = "Get nutrition successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -134,5 +135,6 @@ module.exports = {
     ENOUGH_CALORIES,
     GET_DETAIL_MEAL_SUCCESSFUL,
     GET_CALORIE_STATISTICS_SUCCESFUL,
-    CALORIE_STATISTICS_NOT_FOUND
+    CALORIE_STATISTICS_NOT_FOUND,
+    GET_NUTRITION_SUCCESSFUL
 };
