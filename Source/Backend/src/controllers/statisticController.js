@@ -11,16 +11,17 @@ moment.updateLocale('en', {
 const PERIOD = {
     WEEK: 'week',
     MONTH: 'month',
-    DAY : 'day'
+    DAY: 'day'
 }
 const PERIOD_TYPE = {
     WEEK: 'isoweek',
     MONTH: 'month',
-    DAY : 'DD/MM/YYYY'
+    DAY: 'DD/MM/YYYY'
 }
 
 const getCalorieStatistics = async (req, res) => {
     const requestType = Type.GET_CALORIE_STATISTICS;
+    var data = null;
     try {
         let startDate, endDate;
         let returnDayNames = false;
@@ -40,7 +41,7 @@ const getCalorieStatistics = async (req, res) => {
             endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
             returnDayNames = true;
         }
-        const data = await analysisServices.getCalorieStatistics(req.user.userId, startDate, endDate, returnDayNames);
+        data = await analysisServices.getCalorieStatistics(req.user.userId, startDate, endDate, returnDayNames);
         if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
@@ -65,7 +66,55 @@ const getCalorieStatistics = async (req, res) => {
     }
 };
 
+const getGenderStatisticsUser = async (req, res) => {
+    const requestType = Type.GET_GENDER_STATISTICS_USER;
+    var data = null;
+    try {
+        let startDate, endDate;
+        let returnDayNames = false;
+        const { period, start, end } = req.query;
+        if (period === PERIOD.WEEK) {
+            startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            returnDayNames = true;
+        } else if (period === PERIOD.MONTH) {
+            startDate = moment().startOf(PERIOD_TYPE.MONTH).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.MONTH).toDate();
+        } else if (start && end) {
+            startDate = moment(start, PERIOD_TYPE.DAY).toDate();
+            endDate = moment(end, PERIOD_TYPE.DAY).toDate();
+        } else {
+            startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            returnDayNames = true;
+        }
+        data = await analysisServices.getGenderStatisticsUser(startDate, endDate);
+        console.log(data)
+        if (!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.GET_GENDER_STATISTICS_USER_NOT_FOUND,
+                data,
+                requestType
+            });
+        } else {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.SUCCESS,
+                message: appString.GET_GENDER_STATISTICS_USER_SUCCESFUL,
+                data,
+                requestType
+            })
+        }
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.FAIL,
+            message: appString.INTERNAL_SERVER_ERROR,
+            requestType
+        });
+    }
+}
 
 module.exports = {
-    getCalorieStatistics
+    getCalorieStatistics,
+    getGenderStatisticsUser
 };

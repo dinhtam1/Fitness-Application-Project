@@ -67,6 +67,9 @@ const GET_DETAIL_MEAL_SUCCESSFUL = "Get detail meal successfully";
 const GET_CALORIE_STATISTICS_SUCCESFUL = "Get calorie statistics successfully";
 const CALORIE_STATISTICS_NOT_FOUND = "Calorie statistics not found";
 const GET_NUTRITION_SUCCESSFUL = "Get nutrition successfully";
+const USER_PERMISSION_DENIED = "User does not have permissions";
+const GET_GENDER_STATISTICS_USER_NOT_FOUND = "Get gender statistics user not found";
+const GET_GENDER_STATISTICS_USER_SUCCESFUL = "Get gender statistics user successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -136,5 +139,8 @@ module.exports = {
     GET_DETAIL_MEAL_SUCCESSFUL,
     GET_CALORIE_STATISTICS_SUCCESFUL,
     CALORIE_STATISTICS_NOT_FOUND,
-    GET_NUTRITION_SUCCESSFUL
+    GET_NUTRITION_SUCCESSFUL,
+    USER_PERMISSION_DENIED,
+    GET_GENDER_STATISTICS_USER_NOT_FOUND,
+    GET_GENDER_STATISTICS_USER_SUCCESFUL
 };
