@@ -204,9 +204,8 @@ const getNutritionbyImage = async (image) => {
                 mealId : true,
             }
         })
-        return meal = await getDetailMeal(mealId.mealId);
+        return mealId.mealId;
     } catch (error) {
-        console.error(error);
         return false;
     }
 };
