@@ -7,6 +7,7 @@ const TIME_MEAL = {
     LUNCH: 'lunch',
     DINNER: 'dinner'
 }
+const URL = 'https://88be-203-205-52-29.ngrok-free.app/predict'
 const getMeal = async (userId, time_meal, page, limit, return_random) => {
     try {
         limit = parseInt(limit) || parseInt(process.env.LIMIT_GET_MEAL);
@@ -191,11 +192,10 @@ const getNutritionbyImage = async (image) => {
     try {
         // Convert image to base64
         const imageBase64 = Buffer.from(image.buffer).toString('base64');
-
-        const response = await axios.post('http://127.0.0.1:5000/predict', {
+        const response = await axios.post(URL, {
             image_path: imageBase64
         });
-        const food = response.data.class;
+        const food = response.data;
         const mealId = await prisma.meal.findFirst({
             where : {
                 meal_name : food
@@ -206,6 +206,7 @@ const getNutritionbyImage = async (image) => {
         })
         return mealId.mealId;
     } catch (error) {
+        console.log(error)
         return false;
     }
 };
