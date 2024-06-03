@@ -56,6 +56,52 @@ const getCalorieStatistics = async (userId, start_time, end_time, returnDayNames
     }
 }
 
+const getGenderStatisticsUser = async (start_time, end_time) => {
+    try {
+        start_time = new Date(start_time);
+        end_time = new Date(end_time);
+        start_time.setUTCHours(0, 0, 0, 0);
+        end_time.setUTCHours(23, 59, 59, 999);
+
+        const statistics = await prisma.user.findMany({
+            where: {
+                create_at: {
+                    gte: start_time,
+                    lte: end_time
+                }
+            }
+        });
+
+
+        let maleCount = 0;
+        let femaleCount = 0;
+        let otherCount = 0;
+
+        for (let user of statistics) {
+            switch (user.gender) {
+                case 'male':
+                    maleCount++;
+                    break;
+                case 'female':
+                    femaleCount++;
+                    break;
+                default:
+                    otherCount++;
+                    break;
+            }
+        }
+        return {
+            male: maleCount,
+            female: femaleCount,
+            other: otherCount
+        };
+    } catch (error) {
+        console.log(error)
+        return false;
+    }
+}
+
 module.exports = {
-    getCalorieStatistics
+    getCalorieStatistics,
+    getGenderStatisticsUser
 }
