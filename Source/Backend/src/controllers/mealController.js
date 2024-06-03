@@ -65,7 +65,37 @@ const getDetailMeal = async (req, res) => {
     }
 }
 
+const getNutrition = async (req, res) => {
+    var data = null;
+    var requestType = Type.GET_NUTRITION;
+    try {
+        const mealImage = req.file;
+        data = await mealServices.getNutritionbyImage(mealImage);
+        if (!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.MEAL_NOT_FOUND,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.GET_NUTRITION_SUCCESSFUL,
+            data,
+            requestType
+        });
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+
+}
+
 module.exports = {
     getDetailMeal,
-    getMeal
+    getMeal,
+    getNutrition
 };

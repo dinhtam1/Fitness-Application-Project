@@ -1,6 +1,7 @@
 const { prisma } = require("../config/prismaDatabase");
 const mealHelper = require('../helpers/mealHelper.js');
 const mealCache = {};
+const axios = require('axios');
 const TIME_MEAL = {
     BREAKFAST: 'breakfast',
     LUNCH: 'lunch',
@@ -186,7 +187,32 @@ const getDetailMeal = async (mealId) => {
     }
 }
 
+const getNutritionbyImage = async (image) => {
+    try {
+        // Convert image to base64
+        const imageBase64 = Buffer.from(image.buffer).toString('base64');
+
+        const response = await axios.post('http://127.0.0.1:5000/predict', {
+            image_path: imageBase64
+        });
+        const food = response.data.class;
+        const mealId = await prisma.meal.findFirst({
+            where : {
+                meal_name : food
+            },
+            select : {
+                mealId : true,
+            }
+        })
+        return meal = await getDetailMeal(mealId.mealId);
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
+
 module.exports = {
     getMeal,
-    getDetailMeal
+    getDetailMeal,
+    getNutritionbyImage
 }
