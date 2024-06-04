@@ -5,6 +5,7 @@ import {meal1} from '../../../assets';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import {colors} from '../../../constants/colors';
 import {useNavigation} from '@react-navigation/native';
+import {convertToString} from '../../../utils/helper';
 
 const MealPlan = ({data, ...props}) => {
   const navigation = useNavigation();
@@ -53,7 +54,7 @@ const MealPlan = ({data, ...props}) => {
             style={styles.image}
           />
           <TextComponent
-            text={item.meal_name}
+            text={convertToString(item.meal_name)}
             size={14}
             font={fontFamilies['semibold']}
             styles={{marginTop: 10, marginBottom: 5}}

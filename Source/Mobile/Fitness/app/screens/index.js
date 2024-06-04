@@ -28,6 +28,8 @@ import GenderScreen from './steps/genderScreen';
 import MealPlanScreen from './meal/mealPlanScreen';
 import EditProfileScreen from './profile/editProfileScreen';
 import CameraScreen from './camera/cameraScreen';
+import SleepScreen from './sleep/sleepScreen';
+import ProgressScreen from './dashboard/progressScreen';
 
 export {
   SignInScreen,
@@ -60,4 +62,6 @@ export {
   MealPlanScreen,
   EditProfileScreen,
   CameraScreen,
+  SleepScreen,
+  ProgressScreen,
 };

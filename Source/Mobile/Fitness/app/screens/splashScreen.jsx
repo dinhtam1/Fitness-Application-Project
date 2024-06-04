@@ -47,7 +47,7 @@ const SplashScreen = () => {
           backgroundColor: colors['title'],
         }}
         handlePress={() => {
-          navigation.navigate('Introduce');
+          navigation.navigate('Introduction');
         }}
       />
     </View>

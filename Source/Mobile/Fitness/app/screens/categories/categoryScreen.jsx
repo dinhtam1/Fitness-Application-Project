@@ -15,12 +15,14 @@ import {colors} from '../../constants/colors';
 import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {useCategoriesStore} from '../../store/useAuthStore';
+import {useNavigation} from '@react-navigation/native';
 
 const CategoryScreen = () => {
   const {categories} = useCategoriesStore();
+  const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <BackComponent title={'CATEGORIES'} nav={'Home'} />
+      <BackComponent black back title={'CATEGORIES'} nav={'Main'} />
       <ScrollView style={{marginBottom: 40}}>
         <View style={{paddingHorizontal: 20}}>
           <FormField
@@ -36,7 +38,13 @@ const CategoryScreen = () => {
               justifyContent: 'space-around',
             }}>
             {categories.map((item, index) => (
-              <TouchableOpacity style={{marginBottom: 20}}>
+              <TouchableOpacity
+                style={{marginBottom: 20}}
+                onPress={() =>
+                  navigation.navigate('FullExercise', {
+                    category: item.equipmentName,
+                  })
+                }>
                 <Image src={item.image} style={styles.image} />
                 <TextComponent
                   size={14}

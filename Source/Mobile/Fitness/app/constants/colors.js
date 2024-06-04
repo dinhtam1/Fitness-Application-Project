@@ -11,6 +11,7 @@ export const colors = {
   'border-2': 'rgba(105, 105, 105, 0.05)',
   'border-3': 'rgba(105, 105, 105, 0.15)',
   'border-4': 'rgba(105, 105, 105, 0.1)',
+  'background-clock': 'rgba(233, 230, 230, 1)',
   'fill-red': '#FF4C5E',
   'background-white': '#FFFFFF',
   'icon-blur': '#AFB4B8',

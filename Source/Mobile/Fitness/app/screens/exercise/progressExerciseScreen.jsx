@@ -58,16 +58,7 @@ const ProgressExerciseScreen = ({route}) => {
   };
 
   const handleResult = () => {
-    const fetchData = async () => {
-      const response = await apiUpdateDashboard(user.userId, token, {
-        time_practice: exercise.duration,
-        calories_burned: exercise.caloriesBurned,
-      });
-      if (response.statusCode === 200) {
-        navigation.navigate('Result', {exercise: exercise});
-      }
-    };
-    fetchData();
+    navigation.navigate('Result', {exercise: exercise});
   };
   return (
     <ScrollView>

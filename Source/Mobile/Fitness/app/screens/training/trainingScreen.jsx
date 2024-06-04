@@ -54,7 +54,7 @@ const dataGoal = [
 const TrainingScreen = () => {
   return (
     <SafeAreaView>
-      <BackComponent title={'TRAINING'} filter />
+      <BackComponent black back title={'TRAINING'} filter nav={'Main'} />
       <ScrollView style={{paddingHorizontal: 20}}>
         <HorizontalComponent data={dataLevel} />
         <VerticalComponent padleft={20} full title={'Popular Training'} />

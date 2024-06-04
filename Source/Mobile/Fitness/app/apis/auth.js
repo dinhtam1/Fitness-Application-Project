@@ -26,3 +26,13 @@ export const apiVerifyOTP = async data =>
     method: 'post',
     data,
   });
+
+export const apiLogout = async (userId, token) =>
+  axios({
+    url: '/v1/api/auth/log-out',
+    method: 'post',
+    headers: {
+      Authorization: token,
+      'x-client-id': userId,
+    },
+  });

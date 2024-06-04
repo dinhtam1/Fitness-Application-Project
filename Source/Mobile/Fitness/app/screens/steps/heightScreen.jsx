@@ -30,7 +30,7 @@ const HeightScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent skip nav={'GoalWeight'} />
+        <BackComponent back black skip nav={'GoalWeight'} />
         <View style={common.contain}>
           <TextComponent
             text={step['step-6']}

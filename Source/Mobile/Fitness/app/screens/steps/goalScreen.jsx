@@ -63,7 +63,7 @@ const GoalScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent skip nav={'Level'} />
+        <BackComponent back black skip nav={'Level'} />
         <View
           style={[
             common.contain,

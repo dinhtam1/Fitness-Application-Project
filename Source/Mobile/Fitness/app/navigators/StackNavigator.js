@@ -35,8 +35,12 @@ import {
   ProfileScreen,
   EditProfileScreen,
   NotificationScreen,
+  DashboardScreen,
+  TrainingScreen,
+  SettingScreen,
 } from '../screens';
 import {colors} from '../constants/colors';
+import DrawerNavigator from './DrawerNavigator';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -46,8 +50,8 @@ const StackNavigator = () => {
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {borderTopWidth: 0, padding: 10, height: 60},
-          tabBarActiveTintColor: 'black', // This line changes the active text color to black
-          tabBarInactiveTintColor: colors['color-bottom-tab'], // This line changes the inactive text color to color-bottom-tab
+          tabBarActiveTintColor: 'black',
+          tabBarInactiveTintColor: colors['color-bottom-tab'],
         }}>
         <Tab.Screen
           name="HomeScreen"
@@ -155,142 +159,156 @@ const StackNavigator = () => {
     );
   }
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Splash"
-          component={SplashScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Introduce"
-          component={IntroduceScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUpScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Start"
-          component={StartScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Weight"
-          component={WeightScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Old"
-          component={OldScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Gender"
-          component={GenderScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Height"
-          component={HeightScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Goal"
-          component={GoalScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Level"
-          component={LevelScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="GoalWeight"
-          component={GoalWeightScreen}
-          options={{headerShown: false}}
-        />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Splash"
+        component={SplashScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Introduce"
+        component={IntroduceScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUpScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Start"
+        component={StartScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Weight"
+        component={WeightScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Old"
+        component={OldScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Gender"
+        component={GenderScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Height"
+        component={HeightScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Goal"
+        component={GoalScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Level"
+        component={LevelScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="GoalWeight"
+        component={GoalWeightScreen}
+        options={{headerShown: false}}
+      />
 
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="ForgotPassword"
-          component={ForgotScreen}
-          options={{headerShown: false}}
-        />
+      <Stack.Screen
+        name="SignIn"
+        component={SignInScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotScreen}
+        options={{headerShown: false}}
+      />
 
-        <Stack.Screen
-          name="Verify"
-          component={VerifyScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="FullExercise"
-          component={FullExerciseScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Category"
-          component={CategoryScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="ChangePassword"
-          component={ChangePassword}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Home"
-          component={BottomTabs}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="DetailExercise"
-          component={DetailExerciseScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="DetailMeal"
-          component={DetailMealScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Progress"
-          component={ProgressExerciseScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Result"
-          component={ResultScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="ProfileUser"
-          component={ProfileScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="EditProfile"
-          component={EditProfileScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="MealPlan"
-          component={MealPlanScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Notification"
-          component={NotificationScreen}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Stack.Screen
+        name="Verify"
+        component={VerifyScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="FullExercise"
+        component={FullExerciseScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Category"
+        component={CategoryScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePassword}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Home"
+        component={BottomTabs}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailExercise"
+        component={DetailExerciseScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailMeal"
+        component={DetailMealScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Progress"
+        component={ProgressExerciseScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Result"
+        component={ResultScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ProfileUser"
+        component={ProfileScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfileScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="MealPlan"
+        component={MealPlanScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Notification"
+        component={NotificationScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Dashboard"
+        component={DashboardScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Training"
+        component={TrainingScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="Main" component={DrawerNavigator} />
+    </Stack.Navigator>
   );
 };
 

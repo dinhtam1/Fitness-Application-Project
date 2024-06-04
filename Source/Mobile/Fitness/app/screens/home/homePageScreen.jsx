@@ -1,7 +1,7 @@
 import {View, TouchableWithoutFeedback, Keyboard, Animated} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {globalStyles} from '../../styles/globalStyles';
-import Header from './components/header';
+import HeaderFull from './components/headerFull';
 
 import Banner from './components/banner';
 import VerticalComponent from '../../components/common/verticalComponent';
@@ -17,21 +17,8 @@ import Goal from './components/goal';
 import {titleHome} from '../../constants/text';
 import {apiMeal} from '../../apis/meal';
 import MealPlan from './components/mealPlan';
-
-const dataMeal = [
-  {
-    id: 1,
-    text: 'Greek salad with lettuce, green onion',
-    calo: 150,
-    image: meal1,
-  },
-  {
-    id: 2,
-    text: 'Greek salad with lettuce, green onion',
-    calo: 150,
-    image: meal2,
-  },
-];
+import moment from 'moment';
+import Header from './components/header';
 
 const HomePageScreen = () => {
   const {user} = useUserStore();
@@ -42,7 +29,7 @@ const HomePageScreen = () => {
   const scrollY = new Animated.Value(0);
 
   useEffect(() => {
-    const fetchData = async token => {
+    const fetchData = async () => {
       const response = await apiCategory(user.userId, token);
       const meal = await apiMeal(user.userId, token, {
         limit: 2,
@@ -52,13 +39,12 @@ const HomePageScreen = () => {
         setMeals(meal.data.meals);
       }
     };
-    if (token) {
-      fetchData(token);
-    }
+    fetchData();
   }, [token]);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Animated.ScrollView
+        showsVerticalScrollIndicator={false}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollY}}}],
           {useNativeDriver: true},
@@ -71,10 +57,21 @@ const HomePageScreen = () => {
                 outputRange: [1, 0],
               }),
             }}>
+            <HeaderFull background />
+          </Animated.View>
+          <Animated.View
+            style={{
+              opacity: scrollY.interpolate({
+                inputRange: [0, 150],
+                outputRange: [0, 1],
+              }),
+            }}>
             <Header background />
           </Animated.View>
-          <Animated.View style={{paddingLeft: 40, paddingRight: 20}}>
-            <Banner />
+          <Animated.View style={{paddingHorizontal: 20}}>
+            <View style={{paddingLeft: 20}}>
+              <Banner />
+            </View>
             <Category
               all
               title={titleHome['title-2']}
@@ -82,15 +79,15 @@ const HomePageScreen = () => {
               data={categories}
               nav={'Category'}
             />
-            <VerticalComponent
+            {/* <VerticalComponent
               all
               full
               title={'Popular Exercise'}
               unit={'min'}
               nav={'FullExercise'}
-            />
+            /> */}
             <MealPlan data={meals} />
-            <VerticalComponent title={'Additional Exercise'} unit={'kcal'} />
+            {/* <VerticalComponent title={'Additional Exercise'} unit={'kcal'} /> */}
           </Animated.View>
         </View>
       </Animated.ScrollView>

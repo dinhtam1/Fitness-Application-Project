@@ -1,8 +1,8 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import TabNavigator from './TabNavigator';
+import DrawerCustom from '../components/common/drawerCustom';
+import TabNavigation from './TabNavigation';
 const DrawerNavigator = () => {
   const Drawer = createDrawerNavigator();
-
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -10,7 +10,7 @@ const DrawerNavigator = () => {
         drawerPosition: 'left',
       }}
       drawerContent={props => <DrawerCustom {...props} />}>
-      <Drawer.Screen name="TabNavigator" component={TabNavigator} />
+      <Drawer.Screen name="TabNavigator" component={TabNavigation} />
     </Drawer.Navigator>
   );
 };

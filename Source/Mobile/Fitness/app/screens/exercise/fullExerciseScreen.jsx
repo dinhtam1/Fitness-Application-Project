@@ -42,7 +42,7 @@ const FullExerciseScreen = ({route}) => {
 
   return (
     <SafeAreaView>
-      <BackComponent title={'FULL EXERCISE'} nav={'Home'} />
+      <BackComponent black back title={'FULL EXERCISE'} nav={'Home'} />
       <View style={{paddingHorizontal: 20, height: '100%'}}>
         <View style={styles.container}>
           <Dropdown

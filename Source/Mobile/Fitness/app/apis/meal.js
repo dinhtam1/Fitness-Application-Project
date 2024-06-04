@@ -20,3 +20,17 @@ export const apiDetailMeal = (userId, token, mealId) =>
       'x-client-id': userId,
     },
   });
+
+export const apiNutrition = (userId, token, data) => {
+  return axios({
+    url: '/v1/api/meal/nutrition',
+    method: 'post',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: token,
+      'x-client-id': userId,
+      Accept: 'multipart/form-data',
+    },
+  });
+};

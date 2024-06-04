@@ -7,7 +7,8 @@ import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 
 const BackComponent = props => {
-  const {skip, nav, filter, title, edit} = props;
+  const {skip, nav, filter, title, edit, back, param, data, black, size} =
+    props;
   const navigation = useNavigation();
   return (
     <View
@@ -15,7 +16,7 @@ const BackComponent = props => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingTop: 10,
+        paddingVertical: 5,
         paddingHorizontal: 20,
       }}>
       <View
@@ -24,9 +25,20 @@ const BackComponent = props => {
           zIndex: 10,
           backgroundColor: 'transparent',
         }}>
-        <TouchableOpacity onPress={() => navigation.navigate(nav)}>
-          <AntDesign name="left" size={22} color="black" />
-        </TouchableOpacity>
+        {back ? (
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(nav, param ? {param: data} : {})
+            }>
+            <AntDesign
+              name="left"
+              size={size ? size : 22}
+              color={black ? 'black' : 'white'}
+            />
+          </TouchableOpacity>
+        ) : (
+          <></>
+        )}
       </View>
       <TextComponent
         text={title}
@@ -46,8 +58,7 @@ const BackComponent = props => {
       ) : filter ? (
         <AntDesign name="filter" size={24} color="black" />
       ) : edit ? (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('EditProfile')}>
+        <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
           <AntDesign name="edit" size={24} color="black" />
         </TouchableOpacity>
       ) : (

@@ -12,15 +12,15 @@ import {colors} from '../../constants/colors';
 const data = [
   {
     id: 1,
-    meal_name: 'Breakfast',
+    meal_time: 'Breakfast',
   },
   {
     id: 2,
-    meal_name: 'Lunch',
+    meal_time: 'Lunch',
   },
   {
     id: 3,
-    meal_name: 'Dinner',
+    meal_time: 'Dinner',
   },
 ];
 
@@ -30,25 +30,28 @@ const MealPlanScreen = () => {
   const [mealData, setMealData] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [activeId, setActiveId] = useState(null);
+  const [time, setTime] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await apiMeal(user.userId, token);
+      const response = await apiMeal(user.userId, token, {time_meal: time});
+      console.log(response.data.meals);
       if (response.statusCode === 200) {
         setMealData(response.data.meals);
         setQuantity(response.data.mealCount);
       }
     };
     fetchData();
-  }, []);
+  }, [time]);
 
-  const handlePress = id => {
+  const handlePress = (id, time) => {
+    setTime(time.toLowerCase());
     setActiveId(id);
   };
 
   return (
     <SafeAreaView style={{flex: 1, marginBottom: 100}}>
-      <BackComponent title={'MEAL PLAN'} nav={'Home'} filter />
+      <BackComponent black back title={'MEAL PLAN'} nav={'Home'} filter />
       <View
         style={{
           flexDirection: 'row',
@@ -60,8 +63,8 @@ const MealPlanScreen = () => {
         {data.map((item, index) => (
           <View key={item.id}>
             <CustomButton
-              handlePress={() => handlePress(item.id)}
-              title={item.meal_name}
+              handlePress={() => handlePress(item.id, item.meal_time)}
+              title={item.meal_time}
               containerStyles={
                 activeId === item.id ? styles.button_active : styles.button
               }

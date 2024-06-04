@@ -52,7 +52,7 @@ export default function ForgotScreen() {
   };
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent nav={'SignIn'} />
+      <BackComponent black back nav={'SignIn'} />
       <ScrollView>
         <View style={common.contain}>
           <View>

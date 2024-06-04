@@ -16,15 +16,17 @@ import {colors} from '../../constants/colors';
 import {Feather} from '@expo/vector-icons';
 import {AntDesign} from '@expo/vector-icons';
 import {FontAwesome} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 
 const SettingScreen = () => {
   const [isOn, setIsOn] = useState(false);
+  const navigation = useNavigation();
 
   const onColor = colors['primary-color'];
   const offColor = colors['toggle'];
   return (
     <SafeAreaView>
-      <BackComponent title={'APP SETTING'} />
+      <BackComponent black back title={'APP SETTING'} nav={'Main'} />
       <View style={{paddingHorizontal: 20, marginTop: 40}}>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
           <View style={{width: 30, alignItems: 'center'}}>
@@ -42,7 +44,9 @@ const SettingScreen = () => {
           />
         </View>
         <BorderComponent color={colors['border']} margin={15} />
-        <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
+        <TouchableOpacity
+          onPress={navigation.navigate('ChangePassword')}
+          style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
           <View style={{width: 30, alignItems: 'center'}}>
             <Feather name="lock" size={26} color="black" />
           </View>
@@ -52,7 +56,7 @@ const SettingScreen = () => {
             font={fontFamilies['medium']}
             color={colors['title']}
           />
-        </View>
+        </TouchableOpacity>
         <BorderComponent color={colors['border']} margin={15} />
         <View
           style={{

@@ -1,32 +1,10 @@
 import {useCallback, useState} from 'react';
-import StackNavigator from './app/navigators/StackNavigator';
 import {useFonts} from 'expo-font';
 import * as splashScreen from 'expo-splash-screen';
 import Toast from 'react-native-toast-message';
 import {NavigationContainer} from '@react-navigation/native';
+
 import AppRoutes from './app/navigators/AppRoutes';
-import {
-  CameraScreen,
-  CategoryScreen,
-  ChangePassword,
-  DashboardScreen,
-  DetailExerciseScreen,
-  DetailMealScreen,
-  FullExerciseScreen,
-  GenderScreen,
-  HomePageSceen,
-  MealPlanScreen,
-  NotificationScreen,
-  ProfileScreen,
-  ProgressExerciseScreen,
-  ResultScreen,
-  SettingScreen,
-  SignInScreen,
-  SignUpScreen,
-  TrainingScreen,
-  VerifyScreen,
-} from './app/screens';
-// splashScreen.preventAutoHideAsync();
 
 export default function App() {
   let [fontsLoaded, fontError] = useFonts({
@@ -52,11 +30,9 @@ export default function App() {
 
   return (
     <>
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <AppRoutes />
-      </NavigationContainer> */}
-      <StackNavigator />
-      {/* <CameraScreen /> */}
+      </NavigationContainer>
       <Toast />
     </>
   );

@@ -23,7 +23,7 @@ const OldScreen = () => {
   };
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent skip nav={'SignUp'} />
+      <BackComponent back black skip nav={'SignUp'} />
       <View
         style={[
           common.contain,

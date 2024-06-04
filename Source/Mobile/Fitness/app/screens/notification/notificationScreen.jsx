@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   Image,
   SafeAreaView,
   ScrollView,
@@ -16,8 +17,8 @@ import SpaceComponent from '../../components/common/spaceComponent';
 const NotificationScreen = () => {
   return (
     <SafeAreaView>
-      <BackComponent title={'NOTIFICATIONS'} nav={'Home'} />
-      <ScrollView style={{marginTop: 40, paddingHorizontal: 20}}>
+      <BackComponent black back title={'NOTIFICATIONS'} nav={'Main'} />
+      <ScrollView style={{paddingHorizontal: 20, height: '100%'}}>
         <View style={{flexDirection: 'row', gap: 30}}>
           <Image source={meal2} resizeMode="cover" style={styles.image} />
           <View>

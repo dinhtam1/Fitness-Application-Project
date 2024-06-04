@@ -31,7 +31,7 @@ const Banner = () => {
         size={15}
         font={fontFamilies['semibold']}
         align={'center'}
-        styles={{width: 200, right: 10, top: 40, position: 'absolute'}}
+        styles={{width: 190, right: 10, top: 40, position: 'absolute'}}
         space={-0.5}
       />
       <CustomButton
@@ -40,7 +40,7 @@ const Banner = () => {
         }
         title={'Start Exercise'}
         containerStyles={styles.button}
-        textStyles={{fontSize: 14}}
+        textStyles={{fontSize: 14, fontFamily: fontFamilies['medium']}}
       />
       <Image source={banner2} style={styles.gym} resizeMode="contain" />
     </View>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: 250,
     width: 170,
-    transform: [{translateY: -37}],
+    transform: [{translateY: -8}],
   },
   button: {
     minHeight: 40,
@@ -80,6 +80,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: 80,
     width: 80,
-    transform: [{translateY: 125}, {translateX: 180}],
+    transform: [{translateY: 150}, {translateX: 180}],
   },
 });

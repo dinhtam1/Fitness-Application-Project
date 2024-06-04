@@ -54,7 +54,6 @@ export default function SignInScreen() {
       Toast.show(
         toastConfig({textMain: response.message, visibilityTime: 2000}),
       );
-      navigation.navigate('Home');
     } else {
       Toast.show(
         toastConfig({

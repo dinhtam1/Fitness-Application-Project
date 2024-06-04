@@ -28,7 +28,7 @@ const GoalWeightScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent skip nav={'Weight'} />
+        <BackComponent back black skip nav={'Weight'} />
         <View style={common.contain}>
           <TextComponent
             text={step['step-5']}

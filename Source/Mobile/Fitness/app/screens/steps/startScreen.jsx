@@ -16,7 +16,7 @@ const StartScreen = () => {
   const image = require('../../assets/images/start.png');
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent nav={'Goal'} />
+      <BackComponent back black nav={'Goal'} />
       <SpaceComponent height={20} />
       <View
         style={[

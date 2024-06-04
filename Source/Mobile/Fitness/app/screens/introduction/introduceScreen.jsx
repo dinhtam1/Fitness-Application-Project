@@ -4,10 +4,12 @@ import {splash2, splash3, splash4} from '../../assets';
 import {title} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import PaginationComponent from '../../components/common/carouselComponent';
+import {useAuthStore} from '../../store/useAuthStore';
 
 const {width, height} = Dimensions.get('window');
 
 const IntroduceScreen = () => {
+  const {setIsShowSplash} = useAuthStore();
   const navigation = useNavigation();
   const flatlistRef = useRef();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -35,7 +37,7 @@ const IntroduceScreen = () => {
     const index = scrollPosition / width;
 
     if (scrollPosition > 2.2 * width) {
-      navigation.navigate('SignIn');
+      setIsShowSplash(false);
     }
 
     setActiveIndex(index);
@@ -44,7 +46,7 @@ const IntroduceScreen = () => {
   const handlePress = () => {
     let nextIndex = activeIndex + 1;
     if (activeIndex === 2) {
-      navigation.navigate('SignIn');
+      setIsShowSplash(false);
     } else {
       flatlistRef.current.scrollToIndex({index: nextIndex, animated: true});
       setActiveIndex(nextIndex);

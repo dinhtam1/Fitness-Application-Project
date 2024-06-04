@@ -8,10 +8,9 @@ import {useUserStore} from '../../store/useAuthStore';
 
 const ProfileScreen = () => {
   const {user} = useUserStore();
-  console.log(user);
   return (
     <SafeAreaView>
-      <BackComponent title={'PROFILE'} edit nav={'Home'} />
+      <BackComponent title={'PROFILE'} edit nav={'Main'} />
       <View style={{paddingHorizontal: 20}}>
         <View style={{marginTop: 10, alignItems: 'center'}}>
           <Image source={meal1} resizeMethod="contain" style={styles.image} />
@@ -103,7 +102,7 @@ const ProfileScreen = () => {
               />
               <TextComponent text={'Grams per day'} size={14} />
             </View>
-            <View style={{alignItems: 'left'}}>
+            <View style={{alignItems: 'center'}}>
               <Image source={meal2} resizeMode="cover" style={styles.image2} />
               <TextComponent
                 text={'Protein'}

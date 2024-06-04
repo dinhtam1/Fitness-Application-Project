@@ -50,10 +50,10 @@ const EditProfileScreen = () => {
   const onSubmit = async data => {};
   return (
     <SafeAreaView>
-      <BackComponent title={'EDIT PROFILE'} nav={'Home'} />
+      <BackComponent black back title={'EDIT PROFILE'} nav={'ProfileUser'} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{paddingHorizontal: 20, marginTop: 20, marginBottom: 40}}>
+        style={{paddingHorizontal: 20, marginBottom: 40}}>
         <TouchableOpacity
           style={{justifyContent: 'center', alignItems: 'center'}}>
           <Image source={exercise1} resizeMode="cover" style={styles.image} />
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
   icon: {
     position: 'absolute',
     bottom: 40,
-    right: 170,
+    right: 160,
   },
   container: {
     backgroundColor: 'transparent',

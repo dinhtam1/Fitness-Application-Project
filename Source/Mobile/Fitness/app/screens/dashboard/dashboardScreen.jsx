@@ -9,13 +9,11 @@ import {
 import React, {useEffect, useState} from 'react';
 import BackComponent from '../../components/header/backComponent';
 
-import TextComponent from '../../components/text/textComponent';
-import {colors} from '../../constants/colors';
-import {fontFamilies} from '../../constants/fontFamilies';
 import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import {apiDashboard} from '../../apis/dashboard';
 
 import CircleValue from './component/circleValue';
+import {getTimeToString} from '../../utils/helper';
 
 const DashboardScreen = () => {
   const [dashboard, setDashboard] = useState({});
@@ -31,25 +29,27 @@ const DashboardScreen = () => {
     };
     fetchData();
   }, []);
+
+  console.log('dashboard', dashboard);
   return (
     <SafeAreaView>
-      {/* <BackComponent title={'DASHBOARD'} nav={'Home'} /> */}
+      <BackComponent black back title={'DASHBOARD'} nav={'Main'} />
       <ScrollView>
         <View
           style={{
             paddingHorizontal: 20,
-            marginTop: 60,
+            marginTop: 40,
             flexDirection: 'row',
             flexWrap: 'wrap',
             gap: 30,
           }}>
           <CircleValue
-            data={dashboard.time_practice}
+            data={getTimeToString(dashboard.time_practice)}
             unit={'Hours'}
             title={'Practice'}
           />
           <CircleValue
-            data={dashboard.time_sleep}
+            data={getTimeToString(dashboard.time_sleep)}
             unit={'Hours'}
             title={'Sleep'}
           />
@@ -59,8 +59,12 @@ const DashboardScreen = () => {
             unit={'Kcal'}
             title={'Calories'}
           />
-          <CircleValue data={dashboard.height} unit={'Cm'} title={'Height'} />
-          <CircleValue data={dashboard.level} title={'Level'} />
+          <CircleValue data={dashboard.height} unit={'CM'} title={'Height'} />
+          <CircleValue
+            data={dashboard.exercise_complete}
+            title={'Workout'}
+            exercise
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

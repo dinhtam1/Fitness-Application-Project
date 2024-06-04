@@ -6,15 +6,36 @@ import {fontFamilies} from '../../constants/fontFamilies';
 import {colors} from '../../constants/colors';
 import CustomButton from '../../components/button/buttonComponent';
 import moment from 'moment';
-import {useUserStore} from '../../store/useAuthStore';
+import {useAuthStore, useUserStore} from '../../store/useAuthStore';
+import {apiUpdateDashboard} from '../../apis/dashboard';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../utils/toast';
+import {useNavigation} from '@react-navigation/native';
 
 const ResultScreen = ({route}) => {
+  const navigation = useNavigation();
   const {exercise} = route.params;
   const {user} = useUserStore();
-  console.log('exercise', exercise);
+  const {token} = useAuthStore();
+
+  const handlePress = async () => {
+    const response = await apiUpdateDashboard(user.userId, token, {
+      time_practice: exercise.duration,
+      calories_burned: exercise.caloriesBurned,
+    });
+    if (response?.statusCode === 200) {
+      Toast.show(
+        toastConfig({
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
+      );
+      navigation.navigate('Home');
+    }
+  };
   return (
     <SafeAreaView>
-      <BackComponent title={'RESULT'} />
+      <BackComponent black back title={'RESULT'} />
       <View style={{paddingHorizontal: 20, marginTop: 20}}>
         <TextComponent
           text={'Workout'}
@@ -142,7 +163,11 @@ const ResultScreen = ({route}) => {
             />
           </View>
         </View>
-        <CustomButton title={'SAVE'} containerStyles={{marginTop: 20}} />
+        <CustomButton
+          handlePress={handlePress}
+          title={'SAVE'}
+          containerStyles={{marginTop: 20}}
+        />
       </View>
     </SafeAreaView>
   );

@@ -54,7 +54,7 @@ const ChangePassword = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView>
-        <BackComponent nav={'ForgotPassword'} />
+        <BackComponent black back nav={'ForgotPassword'} />
         <View style={common.contain}>
           <View>
             <TextComponent

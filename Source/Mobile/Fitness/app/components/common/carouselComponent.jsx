@@ -5,11 +5,13 @@ import CustomButton from '../button/buttonComponent';
 import {colors} from '../../constants/colors';
 import {useNavigation} from '@react-navigation/native';
 import TextComponent from '../text/textComponent';
+import {useAuthStore} from '../../store/useAuthStore';
 
 const {width, height} = Dimensions.get('window');
 
 const PaginationComponent = props => {
   const navigation = useNavigation();
+  const {setIsShowSplash} = useAuthStore();
 
   const {data, flatlistRef, handlePress, handleScroll, activeIndex} = props;
   const renderItem = ({item, index}) => {
@@ -84,7 +86,7 @@ const PaginationComponent = props => {
           width: '100%',
         }}>
         <CustomButton
-          handlePress={() => navigation.navigate('SignIn')}
+          handlePress={() => setIsShowSplash(false)}
           title="SKIP"
           containerStyles={{backgroundColor: 'transparent'}}
           textStyles={{

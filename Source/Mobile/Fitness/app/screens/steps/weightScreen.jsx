@@ -28,7 +28,7 @@ const WeightScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent skip nav={'Old'} />
+        <BackComponent back black skip nav={'Old'} />
         <View style={common.contain}>
           <TextComponent
             text={step['step-4']}

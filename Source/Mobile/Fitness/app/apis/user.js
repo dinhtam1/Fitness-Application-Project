@@ -17,3 +17,13 @@ export const apiUpdateProfile = (data, userId, token) =>
       'x-client-id': userId,
     },
   });
+
+export const apiGetMe = (userId, token) =>
+  axios({
+    url: '/v1/api/user/me',
+    method: 'get',
+    headers: {
+      Authorization: token,
+      'x-client-id': userId,
+    },
+  });

@@ -105,7 +105,7 @@ const VerifyScreen = ({route}) => {
   }, [countdown]);
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent nav={'ForgotPassword'} />
+      <BackComponent back black nav={'ForgotPassword'} />
       <ScrollView>
         <View style={common.contain}>
           <View>
