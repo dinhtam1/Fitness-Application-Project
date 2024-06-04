@@ -26,10 +26,7 @@ const BackComponent = props => {
           backgroundColor: 'transparent',
         }}>
         {back ? (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate(nav, param ? {param: data} : {})
-            }>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <AntDesign
               name="left"
               size={size ? size : 22}

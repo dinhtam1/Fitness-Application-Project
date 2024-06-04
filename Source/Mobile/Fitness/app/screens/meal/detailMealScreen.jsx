@@ -36,7 +36,6 @@ const DetailMealScreen = ({route}) => {
   const [mealId, setMealId] = useState(initialMealId);
   useEffect(() => {
     const fetchData = async () => {
-      console.log(mealId);
       const response = await apiDetailMeal(user.userId, token, mealId);
       const response1 = await apiMeal(user.userId, token, {
         return_random: true,
@@ -55,7 +54,7 @@ const DetailMealScreen = ({route}) => {
   };
   return (
     <SafeAreaView>
-      <BackComponent black back title={meal.meal_name} nav={'MealPlan'} />
+      <BackComponent black back title={meal.meal_name} nav={'Meal'} />
       <ScrollView style={{backgroundColor: 'white'}}>
         <ImageBackground
           src={meal.meal_image}

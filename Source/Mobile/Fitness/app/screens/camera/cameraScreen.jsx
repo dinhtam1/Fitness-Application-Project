@@ -76,6 +76,7 @@ const CameraScreen = () => {
       const response = await apiNutrition(user.userId, token, formData);
       if (response.statusCode === 200) {
         setIsLoading(false);
+        setImage(null);
         navigation.navigate('DetailMeal', {mealId: response.data});
       } else {
         Toast.show(

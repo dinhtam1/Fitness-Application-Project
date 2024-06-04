@@ -59,7 +59,7 @@ const HomePageScreen = () => {
             }}>
             <HeaderFull background />
           </Animated.View>
-          <Animated.View
+          {/* <Animated.View
             style={{
               opacity: scrollY.interpolate({
                 inputRange: [0, 150],
@@ -67,7 +67,7 @@ const HomePageScreen = () => {
               }),
             }}>
             <Header background />
-          </Animated.View>
+          </Animated.View> */}
           <Animated.View style={{paddingHorizontal: 20}}>
             <View style={{paddingLeft: 20}}>
               <Banner />

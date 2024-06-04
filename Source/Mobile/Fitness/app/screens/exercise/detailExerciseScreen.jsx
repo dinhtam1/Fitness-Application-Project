@@ -48,7 +48,7 @@ const DetailExerciseScreen = ({route}) => {
   return (
     <SafeAreaView>
       <BackComponent
-      black
+        black
         back
         title={exercise.name}
         nav={'FullExercise'}
