@@ -371,7 +371,7 @@ const forgotPassword = async (req, res, next) => {
             });
         }
         return res.status(statusCode.SUCCESS).json({
-            statusCode: statusCode.FAIL,
+            statusCode: statusCode.SUCCESS,
             message: appString.FORGOT_PASSWORD_SUCCESSFUL,
             data,
             requestType

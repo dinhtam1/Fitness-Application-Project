@@ -11,33 +11,81 @@ const admin = require('firebase-admin');
 // });
 
 
-const getDashboard = async (userId) => {
+const getDashboard = async (userId, start, end) => {
     try {
-        const today = new Date();
-        const day = new Date(today.toISOString().split('T')[0] + 'T00:00:00Z');
-        const dashboard = await prisma.dashboard.findFirst({
-            where: {
-                userId: userId,
-                day: {
-                    equals: day
+
+        if (!start && !end) {
+            const today = new Date();
+            const day = new Date(today.toISOString().split('T')[0] + 'T00:00:00Z');
+            const dashboard = await prisma.dashboard.findFirst({
+                where: {
+                    userId: userId,
+                    day: {
+                        equals: day
+                    }
+                },
+                select: {
+                    time_practice: true,
+                    time_sleep: true,
+                    calories_burned: true,
+                    exercise_complete: true
                 }
-            },
-            select: {
-                time_practice: true,
-                time_sleep: true,
-                calories_burned: true,
-                exercise_complete: true
+            });
+            if (!dashboard) {
+                return {
+                    time_practice: 0,
+                    time_sleep: 0,
+                    calories_burned: 0,
+                    exercise_complete: 0
+                }
             }
-        });
-        if (!dashboard) {
-            return {
+            return dashboard;
+        }
+        else {
+            start = new Date(start);
+            end = new Date(end);
+            start.setUTCHours(0, 0, 0, 0);
+            end.setUTCHours(23, 59, 59, 999);
+            const dashboards = await prisma.dashboard.findMany({
+                where: {
+                    userId: userId,
+                    day: {
+                        gte: new Date(start),
+                        lte: new Date(end)
+                    }
+                },
+                select: {
+                    time_practice: true,
+                    time_sleep: true,
+                    calories_burned: true,
+                    exercise_complete: true
+                }
+            });
+            if (!dashboards || dashboards.length === 0) {
+                return {
+                    time_practice: 0,
+                    time_sleep: 0,
+                    calories_burned: 0,
+                    exercise_complete: 0
+                }
+            }
+    
+            const total = dashboards.reduce((acc, dashboard) => {
+                return {
+                    time_practice: acc.time_practice + dashboard.time_practice,
+                    time_sleep: acc.time_sleep + dashboard.time_sleep,
+                    calories_burned: acc.calories_burned + dashboard.calories_burned,
+                    exercise_complete: acc.exercise_complete + dashboard.exercise_complete
+                };
+            }, {
                 time_practice: 0,
                 time_sleep: 0,
                 calories_burned: 0,
                 exercise_complete: 0
-            }
+            });
+    
+            return total;
         }
-        return dashboard;
     } catch (error) {
         return false;
     }
@@ -115,7 +163,6 @@ async function updateDashboard(user, data) {
             });
         }
     } catch (error) {
-        console.error(error);
         return false;
     }
 }

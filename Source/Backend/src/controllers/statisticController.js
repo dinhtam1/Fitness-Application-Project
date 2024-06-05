@@ -85,10 +85,8 @@ const getGenderStatisticsUser = async (req, res) => {
         } else {
             startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
             endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
-            returnDayNames = true;
         }
         data = await statisticServices.getGenderStatisticsUser(startDate, endDate);
-        console.log(data)
         if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
@@ -122,7 +120,6 @@ const getAgeStatisticsUser = async (req, res) => {
         if (period === PERIOD.WEEK) {
             startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
             endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
-            returnDayNames = true;
         } else if (period === PERIOD.MONTH) {
             startDate = moment().startOf(PERIOD_TYPE.MONTH).toDate();
             endDate = moment().endOf(PERIOD_TYPE.MONTH).toDate();
@@ -132,7 +129,6 @@ const getAgeStatisticsUser = async (req, res) => {
         } else {
             startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
             endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
-            returnDayNames = true;
         }
         data = await statisticServices.getAgeStatisticsUser(startDate, endDate);
         if (!data) {
