@@ -56,13 +56,16 @@ async function updateDashboard(user, data) {
         if (existingDashboard && existingDashboard.day.toISOString().split('T')[0] === data.day.toISOString().split('T')[0]) {
             const updatedDashboard = {
                 ...existingDashboard,
-                calories_burned: existingDashboard.calories_burned + data.calories_burned,
-                time_practice: existingDashboard.time_practice + data.time_practice,
-                time_sleep: data.time_sleep,
+                calories_burned: data.calories_burned !== undefined ? existingDashboard.calories_burned + data.calories_burned : existingDashboard.calories_burned,
+                time_practice: data.time_practice !== undefined ? existingDashboard.time_practice + data.time_practice : existingDashboard.time_practice,
+                time_sleep: data.time_sleep !== undefined ? data.time_sleep : existingDashboard.time_sleep,
+                calories_loaded: data.calories_loaded !== undefined ? existingDashboard.calories_loaded + data.calories_loaded : existingDashboard.calories_loaded,
                 weight: user.weight,
                 level: user.level,
                 exercise_complete: existingDashboard.exercise_complete + (data.time_practice && data.calories_burned ? 1 : 0)
             };
+            delete updatedDashboard.dashboardId;
+            delete updatedDashboard.userId
             const result = await prisma.dashboard.update({
                 where: {
                     userId: user.userId,
