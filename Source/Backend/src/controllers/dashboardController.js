@@ -39,7 +39,7 @@ const updateDashboard = async (req, res) => {
     const requestType = Type.UPDATE_DASHBOARD
     var data = null;
     try {
-        const updatedDashboard = await dashboardServices.updateDashboard(req.user, req.updateDashboard)
+        const updatedDashboard = await dashboardServices.updateDashboard(req.user, req.body)
         if(!updatedDashboard) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
