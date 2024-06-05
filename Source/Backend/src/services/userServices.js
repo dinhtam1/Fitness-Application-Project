@@ -188,13 +188,12 @@ const updateUser = async (userId, data, avatarImage) => {
             await uploadBytes(storageRef, blob);
             data.avatar_url = await getDownloadURL(storageRef);
         }
-        await prisma.user.update({
+        return await prisma.user.update({
             where: {
                 userId: userId
             },
             data: data
         });
-        return true;
     } catch (error) {
         return false;
     }

@@ -115,7 +115,7 @@ const createUserValidation = (req, res, next) => {
 const userUpdateValidation = (req, res, next) => {
     try {
         if (req.body.weight) req.body.weight = parseInt(req.body.weight);
-        if (req.body.height); req.body.height = parseInt(req.body.height);
+        if (req.body.height) req.body.height = parseInt(req.body.height);
         if (req.body.age) req.body.age = parseInt(req.body.age)
         const { error, value } = userUpdateSchema.validate(req.body);
         if (error) {
