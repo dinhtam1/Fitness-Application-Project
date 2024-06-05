@@ -101,7 +101,57 @@ const getGenderStatisticsUser = async (start_time, end_time) => {
     }
 }
 
+const getAgeStatisticsUser = async (start_time, end_time) => {
+    try {
+        start_time = new Date(start_time);
+        end_time = new Date(end_time);
+        start_time.setUTCHours(0, 0, 0, 0);
+        end_time.setUTCHours(23, 59, 59, 999);
+        const statistics = await prisma.user.findMany({
+            where: {
+                create_at: {
+                    gte: start_time,
+                    lte: end_time
+                }
+            },
+            select: {
+                age: true
+            }
+        });
+        const ageGroups = {
+            'Unknown': 0,
+            '0-18': 0,
+            '19-30': 0,
+            '31-50': 0,
+            '51-70': 0,
+            '71+': 0
+        };
+        
+        statistics.forEach(user => {
+            const age = user.age;
+            if (age === null) {
+                ageGroups['Unknown']++;
+            } else if (age >= 0 && age <= 18) {
+                ageGroups['0-18']++;
+            } else if (age >= 19 && age <= 30) {
+                ageGroups['19-30']++;
+            } else if (age >= 31 && age <= 50) {
+                ageGroups['31-50']++;
+            } else if (age >= 51 && age <= 70) {
+                ageGroups['51-70']++;
+            } else if (age >= 71) {
+                ageGroups['71+']++;
+            }
+        });
+        
+        return ageGroups;
+    } catch (error) {
+        return false;
+    }
+}
+
 module.exports = {
     getCalorieStatistics,
-    getGenderStatisticsUser
+    getGenderStatisticsUser,
+    getAgeStatisticsUser
 }
