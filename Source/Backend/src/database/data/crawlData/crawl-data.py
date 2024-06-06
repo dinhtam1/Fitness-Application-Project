@@ -16,6 +16,8 @@ folder_names = [name for name in os.listdir(directory) if os.path.isdir(os.path.
 
 foods_with_images = []
 
+default_url = "https://firebasestorage.googleapis.com/v0/b/fitness-application-proj-6e3c9.appspot.com/o/meal%2Fdefault_meal.jpg?alt=media&token=aa0db095-170c-4dfe-bd03-e33d17c1edf7"
+
 for food in folder_names:
     url = url_template.format(food)
 
@@ -27,9 +29,11 @@ for food in folder_names:
     image = soup.find('li', class_='photo-published') 
     if image:
         image_url = image.find('img')['src']
-        print("Food image link:", image_url)
-        food_dict = {'Food': food, 'Food_image': image_url}
-        foods_with_images.append(food_dict)
+    else:
+        image_url = default_url
+    print("Food image link:", image_url)
+    food_dict = {'Food': food, 'Food_image': image_url}
+    foods_with_images.append(food_dict)
 
 # Write the data to a CSV file
 with open('food.csv', 'w', newline='') as csvfile:

@@ -58,7 +58,7 @@ for index, row in df.iterrows():
         rows_to_drop.append(index)
 
 # Drop the rows without data
-df = df.drop(rows_to_drop)
+# df = df.drop(rows_to_drop)
 
 # Write the updated DataFrame back to the CSV file
 df.to_csv(file_path, index=False)
