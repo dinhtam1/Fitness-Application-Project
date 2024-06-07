@@ -1,4 +1,5 @@
 const { prisma } = require('../config/prismaDatabase.js');
+const { getNamebyUrl } = require('../helpers/exerciseHelper.js');
 const { initializeApp } = require("firebase/app");
 const { getStorage, ref, uploadBytes, getDownloadURL } = require("firebase/storage");
 const fs = require('fs');
@@ -8,12 +9,12 @@ const firebaseConfig = require('../config/firebase.js');
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 const TYPE = {
-    PNG : 'image/png',
-    AVT : 'cover-exercise'
+    PNG: 'image/png',
+    AVT: 'cover-exercise'
 }
 const createExerciseList = async (userId, list_name, image) => {
     try {
-        const exerciseList =  await prisma.exerciseList.create({
+        const exerciseList = await prisma.exerciseList.create({
             data: {
                 userId: userId,
                 list_name: list_name
@@ -64,8 +65,51 @@ const addExerciseToList = async (exerciseId, exerciseListId) => {
     }
 }
 
+const getExerciseInList = async (userId, exerciseListId) => {
+    try {
+        const exercise = await prisma.exerciseList.findMany({
+            where: {
+                userId: userId,
+                exerciseListId
+            },
+            select: {
+                exercises: {
+                    select: {
+                        exercise: {
+                            select: {
+                                exerciseId: true,
+                                image: true
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        if(exercise[0].exercises.length == 0) return false;
+        const exerciseWithNames = exercise.map(exerciseList => {
+            return {
+                ...exerciseList,
+                exercises: exerciseList.exercises.map(exerciseOnList => {
+                    return {
+                        ...exerciseOnList,
+                        exercise: {
+                            ...exerciseOnList.exercise,
+                            name: getNamebyUrl(exerciseOnList.exercise.image)
+                        }
+                    }
+                })
+            }
+        });
+        const transformedData = exerciseWithNames.map(item => item.exercises.map(exerciseItem => exerciseItem.exercise)).flat();
+        return transformedData
+    } catch (error) {
+        return false;
+    }
+}
+
 
 module.exports = {
     createExerciseList,
-    addExerciseToList
+    addExerciseToList,
+    getExerciseInList
 }

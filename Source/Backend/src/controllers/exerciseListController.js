@@ -33,7 +33,7 @@ const createExerciseList = async (req, res) => {
 
 const addExerciseToList = async (req, res) => {
     var data = null;
-    var requestType = Type.GET_MEAL;
+    var requestType = Type.ADD_EXERCISE_TO_LIST;
     try {
         data = await exerciseListServices.addExerciseToList(req.body.exerciseId, req.body.exerciseListId);
         if (!data) {
@@ -59,9 +59,37 @@ const addExerciseToList = async (req, res) => {
     }
 }
 
+const getExerciseInList = async (req, res) => {
+    var data = null;
+    var requestType = Type.GET_EXERCISE_IN_LIST;
+    try {
+        data = await exerciseListServices.getExerciseInList(req.user.userId, parseInt(req.params.id));
+        if (!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.EXERCISE_LIST_NOT_FOUND,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.GET_EXERCISE_IN_LIST_SUCCESSFUL,
+            data,
+            requestType
+        });
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+}
+
 
 
 module.exports = {
     createExerciseList,
-    addExerciseToList
+    addExerciseToList,
+    getExerciseInList
 };

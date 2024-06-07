@@ -75,6 +75,8 @@ const CREATE_EXERCISE_LIST_FAIL = "Create exercise list fail";
 const CREATE_EXERCISE_LIST_SUCCESFUL = "Create exercise list successfully";
 const THE_EXERCISE_ALREADY_EXISTS_IN_THE_LIST = "The exercise already exists in the list or adding failed";
 const ADD_EXERCISE_TO_LIST_SUCCESSFUL = "Add exercise to list successfully";
+const EXERCISE_LIST_NOT_FOUND = "Exercise list not found";
+const GET_EXERCISE_IN_LIST_SUCCESSFUL = "Get exercise in list successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -152,5 +154,7 @@ module.exports = {
     CREATE_EXERCISE_LIST_FAIL,
     CREATE_EXERCISE_LIST_SUCCESFUL,
     THE_EXERCISE_ALREADY_EXISTS_IN_THE_LIST,
-    ADD_EXERCISE_TO_LIST_SUCCESSFUL
+    ADD_EXERCISE_TO_LIST_SUCCESSFUL,
+    EXERCISE_LIST_NOT_FOUND,
+    GET_EXERCISE_IN_LIST_SUCCESSFUL
 };
