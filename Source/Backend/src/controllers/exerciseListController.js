@@ -31,8 +31,37 @@ const createExerciseList = async (req, res) => {
     }
 }
 
+const addExerciseToList = async (req, res) => {
+    var data = null;
+    var requestType = Type.GET_MEAL;
+    try {
+        data = await exerciseListServices.addExerciseToList(req.body.exerciseId, req.body.exerciseListId);
+        if (!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.THE_EXERCISE_ALREADY_EXISTS_IN_THE_LIST,
+                data,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.ADD_EXERCISE_TO_LIST_SUCCESSFUL,
+            data,
+            requestType
+        });
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+}
+
 
 
 module.exports = {
-    createExerciseList
+    createExerciseList,
+    addExerciseToList
 };
