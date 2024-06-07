@@ -4,6 +4,7 @@ const adminRouter = require('./admin');
 const exerciseRouter = require('./exercise');
 const statisticRouter = require('./statistic');
 const dashboardRouter = require('./dashboard');
+const exerciseListRouter = require('./exerciseList');
 const mealRouter = require('./meal');
 
 function route(app) {
@@ -14,6 +15,7 @@ app.use('/v1/api/user', userRouter);
 app.use('/v1/api/exercise', exerciseRouter);
 app.use('/v1/api/meal', mealRouter);
 app.use('/v1/api/statistic', statisticRouter);
+app.use('/v1/api/exercise-list', exerciseListRouter);
 app.use('/v1/api/dashboard', dashboardRouter);
 
 }

@@ -12,7 +12,7 @@ const upload = multer({
     },
 });
 mealRouter.get('/', authMiddleware.verifyToken, mealController.getMeal)
-mealRouter.get('/nutrition', authMiddleware.verifyToken, upload.single('food'), mealController.getNutrition)
+mealRouter.post('/nutrition', authMiddleware.verifyToken, upload.single('food'), mealController.getNutrition)
 mealRouter.get('/:id', authMiddleware.verifyToken, mealController.getDetailMeal)
 
 module.exports = mealRouter;
