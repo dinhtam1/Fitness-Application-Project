@@ -14,27 +14,28 @@ datasource db {
 }
 
 model User {
-  userId        Int         @id @default(autoincrement()) @db.UnsignedInt
-  full_name     String      @db.VarChar(100)
-  phone_number  String      @db.Char(10)
-  email         String      @unique @db.VarChar(100)
-  password      String      @db.Char(128)
+  userId        Int            @id @default(autoincrement()) @db.UnsignedInt
+  full_name     String         @db.VarChar(100)
+  phone_number  String         @db.Char(10)
+  email         String         @unique @db.VarChar(100)
+  password      String         @db.Char(128)
   age           Int?
   gender        Gender?
-  weight        Float?      @default(0)
-  goal_weight   Float?      @default(0)
-  height        Float?      @default(0)
+  weight        Float?         @default(0)
+  goal_weight   Float?         @default(0)
+  height        Float?         @default(0)
   level         Level?
   goal          Goal?
   calories      Float?
   avatar_url    String?
-  create_at     DateTime    @default(now())
-  role          Role        @default(USER)
-  OTP           String?     @db.Char(4)
+  create_at     DateTime       @default(now())
+  role          Role           @default(USER)
+  OTP           String?        @db.Char(4)
   otp_expiry_at DateTime?
-  is_verified   Boolean     @default(false)
+  is_verified   Boolean        @default(false)
   keyStore      KeyStore[]
   dashboards    Dashboard[]
+  ExerciseList  ExerciseList[]
 }
 
 enum Gender {
@@ -88,21 +89,44 @@ model equipment {
 }
 
 model Exercise {
-  exerciseId     Int           @id @default(autoincrement()) @db.UnsignedInt
+  exerciseId     Int              @id @default(autoincrement()) @db.UnsignedInt
   musclesId      Int
-  musclesName    String        @db.VarChar(100)
+  musclesName    String           @db.VarChar(100)
   equipmentId    Int
   gender         Gender
   ordering       String
   equipmentName  String
   duration       Int
   caloriesBurned Int
-  image          String        @db.Text
-  video_center   String        @db.Text
-  video_side     String        @db.Text
-  create_at      DateTime      @default(now())
-  muscle_group   muscle_groups @relation(fields: [musclesId], references: [musclesId])
-  equipment      equipment     @relation(fields: [equipmentId], references: [equipmentId])
+  image          String           @db.Text
+  video_center   String           @db.Text
+  video_side     String           @db.Text
+  create_at      DateTime         @default(now())
+  muscle_group   muscle_groups    @relation(fields: [musclesId], references: [musclesId])
+  equipment      equipment        @relation(fields: [equipmentId], references: [equipmentId])
+  ExerciseLists  ExerciseList[] // Đổi tên từ ExerciseList sang ExerciseLists để thể hiện quan hệ một đến nhiều
+  ExerciseOnList ExerciseOnList[]
+}
+
+model ExerciseList {
+  exerciseListId Int              @id @default(autoincrement()) @db.UnsignedInt
+  exerciseId     Int?             @db.UnsignedInt
+  userId         Int              @db.UnsignedInt
+  list_name       String
+  cover_image    String           @default("https://firebasestorage.googleapis.com/v0/b/fitness-application-proj-6e3c9.appspot.com/o/exercise%2Fdefault_exercise.jpg?alt=media&token=4025b47b-bd81-4f08-a20c-4c90aa3c8a04")
+  create_at      DateTime         @default(now())
+  user           User             @relation(fields: [userId], references: [userId])
+  exercises      ExerciseOnList[]
+  Exercise       Exercise?        @relation(fields: [exerciseId], references: [exerciseId])
+}
+
+model ExerciseOnList {
+  exerciseId     Int          @db.UnsignedInt
+  exerciseListId Int          @db.UnsignedInt
+  exercise       Exercise     @relation(fields: [exerciseId], references: [exerciseId])
+  exerciseList   ExerciseList @relation(fields: [exerciseListId], references: [exerciseListId])
+
+  @@id([exerciseId, exerciseListId])
 }
 
 model Dashboard {

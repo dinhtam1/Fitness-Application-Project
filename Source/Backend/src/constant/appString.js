@@ -71,6 +71,8 @@ const USER_PERMISSION_DENIED = "User does not have permissions";
 const GET_GENDER_STATISTICS_USER_NOT_FOUND = "Get gender statistics user not found";
 const GET_GENDER_STATISTICS_USER_SUCCESFUL = "Get gender statistics user successfully";
 const GET_AGE_STATISTICS_USER_NOT_FOUND = "Get age statistics user not found"
+const CREATE_EXERCISE_LIST_FAIL = "Create exercise list fail";
+const CREATE_EXERCISE_LIST_SUCCESFUL = "Create exercise list successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -144,5 +146,7 @@ module.exports = {
     USER_PERMISSION_DENIED,
     GET_GENDER_STATISTICS_USER_NOT_FOUND,
     GET_GENDER_STATISTICS_USER_SUCCESFUL,
-    GET_AGE_STATISTICS_USER_NOT_FOUND
+    GET_AGE_STATISTICS_USER_NOT_FOUND,
+    CREATE_EXERCISE_LIST_FAIL,
+    CREATE_EXERCISE_LIST_SUCCESFUL
 };
