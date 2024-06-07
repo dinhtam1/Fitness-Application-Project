@@ -12,5 +12,5 @@ const upload = multer({
     },
 });
 exerciseListRouter.post('/create-list', authMiddleware.verifyToken,upload.single('cover-exercise'),exerciseListValidation.exerciseListCreateValidation, exerciseListController.createExerciseList)
-
+exerciseListRouter.post('/add-list', authMiddleware.verifyToken,exerciseListValidation.exerciseListAddValidation, exerciseListController.addExerciseToList)
 module.exports = exerciseListRouter;
