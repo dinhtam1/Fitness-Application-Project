@@ -40,7 +40,32 @@ const createExerciseList = async (userId, list_name, image) => {
     }
 }
 
+const addExerciseToList = async (exerciseId, exerciseListId) => {
+    try {
+        const exerciseList = await prisma.exerciseOnList.findFirst({
+            where: {
+                exerciseListId: exerciseListId,
+                exerciseId: exerciseId
+            }
+        })
+        if (exerciseList) {
+            return false
+        } else {
+            return await prisma.exerciseOnList.create({
+                data: {
+                    exerciseId: exerciseId,
+                    exerciseListId: exerciseListId
+                }
+            });
+        }
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
 
 module.exports = {
-    createExerciseList
+    createExerciseList,
+    addExerciseToList
 }

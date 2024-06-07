@@ -59,7 +59,7 @@ const DASHBOARD_NOT_FOUND = "Dashboard not found";
 const GET_DASHBOARD_SUCCESSFUL = "Get dashboard successfully";
 const GET_RESULT_EXERCISE_SUCCESSFUL = "Get result successfully";
 const MUSCLE_NOT_FOUND = "Muscle not found";
-const GET_MUSCLE_NAME_SUCCESSFUL =  "Get muscle name successfully";
+const GET_MUSCLE_NAME_SUCCESSFUL = "Get muscle name successfully";
 const MEAL_NOT_FOUND = "Meal not found";
 const GET_MEAL_SUCCESSFUL = "Get meal successfully";
 const ENOUGH_CALORIES = "You've had enough calories for today";
@@ -73,6 +73,8 @@ const GET_GENDER_STATISTICS_USER_SUCCESFUL = "Get gender statistics user success
 const GET_AGE_STATISTICS_USER_NOT_FOUND = "Get age statistics user not found"
 const CREATE_EXERCISE_LIST_FAIL = "Create exercise list fail";
 const CREATE_EXERCISE_LIST_SUCCESFUL = "Create exercise list successfully";
+const THE_EXERCISE_ALREADY_EXISTS_IN_THE_LIST = "The exercise already exists in the list or adding failed";
+const ADD_EXERCISE_TO_LIST_SUCCESSFUL = "Add exercise to list successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -148,5 +150,7 @@ module.exports = {
     GET_GENDER_STATISTICS_USER_SUCCESFUL,
     GET_AGE_STATISTICS_USER_NOT_FOUND,
     CREATE_EXERCISE_LIST_FAIL,
-    CREATE_EXERCISE_LIST_SUCCESFUL
+    CREATE_EXERCISE_LIST_SUCCESFUL,
+    THE_EXERCISE_ALREADY_EXISTS_IN_THE_LIST,
+    ADD_EXERCISE_TO_LIST_SUCCESSFUL
 };
