@@ -107,9 +107,27 @@ const getExerciseInList = async (userId, exerciseListId) => {
     }
 }
 
+const getExerciseList = async (userId) => {
+    try {
+        return await prisma.exerciseList.findMany({
+            where: {
+                userId: userId
+            },
+            select : {
+                exerciseListId : true,
+                list_name : true,
+                cover_image : true
+            }
+        });
+    } catch (error) {
+        return false;
+    }
+
+}
 
 module.exports = {
     createExerciseList,
     addExerciseToList,
-    getExerciseInList
+    getExerciseInList,
+    getExerciseList
 }
