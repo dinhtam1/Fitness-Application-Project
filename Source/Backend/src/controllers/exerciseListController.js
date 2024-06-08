@@ -67,7 +67,7 @@ const getExerciseInList = async (req, res) => {
         if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
-                message: appString.EXERCISE_LIST_NOT_FOUND,
+                message: appString.EXERCISE_IN_LIST_NOT_FOUND,
                 requestType
             });
         }
@@ -86,10 +86,38 @@ const getExerciseInList = async (req, res) => {
     }
 }
 
+const getExerciseList = async (req, res) => {
+    var data = null;
+    var requestType = Type.GET_EXERCISE_LIST;
+    try {
+        data = await exerciseListServices.getExerciseList(req.user.userId);
+        if (!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.EXERCISE_LIST_NOT_FOUND,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.GET_EXERCISE_LIST_SUCCESSFUL,
+            data,
+            requestType
+        });
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+
+}
 
 
 module.exports = {
     createExerciseList,
     addExerciseToList,
-    getExerciseInList
+    getExerciseInList,
+    getExerciseList
 };

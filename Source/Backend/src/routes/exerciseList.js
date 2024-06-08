@@ -11,7 +11,8 @@ const upload = multer({
         fileSize: LIMIT_FILE_SIZE,
     },
 });
-exerciseListRouter.post('/create-list', authMiddleware.verifyToken,upload.single('cover-exercise'),exerciseListValidation.exerciseListCreateValidation, exerciseListController.createExerciseList)
+exerciseListRouter.get('/', authMiddleware.verifyToken, exerciseListController.getExerciseList)
+exerciseListRouter.post('/', authMiddleware.verifyToken,upload.single('cover-exercise'),exerciseListValidation.exerciseListCreateValidation, exerciseListController.createExerciseList)
 exerciseListRouter.post('/add-list', authMiddleware.verifyToken,exerciseListValidation.exerciseListAddValidation, exerciseListController.addExerciseToList)
 exerciseListRouter.get('/:id', authMiddleware.verifyToken, exerciseListController.getExerciseInList)
 module.exports = exerciseListRouter;
