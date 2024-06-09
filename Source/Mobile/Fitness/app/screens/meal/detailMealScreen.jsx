@@ -24,11 +24,17 @@ import {
   useUserStore,
 } from '../../store/useAuthStore';
 import BackComponent from '../../components/header/backComponent';
+import {apiUpdateDashboard} from '../../apis/dashboard';
+import {useNavigation} from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../utils/toast';
+import {common} from '../../styles/commonStyles';
 
 const {width, height} = Dimensions.get('window');
 
 const DetailMealScreen = ({route}) => {
   const initialMealId = route?.params?.mealId;
+  const navigation = useNavigation();
   const {user} = useUserStore();
   const {token} = useAuthStore();
   const {setMeals} = useMealsStore();
@@ -52,8 +58,25 @@ const DetailMealScreen = ({route}) => {
   const handlePress = mealId => {
     setMealId(mealId);
   };
+
+  const handleEat = async () => {
+    const response = await apiUpdateDashboard(user.userId, token, {
+      calories_loaded: meal.calories,
+    });
+    if (response.statusCode === 200) {
+      Toast.show(
+        toastConfig({
+          type: 'success',
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
+      );
+      navigation.navigate('Main');
+    }
+  };
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: 'white'}}>
       <BackComponent black back title={meal.meal_name} nav={'Meal'} />
       <ScrollView style={{backgroundColor: 'white'}}>
         <ImageBackground
@@ -92,7 +115,7 @@ const DetailMealScreen = ({route}) => {
             />
           </View>
         </View>
-        <View style={{paddingHorizontal: 26, marginTop: 40}}>
+        <View style={{paddingHorizontal: 26, marginVertical: 40}}>
           <View
             style={{
               flexDirection: 'row',
@@ -161,6 +184,7 @@ const DetailMealScreen = ({route}) => {
           <View style={{marginTop: 40}}>
             <MealComponent handlePress={handlePress} />
           </View>
+          <CustomButton handlePress={handleEat} title={'Eat'} />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -32,7 +32,7 @@ import {toastConfig} from '../../utils/toast';
 const SignUpScreen = () => {
   const navigation = useNavigation();
   const {setToken} = useAuthStore();
-  const {setUser, user} = useUserStore();
+  const {setUser} = useUserStore();
   const {
     control,
     handleSubmit,
@@ -45,7 +45,11 @@ const SignUpScreen = () => {
       setToken(response.data.tokens.accessToken);
       setUser(response.data.user);
       Toast.show(
-        toastConfig({textMain: response.message, visibilityTime: 2000}),
+        toastConfig({
+          type: 'success',
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
       );
       navigation.navigate('Old');
     } else {
@@ -60,7 +64,7 @@ const SignUpScreen = () => {
   };
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent black back nav={'SignIn'} />
+      <BackComponent black back />
       <ScrollView>
         <View style={common.contain}>
           <View>

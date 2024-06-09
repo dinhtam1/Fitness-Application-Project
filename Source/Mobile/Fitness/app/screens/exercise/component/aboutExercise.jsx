@@ -14,6 +14,7 @@ import {colors} from '../../../constants/colors';
 import {SimpleLineIcons} from '@expo/vector-icons';
 import {EvilIcons} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
+import CustomButton from '../../../components/button/buttonComponent';
 
 const AboutExercise = ({data, ...props}) => {
   const navigation = useNavigation();
@@ -75,12 +76,20 @@ const AboutExercise = ({data, ...props}) => {
                   unit={'min'}
                 />
               </View>
-              <TextComponent
-                text={item.level}
-                font={fontFamilies['regular']}
-                color={colors['text']}
-                size={14}
-              />
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <TextComponent
+                  text={item.level}
+                  font={fontFamilies['regular']}
+                  color={colors['text']}
+                  size={14}
+                />
+                <CustomButton containerStyles={{width: 40, minHeight: 30}} />
+              </View>
             </View>
           </RowComponent>
         </TouchableOpacity>

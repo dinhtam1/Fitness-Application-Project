@@ -1,10 +1,14 @@
 import axios from '../config/axios';
 
-export const apiChangePassword = data =>
+export const apiChangePassword = (userId, token, data) =>
   axios({
     url: '/v1/api/auth/forgot-password',
     method: 'put',
     data,
+    headers: {
+      Authorization: token,
+      'x-client-id': userId,
+    },
   });
 
 export const apiUpdateProfile = (data, userId, token) =>

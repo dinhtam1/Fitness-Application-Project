@@ -29,7 +29,6 @@ const DetailExerciseScreen = ({route}) => {
   const {token} = useAuthStore();
   const [exercise, setExercise] = useState({});
   const {user} = useUserStore();
-  const [status, setStatus] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +45,7 @@ const DetailExerciseScreen = ({route}) => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: 'white'}}>
       <BackComponent
         black
         back
@@ -104,14 +103,15 @@ const DetailExerciseScreen = ({route}) => {
         <View style={{paddingHorizontal: 26, marginTop: 40}}>
           <View
             style={{
-              flexDirection: 'row',
-              gap: 30,
+              gap: 10,
             }}>
-            <View style={{alignItems: 'center'}}>
+            <View>
               <TextComponent
                 text={'Level'}
-                size={15}
+                size={18}
                 styles={{marginBottom: 5}}
+                font={fontFamilies['medium']}
+                color={colors['title']}
               />
               <View
                 style={{borderRadius: 10, backgroundColor: colors['border']}}>
@@ -121,11 +121,13 @@ const DetailExerciseScreen = ({route}) => {
                 />
               </View>
             </View>
-            <View style={{alignItems: 'center'}}>
+            <View>
               <TextComponent
                 text={'Category'}
-                size={15}
+                size={18}
                 styles={{marginBottom: 5}}
+                font={fontFamilies['medium']}
+                color={colors['title']}
               />
               <View
                 style={{borderRadius: 10, backgroundColor: colors['border']}}>
@@ -135,11 +137,13 @@ const DetailExerciseScreen = ({route}) => {
                 />
               </View>
             </View>
-            <View style={{alignItems: 'center'}}>
+            <View>
               <TextComponent
                 text={'Weight'}
-                size={15}
+                size={18}
                 styles={{marginBottom: 5}}
+                font={fontFamilies['medium']}
+                color={colors['title']}
               />
               <View
                 style={{borderRadius: 10, backgroundColor: colors['border']}}>
@@ -170,8 +174,8 @@ const DetailExerciseScreen = ({route}) => {
               source={{uri: exercise.video_side}}
               isLooping
               useNativeControls
-              onPlaybackStatusUpdate={setStatus}
               resizeMode="cover"
+              shouldPlay
             />
             <SpaceComponent height={20} />
             <Video
@@ -179,8 +183,8 @@ const DetailExerciseScreen = ({route}) => {
               source={{uri: exercise.video_center}}
               isLooping
               useNativeControls
-              onPlaybackStatusUpdate={setStatus}
               resizeMode="cover"
+              shouldPlay
             />
           </View>
           <CustomButton

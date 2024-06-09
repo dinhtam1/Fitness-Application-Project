@@ -25,8 +25,7 @@ const GoalScreen = () => {
   const navigation = useNavigation();
   const [selectedLevel, setSelectedLevel] = useState('');
   const {form, setForm, token} = useAuthStore();
-  const {user} = useUserStore();
-  console.log(form);
+  const {user, setUser} = useUserStore();
   const onSubmit = async () => {
     setForm({...form, goal: selectedLevel.toUpperCase()});
     const response = await apiUpdateProfile(
@@ -43,8 +42,8 @@ const GoalScreen = () => {
       token,
     );
     if (response?.statusCode === 200) {
+      setUser(response.data);
       navigation.navigate('Start');
-      Toast.show(toastConfig({textMain: 'Successfully', visibilityTime: 2000}));
     } else {
       Toast.show(
         toastConfig({
@@ -63,7 +62,7 @@ const GoalScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent back black skip nav={'Level'} />
+        <BackComponent back black />
         <View
           style={[
             common.contain,

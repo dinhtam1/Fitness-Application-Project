@@ -25,6 +25,7 @@ import {useNavigation} from '@react-navigation/native';
 import {apiUpdateDashboard} from '../../apis/dashboard';
 import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import BackComponent from '../../components/header/backComponent';
+import {common} from '../../styles/commonStyles';
 
 const {width, height} = Dimensions.get('window');
 
@@ -63,7 +64,7 @@ const ProgressExerciseScreen = ({route}) => {
     navigation.navigate('Result', {exercise: exercise});
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={common.safeAreaView}>
       <BackComponent
         black
         back
@@ -72,7 +73,7 @@ const ProgressExerciseScreen = ({route}) => {
         param={'category'}
         data={exercise.equipmentName}
       />
-      <ScrollView>
+      <ScrollView style={{marginBottom: -35}}>
         <ImageBackground
           src={exercise.image}
           style={{
@@ -162,13 +163,14 @@ const ProgressExerciseScreen = ({route}) => {
               </TouchableOpacity>
             )}
           </View>
-          <View style={{marginVertical: 40}}>
+          <View style={{marginVertical: 20}}>
             <Video
               style={styles.video}
               source={{uri: exercise.video_side}}
               isLooping
               useNativeControls
               resizeMode="cover"
+              shouldPlay
             />
             <SpaceComponent height={20} />
             <Video
@@ -177,12 +179,13 @@ const ProgressExerciseScreen = ({route}) => {
               isLooping
               useNativeControls
               resizeMode="cover"
+              shouldPlay
             />
           </View>
           <CustomButton
             handlePress={handleResult}
             title={'DONE'}
-            containerStyles={{marginBottom: 40}}
+            containerStyles={{marginBottom: 20}}
           />
         </View>
       </ScrollView>

@@ -29,7 +29,7 @@ const LevelScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent back black skip nav={'Height'} />
+        <BackComponent back black />
         <View
           style={[
             common.contain,

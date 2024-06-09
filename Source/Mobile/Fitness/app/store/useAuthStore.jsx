@@ -7,6 +7,7 @@ export const useAuthStore = create(
   persist(
     set => ({
       token: null,
+      isLogin: false,
       form: {
         weight: '',
         goal_weight: '',
@@ -19,6 +20,7 @@ export const useAuthStore = create(
       setIsShowSplash: status => set({isShowSplash: status}),
       setToken: token => set({token}),
       setForm: form => set({form}),
+      setIsLogin: status => set({isLogin: status}),
     }),
     {
       name: 'auth-storage',

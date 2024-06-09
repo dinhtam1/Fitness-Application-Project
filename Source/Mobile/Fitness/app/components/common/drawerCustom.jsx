@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {AntDesign} from '@expo/vector-icons';
-import {meal1} from '../../assets';
+import {FontAwesome} from '@expo/vector-icons';
 import TextComponent from '../text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {colors} from '../../constants/colors';
@@ -52,7 +52,7 @@ const data = [
   },
   {
     id: 7,
-    name: 'App Settings',
+    name: 'Settings',
     nav: 'Setting',
   },
 ];
@@ -79,7 +79,7 @@ const renderIcon = name => {
         <MaterialIcons name="notifications-none" size={24} color="black" />
       );
       break;
-    case 'App Settings':
+    case 'Settings':
       return <AntDesign name="setting" size={24} color="black" />;
       break;
   }
@@ -87,7 +87,7 @@ const renderIcon = name => {
 
 const DrawerCustom = () => {
   const navigation = useNavigation();
-  const {token, setToken} = useAuthStore();
+  const {token, setToken, setIsLogin, isLogin} = useAuthStore();
   const {user, setUser} = useUserStore();
 
   const handleLogOut = async () => {
@@ -95,6 +95,7 @@ const DrawerCustom = () => {
     if (response.statusCode === 200) {
       setUser(null);
       setToken('');
+      setIsLogin(false);
     }
   };
   return (
@@ -106,9 +107,19 @@ const DrawerCustom = () => {
           <AntDesign name="close" size={30} color="black" />
         </TouchableOpacity>
         <View style={{marginTop: 10, alignItems: 'center'}}>
-          <Image source={meal1} resizeMode="cover" style={styles.image} />
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            {user?.avatar_url ? (
+              <Image
+                src={user?.avatar_url}
+                resizeMode="cover"
+                style={styles.image}
+              />
+            ) : (
+              <FontAwesome name="user-circle-o" size={130} color="black" />
+            )}
+          </TouchableOpacity>
           <TextComponent
-            text={'Hieu'}
+            text={user?.full_name}
             size={19}
             font={fontFamilies['semibold']}
             styles={{marginTop: 10}}

@@ -6,7 +6,7 @@ import SplashNavigator from './SplashNavigator';
 import {useAuthStore, useUserStore} from '../store/useAuthStore';
 
 const AppRoutes = () => {
-  const {token, isShowSplash} = useAuthStore();
+  const {token, isShowSplash, isLogin} = useAuthStore();
   const {user, getUser} = useUserStore();
 
   // useEffect(() => {
@@ -24,7 +24,7 @@ const AppRoutes = () => {
     <>
       {isShowSplash ? (
         <SplashNavigator />
-      ) : token ? (
+      ) : token && isLogin ? (
         <MainNavigator />
       ) : (
         <AuthNavigator />

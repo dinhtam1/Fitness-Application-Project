@@ -4,44 +4,42 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
-  ImageBackground,
-  Dimensions,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import RowComponent from '../../../components/common/rowComponent';
 import {Feather} from '@expo/vector-icons';
-import {back, splash1} from '../../../assets';
 import {MaterialIcons} from '@expo/vector-icons';
-import TextComponent from '../../../components/text/textComponent';
-import {colors} from '../../../constants/colors';
-import {fontFamilies} from '../../../constants/fontFamilies';
-import FormField from '../../../components/form/formFieldComponent';
-import {header} from '../../../assets';
 import {useUserStore} from '../../../store/useAuthStore';
 import {useNavigation} from '@react-navigation/native';
 
-const {width, height} = Dimensions.get('window');
-
-const Header = ({background, ...props}) => {
+const Header = () => {
   const user = useUserStore(state => state.user);
   const navigation = useNavigation();
-  const [currentTimeOfDay, setCurrentTimeOfDay] = useState('');
 
   return (
     <SafeAreaView>
-      <View style={{paddingHorizontal: 20}}>
+      <View
+        style={{
+          paddingHorizontal: 20,
+          backgroundColor: 'white',
+        }}>
         <RowComponent
           justify={'space-between'}
           styles={{
             width: '100%',
-            marginTop: 20,
+            paddingVertical: 10,
+            marginTop: 40,
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
               <Feather name="menu" size={26} color="black" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-              <Image source={splash1} resizeMode="cover" style={styles.image} />
+              <Image
+                src={user?.avatar_url}
+                resizeMode="cover"
+                style={styles.image}
+              />
             </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={() => navigation.navigate('Notification')}>

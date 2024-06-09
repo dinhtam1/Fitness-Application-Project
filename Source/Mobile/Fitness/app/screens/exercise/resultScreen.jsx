@@ -11,6 +11,7 @@ import {apiUpdateDashboard} from '../../apis/dashboard';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
 import {useNavigation} from '@react-navigation/native';
+import {common} from '../../styles/commonStyles';
 
 const ResultScreen = ({route}) => {
   const navigation = useNavigation();
@@ -34,7 +35,7 @@ const ResultScreen = ({route}) => {
     }
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={common.safeAreaView}>
       <BackComponent black back title={'RESULT'} />
       <View style={{paddingHorizontal: 20, marginTop: 20}}>
         <TextComponent
@@ -178,7 +179,7 @@ export default ResultScreen;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors['border-4'],
-    width: 170,
+    width: 150,
     marginBottom: 30,
     alignItems: 'center',
     borderRadius: 10,

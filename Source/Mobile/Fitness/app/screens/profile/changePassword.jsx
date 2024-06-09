@@ -20,19 +20,22 @@ import CustomButton from '../../components/button/buttonComponent';
 import {apiChangePassword} from '../../apis';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
+import {useAuthStore} from '../../store/useAuthStore';
 import {useNavigation} from '@react-navigation/native';
 
-const ChangePassword = () => {
+const ChangePassword = ({route}) => {
+  const navigation = useNavigation();
+  const {token} = useAuthStore();
+  const userId = route?.params?.userId;
   const {
     control,
     handleSubmit,
     setError,
     formState: {errors, isSubmitting},
   } = useForm();
-  const navigation = useNavigation();
   const onSubmit = async data => {
-    const response = await apiChangePassword(data);
-    if (response.status === 200) {
+    const response = await apiChangePassword(userId, token, data);
+    if (response.statusCode === 200) {
       Toast.show(
         toastConfig({
           type: 'success',
@@ -40,7 +43,7 @@ const ChangePassword = () => {
           visibilityTime: 2000,
         }),
       );
-      navigation.navigate('Home');
+      navigation.navigate('SignIn');
     } else {
       Toast.show(
         toastConfig({
@@ -53,8 +56,8 @@ const ChangePassword = () => {
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView>
-        <BackComponent black back nav={'ForgotPassword'} />
+      <SafeAreaView style={common.safeAreaView}>
+        <BackComponent black back />
         <View style={common.contain}>
           <View>
             <TextComponent

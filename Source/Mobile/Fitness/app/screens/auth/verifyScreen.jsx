@@ -1,8 +1,10 @@
 import {
+  Keyboard,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   TextInput,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
@@ -19,6 +21,7 @@ import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import {useAuthStore} from '../../store/useAuthStore';
 
 const VerifyScreen = ({route}) => {
   const {email} = route.params;
@@ -28,6 +31,7 @@ const VerifyScreen = ({route}) => {
   const inputRefs = useRef([]);
   const [countdown, setCountdown] = useState(null);
   const [isBlurred, setIsBlurred] = useState(false);
+  const {setToken} = useAuthStore();
 
   const submit = async () => {};
   const onChangeValue = (text, index) => {
@@ -57,8 +61,8 @@ const VerifyScreen = ({route}) => {
   const onSubmit = async () => {
     const response = await apiVerifyOTP({OTP: values.join(''), email: email});
     if (response.statusCode === 200) {
-      await AsyncStorage.setItem('token', response.data.tokens.accessToken);
-      navigation.navigate('ChangePassword');
+      setToken(response.data.tokens.accessToken);
+      navigation.navigate('ChangePassword', {userId: response.data.userId});
     } else {
       Toast.show(
         toastConfig({
@@ -104,9 +108,9 @@ const VerifyScreen = ({route}) => {
     }
   }, [countdown]);
   return (
-    <SafeAreaView style={common.safeAreaView}>
-      <BackComponent back black nav={'ForgotPassword'} />
-      <ScrollView>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <SafeAreaView style={common.safeAreaView}>
+        <BackComponent back black />
         <View style={common.contain}>
           <View>
             <TextComponent
@@ -184,8 +188,8 @@ const VerifyScreen = ({route}) => {
             containerStyles={{marginTop: 30}}
           />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

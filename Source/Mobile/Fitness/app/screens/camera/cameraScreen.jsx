@@ -23,6 +23,7 @@ import {toastConfig} from '../../utils/toast';
 import {useNavigation} from '@react-navigation/native';
 import BackComponent from '../../components/header/backComponent';
 import {BlurView} from 'expo-blur';
+import * as ImagePicker from 'expo-image-picker';
 
 const CameraScreen = () => {
   const {user} = useUserStore();
@@ -115,6 +116,20 @@ const CameraScreen = () => {
     }
   };
 
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      fetchData(result.assets[0].uri);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {!image ? (
@@ -140,9 +155,9 @@ const CameraScreen = () => {
               }}>
               <TouchableOpacity onPress={handleFlashToggle}>
                 {flash === 'off' ? (
-                  <Ionicons name="flash" size={35} color="white" />
-                ) : (
                   <Ionicons name="flash-off-outline" size={35} color="white" />
+                ) : (
+                  <Ionicons name="flash" size={35} color="white" />
                 )}
               </TouchableOpacity>
               <BackComponent back size={25} nav={'Home'} />
@@ -163,8 +178,11 @@ const CameraScreen = () => {
                 }}>
                 <TouchableOpacity
                   onPress={handleTakePhoto}
-                  style={styles.buttonLeft}></TouchableOpacity>
+                  style={styles.buttonMiddle}></TouchableOpacity>
               </View>
+              <TouchableOpacity style={styles.buttonLeft} onPress={pickImage}>
+                <Ionicons name="images" size={50} color="white" />
+              </TouchableOpacity>
             </View>
           </CameraView>
         </PinchGestureHandler>
@@ -209,15 +227,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginBottom: 80,
     marginHorizontal: 30,
+    alignItems: 'center',
   },
   buttonRight: {
     marginLeft: 70,
   },
-  buttonLeft: {
+  buttonMiddle: {
     height: 60,
     width: 60,
     backgroundColor: 'red',
     borderRadius: 100,
+  },
+  buttonLeft: {
+    marginRight: 70,
   },
   slider: {
     width: '100%',

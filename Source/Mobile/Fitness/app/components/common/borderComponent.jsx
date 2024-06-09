@@ -14,5 +14,3 @@ const BorderComponent = ({color, width, margin}) => {
 };
 
 export default BorderComponent;
-
-const styles = StyleSheet.create({});

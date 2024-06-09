@@ -18,6 +18,7 @@ const BackComponent = props => {
         alignItems: 'center',
         paddingVertical: 5,
         paddingHorizontal: 20,
+        backgroundColor: 'transparent',
       }}>
       <View
         style={{
@@ -59,7 +60,7 @@ const BackComponent = props => {
           <AntDesign name="edit" size={24} color="black" />
         </TouchableOpacity>
       ) : (
-        <View></View>
+        <View style={{marginLeft: 20}}></View>
       )}
     </View>
   );

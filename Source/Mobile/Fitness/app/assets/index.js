@@ -20,6 +20,9 @@ import meal2 from './images/meal2.png';
 import heart from './images/Heart-grapf.png';
 import notification from './sounds/notification.mp3';
 import yoga from './images/yoga-pose.png';
+import carbs from './images/Carbs.jpg';
+import protein from './images/Protein.jpg';
+import fat from './images/Fat.jpg';
 
 export {
   back,
@@ -44,4 +47,7 @@ export {
   heart,
   notification,
   yoga,
+  carbs,
+  protein,
+  fat,
 };

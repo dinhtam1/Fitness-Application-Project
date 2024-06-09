@@ -3,6 +3,7 @@ import DrawerNavigator from './DrawerNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import {
   CategoryScreen,
+  ChangePassword,
   DashboardScreen,
   DetailExerciseScreen,
   DetailMealScreen,
@@ -23,7 +24,6 @@ const MainNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        cardStyle: {backgroundColor: 'white'},
       }}>
       <Stack.Screen name="Main" component={DrawerNavigator} />
       <Stack.Screen name="FullExercise" component={FullExerciseScreen} />
@@ -43,6 +43,7 @@ const MainNavigator = () => {
       <Stack.Screen name="Profile" component={ProfileNavigator} />
       <Stack.Screen name="Sleep" component={SleepScreen} />
       <Stack.Screen name="Progress" component={ProgressScreen} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
     </Stack.Navigator>
   );
 };

@@ -13,10 +13,11 @@ import {meal2} from '../../assets';
 import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import SpaceComponent from '../../components/common/spaceComponent';
+import {colors} from '../../constants/colors';
 
 const NotificationScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: colors['background-white']}}>
       <BackComponent black back title={'NOTIFICATIONS'} nav={'Main'} />
       <ScrollView style={{paddingHorizontal: 20, height: '100%'}}>
         <View style={{flexDirection: 'row', gap: 30}}>

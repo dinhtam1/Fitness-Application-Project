@@ -17,11 +17,11 @@ const MealComponent = ({handlePress}) => {
         borderTopWidth: 1,
         paddingTop: 20,
         borderColor: colors['border'],
-        marginBottom: 40,
+        marginBottom: 20,
       }}>
       <TextComponent text={'Meal Plan'} size={20} font={fontFamilies['bold']} />
       {meals.map((item, index) => (
-        <TouchableOpacity onPress={() => handlePress(item.mealId)}>
+        <TouchableOpacity key={index} onPress={() => handlePress(item.mealId)}>
           <View
             style={{
               marginTop: 20,
@@ -91,7 +91,6 @@ const MealComponent = ({handlePress}) => {
               </View>
             </View>
           </View>
-          <BorderComponent bottom padding={10} color={colors['border']} />
         </TouchableOpacity>
       ))}
     </View>

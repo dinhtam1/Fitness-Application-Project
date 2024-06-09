@@ -4,6 +4,8 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import FormField from '../../components/form/formFieldComponent';
@@ -51,9 +53,9 @@ export default function ForgotScreen() {
     }
   };
   return (
-    <SafeAreaView style={common.safeAreaView}>
-      <BackComponent black back nav={'SignIn'} />
-      <ScrollView>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <SafeAreaView style={common.safeAreaView}>
+        <BackComponent black back nav={'SignIn'} />
         <View style={common.contain}>
           <View>
             <TextComponent
@@ -100,7 +102,7 @@ export default function ForgotScreen() {
             containerStyles={{marginTop: 30}}
           />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }

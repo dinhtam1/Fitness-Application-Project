@@ -35,9 +35,7 @@ const Banner = () => {
         space={-0.5}
       />
       <CustomButton
-        handlePress={() =>
-          navigation.navigate('FullExercise', {category: 'Dumbbells'})
-        }
+        handlePress={() => navigation.navigate('Exercise')}
         title={'Start Exercise'}
         containerStyles={styles.button}
         textStyles={{fontSize: 14, fontFamily: fontFamilies['medium']}}

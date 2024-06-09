@@ -9,14 +9,16 @@ import {colors} from '../../constants/colors';
 import {button, step, text} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
+import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 
 const StartScreen = () => {
-  const navigation = useNavigation();
-
+  const {setIsLogin} = useAuthStore();
+  const {user} = useUserStore();
+  console.log(user);
   const image = require('../../assets/images/start.png');
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent back black nav={'Goal'} />
+      <BackComponent back black />
       <SpaceComponent height={20} />
       <View
         style={[
@@ -57,7 +59,7 @@ const StartScreen = () => {
         <CustomButton
           title={button['get-started']}
           containerStyles={{marginBottom: 20}}
-          handlePress={() => navigation.navigate('Home')}
+          handlePress={() => setIsLogin(true)}
         />
       </View>
     </SafeAreaView>

@@ -12,6 +12,7 @@ import {apiExercises, apiMuscleName} from '../../apis/exercise';
 import AboutExercise from './component/aboutExercise';
 import {Dropdown} from 'react-native-element-dropdown';
 import {colors} from '../../constants/colors';
+import {common} from '../../styles/commonStyles';
 
 const FullExerciseScreen = ({route}) => {
   const {category} = route.params;
@@ -41,9 +42,9 @@ const FullExerciseScreen = ({route}) => {
   }, [value]);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={common.safeAreaView}>
       <BackComponent black back title={'FULL EXERCISE'} nav={'Home'} />
-      <View style={{paddingHorizontal: 20, height: '100%'}}>
+      <View style={{paddingHorizontal: 20}}>
         <View style={styles.container}>
           <Dropdown
             style={[

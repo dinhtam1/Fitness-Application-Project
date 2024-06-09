@@ -158,13 +158,6 @@ const SleepScreen = () => {
           textStyles={{fontFamily: fontFamilies['bold']}}
           containerStyles={{marginTop: 20}}
         />
-        <TextComponent
-          text={'Sleep plan'}
-          size={20}
-          font={fontFamilies['medium']}
-          color={colors['title']}
-          styles={{marginVertical: 10}}
-        />
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -172,11 +165,12 @@ const SleepScreen = () => {
           backgroundColor: colors['background-clock'],
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
-          marginBottom: 270,
+          marginBottom: 230,
+          marginTop: 20,
         }}>
         {recommendTime.map((item, index) => (
           <RecommendTime
-            key={index}
+            index={index}
             hour={item.hour}
             minute={item.minute}
             onButtonPress={handleAlarm}

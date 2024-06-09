@@ -8,6 +8,7 @@ import MealFullImage from './component/mealFullImage';
 import {useUserStore, useAuthStore} from '../../store/useAuthStore';
 import {apiMeal} from '../../apis/meal';
 import {colors} from '../../constants/colors';
+import {common} from '../../styles/commonStyles';
 
 const data = [
   {
@@ -35,7 +36,6 @@ const MealPlanScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await apiMeal(user.userId, token, {time_meal: time});
-      console.log(response.data.meals);
       if (response.statusCode === 200) {
         setMealData(response.data.meals);
         setQuantity(response.data.mealCount);
@@ -50,15 +50,14 @@ const MealPlanScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, marginBottom: 100}}>
-      <BackComponent black back title={'MEAL PLAN'} nav={'Home'} filter />
+    <SafeAreaView style={common.safeAreaView}>
+      <BackComponent black back title={'MEAL PLAN'} />
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'center',
-          gap: 20,
+          gap: 10,
           marginTop: 20,
-          paddingHorizontal: 20,
         }}>
         {data.map((item, index) => (
           <View key={item.id}>
@@ -77,15 +76,13 @@ const MealPlanScreen = () => {
           </View>
         ))}
       </View>
-      <View style={{paddingHorizontal: 20, marginTop: 20}}>
+      <View style={{marginTop: 20, marginBottom: 150, paddingHorizontal: 20}}>
         <TextComponent
           text={`${quantity} meals`}
           font={fontFamilies['semibold']}
           size={18}
         />
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          style={{marginBottom: 60}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {mealData.map((item, index) => (
             <MealFullImage key={index} item={item} />
           ))}

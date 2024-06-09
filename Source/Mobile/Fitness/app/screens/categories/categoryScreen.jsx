@@ -21,9 +21,9 @@ const CategoryScreen = () => {
   const {categories} = useCategoriesStore();
   const navigation = useNavigation();
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: colors['background-white']}}>
       <BackComponent black back title={'CATEGORIES'} nav={'Main'} />
-      <ScrollView style={{marginBottom: 40}}>
+      <ScrollView>
         <View style={{paddingHorizontal: 20}}>
           <FormField
             placeholder={'Search'}
@@ -39,6 +39,7 @@ const CategoryScreen = () => {
             }}>
             {categories.map((item, index) => (
               <TouchableOpacity
+                key={index}
                 style={{marginBottom: 20}}
                 onPress={() =>
                   navigation.navigate('FullExercise', {

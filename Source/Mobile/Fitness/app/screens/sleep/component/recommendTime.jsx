@@ -11,7 +11,8 @@ import TextComponent from '../../../components/text/textComponent';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import {colors} from '../../../constants/colors';
 
-const RecommendTime = ({hour, minute, onButtonPress}) => {
+const RecommendTime = ({index, hour, minute, onButtonPress}) => {
+  console.log(index);
   const [isOn, setIsOn] = useState(false);
   const onColor = colors['primary-color'];
   const offColor = colors['toggle'];
@@ -25,6 +26,7 @@ const RecommendTime = ({hour, minute, onButtonPress}) => {
           justifyContent: 'space-between',
         }}>
         <AnalogClock
+          key={index}
           size={100}
           hour={hour}
           minutes={minute}
@@ -32,11 +34,6 @@ const RecommendTime = ({hour, minute, onButtonPress}) => {
           colorMinutes="#000"
         />
         <View style={{alignItems: 'center'}}>
-          <TextComponent
-            text={'You should wake up at'}
-            size={15}
-            font={fontFamilies['medium']}
-          />
           <TextComponent
             text={`${hour < 10 ? `0${hour}` : hour}:${minute < 10 ? `0${minute}` : minute}`}
             font={fontFamilies['medium']}

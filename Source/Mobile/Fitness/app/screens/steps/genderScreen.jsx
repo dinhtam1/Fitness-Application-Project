@@ -30,7 +30,7 @@ const GenderScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent back black skip />
+        <BackComponent back black />
         <View
           style={[
             common.contain,

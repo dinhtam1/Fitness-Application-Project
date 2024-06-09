@@ -3,27 +3,29 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useState} from 'react';
 import CustomButton from '../../components/button/buttonComponent';
 import BackComponent from '../../components/header/backComponent';
-import {exercise1} from '../../assets';
 import {Controller, useForm} from 'react-hook-form';
 import FormField from '../../components/form/formFieldComponent';
-import {placeholder, titleForm} from '../../constants/text';
-import {Feather} from '@expo/vector-icons';
 import {Dropdown} from 'react-native-element-dropdown';
 import {colors} from '../../constants/colors';
 import TextComponent from '../../components/text/textComponent';
 import {useAuthStore, useUserStore} from '../../store/useAuthStore';
+import {apiUpdateProfile} from '../../apis';
+import {useNavigation} from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../utils/toast';
+import * as ImagePicker from 'expo-image-picker';
+import {FontAwesome} from '@expo/vector-icons';
 
 const data = [
-  {id: 1, value: 'Beginner'},
-  {id: 2, value: 'Intermediate'},
-  {id: 3, value: 'Advanced'},
+  {id: 1, value: 'BEGINNER'},
+  {id: 2, value: 'INTERMEDIATE'},
+  {id: 3, value: 'ADVANCED'},
 ];
 
 const dataGender = [
@@ -37,8 +39,24 @@ const dataGoal = [
 ];
 
 const EditProfileScreen = () => {
-  const {user} = useUserStore();
+  const navigation = useNavigation();
+  const {user, setUser} = useUserStore();
   const {token} = useAuthStore();
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
   const {
     control,
     handleSubmit,
@@ -47,24 +65,66 @@ const EditProfileScreen = () => {
   } = useForm();
   const [isFocus, setIsFocus] = useState(false);
 
-  const onSubmit = async data => {};
+  const onSubmit = async data => {
+    for (let key in data) {
+      if (data[key] === undefined) {
+        data[key] = user[key];
+      }
+    }
+    const response = await apiUpdateProfile(data, user.userId, token);
+    if (response.statusCode === 200) {
+      setUser(response.data);
+      if (image) {
+        const formData = new FormData();
+        formData.append('avatar', {
+          type: `image/jpeg`,
+          name: `photo.jpg`,
+          uri: image,
+        });
+        const responseImage = await apiUpdateProfile(
+          formData,
+          user.userId,
+          token,
+        );
+        setUser(responseImage.data);
+        if (responseImage.statusCode === 200) {
+          Toast.show(
+            toastConfig({
+              type: 'success',
+              textMain: responseImage.message,
+              visibilityTime: 2000,
+            }),
+          );
+        }
+      }
+      navigation.navigate('ProfileUser');
+    }
+  };
   return (
-    <SafeAreaView>
-      <BackComponent black back title={'EDIT PROFILE'} nav={'ProfileUser'} />
+    <SafeAreaView style={{backgroundColor: colors['background-white']}}>
+      <BackComponent black back title={'EDIT PROFILE'} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{paddingHorizontal: 20, marginBottom: 40}}>
         <TouchableOpacity
+          onPress={pickImage}
           style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Image source={exercise1} resizeMode="cover" style={styles.image} />
-          <Feather name="camera" size={40} color="white" style={styles.icon} />
+          {image ? (
+            <Image
+              src={image ? image : user?.avatar_url}
+              resizeMode="cover"
+              style={styles.image}
+            />
+          ) : (
+            <FontAwesome name="user-circle-o" size={120} color="black" />
+          )}
         </TouchableOpacity>
         <View style={{paddingVertical: 20}}>
           <Controller
             control={control}
             render={({field: {onChange, value, name}}) => (
               <FormField
-                placeholder={placeholder['name']}
+                placeholder={user?.full_name}
                 title={'Full Name'}
                 handleChangeText={onChange}
                 value={value}
@@ -77,7 +137,7 @@ const EditProfileScreen = () => {
             control={control}
             render={({field: {onChange, value, name}}) => (
               <FormField
-                placeholder={placeholder['phone']}
+                placeholder={user?.phone_number}
                 title={'Phone'}
                 handleChangeText={onChange}
                 keyboardType="number-pad"
@@ -106,7 +166,7 @@ const EditProfileScreen = () => {
                     maxHeight={200}
                     labelField="value"
                     valueField="value"
-                    placeholder={user.level}
+                    placeholder={user?.level}
                     value={value}
                     onFocus={() => setIsFocus(true)}
                     onBlur={() => setIsFocus(false)}
@@ -136,11 +196,11 @@ const EditProfileScreen = () => {
                     maxHeight={200}
                     labelField="value"
                     valueField="value"
-                    placeholder={user.goal}
+                    placeholder={user?.goal.replace('_', ' ')}
                     value={value}
                     onFocus={() => setIsFocus(true)}
                     onBlur={() => setIsFocus(false)}
-                    onChange={item => onChange(item.value)}
+                    onChange={item => onChange(item.value.replace(' ', '_'))}
                   />
                 </View>
               </>
@@ -151,7 +211,7 @@ const EditProfileScreen = () => {
             control={control}
             render={({field: {onChange, value, name}}) => (
               <FormField
-                placeholder={placeholder['weight']}
+                placeholder={user?.weight.toString()}
                 title={'Weight (kg)'}
                 handleChangeText={onChange}
                 keyboardType="number-pad"
@@ -165,7 +225,7 @@ const EditProfileScreen = () => {
             control={control}
             render={({field: {onChange, value, name}}) => (
               <FormField
-                placeholder={placeholder['height']}
+                placeholder={user?.height.toString()}
                 title={'Height (cm)'}
                 handleChangeText={onChange}
                 keyboardType="number-pad"
@@ -177,9 +237,6 @@ const EditProfileScreen = () => {
           />
           <Controller
             control={control}
-            rules={{
-              required: {value: true, message: 'This field cannot empty'},
-            }}
             render={({field: {onChange, value, name}}) => (
               <>
                 <TextComponent
@@ -197,7 +254,7 @@ const EditProfileScreen = () => {
                     maxHeight={200}
                     labelField="value"
                     valueField="value"
-                    placeholder={user.gender}
+                    placeholder={user?.gender}
                     value={value}
                     onFocus={() => setIsFocus(true)}
                     onBlur={() => setIsFocus(false)}
@@ -212,7 +269,7 @@ const EditProfileScreen = () => {
             control={control}
             render={({field: {onChange, value, name}}) => (
               <FormField
-                placeholder={placeholder['age']}
+                placeholder={user?.age.toString()}
                 title={'Age'}
                 handleChangeText={onChange}
                 keyboardType="number-pad"
@@ -248,7 +305,8 @@ const styles = StyleSheet.create({
     right: 160,
   },
   container: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#F5F5F5',
+    borderRadius: 16,
   },
   dropdown: {
     height: 64,

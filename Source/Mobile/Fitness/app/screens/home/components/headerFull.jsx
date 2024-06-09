@@ -10,7 +10,6 @@ import {
 import React, {useEffect, useState} from 'react';
 import RowComponent from '../../../components/common/rowComponent';
 import {Feather} from '@expo/vector-icons';
-import {back, splash1} from '../../../assets';
 import {MaterialIcons} from '@expo/vector-icons';
 import TextComponent from '../../../components/text/textComponent';
 import {colors} from '../../../constants/colors';
@@ -19,6 +18,7 @@ import FormField from '../../../components/form/formFieldComponent';
 import {header} from '../../../assets';
 import {useUserStore} from '../../../store/useAuthStore';
 import {useNavigation} from '@react-navigation/native';
+import {FontAwesome} from '@expo/vector-icons';
 
 const {width, height} = Dimensions.get('window');
 
@@ -87,7 +87,15 @@ const HeaderFull = ({background, ...props}) => {
               />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-              <Image source={splash1} resizeMode="cover" style={styles.image} />
+              {user?.avatar_url ? (
+                <Image
+                  src={user?.avatar_url}
+                  resizeMode="cover"
+                  style={styles.image}
+                />
+              ) : (
+                <FontAwesome name="user-circle-o" size={40} color="white" />
+              )}
             </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={() => navigation.navigate('Notification')}>

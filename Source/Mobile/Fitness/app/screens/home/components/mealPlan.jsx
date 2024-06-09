@@ -34,7 +34,7 @@ const MealPlan = ({data, ...props}) => {
         />
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('MealPlan');
+            navigation.navigate('Meal');
           }}>
           <TextComponent
             text={'See all'}
@@ -46,6 +46,7 @@ const MealPlan = ({data, ...props}) => {
       </View>
       {data.map((item, index) => (
         <TouchableOpacity
+          key={index}
           onPress={() => handlePress(item.mealId)}
           style={{marginTop: 20}}>
           <Image

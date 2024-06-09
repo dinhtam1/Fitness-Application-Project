@@ -25,10 +25,13 @@ const SettingScreen = () => {
   const onColor = colors['primary-color'];
   const offColor = colors['toggle'];
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{backgroundColor: colors['background-white'], height: '100%'}}>
       <BackComponent black back title={'APP SETTING'} nav={'Main'} />
       <View style={{paddingHorizontal: 20, marginTop: 40}}>
-        <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Notification')}
+          style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
           <View style={{width: 30, alignItems: 'center'}}>
             <MaterialIcons
               name="notifications-none"
@@ -42,10 +45,10 @@ const SettingScreen = () => {
             font={fontFamilies['medium']}
             color={colors['title']}
           />
-        </View>
+        </TouchableOpacity>
         <BorderComponent color={colors['border']} margin={15} />
         <TouchableOpacity
-          onPress={navigation.navigate('ChangePassword')}
+          onPress={() => navigation.navigate('ChangePassword')}
           style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
           <View style={{width: 30, alignItems: 'center'}}>
             <Feather name="lock" size={26} color="black" />
@@ -57,112 +60,6 @@ const SettingScreen = () => {
             color={colors['title']}
           />
         </TouchableOpacity>
-        <BorderComponent color={colors['border']} margin={15} />
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
-          <View style={{flexDirection: 'row', gap: 20}}>
-            <View style={{width: 30, alignItems: 'center'}}>
-              <AntDesign name="hearto" size={24} color="black" />
-            </View>
-            <TextComponent
-              text={'Apple Health'}
-              size={18}
-              font={fontFamilies['medium']}
-              color={colors['title']}
-            />
-          </View>
-          <TouchableOpacity
-            onPress={() => {
-              LayoutAnimation.easeInEaseOut();
-              setIsOn(!isOn);
-            }}
-            style={{
-              height: 40,
-              width: 80,
-              borderRadius: 50,
-              borderWidth: 3,
-              borderColor: isOn ? onColor : offColor,
-              backgroundColor: isOn ? onColor : offColor,
-            }}>
-            <View
-              style={{
-                height: '100%',
-                width: '50%',
-                backgroundColor: 'white',
-                borderRadius: 100,
-                alignSelf: isOn ? 'flex-end' : 'flex-start',
-              }}></View>
-          </TouchableOpacity>
-        </View>
-        <BorderComponent color={colors['border']} margin={15} />
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
-          <View style={{flexDirection: 'row', gap: 20}}>
-            <View style={{width: 30, alignItems: 'center'}}>
-              <FontAwesome name="moon-o" size={24} color="black" />
-            </View>
-            <TextComponent
-              text={'Dark Mode'}
-              size={18}
-              font={fontFamilies['medium']}
-              color={colors['title']}
-            />
-          </View>
-          <TouchableOpacity
-            onPress={() => {
-              LayoutAnimation.easeInEaseOut();
-              setIsOn(!isOn);
-            }}
-            style={{
-              height: 40,
-              width: 80,
-              borderRadius: 50,
-              borderWidth: 3,
-              borderColor: isOn ? onColor : offColor,
-              backgroundColor: isOn ? onColor : offColor,
-            }}>
-            <View
-              style={{
-                height: '100%',
-                width: '50%',
-                backgroundColor: 'white',
-                borderRadius: 100,
-                alignSelf: isOn ? 'flex-end' : 'flex-start',
-              }}></View>
-          </TouchableOpacity>
-        </View>
-        <BorderComponent color={colors['border']} margin={15} />
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
-          <View style={{flexDirection: 'row', gap: 20}}>
-            <View style={{width: 30, alignItems: 'center'}}>
-              <Feather name="globe" size={24} color="black" />
-            </View>
-            <TextComponent
-              text={'Language'}
-              size={18}
-              font={fontFamilies['medium']}
-              color={colors['title']}
-            />
-          </View>
-          <TextComponent
-            text={'English'}
-            size={16}
-            styles={{marginRight: 20}}
-          />
-        </View>
       </View>
     </SafeAreaView>
   );
