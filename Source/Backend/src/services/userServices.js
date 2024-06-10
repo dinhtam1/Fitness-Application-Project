@@ -199,6 +199,35 @@ const updateUser = async (userId, data, avatarImage) => {
     }
 }
 
+const getAllUser = async (userId) => {
+    try {
+        return await prisma.user.findMany({
+            where: {
+                userId: {
+                    not: userId
+                }
+            },
+            select : {
+                full_name : true,
+                phone_number : true,
+                email : true,
+                age : true,
+                gender : true,
+                weight : true,
+                height : true,
+                level : true,
+                goal : true,
+                avatar_url : true,
+                role : true,
+                status: true,
+            }
+        });
+
+    } catch (error) {
+        console.log(e);
+        return false
+    }
+}
 module.exports = {
     createUser,
     getUserByEmail,
@@ -209,5 +238,6 @@ module.exports = {
     setStatusVerify,
     updatePasswordbyEmail,
     getUserByUserId,
-    updateUser
+    updateUser,
+    getAllUser
 }

@@ -32,10 +32,6 @@ const getUsers = async (req, res) => {
     }
 }
 
-
-
-
-
 const updatedUser = async (req, res) => {
     var data = null;
     var requestType = Type.UPDATE_PROFILE;
@@ -75,7 +71,36 @@ const updatedUser = async (req, res) => {
     }
 }
 
+const getUserManagement = async (req, res) => {
+    var data = null;
+    var requestType = Type.GET_USER_MANAGEMENT;
+    try {
+        const users = await userServices.getAllUser(req.user.userId)
+        if (!users) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.USER_NOT_FOUND,
+                data,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.GET_USER_MANAGEMENT_SUCCESSFUL,
+            data: users,
+            requestType
+        });
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+}
+
 module.exports = {
     getUsers,
-    updatedUser
+    updatedUser,
+    getUserManagement
 };

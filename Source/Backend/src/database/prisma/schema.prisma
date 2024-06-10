@@ -33,6 +33,7 @@ model User {
   OTP           String?        @db.Char(4)
   otp_expiry_at DateTime?
   is_verified   Boolean        @default(false)
+  status        Boolean        @default(true)
   keyStore      KeyStore[]
   dashboards    Dashboard[]
   ExerciseList  ExerciseList[]
@@ -112,7 +113,7 @@ model ExerciseList {
   exerciseListId Int              @id @default(autoincrement()) @db.UnsignedInt
   exerciseId     Int?             @db.UnsignedInt
   userId         Int              @db.UnsignedInt
-  list_name       String
+  list_name      String
   cover_image    String           @default("https://firebasestorage.googleapis.com/v0/b/fitness-application-proj-6e3c9.appspot.com/o/exercise%2Fdefault_exercise.jpg?alt=media&token=4025b47b-bd81-4f08-a20c-4c90aa3c8a04")
   create_at      DateTime         @default(now())
   user           User             @relation(fields: [userId], references: [userId])
