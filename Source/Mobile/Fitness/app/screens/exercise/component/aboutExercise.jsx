@@ -14,13 +14,15 @@ import {colors} from '../../../constants/colors';
 import {SimpleLineIcons} from '@expo/vector-icons';
 import {EvilIcons} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
-import CustomButton from '../../../components/button/buttonComponent';
 
-const AboutExercise = ({data, ...props}) => {
+import {AntDesign} from '@expo/vector-icons';
+
+const AboutExercise = ({data, handlePress, ...props}) => {
   const navigation = useNavigation();
   const handleSelectCategory = index => {
     navigation.navigate('DetailExercise', {exerciseId: index});
   };
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -88,7 +90,9 @@ const AboutExercise = ({data, ...props}) => {
                   color={colors['text']}
                   size={14}
                 />
-                <CustomButton containerStyles={{width: 40, minHeight: 30}} />
+                <TouchableOpacity onPress={handlePress}>
+                  <AntDesign name="pluscircleo" size={26} color="black" />
+                </TouchableOpacity>
               </View>
             </View>
           </RowComponent>

@@ -4,6 +4,7 @@ import {
   Text,
   View,
   ActivityIndicator,
+  Button,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import BackComponent from '../../components/header/backComponent';
@@ -13,6 +14,7 @@ import AboutExercise from './component/aboutExercise';
 import {Dropdown} from 'react-native-element-dropdown';
 import {colors} from '../../constants/colors';
 import {common} from '../../styles/commonStyles';
+import Modal from 'react-native-modal';
 
 const FullExerciseScreen = ({route}) => {
   const {category} = route.params;
@@ -23,6 +25,11 @@ const FullExerciseScreen = ({route}) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,10 +83,20 @@ const FullExerciseScreen = ({route}) => {
           />
         ) : (
           <>
-            <AboutExercise data={exercises} />
+            <AboutExercise handlePress={toggleModal} data={exercises} />
           </>
         )}
       </View>
+      <Modal isVisible={isModalVisible}>
+        <View
+          style={{
+            height: 400,
+            width: '100%',
+            backgroundColor: 'white',
+          }}>
+          <Text>Hello!</Text>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
