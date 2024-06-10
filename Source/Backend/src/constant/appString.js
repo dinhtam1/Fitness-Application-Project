@@ -79,6 +79,7 @@ const EXERCISE_IN_LIST_NOT_FOUND = "Exercise in list not found";
 const GET_EXERCISE_IN_LIST_SUCCESSFUL = "Get exercise in list successfully";
 const EXERCISE_LIST_NOT_FOUND = "Exercise list not found";
 const GET_EXERCISE_LIST_SUCCESSFUL = "Get exercise list successfully";
+const GET_USER_MANAGEMENT_SUCCESSFUL = "Get user management successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -160,5 +161,6 @@ module.exports = {
     EXERCISE_LIST_NOT_FOUND,
     GET_EXERCISE_IN_LIST_SUCCESSFUL,
     EXERCISE_IN_LIST_NOT_FOUND,
-    GET_EXERCISE_LIST_SUCCESSFUL
+    GET_EXERCISE_LIST_SUCCESSFUL,
+    GET_USER_MANAGEMENT_SUCCESSFUL
 };
