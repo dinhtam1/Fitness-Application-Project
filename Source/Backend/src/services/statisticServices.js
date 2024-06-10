@@ -150,8 +150,59 @@ const getAgeStatisticsUser = async (start_time, end_time) => {
     }
 }
 
+const getWeightStatisticsUser = async (start_time, end_time) => {
+    try {
+        start_time = new Date(start_time);
+        end_time = new Date(end_time);
+        start_time.setUTCHours(0, 0, 0, 0);
+        end_time.setUTCHours(23, 59, 59, 999);
+        const statistics = await prisma.user.findMany({
+            where: {
+                create_at: {
+                    gte: start_time,
+                    lte: end_time
+                }
+            },
+            select: {
+                weight: true
+            }
+        });
+        const weightGroups = {
+            'Unknown': 0,
+            '0-50': 0,
+            '51-70': 0,
+            '71-90': 0,
+            '91-110': 0,
+            '111+': 0
+        };
+        
+        statistics.forEach(user => {
+            const weight = user.weight;
+            if (weight === null) {
+                weightGroups['Unknown']++;
+            } else if (weight >= 0 && weight < 51) {
+                weightGroups['0-50']++;
+            } else if (weight >= 51 && weight < 71) {
+                weightGroups['51-70']++;
+            } else if (weight >= 71 && weight < 91) {
+                weightGroups['71-90']++;
+            } else if (weight >= 91 && weight < 111) {
+                weightGroups['91-110']++;
+            } else if (weight >= 111) {
+                weightGroups['111+']++;
+            }
+        });
+        
+        return weightGroups;
+    } catch (error) {
+        return false;
+    }
+
+}
+
 module.exports = {
     getCalorieStatistics,
     getGenderStatisticsUser,
-    getAgeStatisticsUser
+    getAgeStatisticsUser,
+    getWeightStatisticsUser
 }
