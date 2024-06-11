@@ -78,7 +78,9 @@ const getExerciseInList = async (userId, exerciseListId) => {
                         exercise: {
                             select: {
                                 exerciseId: true,
-                                image: true
+                                image: true,
+                                duration : true,
+                                caloriesBurned : true
                             }
                         }
                     }
@@ -109,22 +111,42 @@ const getExerciseInList = async (userId, exerciseListId) => {
 
 const getExerciseList = async (userId) => {
     try {
-        return await prisma.exerciseList.findMany({
+        const exerciseLists = await prisma.exerciseList.findMany({
             where: {
                 userId: userId
             },
             select : {
                 exerciseListId : true,
                 list_name : true,
-                cover_image : true
+                cover_image : true,
+                exercises: {
+                    select: {
+                        exercise: {
+                            select: {
+                                duration: true,
+                                caloriesBurned: true
+                            }
+                        }
+                    }
+                }
             }
+        });
+
+        return exerciseLists.map(list => {
+            const totalDuration = list.exercises.reduce((total, exerciseOnList) => total + exerciseOnList.exercise.duration, 0);
+            const totalCaloriesBurned = list.exercises.reduce((total, exerciseOnList) => total + exerciseOnList.exercise.caloriesBurned, 0);
+            return {
+                exerciseListId: list.exerciseListId,
+                list_name: list.list_name,
+                cover_image: list.cover_image,
+                totalDuration,
+                totalCaloriesBurned
+            };
         });
     } catch (error) {
         return false;
     }
-
 }
-
 module.exports = {
     createExerciseList,
     addExerciseToList,

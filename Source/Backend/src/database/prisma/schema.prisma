@@ -33,10 +33,15 @@ model User {
   OTP           String?        @db.Char(4)
   otp_expiry_at DateTime?
   is_verified   Boolean        @default(false)
-  status        Boolean        @default(true)
+  status        Status         @default(ACTIVE)
   keyStore      KeyStore[]
   dashboards    Dashboard[]
   ExerciseList  ExerciseList[]
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
 }
 
 enum Gender {
