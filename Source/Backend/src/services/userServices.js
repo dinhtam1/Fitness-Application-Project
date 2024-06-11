@@ -224,10 +224,25 @@ const getAllUser = async (userId) => {
         });
 
     } catch (error) {
-        console.log(e);
         return false
     }
 }
+
+const updateStatusUser = async (userId, status) => {
+    try {
+        return await prisma.user.update({
+            where: {
+                userId: userId
+            },
+            data: {
+                status: status
+            }
+        });
+    } catch (error) {
+        return false;
+    }
+}
+
 module.exports = {
     createUser,
     getUserByEmail,
@@ -239,5 +254,6 @@ module.exports = {
     updatePasswordbyEmail,
     getUserByUserId,
     updateUser,
-    getAllUser
+    getAllUser,
+    updateStatusUser
 }

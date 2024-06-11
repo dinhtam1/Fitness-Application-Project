@@ -39,7 +39,7 @@ const updatedUser = async (req, res) => {
         const avatarImage = req.file;
         const userId = req.user.userId;
         const user = await userServices.getUserByUserId(userId)
-        if(!user){
+        if (!user) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
                 message: appString.USER_NOT_FOUND,
@@ -48,7 +48,7 @@ const updatedUser = async (req, res) => {
             });
         }
         const updatedUser = await userServices.updateUser(userId, req.body, avatarImage)
-        if(!updatedUser){
+        if (!updatedUser) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
                 message: appString.ERROR_UPDATE_USER,
@@ -99,8 +99,37 @@ const getUserManagement = async (req, res) => {
     }
 }
 
+const updateStatusUser = async (req, res) => {
+    var data = null;
+    const requestType = Type.UPDATE_STATUS_USER;
+    try {
+        data = await userServices.updateStatusUser(req.body.userId, req.body.status)
+        if (!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.UPDATE_STATUS_USER_FAIL,
+                data,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.UPDATE_STATUS_USER_SUCCESSFUL,
+            data,
+            requestType
+        });
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+}
+
 module.exports = {
     getUsers,
     updatedUser,
-    getUserManagement
+    getUserManagement,
+    updateStatusUser
 };
