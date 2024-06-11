@@ -80,6 +80,10 @@ const GET_EXERCISE_IN_LIST_SUCCESSFUL = "Get exercise in list successfully";
 const EXERCISE_LIST_NOT_FOUND = "Exercise list not found";
 const GET_EXERCISE_LIST_SUCCESSFUL = "Get exercise list successfully";
 const GET_USER_MANAGEMENT_SUCCESSFUL = "Get user management successfully";
+const GET_WEIGHT_STATISTICS_USER_NOT_FOUND = "Get weight statistics user not found";
+const GET_WEIGHT_STATISTICS_USER_SUCCESSFUL = "Get weight statistics user successfully";
+const GET_HEIGHT_STATISTICS_USER_NOT_FOUND = "Get height statistics user not found";
+const GET_HEIGHT_STATISTICS_USER_SUCCESSFUL = "Get height statistics user successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -162,5 +166,9 @@ module.exports = {
     GET_EXERCISE_IN_LIST_SUCCESSFUL,
     EXERCISE_IN_LIST_NOT_FOUND,
     GET_EXERCISE_LIST_SUCCESSFUL,
-    GET_USER_MANAGEMENT_SUCCESSFUL
+    GET_USER_MANAGEMENT_SUCCESSFUL,
+    GET_WEIGHT_STATISTICS_USER_NOT_FOUND,
+    GET_WEIGHT_STATISTICS_USER_SUCCESSFUL,
+    GET_HEIGHT_STATISTICS_USER_NOT_FOUND,
+    GET_HEIGHT_STATISTICS_USER_SUCCESSFUL,
 };

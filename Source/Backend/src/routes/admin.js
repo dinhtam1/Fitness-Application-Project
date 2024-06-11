@@ -9,5 +9,6 @@ adminRouter.get('/user-management', authMiddleware.verifyTokenAdmin, userControl
 adminRouter.get('/gender-statistic', authMiddleware.verifyTokenAdmin, statisticController.getGenderStatisticsUser)
 adminRouter.get('/age-statistic', authMiddleware.verifyTokenAdmin, statisticController.getAgeStatisticsUser)
 adminRouter.get('/weight-statistic', authMiddleware.verifyTokenAdmin, statisticController.getWeightStatisticsUser)
+adminRouter.get('/height-statistic', authMiddleware.verifyTokenAdmin, statisticController.getHeightStatisticsUser)
 
 module.exports = adminRouter;

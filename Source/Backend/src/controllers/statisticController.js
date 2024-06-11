@@ -178,14 +178,58 @@ const getWeightStatisticsUser = async (req, res) => {
         if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,
-                message: appString.GET_GENDER_STATISTICS_USER_NOT_FOUND,
+                message: appString.GET_WEIGHT_STATISTICS_USER_NOT_FOUND,
                 data,
                 requestType
             });
         } else {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.SUCCESS,
-                message: appString.GET_GENDER_STATISTICS_USER_SUCCESFUL,
+                message: appString.GET_WEIGHT_STATISTICS_USER_SUCCESSFUL,
+                data,
+                requestType
+            })
+        }
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.FAIL,
+            message: appString.INTERNAL_SERVER_ERROR,
+            requestType
+        });
+    }
+}
+
+const getHeightStatisticsUser = async (req,res) => {
+    const requestType = Type.GET_HEIGHT_STATISTICS_USER;
+    var data = null;
+    try {
+        let startDate, endDate;
+        const { period, start, end } = req.query;
+        if (period === PERIOD.WEEK) {
+            startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+        } else if (period === PERIOD.MONTH) {
+            startDate = moment().startOf(PERIOD_TYPE.MONTH).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.MONTH).toDate();
+        } else if (start && end) {
+            startDate = moment(start, PERIOD_TYPE.DAY).toDate();
+            endDate = moment(end, PERIOD_TYPE.DAY).toDate();
+        } else {
+            startDate = moment().startOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+            endDate = moment().endOf(PERIOD_TYPE.WEEK).add(1, PERIOD.DAY).toDate();
+        }
+        data = await statisticServices.getHeightStatisticsUser(startDate, endDate);
+        if (!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.GET_HEIGHT_STATISTICS_USER_NOT_FOUND,
+                data,
+                requestType
+            });
+        } else {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.SUCCESS,
+                message: appString.GET_HEIGHT_STATISTICS_USER_SUCCESSFUL,
                 data,
                 requestType
             })
@@ -203,5 +247,6 @@ module.exports = {
     getCalorieStatistics,
     getGenderStatisticsUser,
     getAgeStatisticsUser,
-    getWeightStatisticsUser
+    getWeightStatisticsUser,
+    getHeightStatisticsUser
 };
