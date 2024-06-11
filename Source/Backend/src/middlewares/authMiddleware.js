@@ -67,6 +67,14 @@ const verifyToken = async (req, res, next) => {
             delete decodeUser.iat;
             delete decodeUser.exp;
             req.user = decodeUser;
+            if(decodeUser.status == 'INACTIVE'){
+                return res.status(statusCode.SUCCESS).json({
+                    statusCode: statusCode.FAIL,
+                    message: appString.ACCOUNT_HAS_BEEN_BANNED,
+                    data,
+                    requestType
+                });
+            }
             next();
         });
     } catch (error) {
@@ -134,6 +142,14 @@ const verifyTokenAdmin = async (req, res, next) => {
             delete decodeUser.exp;
 
             req.user = decodeUser;
+            if(decodeUser.status == 'INACTIVE'){
+                return res.status(statusCode.SUCCESS).json({
+                    statusCode: statusCode.FAIL,
+                    message: appString.ACCOUNT_HAS_BEEN_BANNED,
+                    data,
+                    requestType
+                });
+            }
             if (decodeUser.role !== 'ADMIN') {
                 return res.status(statusCode.SUCCESS).json({
                     statusCode: statusCode.FAIL,

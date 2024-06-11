@@ -114,6 +114,7 @@ const getDetailExercise = async (req, res) => {
         const exerciseId = parseInt(req.params.id);
         const exercise = await exerciseServices.getDetailExercise(exerciseId)
         exercise.level = level;
+        console.log(exercise.level)
         if(!exercise){
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,

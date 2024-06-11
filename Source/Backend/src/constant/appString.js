@@ -84,6 +84,9 @@ const GET_WEIGHT_STATISTICS_USER_NOT_FOUND = "Get weight statistics user not fou
 const GET_WEIGHT_STATISTICS_USER_SUCCESSFUL = "Get weight statistics user successfully";
 const GET_HEIGHT_STATISTICS_USER_NOT_FOUND = "Get height statistics user not found";
 const GET_HEIGHT_STATISTICS_USER_SUCCESSFUL = "Get height statistics user successfully";
+const UPDATE_STATUS_USER_FAIL = "Update status user fail";
+const UPDATE_STATUS_USER_SUCCESSFUL = "Update status user successfully";
+const ACCOUNT_HAS_BEEN_BANNED = "Account has been banned";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -171,4 +174,7 @@ module.exports = {
     GET_WEIGHT_STATISTICS_USER_SUCCESSFUL,
     GET_HEIGHT_STATISTICS_USER_NOT_FOUND,
     GET_HEIGHT_STATISTICS_USER_SUCCESSFUL,
+    UPDATE_STATUS_USER_FAIL,
+    UPDATE_STATUS_USER_SUCCESSFUL,
+    ACCOUNT_HAS_BEEN_BANNED
 };

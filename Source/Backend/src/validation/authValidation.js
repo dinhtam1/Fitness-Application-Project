@@ -1,7 +1,7 @@
 const Type = require('../constant/appRequestType.js')
 const Joi = require('joi');
 const statusCode = require('../constant/appNumber.js')
-const appString = require('../constant/appString.js')
+const appString = require('../constant/appString.js');
 const GENDER = {
     MALE: 'male',
     FEMALE: 'female',
@@ -179,4 +179,30 @@ const forgotPasswordValidation = (req, res, next) => {
     next();
 }
 
-module.exports = { createUserValidation, signInUserValidation, forgotPasswordValidation, userUpdateValidation };
+const updateUserSchema = Joi.object({
+    userId: Joi.number().positive().required(),
+    status: Joi.string().valid('ACTIVE', 'INACTIVE').required()
+});
+
+const updateStatusUserValidation = (req, res, next) => {
+    try {
+        var requestType = Type.VALIDATION;
+        const { error } = updateUserSchema.validate(req.body);
+        if (error) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: error.message.replace(/\\/g, '').replace(/"/g, ''),
+                requestType
+            });
+        }
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.FAIL,
+            message: error.message,
+            requestType
+        });
+    }
+    next();
+}
+
+module.exports = { createUserValidation, signInUserValidation, forgotPasswordValidation, userUpdateValidation,updateStatusUserValidation };
