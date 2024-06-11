@@ -200,9 +200,59 @@ const getWeightStatisticsUser = async (start_time, end_time) => {
 
 }
 
+const getHeightStatisticsUser = async (start_time, end_time) => {
+    try {
+        start_time = new Date(start_time);
+        end_time = new Date(end_time);
+        start_time.setUTCHours(0, 0, 0, 0);
+        end_time.setUTCHours(23, 59, 59, 999);
+        const statistics = await prisma.user.findMany({
+            where: {
+                create_at: {
+                    gte: start_time,
+                    lte: end_time
+                }
+            },
+            select: {
+                height: true
+            }
+        });
+        const heightGroups = {
+            'Unknown': 0,
+            '0-150': 0,
+            '151-170': 0,
+            '171-190': 0,
+            '191-210': 0,
+            '211+': 0
+        };
+        
+        statistics.forEach(user => {
+            const height = user.height;
+            if (height === null) {
+                heightGroups['Unknown']++;
+            } else if (height >= 0 && height < 151) {
+                heightGroups['0-150']++;
+            } else if (height >= 151 && height < 171) {
+                heightGroups['151-170']++;
+            } else if (height >= 171 && height < 191) {
+                heightGroups['171-190']++;
+            } else if (height >= 191 && height < 211) {
+                heightGroups['191-210']++;
+            } else if (height >= 211) {
+                heightGroups['211+']++;
+            }
+        });
+        
+        return heightGroups;
+    } catch (error) {
+        return false;
+    }
+}
+
 module.exports = {
     getCalorieStatistics,
     getGenderStatisticsUser,
     getAgeStatisticsUser,
-    getWeightStatisticsUser
+    getWeightStatisticsUser,
+    getHeightStatisticsUser
 }
