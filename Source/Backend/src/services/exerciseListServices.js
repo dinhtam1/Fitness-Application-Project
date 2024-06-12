@@ -12,6 +12,19 @@ const TYPE = {
     PNG: 'image/png',
     AVT: 'cover-exercise'
 }
+
+const levelToString = level => {
+    switch(level) {
+        case 0:
+            return "BEGINNER";
+        case 1:
+            return "ADVANCED";
+        default:
+            return "UNKNOWN";
+    }
+}
+
+
 const createExerciseList = async (userId, list_name, image) => {
     try {
         const exerciseList = await prisma.exerciseList.create({
@@ -41,26 +54,28 @@ const createExerciseList = async (userId, list_name, image) => {
     }
 }
 
-const addExerciseToList = async (exerciseId, exerciseListId) => {
+const addExerciseToList = async (exerciseId, exerciseListIds) => {
     try {
-        const exerciseList = await prisma.exerciseOnList.findFirst({
-            where: {
-                exerciseListId: exerciseListId,
-                exerciseId: exerciseId
-            }
-        })
-        if (exerciseList) {
-            return false
-        } else {
-            return await prisma.exerciseOnList.create({
-                data: {
-                    exerciseId: exerciseId,
-                    exerciseListId: exerciseListId
+        const results = [];
+        for (const exerciseListId of exerciseListIds) {
+            const exerciseList = await prisma.exerciseOnList.findFirst({
+                where: {
+                    exerciseListId: exerciseListId,
+                    exerciseId: exerciseId
                 }
-            });
+            })
+            if (!exerciseList) {
+                const result = await prisma.exerciseOnList.create({
+                    data: {
+                        exerciseId: exerciseId,
+                        exerciseListId: exerciseListId
+                    }
+                });
+                results.push(result);
+            }
         }
+        return results;
     } catch (error) {
-        console.error(error);
         return false;
     }
 }
@@ -80,8 +95,14 @@ const getExerciseInList = async (userId, exerciseListId) => {
                                 exerciseId: true,
                                 image: true,
                                 duration : true,
-                                caloriesBurned : true
+                                caloriesBurned : true,
+                                muscle_group : {
+                                    select : {
+                                        level : true
+                                    }
+                                }
                             }
+
                         }
                     }
                 }
@@ -92,18 +113,24 @@ const getExerciseInList = async (userId, exerciseListId) => {
             return {
                 ...exerciseList,
                 exercises: exerciseList.exercises.map(exerciseOnList => {
+                    const { muscle_group: { level }, ...exercise } = exerciseOnList.exercise;
                     return {
-                        ...exerciseOnList,
-                        exercise: {
-                            ...exerciseOnList.exercise,
-                            name: getNamebyUrl(exerciseOnList.exercise.image)
-                        }
+                        ...exercise,
+                        level,
+                        name: getNamebyUrl(exercise.image)
                     }
                 })
             }
         });
-        const transformedData = exerciseWithNames.map(item => item.exercises.map(exerciseItem => exerciseItem.exercise)).flat();
-        return transformedData
+        const transformedData = exerciseWithNames.map(item => item.exercises).flat();
+        const finalData = transformedData.map(item => {
+            return {
+                ...item,
+                level: levelToString(item.level)
+            }
+        });
+        
+        return finalData;
     } catch (error) {
         return false;
     }
@@ -131,16 +158,15 @@ const getExerciseList = async (userId) => {
                 }
             }
         });
-
         return exerciseLists.map(list => {
             const totalDuration = list.exercises.reduce((total, exerciseOnList) => total + exerciseOnList.exercise.duration, 0);
-            const totalCaloriesBurned = list.exercises.reduce((total, exerciseOnList) => total + exerciseOnList.exercise.caloriesBurned, 0);
+            const quantityExercise = list.exercises.length;
             return {
                 exerciseListId: list.exerciseListId,
                 list_name: list.list_name,
                 cover_image: list.cover_image,
                 totalDuration,
-                totalCaloriesBurned
+                quantityExercise
             };
         });
     } catch (error) {
