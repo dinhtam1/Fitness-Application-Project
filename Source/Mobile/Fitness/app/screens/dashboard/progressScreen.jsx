@@ -31,7 +31,7 @@ const data = [
 ];
 
 const ProgressScreen = () => {
-  const [activeId, setActiveId] = useState(null);
+  const [activeId, setActiveId] = useState(1);
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
   const {user} = useUserStore();
@@ -73,7 +73,6 @@ const ProgressScreen = () => {
         start: date,
         end: date,
       });
-      console.log('dashboard', dashboard);
       if (response.statusCode === 200 && dashboard.statusCode === 200) {
         setDashboard(dashboard.data);
         setStatistic(response.data);
@@ -85,7 +84,7 @@ const ProgressScreen = () => {
   const barData = statistic.map(item => {
     return {
       value: item.calories_loaded,
-      label: item.date,
+      label: time === 'month' ? moment(item.date).format('DD') : item.date,
       frontColor: today === item.date ? '#177AD5' : 'lightgray',
     };
   });

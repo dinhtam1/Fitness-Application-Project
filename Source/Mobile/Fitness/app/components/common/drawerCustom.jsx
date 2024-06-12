@@ -27,13 +27,13 @@ const data = [
   },
   {
     id: 2,
-    name: 'My Progress',
+    name: 'Progress',
     nav: 'Progress',
   },
   {
     id: 3,
-    name: 'Training',
-    nav: 'Training',
+    name: 'Playlist',
+    nav: 'Playlist',
   },
   {
     id: 4,
@@ -62,10 +62,10 @@ const renderIcon = name => {
     case 'Dashboard':
       return <AntDesign name="dashboard" size={20} color="black" />;
       break;
-    case 'Training':
+    case 'Playlist':
       return <FontAwesome6 name="dumbbell" size={18} color="black" />;
       break;
-    case 'My Progress':
+    case 'Progress':
       return <MaterialIcons name="sports-gymnastics" size={22} color="black" />;
       break;
     case 'Categories':

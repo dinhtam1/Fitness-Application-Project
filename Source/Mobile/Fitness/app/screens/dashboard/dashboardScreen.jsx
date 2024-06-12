@@ -14,6 +14,7 @@ import {apiDashboard} from '../../apis/dashboard';
 
 import CircleValue from './component/circleValue';
 import {getTimeToString} from '../../utils/helper';
+import {common} from '../../styles/commonStyles';
 
 const DashboardScreen = () => {
   const [dashboard, setDashboard] = useState({});
@@ -32,41 +33,39 @@ const DashboardScreen = () => {
 
   console.log('dashboard', dashboard);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={common.safeAreaView}>
       <BackComponent black back title={'DASHBOARD'} nav={'Main'} />
-      <ScrollView>
-        <View
-          style={{
-            paddingHorizontal: 20,
-            marginTop: 40,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 30,
-          }}>
-          <CircleValue
-            data={getTimeToString(dashboard.time_practice)}
-            unit={'Hours'}
-            title={'Practice'}
-          />
-          <CircleValue
-            data={getTimeToString(dashboard.time_sleep)}
-            unit={'Hours'}
-            title={'Sleep'}
-          />
-          <CircleValue data={dashboard.weight} unit={'Kg'} title={'Weight'} />
-          <CircleValue
-            data={dashboard.calories_burned}
-            unit={'Kcal'}
-            title={'Calories'}
-          />
-          <CircleValue data={dashboard.height} unit={'CM'} title={'Height'} />
-          <CircleValue
-            data={dashboard.exercise_complete}
-            title={'Workout'}
-            exercise
-          />
-        </View>
-      </ScrollView>
+      <View
+        style={{
+          paddingHorizontal: 20,
+          marginTop: 40,
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          gap: 30,
+        }}>
+        <CircleValue
+          data={getTimeToString(dashboard.time_practice)}
+          unit={'Hours'}
+          title={'Practice'}
+        />
+        <CircleValue
+          data={getTimeToString(dashboard.time_sleep)}
+          unit={'Hours'}
+          title={'Sleep'}
+        />
+        <CircleValue data={dashboard.weight} unit={'Kg'} title={'Weight'} />
+        <CircleValue
+          data={dashboard.calories_burned}
+          unit={'Kcal'}
+          title={'Calories'}
+        />
+        <CircleValue data={dashboard.height} unit={'CM'} title={'Height'} />
+        <CircleValue
+          data={dashboard.exercise_complete}
+          title={'Workout'}
+          exercise
+        />
+      </View>
     </SafeAreaView>
   );
 };

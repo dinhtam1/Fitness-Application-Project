@@ -1,17 +1,13 @@
 import {
-  Animated,
   Dimensions,
-  Image,
   ImageBackground,
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
-import {exercise1, exercise2, notification} from '../../assets';
 import {fontFamilies} from '../../constants/fontFamilies';
 import TextComponent from '../../components/text/textComponent';
 import CustomButton from '../../components/button/buttonComponent';
@@ -22,36 +18,42 @@ import SpaceComponent from '../../components/common/spaceComponent';
 import {colors} from '../../constants/colors';
 import {FontAwesome} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
-import {apiUpdateDashboard} from '../../apis/dashboard';
 import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import BackComponent from '../../components/header/backComponent';
 import {common} from '../../styles/commonStyles';
+import {apiExerciseDetail} from '../../apis';
 
 const {width, height} = Dimensions.get('window');
 
 const ProgressExerciseScreen = ({route}) => {
-  const {exercise} = route.params;
+  const {exercises, single, namePlan} = route.params;
   const navigation = useNavigation();
-  const initialCountdownTime = exercise.duration * 60;
+  const [exercise, setExercise] = useState([]);
   const {user} = useUserStore();
   const {token} = useAuthStore();
-  const [countdown, setCountdown] = useState(initialCountdownTime);
+  const [countdown, setCountdown] = useState(0);
   const [isStop, setIsStop] = useState(true);
-  const sound = new Audio.Sound();
+  const [exerciseId, setExerciseId] = useState(exercises[0].exerciseId);
+  const [currentExercise, setCurrentExercise] = useState(1);
+  const [caloriesBurned, setCaloriesBurned] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const topRef = useRef(null);
 
-  // useEffect(() => {
-  //   const loadSound = async () => {
-  //     await sound.loadAsync(notification);
-  //   };
-  //   loadSound();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await apiExerciseDetail(user.userId, token, exerciseId);
+      if (response.statusCode === 200) {
+        setExercise(response.data);
+        setCountdown(response.data.duration * 60);
+      }
+    };
+    fetchData();
+  }, [exerciseId]);
 
   useEffect(() => {
     let timer = null;
     if (!isStop && countdown > 0) {
       timer = setInterval(() => setCountdown(countdown - 1), 1000);
-    } else if (countdown === 0) {
-      sound.playAsync();
     }
     return () => clearInterval(timer);
   }, [countdown, isStop]);
@@ -61,8 +63,40 @@ const ProgressExerciseScreen = ({route}) => {
   };
 
   const handleResult = () => {
-    navigation.navigate('Result', {exercise: exercise});
+    if (topRef.current) {
+      topRef.current.scrollTo({x: 0, y: 0, animated: true});
+    }
+    if (currentExercise < exercises.length) {
+      setCurrentExercise(currentExercise + 1);
+      setExerciseId(exercises[currentExercise].exerciseId);
+      setCountdown(exercises[currentExercise].duration * 60);
+      setCaloriesBurned(caloriesBurned + exercise.caloriesBurned);
+      setDuration(duration + exercise.duration);
+      setIsStop(true);
+      return;
+    } else if (currentExercise === exercises.length) {
+      setCaloriesBurned(caloriesBurned + exercise.caloriesBurned);
+      setDuration(duration + exercise.duration);
+      navigation.navigate('Result', {
+        caloriesBurned: caloriesBurned,
+        duration: duration,
+        namePlan: namePlan,
+      });
+    } else {
+      navigation.navigate('Result', {
+        caloriesBurned: caloriesBurned,
+        duration: duration,
+        namePlan: namePlan,
+      });
+    }
   };
+
+  const handleResultSingle = () => {
+    navigation.navigate('Result', {
+      exercise: exercise,
+    });
+  };
+
   return (
     <SafeAreaView style={common.safeAreaView}>
       <BackComponent
@@ -73,17 +107,25 @@ const ProgressExerciseScreen = ({route}) => {
         param={'category'}
         data={exercise.equipmentName}
       />
-      <ScrollView style={{marginBottom: -35}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        ref={topRef}
+        style={{marginBottom: -35}}>
         <ImageBackground
           src={exercise.image}
           style={{
             width: width,
             height: height / 2.8,
+            backgroundColor: colors['border'],
           }}></ImageBackground>
 
-        <View style={{paddingHorizontal: 26, marginTop: 10}}>
-          <View style={{marginTop: 20}}>
-            <TextComponent text={'Exercise 3/12'} />
+        <View style={{paddingHorizontal: 26, marginTop: 20}}>
+          <View>
+            <TextComponent
+              text={`Exercise ${currentExercise}/${exercises.length}`}
+              size={13}
+              font={fontFamilies['light']}
+            />
             <TextComponent
               text={exercise.name}
               size={30}
@@ -91,30 +133,32 @@ const ProgressExerciseScreen = ({route}) => {
               styles={{
                 width: width / 1.5,
                 marginBottom: 5,
-                marginTop: 20,
+                marginTop: 10,
               }}
               space={-0.8}
             />
           </View>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Progress.Circle
-              size={150}
-              indeterminate={false}
-              progress={countdown / initialCountdownTime}
-              direction={'counter-clockwise'}
-              fill="transparent"
-              showsText={true}
-              borderColor="#F2F2F2"
-              color="black"
-              thickness={10}
-              unfilledColor={colors['border-3']}
-              formatText={() =>
-                `${Math.floor(countdown / 60)}:${countdown % 60 < 10 ? '0' : ''}${countdown % 60}`
-              }
-              strokeCap="round"
-            />
+            {countdown / (exercise.duration * 60) > 0 && (
+              <Progress.Circle
+                size={150}
+                indeterminate={false}
+                progress={countdown / (exercise.duration * 60)}
+                direction={'counter-clockwise'}
+                fill="transparent"
+                showsText={true}
+                borderColor="#F2F2F2"
+                color="black"
+                thickness={10}
+                unfilledColor={colors['border-3']}
+                formatText={() =>
+                  `${Math.floor(countdown / 60)}:${countdown % 60 < 10 ? '0' : ''}${countdown % 60}`
+                }
+                strokeCap="round"
+              />
+            )}
             <TextComponent
-              text={`${Math.floor(initialCountdownTime / 60)}:${initialCountdownTime % 60 < 10 ? '0' : ''}${initialCountdownTime % 60}`}
+              text={`${Math.floor((exercise.duration * 60) / 60)}:${(exercise.duration * 60) % 60 < 10 ? '0' : ''}${(exercise.duration * 60) % 60}`}
               size={25}
               styles={{marginTop: 10}}
               font={fontFamilies['semibold']}
@@ -183,7 +227,7 @@ const ProgressExerciseScreen = ({route}) => {
             />
           </View>
           <CustomButton
-            handlePress={handleResult}
+            handlePress={single ? handleResultSingle : handleResult}
             title={'DONE'}
             containerStyles={{marginBottom: 20}}
           />
@@ -205,5 +249,6 @@ const styles = StyleSheet.create({
   video: {
     width: '100%',
     height: 200,
+    backgroundColor: colors['border'],
   },
 });

@@ -25,7 +25,7 @@ const {width, height} = Dimensions.get('window');
 
 const DetailExerciseScreen = ({route}) => {
   const navigation = useNavigation();
-  const {exerciseId} = route.params;
+  const {exerciseId} = route?.params;
   const {token} = useAuthStore();
   const [exercise, setExercise] = useState({});
   const {user} = useUserStore();
@@ -41,7 +41,14 @@ const DetailExerciseScreen = ({route}) => {
   }, []);
 
   const handleStart = () => {
-    navigation.navigate('ProgressExercise', {exercise: exercise});
+    navigation.navigate('ProgressExercise', {
+      exercises: [
+        {
+          exerciseId: exerciseId,
+        },
+      ],
+      single: true,
+    });
   };
 
   return (
@@ -54,12 +61,13 @@ const DetailExerciseScreen = ({route}) => {
         param={'category'}
         data={exercise.equipmentName}
       />
-      <ScrollView style={{backgroundColor: 'white'}}>
+      <ScrollView>
         <ImageBackground
           src={exercise.image}
           style={{
             width: width,
             height: height / 2.8,
+            backgroundColor: colors['border'],
           }}></ImageBackground>
         <View
           style={{
@@ -216,5 +224,6 @@ const styles = StyleSheet.create({
   video: {
     width: '100%',
     height: 200,
+    backgroundColor: colors['border'],
   },
 });

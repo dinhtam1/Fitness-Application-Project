@@ -25,11 +25,6 @@ const CategoryScreen = () => {
       <BackComponent black back title={'CATEGORIES'} nav={'Main'} />
       <ScrollView>
         <View style={{paddingHorizontal: 20}}>
-          <FormField
-            placeholder={'Search'}
-            icon={'search'}
-            otherStyles={{marginTop: 0}}
-          />
           <View
             style={{
               marginTop: 30,
@@ -72,6 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     height: 120,
     width: 120,
+    backgroundColor: colors['border'],
   },
   imageBtnTxt: {
     color: colors['primary-color-black'],

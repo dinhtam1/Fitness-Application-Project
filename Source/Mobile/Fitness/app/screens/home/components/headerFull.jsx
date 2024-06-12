@@ -56,9 +56,7 @@ const HeaderFull = ({background, ...props}) => {
           source={header}
           style={{
             width: width,
-            height: height / 3.3,
-            borderBottomLeftRadius: 40,
-            borderBottomRightRadius: 40,
+            height: height / 5,
           }}></ImageBackground>
       )}
       <View
@@ -122,13 +120,6 @@ const HeaderFull = ({background, ...props}) => {
               styles={{marginTop: 8}}
             />
           </>
-        )}
-        {background && (
-          <FormField
-            placeholder={'Search'}
-            icon={'search'}
-            otherStyles={{marginTop: 0}}
-          />
         )}
       </View>
     </>

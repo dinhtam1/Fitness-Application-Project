@@ -10,7 +10,6 @@ import {useAuthStore} from '../../store/useAuthStore';
 const {width, height} = Dimensions.get('window');
 
 const PaginationComponent = props => {
-  const navigation = useNavigation();
   const {setIsShowSplash} = useAuthStore();
 
   const {data, flatlistRef, handlePress, handleScroll, activeIndex} = props;

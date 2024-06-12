@@ -23,7 +23,6 @@ const CustomButton = ({
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
-          
         },
         containerStyles,
         isLoading && {opacity: 0.5},

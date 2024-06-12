@@ -12,7 +12,7 @@ import LevelScreen from './steps/levelScreen';
 import GoalScreen from './steps/goalScreen';
 import StartScreen from './steps/startScreen';
 import HomePageScreen from './home/homePageScreen';
-import TrainingScreen from './training/trainingScreen';
+import PlaylistScreen from './playlist/playlistScreen';
 import CategoryScreen from './categories/categoryScreen';
 import FullExerciseScreen from './exercise/fullExerciseScreen';
 import DetailExerciseScreen from './exercise/detailExerciseScreen';
@@ -30,6 +30,8 @@ import EditProfileScreen from './profile/editProfileScreen';
 import CameraScreen from './camera/cameraScreen';
 import SleepScreen from './sleep/sleepScreen';
 import ProgressScreen from './dashboard/progressScreen';
+import CreatePlanScreen from './playlist/createPlanScreen';
+import PlaylistFullExerciseScreen from './playlist/playlistFullExerciseScreen';
 
 export {
   SignInScreen,
@@ -46,7 +48,7 @@ export {
   GoalScreen,
   StartScreen,
   HomePageScreen,
-  TrainingScreen,
+  PlaylistScreen,
   CategoryScreen,
   FullExerciseScreen,
   DetailExerciseScreen,
@@ -64,4 +66,6 @@ export {
   CameraScreen,
   SleepScreen,
   ProgressScreen,
+  CreatePlanScreen,
+  PlaylistFullExerciseScreen,
 };

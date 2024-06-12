@@ -24,6 +24,7 @@ const MealFullImage = ({item, ...props}) => {
           width: '100%',
           height: 180,
           borderRadius: 10,
+          backgroundColor: colors['border'],
         }}
       />
       <TextComponent

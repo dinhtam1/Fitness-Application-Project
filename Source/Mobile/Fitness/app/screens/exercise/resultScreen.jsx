@@ -12,17 +12,18 @@ import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
+import {getTimeToString} from '../../utils/helper';
 
 const ResultScreen = ({route}) => {
   const navigation = useNavigation();
-  const {exercise} = route.params;
+  const {caloriesBurned, duration, plan, exercise, namePlan} = route.params;
   const {user} = useUserStore();
   const {token} = useAuthStore();
 
   const handlePress = async () => {
     const response = await apiUpdateDashboard(user.userId, token, {
-      time_practice: exercise.duration,
-      calories_burned: exercise.caloriesBurned,
+      time_practice: duration,
+      calories_burned: caloriesBurned,
     });
     if (response?.statusCode === 200) {
       Toast.show(
@@ -45,7 +46,7 @@ const ResultScreen = ({route}) => {
           color={colors['title']}
         />
         <TextComponent
-          text={`Exercises with ${exercise.name}`}
+          text={namePlan ? namePlan : `Exercises with ${exercise.name}`}
           size={17}
           font={fontFamilies['semibold']}
           color={colors['text-2']}
@@ -78,7 +79,7 @@ const ResultScreen = ({route}) => {
               color={colors['text-3']}
             />
             <TextComponent
-              text={exercise.duration}
+              text={exercise ? exercise.duration : getTimeToString(duration)}
               size={17}
               font={fontFamilies['regular']}
               color={colors['text-2']}
@@ -94,7 +95,7 @@ const ResultScreen = ({route}) => {
               color={colors['text-3']}
             />
             <TextComponent
-              text={exercise.caloriesBurned}
+              text={exercise ? exercise.caloriesBurned : caloriesBurned}
               size={17}
               font={fontFamilies['regular']}
               color={colors['text-2']}
@@ -102,67 +103,71 @@ const ResultScreen = ({route}) => {
               styles={styles.text}
             />
           </View>
-          <View style={styles.container}>
-            <TextComponent
-              text={'Total Level'}
-              size={16}
-              font={fontFamilies['semibold']}
-              color={colors['text-3']}
-            />
-            <TextComponent
-              text={exercise.level}
-              size={17}
-              font={fontFamilies['regular']}
-              color={colors['text-2']}
-              styles={styles.text}
-            />
-          </View>
-          <View style={styles.container}>
-            <TextComponent
-              text={'Category'}
-              size={16}
-              font={fontFamilies['semibold']}
-              color={colors['text-3']}
-            />
-            <TextComponent
-              text={exercise.equipmentName}
-              size={17}
-              font={fontFamilies['regular']}
-              color={colors['text-2']}
-              styles={styles.text}
-            />
-          </View>
-          <View style={styles.container}>
-            <TextComponent
-              text={'Weight'}
-              size={16}
-              font={fontFamilies['semibold']}
-              color={colors['text-3']}
-            />
-            <TextComponent
-              text={exercise.weight}
-              size={17}
-              font={fontFamilies['regular']}
-              color={colors['text-2']}
-              styles={styles.text}
-            />
-          </View>
-          <View style={styles.container}>
-            <TextComponent
-              text={'Total Weight'}
-              size={16}
-              font={fontFamilies['semibold']}
-              color={colors['text-3']}
-            />
-            <TextComponent
-              text={user.weight}
-              size={17}
-              font={fontFamilies['regular']}
-              color={colors['text-2']}
-              unit={'kg'}
-              styles={styles.text}
-            />
-          </View>
+          {exercise && (
+            <>
+              <View style={styles.container}>
+                <TextComponent
+                  text={'Level'}
+                  size={16}
+                  font={fontFamilies['semibold']}
+                  color={colors['text-3']}
+                />
+                <TextComponent
+                  text={exercise.level}
+                  size={17}
+                  font={fontFamilies['regular']}
+                  color={colors['text-2']}
+                  styles={styles.text}
+                />
+              </View>
+              <View style={styles.container}>
+                <TextComponent
+                  text={'Category'}
+                  size={16}
+                  font={fontFamilies['semibold']}
+                  color={colors['text-3']}
+                />
+                <TextComponent
+                  text={exercise.equipmentName}
+                  size={17}
+                  font={fontFamilies['regular']}
+                  color={colors['text-2']}
+                  styles={styles.text}
+                />
+              </View>
+              <View style={styles.container}>
+                <TextComponent
+                  text={'Weight'}
+                  size={16}
+                  font={fontFamilies['semibold']}
+                  color={colors['text-3']}
+                />
+                <TextComponent
+                  text={exercise.weight}
+                  size={17}
+                  font={fontFamilies['regular']}
+                  color={colors['text-2']}
+                  styles={styles.text}
+                />
+              </View>
+              <View style={styles.container}>
+                <TextComponent
+                  text={'Total Weight'}
+                  size={16}
+                  font={fontFamilies['semibold']}
+                  color={colors['text-3']}
+                />
+                <TextComponent
+                  text={user.weight}
+                  size={17}
+                  font={fontFamilies['regular']}
+                  color={colors['text-2']}
+                  unit={'kg'}
+                  styles={styles.text}
+                />
+              </View>
+            </>
+          )}
         </View>
         <CustomButton
           handlePress={handlePress}

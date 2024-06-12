@@ -84,6 +84,7 @@ const DetailMealScreen = ({route}) => {
           style={{
             width: width,
             height: height / 2.8,
+            backgroundColor: colors['border'],
           }}></ImageBackground>
         <View
           style={{

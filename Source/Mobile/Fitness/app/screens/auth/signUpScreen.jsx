@@ -62,126 +62,125 @@ const SignUpScreen = () => {
       );
     }
   };
+  console.log('a');
   return (
     <SafeAreaView style={common.safeAreaView}>
       <BackComponent black back />
-      <ScrollView>
-        <View style={common.contain}>
-          <View>
-            <TextComponent
-              text={title['sign-up']}
-              color={colors['title']}
-              size={30}
-              font={fontFamilies['bebasNeue']}
-              styles={{
-                paddingBottom: 10,
-              }}
-            />
-            <TextComponent
-              text={text['sub-sign-up']}
-              size={15}
-              font={fontFamilies['medium']}
-            />
-          </View>
-          <View style={{paddingVertical: 20}}>
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['name']}
-                  title={titleForm['name']}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
-                />
-              )}
-              name="full_name"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['phone']}
-                  title={titleForm['phone']}
-                  handleChangeText={onChange}
-                  keyboardType="number-pad"
-                  value={value}
-                  error={errors[name]?.message}
-                />
-              )}
-              name="phone_number"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-                pattern: {
-                  value: EMAIL_REGEX,
-                  message: 'Not a valid email',
-                },
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['email']}
-                  title={titleForm['email']}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
-                />
-              )}
-              name="email"
-            />
-            <Controller
-              control={control}
-              rules={{
-                required: {value: true, message: 'This field cannot empty'},
-                minLength: {
-                  value: 8,
-                  message: 'Password must be at least 8 characters',
-                },
-              }}
-              render={({field: {onChange, value, name}}) => (
-                <FormField
-                  placeholder={placeholder['password']}
-                  title={titleForm['password']}
-                  handleChangeText={onChange}
-                  value={value}
-                  error={errors[name]?.message}
-                />
-              )}
-              name="password"
-            />
-          </View>
-          <CustomButton
-            title={button['sign-up']}
-            handlePress={handleSubmit(onSubmit)}
-            isLoading={isSubmitting}
-            containerStyles={{marginTop: 20}}
+      <View style={common.contain}>
+        <View>
+          <TextComponent
+            text={title['sign-up']}
+            color={colors['title']}
+            size={30}
+            font={fontFamilies['bebasNeue']}
+            styles={{
+              paddingBottom: 10,
+            }}
           />
-          <View style={{alignItems: 'center', marginVertical: 40}}>
-            <Text style={{fontSize: 14, fontFamily: fontFamilies['light']}}>
-              Already have an account?{' '}
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('SignIn');
-                }}>
-                <TextComponent
-                  text={'Login!'}
-                  size={14}
-                  font={fontFamilies['bold']}
-                  styles={{transform: [{translateY: 3}]}}
-                />
-              </TouchableOpacity>
-            </Text>
-          </View>
+          <TextComponent
+            text={text['sub-sign-up']}
+            size={15}
+            font={fontFamilies['medium']}
+          />
         </View>
-      </ScrollView>
+        <View style={{paddingVertical: 20}}>
+          <Controller
+            control={control}
+            rules={{
+              required: {value: true, message: 'This field cannot empty'},
+            }}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['name']}
+                title={titleForm['name']}
+                handleChangeText={onChange}
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="full_name"
+          />
+          <Controller
+            control={control}
+            rules={{
+              required: {value: true, message: 'This field cannot empty'},
+            }}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['phone']}
+                title={titleForm['phone']}
+                handleChangeText={onChange}
+                keyboardType="number-pad"
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="phone_number"
+          />
+          <Controller
+            control={control}
+            rules={{
+              required: {value: true, message: 'This field cannot empty'},
+              pattern: {
+                value: EMAIL_REGEX,
+                message: 'Not a valid email',
+              },
+            }}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['email']}
+                title={titleForm['email']}
+                handleChangeText={onChange}
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="email"
+          />
+          <Controller
+            control={control}
+            rules={{
+              required: {value: true, message: 'This field cannot empty'},
+              minLength: {
+                value: 8,
+                message: 'Password must be at least 8 characters',
+              },
+            }}
+            render={({field: {onChange, value, name}}) => (
+              <FormField
+                placeholder={placeholder['password']}
+                title={titleForm['password']}
+                handleChangeText={onChange}
+                value={value}
+                error={errors[name]?.message}
+              />
+            )}
+            name="password"
+          />
+        </View>
+        <CustomButton
+          title={button['sign-up']}
+          handlePress={handleSubmit(onSubmit)}
+          isLoading={isSubmitting}
+          containerStyles={{marginTop: 20}}
+        />
+        <View style={{alignItems: 'center', marginVertical: 40}}>
+          <Text style={{fontSize: 14, fontFamily: fontFamilies['light']}}>
+            Already have an account?{' '}
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('SignIn');
+              }}>
+              <TextComponent
+                text={'Login!'}
+                size={14}
+                font={fontFamilies['bold']}
+                styles={{transform: [{translateY: 3}]}}
+              />
+            </TouchableOpacity>
+          </Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };

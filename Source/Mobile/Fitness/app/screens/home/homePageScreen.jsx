@@ -80,13 +80,7 @@ const HomePageScreen = () => {
                 data={categories}
                 nav={'Category'}
               />
-              {/* <VerticalComponent
-              all
-              full
-              title={'Popular Exercise'}
-              unit={'min'}
-              nav={'FullExercise'}
-            /> */}
+
               <MealPlan data={meals} />
             </Animated.View>
           </View>

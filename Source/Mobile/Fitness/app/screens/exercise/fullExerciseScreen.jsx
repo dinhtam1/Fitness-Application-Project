@@ -14,10 +14,10 @@ import AboutExercise from './component/aboutExercise';
 import {Dropdown} from 'react-native-element-dropdown';
 import {colors} from '../../constants/colors';
 import {common} from '../../styles/commonStyles';
-import Modal from 'react-native-modal';
+import ModalExercise from './component/modalExercise';
 
 const FullExerciseScreen = ({route}) => {
-  const {category} = route.params;
+  const {category} = route?.params;
   const [exercises, setExercises] = useState([]);
   const [muscleName, setMuscleName] = useState([]);
   const {token} = useAuthStore();
@@ -26,8 +26,10 @@ const FullExerciseScreen = ({route}) => {
   const [isFocus, setIsFocus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [exerciseId, setExerciseId] = useState(null);
 
-  const toggleModal = () => {
+  const toggleModal = exerciseId => {
+    setExerciseId(exerciseId);
     setModalVisible(!isModalVisible);
   };
 
@@ -51,7 +53,7 @@ const FullExerciseScreen = ({route}) => {
   return (
     <SafeAreaView style={common.safeAreaView}>
       <BackComponent black back title={'FULL EXERCISE'} nav={'Home'} />
-      <View style={{paddingHorizontal: 20}}>
+      <View style={{paddingHorizontal: 20, height: '100%'}}>
         <View style={styles.container}>
           <Dropdown
             style={[
@@ -83,20 +85,19 @@ const FullExerciseScreen = ({route}) => {
           />
         ) : (
           <>
-            <AboutExercise handlePress={toggleModal} data={exercises} />
+            <AboutExercise
+              add={true}
+              handlePress={toggleModal}
+              data={exercises}
+            />
           </>
         )}
       </View>
-      <Modal isVisible={isModalVisible}>
-        <View
-          style={{
-            height: 400,
-            width: '100%',
-            backgroundColor: 'white',
-          }}>
-          <Text>Hello!</Text>
-        </View>
-      </Modal>
+      <ModalExercise
+        isModalVisible={isModalVisible}
+        handleToggle={toggleModal}
+        exerciseId={exerciseId}
+      />
     </SafeAreaView>
   );
 };
