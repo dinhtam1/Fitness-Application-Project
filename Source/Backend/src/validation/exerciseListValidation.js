@@ -31,7 +31,7 @@ const exerciseListCreateValidation = (req, res, next) => {
 
 const exerciseListAddSchema = Joi.object({
     exerciseId: Joi.number().positive().required().strict(),
-    exerciseListId: Joi.number().positive().required().strict()
+    exerciseListId: Joi.array().items(Joi.number().positive().required().strict()).required()
 });
 
 const exerciseListAddValidation = (req, res, next) => {
