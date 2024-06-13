@@ -83,8 +83,34 @@ const exerciseListDeleteValidation = (req, res, next) => {
     next();
 };
 
+const exerciseListUpdateNameSchema = Joi.object({
+    list_name: Joi.required(),
+});
+
+const exerciseListUpdateNameValidation = (req, res, next) => {
+    try {
+        const { error, value } = exerciseListUpdateNameSchema.validate(req.body);
+        if (error) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: error.message.replace(/\\/g, '').replace(/"/g, ''),
+                requestType
+            });
+        };
+
+        req.updateNameExerciseList = value;
+    } catch (err) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.FAIL,
+            message: err.message,
+            requestType
+        });
+    };
+    next();
+}
 module.exports = {
     exerciseListCreateValidation,
     exerciseListAddValidation,
-    exerciseListDeleteValidation
+    exerciseListDeleteValidation,
+    exerciseListUpdateNameValidation
 }

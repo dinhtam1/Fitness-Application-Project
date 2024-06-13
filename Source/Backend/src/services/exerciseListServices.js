@@ -221,11 +221,29 @@ const deleteExerciseInList = async (userId, exerciseListId, exerciseId) => {
     }
 }
 
+const updateNameExerciseList = async (userId, exerciseListId, list_name) => {
+    try {
+        await prisma.exerciseList.update({
+            where: {
+                userId: userId,
+                exerciseListId
+            },
+            data: {
+                list_name
+            }
+        });
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
 module.exports = {
     createExerciseList,
     addExerciseToList,
     getExerciseInList,
     getExerciseList,
     deleteExerciseList,
-    deleteExerciseInList
+    deleteExerciseInList,
+    updateNameExerciseList
 }
