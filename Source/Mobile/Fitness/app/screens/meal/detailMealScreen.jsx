@@ -98,7 +98,6 @@ const DetailMealScreen = ({route}) => {
             borderRadius: 20,
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 30,
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <SimpleLineIcons
@@ -108,19 +107,22 @@ const DetailMealScreen = ({route}) => {
               style={{marginRight: 5}}
             />
             <TextComponent
-              text={Math.floor(meal.calories)}
+              text={`${Math.floor(meal.calories)}`}
               unit={'kcal'}
               size={20}
               font={fontFamilies['medium']}
               color={colors['title']}
             />
           </View>
+          <View style={{position: 'absolute', right: 85, bottom: 40}}>
+            <TextComponent text={`/100g`} size={12} />
+          </View>
         </View>
         <View style={{paddingHorizontal: 26, marginVertical: 40}}>
           <View
             style={{
               flexDirection: 'row',
-              gap: 60,
+              gap: 40,
               justifyContent: 'center',
             }}>
             <View style={{alignItems: 'center'}}>
@@ -161,6 +163,20 @@ const DetailMealScreen = ({route}) => {
               <View>
                 <TextComponent
                   text={`${Math.floor(meal.carb)} g`}
+                  styles={styles.text}
+                />
+              </View>
+            </View>
+            <View style={{alignItems: 'center'}}>
+              <TextComponent
+                text={'Others'}
+                size={15}
+                styles={{marginBottom: 5}}
+                font={fontFamilies['medium']}
+              />
+              <View>
+                <TextComponent
+                  text={`${100 - Math.floor(meal.carb) - Math.floor(meal.protein) - Math.floor(meal.fat)} g`}
                   styles={styles.text}
                 />
               </View>

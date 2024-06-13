@@ -43,13 +43,13 @@ const MealComponent = ({handlePress}) => {
               <View
                 style={{
                   flexDirection: 'row',
-                  gap: 30,
+                  gap: 10,
                   justifyContent: 'center',
                 }}>
                 <View style={{alignItems: 'center'}}>
                   <TextComponent
                     text={'Fat'}
-                    size={15}
+                    size={12}
                     styles={{marginBottom: 5}}
                     font={fontFamilies['medium']}
                   />
@@ -63,7 +63,7 @@ const MealComponent = ({handlePress}) => {
                 <View style={{alignItems: 'center'}}>
                   <TextComponent
                     text={'Protein'}
-                    size={15}
+                    size={12}
                     styles={{marginBottom: 5}}
                     font={fontFamilies['medium']}
                   />
@@ -77,13 +77,27 @@ const MealComponent = ({handlePress}) => {
                 <View style={{alignItems: 'center'}}>
                   <TextComponent
                     text={'Carbs'}
-                    size={15}
+                    size={12}
                     styles={{marginBottom: 5}}
                     font={fontFamilies['medium']}
                   />
                   <View>
                     <TextComponent
                       text={`${Math.floor(item.carb)} g`}
+                      styles={styles.text}
+                    />
+                  </View>
+                </View>
+                <View style={{alignItems: 'center'}}>
+                  <TextComponent
+                    text={'Others'}
+                    size={12}
+                    styles={{marginBottom: 5}}
+                    font={fontFamilies['medium']}
+                  />
+                  <View>
+                    <TextComponent
+                      text={`${100 - Math.floor(item.carb) - Math.floor(item.protein) - Math.floor(item.fat)} g`}
                       styles={styles.text}
                     />
                   </View>
@@ -109,7 +123,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors['text-2'],
     fontFamily: fontFamilies['medium'],
-    fontSize: 16,
+    fontSize: 13,
     marginTop: 10,
   },
 });

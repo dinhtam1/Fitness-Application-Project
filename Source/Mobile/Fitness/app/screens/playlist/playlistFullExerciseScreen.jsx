@@ -58,7 +58,7 @@ const PlaylistFullExerciseScreen = ({route}) => {
           />
         ) : (
           <>
-            <AboutExercise data={exercises} />
+            <AboutExercise data={exercises} plan={true} />
           </>
         )}
         <View style={{marginBottom: 30}}>

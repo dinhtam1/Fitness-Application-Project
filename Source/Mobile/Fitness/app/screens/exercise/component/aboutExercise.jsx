@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import RowComponent from '../../../components/common/rowComponent';
 import TextComponent from '../../../components/text/textComponent';
 import {fontFamilies} from '../../../constants/fontFamilies';
@@ -17,21 +17,48 @@ import {EvilIcons} from '@expo/vector-icons';
 import {Entypo} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import {emptyFolder} from '../../../assets';
+import ModalChoices from '../../playlist/component/modalChoices';
 
-const AboutExercise = ({data, handlePress, add, ...props}) => {
+const AboutExercise = ({data, handlePress, add, plan, ...props}) => {
   const navigation = useNavigation();
   const handleSelectCategory = index => {
     navigation.navigate('DetailExercise', {exerciseId: index});
   };
 
+  const [isAlertVisible, setAlertVisible] = useState(false);
+
+  const showAlert = () => {
+    setAlertVisible(true);
+  };
+
+  const hideAlert = () => {
+    setAlertVisible(false);
+  };
+
+  const handleConfirm = async () => {
+    hideAlert();
+  };
+
   return (
     <>
+      {plan ? (
+        <ModalChoices
+          isVisible={isAlertVisible}
+          onClose={hideAlert}
+          title="Delete!"
+          message="Are you sure you want to Delete?"
+          onConfirm={handleConfirm}
+        />
+      ) : (
+        <></>
+      )}
       {data.length > 0 ? (
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{marginTop: 20}}>
           {data.map((item, index) => (
             <TouchableOpacity
+              onLongPress={() => showAlert()}
               key={index}
               onPress={() => handleSelectCategory(item.exerciseId)}
               style={{marginBottom: 20}}>

@@ -41,3 +41,13 @@ export const apiExerciseInList = (userId, token, id) =>
       'x-client-id': userId,
     },
   });
+
+export const apiDeletePlaylist = (userId, token, id) =>
+  axios({
+    url: `/v1/api/exercise-list/${id}`,
+    method: 'get',
+    headers: {
+      Authorization: token,
+      'x-client-id': userId,
+    },
+  });

@@ -1,20 +1,44 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import TextComponent from '../../../components/text/textComponent';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import {EvilIcons} from '@expo/vector-icons';
 import {emptyFolder, exercise1} from '../../../assets';
 import {colors} from '../../../constants/colors';
 import {useNavigation} from '@react-navigation/native';
+import ModalChoices from './modalChoices';
 
 const PlanExercise = data => {
   const navigation = useNavigation();
+
+  const [isAlertVisible, setAlertVisible] = useState(false);
+
+  const showAlert = () => {
+    setAlertVisible(true);
+  };
+
+  const hideAlert = () => {
+    setAlertVisible(false);
+  };
+
+  const handleConfirm = async () => {
+    hideAlert();
+  };
+
   return (
     <>
+      <ModalChoices
+        isVisible={isAlertVisible}
+        onClose={hideAlert}
+        title="Delete!"
+        message="Are you sure you want to Delete?"
+        onConfirm={handleConfirm}
+      />
       {data.data.length > 0 ? (
         <>
           {data.data.map((item, index) => (
             <TouchableOpacity
+              onLongPress={() => showAlert()}
               key={index}
               onPress={() =>
                 navigation.navigate('ExercisesInList', {
@@ -83,5 +107,22 @@ const styles = StyleSheet.create({
     height: 300,
     alignSelf: 'center',
     marginTop: 100,
+  },
+  modalContent: {
+    height: 120,
+    width: '100%',
+    backgroundColor: 'white',
+    paddingHorizontal: 20,
+    borderRadius: 20,
+  },
+  button: {
+    backgroundColor: 'transparent',
+    width: '50%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    color: colors['text'],
   },
 });

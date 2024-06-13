@@ -136,7 +136,7 @@ const SleepScreen = () => {
 
   return (
     <SafeAreaView>
-      <BackComponent black back nav={'Main'} />
+      <BackComponent black back title={'SLEEP'} />
       <View style={{paddingHorizontal: 20, marginTop: 20}}>
         <View
           style={{
