@@ -196,14 +196,36 @@ const deleteExerciseList = async (userId, exerciseListId) => {
         });
         return true;
     } catch (error) {
-        console.log(error);
         return false;
     }
 }
+
+const deleteExerciseInList = async (userId, exerciseListId, exerciseId) => {
+    try {
+        const exerciseList = await prisma.exerciseList.findFirst({
+            where: {
+                userId: userId,
+                exerciseListId
+            }
+        });
+        if(!exerciseList) return false;
+        await prisma.exerciseOnList.deleteMany({
+            where: {
+                exerciseListId: exerciseListId,
+                exerciseId
+            }
+        });
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
 module.exports = {
     createExerciseList,
     addExerciseToList,
     getExerciseInList,
     getExerciseList,
-    deleteExerciseList
+    deleteExerciseList,
+    deleteExerciseInList
 }
