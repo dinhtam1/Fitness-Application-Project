@@ -15,5 +15,6 @@ exerciseListRouter.get('/', authMiddleware.verifyToken, exerciseListController.g
 exerciseListRouter.post('/', authMiddleware.verifyToken,upload.single('cover-exercise'),exerciseListValidation.exerciseListCreateValidation, exerciseListController.createExerciseList)
 exerciseListRouter.post('/add-list', authMiddleware.verifyToken,exerciseListValidation.exerciseListAddValidation, exerciseListController.addExerciseToList)
 exerciseListRouter.delete('/:id', authMiddleware.verifyToken, exerciseListController.deleteExerciseList)
+exerciseListRouter.delete('/delete-exercise/:id', authMiddleware.verifyToken,exerciseListValidation.exerciseListDeleteValidation, exerciseListController.deleteExerciseInList)
 exerciseListRouter.get('/:id', authMiddleware.verifyToken, exerciseListController.getExerciseInList)
 module.exports = exerciseListRouter;

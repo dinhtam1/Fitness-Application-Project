@@ -141,10 +141,38 @@ const deleteExerciseList = async (req, res) => {
     }
 }
 
+const deleteExerciseInList = async (req, res) => {
+    var data = null;
+    var requestType = Type.DELETE_EXERCISE_IN_LIST;
+    try {
+        data = await exerciseListServices.deleteExerciseInList(req.user.userId, req.body.exerciseListId, req.body.exerciseId);
+        if (!data) {
+            return res.status(statusCode.SUCCESS).json({
+                statusCode: statusCode.FAIL,
+                message: appString.EXERCISE_IN_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE,
+                requestType
+            });
+        }
+        return res.status(statusCode.SUCCESS).json({
+            statusCode: statusCode.SUCCESS,
+            message: appString.DELETE_EXERCISE_IN_LIST_SUCCESSFUL,
+            data,
+            requestType
+        });
+    } catch (error) {
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            statusCode: statusCode.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            requestType
+        });
+    }
+}
+
 module.exports = {
     createExerciseList,
     addExerciseToList,
     getExerciseInList,
     getExerciseList,
-    deleteExerciseList
+    deleteExerciseList,
+    deleteExerciseInList
 };

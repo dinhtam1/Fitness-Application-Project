@@ -88,8 +88,10 @@ const UPDATE_STATUS_USER_FAIL = "Update status user fail";
 const UPDATE_STATUS_USER_SUCCESSFUL = "Update status user successfully";
 const ACCOUNT_HAS_BEEN_BANNED = "Account has been banned";
 const DELETE_EXERCISE_LIST_FAIL = "Delete exercise list fail";
-const EXERCISE_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE = "Exercise in list not found or you don't have one";
+const EXERCISE_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE = "Exercise list not found or you don't have one";
 const DELETE_EXERCISE_LIST_SUCCESSFUL = "Delete exercise list successfully";
+const EXERCISE_IN_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE = "Exercise in list not found or you don't have one";
+const DELETE_EXERCISE_IN_LIST_SUCCESSFUL = "Delete exercise in list successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -182,5 +184,7 @@ module.exports = {
     ACCOUNT_HAS_BEEN_BANNED,
     DELETE_EXERCISE_LIST_FAIL,
     DELETE_EXERCISE_LIST_SUCCESSFUL,
-    EXERCISE_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE
+    EXERCISE_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE,
+    EXERCISE_IN_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE,
+    DELETE_EXERCISE_IN_LIST_SUCCESSFUL
 };
