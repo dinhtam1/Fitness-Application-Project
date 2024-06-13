@@ -173,9 +173,37 @@ const getExerciseList = async (userId) => {
         return false;
     }
 }
+
+const deleteExerciseList = async (userId, exerciseListId) => {
+    try {
+        const exerciseList = await prisma.exerciseList.findFirst({
+            where: {
+                userId: userId,
+                exerciseListId
+            }
+        });
+        if(!exerciseList) return false;
+        await prisma.exerciseOnList.deleteMany({
+            where: {
+                exerciseListId: exerciseListId,
+            },
+        });
+        await prisma.exerciseList.delete({
+            where: {
+                userId: userId,
+                exerciseListId
+            }
+        });
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
 module.exports = {
     createExerciseList,
     addExerciseToList,
     getExerciseInList,
-    getExerciseList
+    getExerciseList,
+    deleteExerciseList
 }

@@ -87,6 +87,9 @@ const GET_HEIGHT_STATISTICS_USER_SUCCESSFUL = "Get height statistics user succes
 const UPDATE_STATUS_USER_FAIL = "Update status user fail";
 const UPDATE_STATUS_USER_SUCCESSFUL = "Update status user successfully";
 const ACCOUNT_HAS_BEEN_BANNED = "Account has been banned";
+const DELETE_EXERCISE_LIST_FAIL = "Delete exercise list fail";
+const EXERCISE_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE = "Exercise in list not found or you don't have one";
+const DELETE_EXERCISE_LIST_SUCCESSFUL = "Delete exercise list successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -176,5 +179,8 @@ module.exports = {
     GET_HEIGHT_STATISTICS_USER_SUCCESSFUL,
     UPDATE_STATUS_USER_FAIL,
     UPDATE_STATUS_USER_SUCCESSFUL,
-    ACCOUNT_HAS_BEEN_BANNED
+    ACCOUNT_HAS_BEEN_BANNED,
+    DELETE_EXERCISE_LIST_FAIL,
+    DELETE_EXERCISE_LIST_SUCCESSFUL,
+    EXERCISE_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE
 };
