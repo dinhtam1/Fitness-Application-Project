@@ -92,6 +92,7 @@ const EXERCISE_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE = "Exercise list not found or
 const DELETE_EXERCISE_LIST_SUCCESSFUL = "Delete exercise list successfully";
 const EXERCISE_IN_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE = "Exercise in list not found or you don't have one";
 const DELETE_EXERCISE_IN_LIST_SUCCESSFUL = "Delete exercise in list successfully";
+const UPDATE_NAME_EXERCISE_LIST_SUCCESSFUL = "Update name exercise list successfully";
 module.exports = {
     USER_NOT_REGISTERED,
     AUTHENTICATION_FAILED,
@@ -186,5 +187,6 @@ module.exports = {
     DELETE_EXERCISE_LIST_SUCCESSFUL,
     EXERCISE_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE,
     EXERCISE_IN_LIST_NOT_FOUND_OR_YOU_DONT_HAVE_ONE,
-    DELETE_EXERCISE_IN_LIST_SUCCESSFUL
+    DELETE_EXERCISE_IN_LIST_SUCCESSFUL,
+    UPDATE_NAME_EXERCISE_LIST_SUCCESSFUL
 };
