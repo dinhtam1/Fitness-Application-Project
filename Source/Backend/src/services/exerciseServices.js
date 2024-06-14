@@ -58,6 +58,9 @@ const getMuscleName = async() => {
 
 const getExercise = async (category, page, gender, goal, level, muscle_name) => {
     try {
+        if(!level){
+            level = LEVEL_CONSTANT.BEGINNER;
+        }
         const limit = parseInt(process.env.LIMIT_GET_EXERCISE);
         if (isNaN(page) || page < 1) page = 1;
         let start = (page - 1) * limit;
@@ -146,6 +149,7 @@ const getExercise = async (category, page, gender, goal, level, muscle_name) => 
         }
         return result;
     } catch (e) {
+        console.log(e)
         return false;
     }
 };
