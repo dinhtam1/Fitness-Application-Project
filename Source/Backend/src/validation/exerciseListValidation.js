@@ -58,7 +58,6 @@ const exerciseListAddValidation = (req, res, next) => {
 
 const exerciseListDeleteSchema = Joi.object({
     exerciseId: Joi.number().positive().required().strict(),
-    exerciseListId: Joi.number().positive().required().strict().required()
 });
 
 const exerciseListDeleteValidation = (req, res, next) => {
