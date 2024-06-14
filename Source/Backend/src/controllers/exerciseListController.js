@@ -145,7 +145,7 @@ const deleteExerciseInList = async (req, res) => {
     var data = null;
     var requestType = Type.DELETE_EXERCISE_IN_LIST;
     try {
-        data = await exerciseListServices.deleteExerciseInList(req.user.userId, req.body.exerciseListId, req.body.exerciseId);
+        data = await exerciseListServices.deleteExerciseInList(req.user.userId, parseInt(req.params.id), req.body.exerciseId);
         if (!data) {
             return res.status(statusCode.SUCCESS).json({
                 statusCode: statusCode.FAIL,

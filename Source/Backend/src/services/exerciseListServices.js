@@ -202,6 +202,7 @@ const deleteExerciseList = async (userId, exerciseListId) => {
 
 const deleteExerciseInList = async (userId, exerciseListId, exerciseId) => {
     try {
+        console.log(userId, exerciseListId, exerciseId);
         const exerciseList = await prisma.exerciseList.findFirst({
             where: {
                 userId: userId,
