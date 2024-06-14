@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -14,6 +15,7 @@ import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import {apiExerciseInList} from '../../apis/exerciseList';
 import CustomButton from '../../components/button/buttonComponent';
 import {useNavigation} from '@react-navigation/native';
+import {empty} from '../../assets';
 
 const PlaylistFullExerciseScreen = ({route}) => {
   const navigation = useNavigation();
@@ -22,6 +24,7 @@ const PlaylistFullExerciseScreen = ({route}) => {
   const {user} = useUserStore();
   const [isLoading, setIsLoading] = useState(false);
   const [exercises, setExercises] = useState([]);
+  const [isReload, setIsReload] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -37,7 +40,7 @@ const PlaylistFullExerciseScreen = ({route}) => {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [isReload]);
 
   const handlePress = () => {
     navigation.navigate('ProgressExercise', {
@@ -58,12 +61,26 @@ const PlaylistFullExerciseScreen = ({route}) => {
           />
         ) : (
           <>
-            <AboutExercise data={exercises} plan={true} />
+            {exercises.length > 0 ? (
+              <>
+                <AboutExercise
+                  data={exercises}
+                  plan={true}
+                  playlistId={exerciseListId}
+                  reload={setIsReload}
+                />
+                <View style={{marginBottom: 30}}>
+                  <CustomButton
+                    title={'START NOW'}
+                    handlePress={() => handlePress()}
+                  />
+                </View>
+              </>
+            ) : (
+              <Image source={empty} style={styles.image} />
+            )}
           </>
         )}
-        <View style={{marginBottom: 30}}>
-          <CustomButton title={'START NOW'} handlePress={() => handlePress()} />
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -71,4 +88,11 @@ const PlaylistFullExerciseScreen = ({route}) => {
 
 export default PlaylistFullExerciseScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  image: {
+    width: 300,
+    height: 300,
+    alignSelf: 'center',
+    marginTop: 100,
+  },
+});

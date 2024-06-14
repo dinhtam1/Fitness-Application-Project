@@ -1,19 +1,42 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import TextComponent from '../../../components/text/textComponent';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import {EvilIcons} from '@expo/vector-icons';
-import {emptyFolder, exercise1} from '../../../assets';
+import {empty} from '../../../assets';
 import {colors} from '../../../constants/colors';
 import {useNavigation} from '@react-navigation/native';
 import ModalChoices from './modalChoices';
+import {apiDeletePlaylist, apiGetAllLists} from '../../../apis/exerciseList';
+import {useAuthStore, useUserStore} from '../../../store/useAuthStore';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../../utils/toast';
 
-const PlanExercise = data => {
+const PlanExercise = () => {
   const navigation = useNavigation();
+  const {user} = useUserStore();
+  const {token} = useAuthStore();
+  const [playlist, setPlaylist] = useState([]);
+  const [isReload, setIsReload] = useState(false);
 
   const [isAlertVisible, setAlertVisible] = useState(false);
+  const [index, setIndex] = useState(0);
 
-  const showAlert = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await apiGetAllLists(user.userId, token);
+      if (response.statusCode === 200) {
+        setPlaylist(response.data);
+      }
+    };
+
+    fetchData();
+  }, [isReload]);
+
+  console.log(playlist);
+
+  const showAlert = index => {
+    setIndex(index);
     setAlertVisible(true);
   };
 
@@ -22,6 +45,21 @@ const PlanExercise = data => {
   };
 
   const handleConfirm = async () => {
+    const response = await apiDeletePlaylist(
+      user.userId,
+      token,
+      playlist[index].exerciseListId,
+    );
+    if (response.statusCode === 200) {
+      Toast.show(
+        toastConfig({
+          type: 'success',
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
+      );
+    }
+    setIsReload(!isReload);
     hideAlert();
   };
 
@@ -34,11 +72,11 @@ const PlanExercise = data => {
         message="Are you sure you want to Delete?"
         onConfirm={handleConfirm}
       />
-      {data.data.length > 0 ? (
+      {playlist.length > 0 ? (
         <>
-          {data.data.map((item, index) => (
+          {playlist.map((item, index) => (
             <TouchableOpacity
-              onLongPress={() => showAlert()}
+              onLongPress={() => showAlert(index)}
               key={index}
               onPress={() =>
                 navigation.navigate('ExercisesInList', {
@@ -65,7 +103,7 @@ const PlanExercise = data => {
               />
               <View style={{flexDirection: 'row'}}>
                 <TextComponent
-                  text={'10 exercises'}
+                  text={item.quantityExercise + ' exercises'}
                   font={fontFamilies['medium']}
                   size={14}
                 />
@@ -93,7 +131,7 @@ const PlanExercise = data => {
           ))}
         </>
       ) : (
-        <Image source={emptyFolder} style={styles.image} />
+        <Image source={empty} style={styles.image} />
       )}
     </>
   );

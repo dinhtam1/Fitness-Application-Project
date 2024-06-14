@@ -21,20 +21,6 @@ const {width, height} = Dimensions.get('window');
 
 const PlaylistScreen = () => {
   const navigation = useNavigation();
-  const [playlist, setPlaylist] = useState([]);
-  const {user} = useUserStore();
-  const {token} = useAuthStore();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await apiGetAllLists(user.userId, token);
-      if (response.statusCode === 200) {
-        setPlaylist(response.data);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <SafeAreaView style={common.safeAreaView}>
@@ -42,7 +28,7 @@ const PlaylistScreen = () => {
       <View style={{paddingHorizontal: 20, height: '100%'}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{marginBottom: 20}}>
-            <PlanExercise data={playlist} />
+            <PlanExercise />
           </View>
         </ScrollView>
         <TouchableOpacity

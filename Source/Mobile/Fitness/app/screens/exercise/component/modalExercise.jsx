@@ -27,6 +27,8 @@ const ModalExercise = ({isModalVisible, handleToggle, exerciseId}) => {
   const [selectedChoices, setSelectedChoices] = useState([]);
   const [choices, setChoices] = useState([]);
 
+  console.log(selectedChoices);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await apiGetAllLists(user.userId, token);
@@ -47,7 +49,7 @@ const ModalExercise = ({isModalVisible, handleToggle, exerciseId}) => {
 
   const handleSave = async () => {
     const response = await apiAddExercise(user.userId, token, {
-      exerciseListId: selectedChoices[0],
+      exerciseListId: selectedChoices,
       exerciseId: +exerciseId,
     });
     if (response.statusCode === 200) {
@@ -189,7 +191,8 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+    width: 200,
+    height: 200,
+    alignSelf: 'center',
   },
 });

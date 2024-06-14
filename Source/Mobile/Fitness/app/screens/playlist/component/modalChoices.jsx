@@ -8,17 +8,6 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Modal from 'react-native-modal';
-import TextComponent from '../../../components/text/textComponent';
-import CustomButton from '../../../components/button/buttonComponent';
-import {Entypo} from '@expo/vector-icons';
-import {colors} from '../../../constants/colors';
-import {fontFamilies} from '../../../constants/fontFamilies';
-import {useNavigation} from '@react-navigation/native';
-import {apiAddExercise, apiGetAllLists} from '../../../apis/exerciseList';
-import {useAuthStore, useUserStore} from '../../../store/useAuthStore';
-import Toast from 'react-native-toast-message';
-import {empty} from '../../../assets';
-const {toastConfig} = require('../../../utils/toast');
 
 const ModalChoices = ({isVisible, onClose, title, message, onConfirm}) => {
   return (

@@ -45,7 +45,18 @@ export const apiExerciseInList = (userId, token, id) =>
 export const apiDeletePlaylist = (userId, token, id) =>
   axios({
     url: `/v1/api/exercise-list/${id}`,
-    method: 'get',
+    method: 'delete',
+    headers: {
+      Authorization: token,
+      'x-client-id': userId,
+    },
+  });
+
+export const apiDeleteExerciseInList = (userId, token, id, data) =>
+  axios({
+    url: `/v1/api/exercise-list/delete-exercise/${id}`,
+    method: 'delete',
+    data,
     headers: {
       Authorization: token,
       'x-client-id': userId,

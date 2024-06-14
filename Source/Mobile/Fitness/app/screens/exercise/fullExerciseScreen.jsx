@@ -15,6 +15,8 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {colors} from '../../constants/colors';
 import {common} from '../../styles/commonStyles';
 import ModalExercise from './component/modalExercise';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../utils/toast';
 
 const FullExerciseScreen = ({route}) => {
   const {category} = route?.params;
@@ -33,6 +35,8 @@ const FullExerciseScreen = ({route}) => {
     setModalVisible(!isModalVisible);
   };
 
+  console.log(token);
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -44,6 +48,14 @@ const FullExerciseScreen = ({route}) => {
       if (response.statusCode === 200 && muscleName.statusCode === 200) {
         setMuscleName(muscleName.data);
         setExercises(response.data);
+      } else {
+        Toast.show(
+          toastConfig({
+            type: 'error',
+            textMain: response.message,
+            visibilityTime: 2000,
+          }),
+        );
       }
       setIsLoading(false);
     };

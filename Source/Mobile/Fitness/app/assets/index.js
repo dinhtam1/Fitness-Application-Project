@@ -23,6 +23,7 @@ import yoga from './images/yoga-pose.png';
 import carbs from './images/Carbs.jpg';
 import protein from './images/Protein.jpg';
 import fat from './images/Fat.jpg';
+import empty from './images/empty.png';
 
 export {
   back,
@@ -50,4 +51,5 @@ export {
   carbs,
   protein,
   fat,
+  empty,
 };

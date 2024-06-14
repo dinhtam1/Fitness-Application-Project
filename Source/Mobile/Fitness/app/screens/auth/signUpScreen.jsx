@@ -41,6 +41,7 @@ const SignUpScreen = () => {
 
   const onSubmit = async data => {
     const response = await apiRegister(data);
+    console.log(response);
     if (response?.statusCode === 200) {
       setToken(response.data.tokens.accessToken);
       setUser(response.data.user);
@@ -62,7 +63,6 @@ const SignUpScreen = () => {
       );
     }
   };
-  console.log('a');
   return (
     <SafeAreaView style={common.safeAreaView}>
       <BackComponent black back />

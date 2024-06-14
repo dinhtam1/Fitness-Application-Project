@@ -12,7 +12,7 @@ import {common} from '../../styles/commonStyles';
 import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 
 const StartScreen = () => {
-  const {setIsLogin} = useAuthStore();
+  const navigation = useNavigation();
   const {user} = useUserStore();
   console.log(user);
   const image = require('../../assets/images/start.png');
@@ -59,7 +59,7 @@ const StartScreen = () => {
         <CustomButton
           title={button['get-started']}
           containerStyles={{marginBottom: 20}}
-          handlePress={() => setIsLogin(true)}
+          handlePress={() => navigation.navigate('SignIn')}
         />
       </View>
     </SafeAreaView>

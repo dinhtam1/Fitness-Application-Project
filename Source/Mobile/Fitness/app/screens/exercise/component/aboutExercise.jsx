@@ -18,16 +18,32 @@ import {Entypo} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import {emptyFolder} from '../../../assets';
 import ModalChoices from '../../playlist/component/modalChoices';
+import {apiDeleteExerciseInList} from '../../../apis/exerciseList';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../../utils/toast';
+import {useAuthStore, useUserStore} from '../../../store/useAuthStore';
 
-const AboutExercise = ({data, handlePress, add, plan, ...props}) => {
+const AboutExercise = ({
+  data,
+  handlePress,
+  add,
+  plan,
+  playlistId,
+  reload,
+  ...props
+}) => {
   const navigation = useNavigation();
+  const {user} = useUserStore();
+  const {token} = useAuthStore();
+  const [index, setIndex] = useState(0);
   const handleSelectCategory = index => {
     navigation.navigate('DetailExercise', {exerciseId: index});
   };
 
   const [isAlertVisible, setAlertVisible] = useState(false);
 
-  const showAlert = () => {
+  const showAlert = index => {
+    setIndex(index);
     setAlertVisible(true);
   };
 
@@ -36,6 +52,24 @@ const AboutExercise = ({data, handlePress, add, plan, ...props}) => {
   };
 
   const handleConfirm = async () => {
+    const response = await apiDeleteExerciseInList(
+      user.userId,
+      token,
+      playlistId,
+      {
+        exerciseId: data[index].exerciseId,
+      },
+    );
+    if (response.statusCode === 200) {
+      reload(true);
+      Toast.show(
+        toastConfig({
+          type: 'success',
+          textMain: response.message,
+          visibilityTime: 2000,
+        }),
+      );
+    }
     hideAlert();
   };
 
@@ -58,7 +92,7 @@ const AboutExercise = ({data, handlePress, add, plan, ...props}) => {
           style={{marginTop: 20}}>
           {data.map((item, index) => (
             <TouchableOpacity
-              onLongPress={() => showAlert()}
+              onLongPress={() => showAlert(index)}
               key={index}
               onPress={() => handleSelectCategory(item.exerciseId)}
               style={{marginBottom: 20}}>
