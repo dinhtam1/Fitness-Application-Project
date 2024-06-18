@@ -7,7 +7,7 @@ const TIME_MEAL = {
     LUNCH: 'lunch',
     DINNER: 'dinner'
 }
-const URL = 'https://88be-203-205-52-29.ngrok-free.app/predict'
+const URL = 'http://127.0.0.1:5000/predict'
 const getMeal = async (userId, time_meal, page, limit, return_random) => {
     try {
         limit = parseInt(limit) || parseInt(process.env.LIMIT_GET_MEAL);

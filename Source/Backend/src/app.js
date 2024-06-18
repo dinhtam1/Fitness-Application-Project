@@ -6,7 +6,11 @@ const app = express()
 const morgan = require('morgan')
 const compression = require('compression')
 const route = require('./routes')
+const cors = require('cors');
 //init middleware
+app.use(cors({
+    origin: 'http://localhost:5173'
+  }));
 app.use(morgan("dev"))
 app.use(helmet())
 app.use(compression())
