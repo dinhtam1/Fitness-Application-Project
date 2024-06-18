@@ -9,6 +9,7 @@ import {useUserStore, useAuthStore} from '../../store/useAuthStore';
 import {apiMeal} from '../../apis/meal';
 import {colors} from '../../constants/colors';
 import {common} from '../../styles/commonStyles';
+import {title} from '../../constants/text';
 
 const data = [
   {
@@ -51,14 +52,8 @@ const MealPlanScreen = () => {
 
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent black back title={'MEAL PLAN'} />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          gap: 10,
-          marginTop: 20,
-        }}>
+      <BackComponent black back title={title['meal-plan']} />
+      <View style={styles.container}>
         {data.map((item, index) => (
           <View key={item.id}>
             <CustomButton
@@ -108,5 +103,11 @@ const styles = StyleSheet.create({
   },
   text_button_active: {
     fontSize: 14,
+  },
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 10,
+    marginTop: 20,
   },
 });

@@ -11,6 +11,7 @@ import {Feather} from '@expo/vector-icons';
 import {MaterialIcons} from '@expo/vector-icons';
 import {useUserStore} from '../../../store/useAuthStore';
 import {useNavigation} from '@react-navigation/native';
+import {navigator} from '../../../constants/text';
 
 const Header = () => {
   const user = useUserStore(state => state.user);
@@ -34,7 +35,8 @@ const Header = () => {
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
               <Feather name="menu" size={26} color="black" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(navigator['profile'])}>
               <Image
                 src={user?.avatar_url}
                 resizeMode="cover"
@@ -42,7 +44,8 @@ const Header = () => {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(navigator['notification'])}>
             <MaterialIcons name="notifications-none" size={26} color="black" />
           </TouchableOpacity>
         </RowComponent>

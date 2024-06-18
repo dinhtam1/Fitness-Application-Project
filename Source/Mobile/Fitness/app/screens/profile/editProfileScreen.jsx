@@ -21,6 +21,7 @@ import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
 import * as ImagePicker from 'expo-image-picker';
 import {FontAwesome} from '@expo/vector-icons';
+import {button, navigator, text, title, titleForm} from '../../constants/text';
 
 const data = [
   {id: 1, value: 'BEGINNER'},
@@ -97,12 +98,12 @@ const EditProfileScreen = () => {
           );
         }
       }
-      navigation.navigate('ProfileUser');
+      navigation.navigate(navigator['profile-user']);
     }
   };
   return (
     <SafeAreaView style={{backgroundColor: colors['background-white']}}>
-      <BackComponent black back title={'EDIT PROFILE'} />
+      <BackComponent black back title={title['edit-profile']} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{paddingHorizontal: 20, marginBottom: 40}}>
@@ -125,7 +126,7 @@ const EditProfileScreen = () => {
             render={({field: {onChange, value, name}}) => (
               <FormField
                 placeholder={user?.full_name}
-                title={'Full Name'}
+                title={titleForm['name']}
                 handleChangeText={onChange}
                 value={value}
                 error={errors[name]?.message}
@@ -138,7 +139,7 @@ const EditProfileScreen = () => {
             render={({field: {onChange, value, name}}) => (
               <FormField
                 placeholder={user?.phone_number}
-                title={'Phone'}
+                title={titleForm['phone']}
                 handleChangeText={onChange}
                 keyboardType="number-pad"
                 value={value}
@@ -152,7 +153,7 @@ const EditProfileScreen = () => {
             render={({field: {onChange, value, name}}) => (
               <>
                 <TextComponent
-                  text={'Fitness Level'}
+                  text={titleForm['level']}
                   size={16}
                   styles={{marginVertical: 10}}
                 />
@@ -182,7 +183,7 @@ const EditProfileScreen = () => {
             render={({field: {onChange, value, name}}) => (
               <>
                 <TextComponent
-                  text={'Fitness Goal'}
+                  text={titleForm['goal']}
                   size={16}
                   styles={{marginVertical: 10}}
                 />
@@ -212,7 +213,7 @@ const EditProfileScreen = () => {
             render={({field: {onChange, value, name}}) => (
               <FormField
                 placeholder={user?.weight.toString()}
-                title={'Weight (kg)'}
+                title={titleForm['weight']}
                 handleChangeText={onChange}
                 keyboardType="number-pad"
                 value={value}
@@ -226,7 +227,7 @@ const EditProfileScreen = () => {
             render={({field: {onChange, value, name}}) => (
               <FormField
                 placeholder={user?.height.toString()}
-                title={'Height (cm)'}
+                title={titleForm['height']}
                 handleChangeText={onChange}
                 keyboardType="number-pad"
                 value={value}
@@ -240,7 +241,7 @@ const EditProfileScreen = () => {
             render={({field: {onChange, value, name}}) => (
               <>
                 <TextComponent
-                  text={'Gender'}
+                  text={titleForm['gender']}
                   size={16}
                   styles={{marginVertical: 10}}
                 />
@@ -270,7 +271,7 @@ const EditProfileScreen = () => {
             render={({field: {onChange, value, name}}) => (
               <FormField
                 placeholder={user?.age.toString()}
-                title={'Age'}
+                title={titleForm['age']}
                 handleChangeText={onChange}
                 keyboardType="number-pad"
                 value={value}
@@ -283,7 +284,7 @@ const EditProfileScreen = () => {
         <CustomButton
           handlePress={handleSubmit(onSubmit)}
           isLoading={isSubmitting}
-          title={'SAVE'}
+          title={button['save']}
           containerStyles={{marginVertical: 30}}
         />
       </ScrollView>

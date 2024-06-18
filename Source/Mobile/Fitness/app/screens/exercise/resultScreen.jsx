@@ -13,6 +13,7 @@ import {toastConfig} from '../../utils/toast';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
 import {getTimeToString} from '../../utils/helper';
+import {button, navigator, text, title} from '../../constants/text';
 
 const ResultScreen = ({route}) => {
   const navigation = useNavigation();
@@ -22,9 +23,12 @@ const ResultScreen = ({route}) => {
 
   const handlePress = async () => {
     const response = await apiUpdateDashboard(user.userId, token, {
-      time_practice: duration,
-      calories_burned: caloriesBurned,
+      time_practice: duration ? duration : exercise.duration,
+      calories_burned: caloriesBurned
+        ? caloriesBurned
+        : exercise.caloriesBurned,
     });
+    console.log(response);
     if (response?.statusCode === 200) {
       Toast.show(
         toastConfig({
@@ -32,15 +36,15 @@ const ResultScreen = ({route}) => {
           visibilityTime: 2000,
         }),
       );
-      navigation.navigate('Home');
+      navigation.navigate(navigator['home']);
     }
   };
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent black back title={'RESULT'} />
+      <BackComponent black back title={title['result']} />
       <View style={{paddingHorizontal: 20, marginTop: 20}}>
         <TextComponent
-          text={'Workout'}
+          text={text['workout']}
           size={20}
           font={fontFamilies['bold']}
           color={colors['title']}
@@ -58,22 +62,16 @@ const ResultScreen = ({route}) => {
           styles={{marginTop: 10}}
         />
         <TextComponent
-          text={'Workout summary'}
+          text={text['workout-2']}
           size={20}
           font={fontFamilies['bold']}
           color={colors['title']}
           styles={{marginTop: 30}}
         />
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            marginTop: 30,
-            flexWrap: 'wrap',
-          }}>
+        <View style={styles.content}>
           <View style={styles.container}>
             <TextComponent
-              text={'Total Time'}
+              text={text['total-time']}
               size={16}
               font={fontFamilies['semibold']}
               color={colors['text-3']}
@@ -89,7 +87,7 @@ const ResultScreen = ({route}) => {
           </View>
           <View style={styles.container}>
             <TextComponent
-              text={'Total Calories'}
+              text={text['total-calories']}
               size={16}
               font={fontFamilies['semibold']}
               color={colors['text-3']}
@@ -107,7 +105,7 @@ const ResultScreen = ({route}) => {
             <>
               <View style={styles.container}>
                 <TextComponent
-                  text={'Level'}
+                  text={text['level']}
                   size={16}
                   font={fontFamilies['semibold']}
                   color={colors['text-3']}
@@ -122,7 +120,7 @@ const ResultScreen = ({route}) => {
               </View>
               <View style={styles.container}>
                 <TextComponent
-                  text={'Category'}
+                  text={text['category']}
                   size={16}
                   font={fontFamilies['semibold']}
                   color={colors['text-3']}
@@ -137,7 +135,7 @@ const ResultScreen = ({route}) => {
               </View>
               <View style={styles.container}>
                 <TextComponent
-                  text={'Weight'}
+                  text={text['weight']}
                   size={16}
                   font={fontFamilies['semibold']}
                   color={colors['text-3']}
@@ -152,7 +150,7 @@ const ResultScreen = ({route}) => {
               </View>
               <View style={styles.container}>
                 <TextComponent
-                  text={'Total Weight'}
+                  text={text['total-weight']}
                   size={16}
                   font={fontFamilies['semibold']}
                   color={colors['text-3']}
@@ -171,7 +169,7 @@ const ResultScreen = ({route}) => {
         </View>
         <CustomButton
           handlePress={handlePress}
-          title={'SAVE'}
+          title={button['save']}
           containerStyles={{marginTop: 20}}
         />
       </View>
@@ -192,5 +190,11 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 5,
+  },
+  content: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 30,
+    flexWrap: 'wrap',
   },
 });

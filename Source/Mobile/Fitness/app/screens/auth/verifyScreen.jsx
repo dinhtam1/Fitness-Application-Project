@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import TextComponent from '../../components/text/textComponent';
-import {button, text, title} from '../../constants/text';
+import {button, navigator, text, title} from '../../constants/text';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import BackComponent from '../../components/header/backComponent';
@@ -19,7 +19,6 @@ import SpaceComponent from '../../components/common/spaceComponent';
 import {apiSendOTP, apiVerifyOTP} from '../../apis/auth';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {useAuthStore} from '../../store/useAuthStore';
 
@@ -33,7 +32,6 @@ const VerifyScreen = ({route}) => {
   const [isBlurred, setIsBlurred] = useState(false);
   const {setToken} = useAuthStore();
 
-  const submit = async () => {};
   const onChangeValue = (text, index) => {
     const newValue = values.map((item, valueIndex) => {
       if (valueIndex === index) {
@@ -62,7 +60,9 @@ const VerifyScreen = ({route}) => {
     const response = await apiVerifyOTP({OTP: values.join(''), email: email});
     if (response.statusCode === 200) {
       setToken(response.data.tokens.accessToken);
-      navigation.navigate('ChangePassword', {userId: response.data.userId});
+      navigation.navigate(navigator['change-password'], {
+        userId: response.data.userId,
+      });
     } else {
       Toast.show(
         toastConfig({
@@ -167,16 +167,8 @@ const VerifyScreen = ({route}) => {
             ) : (
               <CustomButton
                 title={button.resend}
-                containerStyles={{
-                  backgroundColor: 'transparent',
-                  borderWidth: 0,
-                }}
-                textStyles={{
-                  color: colors['primary-color-black'],
-                  fontSize: 20,
-                  fontFamily: fontFamilies['medium'],
-                  textDecorationLine: 'underline',
-                }}
+                containerStyles={styles.container_button}
+                textStyles={styles.button}
                 handlePress={onResend}
               />
             )}
@@ -219,5 +211,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: fontFamilies['bold'],
     textAlign: 'center',
+  },
+  button: {
+    color: colors['primary-color-black'],
+    fontSize: 20,
+    fontFamily: fontFamilies['medium'],
+    textDecorationLine: 'underline',
+  },
+  container_button: {
+    backgroundColor: 'transparent',
+    borderWidth: 0,
   },
 });

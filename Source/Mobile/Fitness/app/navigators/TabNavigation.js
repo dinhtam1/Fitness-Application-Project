@@ -12,10 +12,10 @@ import {
   FullExerciseScreen,
   HomePageScreen,
   MealPlanScreen,
-  ProfileScreen,
 } from '../screens';
 import {fontFamilies} from '../constants/fontFamilies';
 import ProfileNavigator from './ProfileNavigator';
+import {navigator} from '../constants/text';
 
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -112,15 +112,15 @@ const TabNavigation = () => {
           },
         };
       }}>
-      <Tab.Screen name="Home" component={HomePageScreen} />
-      <Tab.Screen name="Meal" component={MealPlanScreen} />
-      <Tab.Screen name="Camera" component={CameraScreen} />
+      <Tab.Screen name={navigator['home']} component={HomePageScreen} />
+      <Tab.Screen name={navigator['meal']} component={MealPlanScreen} />
+      <Tab.Screen name={navigator['camera']} component={CameraScreen} />
       <Tab.Screen
-        name="Exercise"
+        name={navigator['exercise']}
         component={FullExerciseScreen}
         initialParams={{category: 'Dumbbells'}}
       />
-      <Tab.Screen name="Profile" component={ProfileNavigator} />
+      <Tab.Screen name={navigator['profile']} component={ProfileNavigator} />
     </Tab.Navigator>
   );
 };

@@ -18,6 +18,8 @@ import {fontFamilies} from '../../constants/fontFamilies';
 import BackComponent from '../../components/header/backComponent';
 import {
   button,
+  message,
+  navigator,
   placeholder,
   text,
   title,
@@ -41,7 +43,7 @@ export default function ForgotScreen() {
   const onSubmit = async data => {
     const response = await apiSendOTP(data);
     if (response.statusCode === 200) {
-      navigation.navigate('Verify', {email: data.email});
+      navigation.navigate(navigator['verify'], {email: data.email});
     } else {
       Toast.show(
         toastConfig({
@@ -55,7 +57,7 @@ export default function ForgotScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent black back nav={'SignIn'} />
+        <BackComponent black back />
         <View style={common.contain}>
           <View>
             <TextComponent
@@ -77,10 +79,10 @@ export default function ForgotScreen() {
             <Controller
               control={control}
               rules={{
-                required: {value: true, message: 'This field cannot empty'},
+                required: {value: true, message: message['required']},
                 pattern: {
                   value: EMAIL_REGEX,
-                  message: 'Not a valid email',
+                  message: message['invalid-email'],
                 },
               }}
               render={({field: {onChange, value, name}}) => (

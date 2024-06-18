@@ -160,7 +160,7 @@ const CameraScreen = () => {
                   <Ionicons name="flash" size={35} color="white" />
                 )}
               </TouchableOpacity>
-              <BackComponent back size={25} nav={'Home'} />
+              <BackComponent back size={25} />
             </View>
             <View style={styles.buttonContainer}>
               <TouchableOpacity

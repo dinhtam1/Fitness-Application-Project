@@ -21,6 +21,7 @@ import {Video} from 'expo-av';
 import SpaceComponent from '../../components/common/spaceComponent';
 import {useNavigation} from '@react-navigation/native';
 import BackComponent from '../../components/header/backComponent';
+import {button, navigator} from '../../constants/text';
 const {width, height} = Dimensions.get('window');
 
 const DetailExerciseScreen = ({route}) => {
@@ -41,7 +42,7 @@ const DetailExerciseScreen = ({route}) => {
   }, []);
 
   const handleStart = () => {
-    navigation.navigate('ProgressExercise', {
+    navigation.navigate(navigator['progress-exercise'], {
       exercises: [
         {
           exerciseId: exerciseId,
@@ -64,25 +65,8 @@ const DetailExerciseScreen = ({route}) => {
       <ScrollView>
         <ImageBackground
           src={exercise.image}
-          style={{
-            width: width,
-            height: height / 2.8,
-            backgroundColor: colors['border'],
-          }}></ImageBackground>
-        <View
-          style={{
-            flexDirection: 'row',
-            backgroundColor: colors['background-white'],
-            width: width / 1.15,
-            paddingVertical: 40,
-            position: 'absolute',
-            top: height / 3.5,
-            left: width / 15,
-            borderRadius: 20,
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 30,
-          }}>
+          style={styles.image}></ImageBackground>
+        <View style={styles.container}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <SimpleLineIcons
               name="fire"
@@ -196,7 +180,7 @@ const DetailExerciseScreen = ({route}) => {
             />
           </View>
           <CustomButton
-            title={'START NOW'}
+            title={button['start-now']}
             handlePress={handleStart}
             containerStyles={{marginBottom: 40}}
           />
@@ -216,14 +200,26 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   image: {
-    width: width - 2 * 26,
-    borderRadius: 10,
-    height: 200,
-    marginBottom: 30,
+    width: width,
+    height: height / 2.8,
+    backgroundColor: colors['border'],
   },
   video: {
     width: '100%',
     height: 200,
     backgroundColor: colors['border'],
+  },
+  container: {
+    flexDirection: 'row',
+    backgroundColor: colors['background-white'],
+    width: width / 1.15,
+    paddingVertical: 40,
+    position: 'absolute',
+    top: height / 3.5,
+    left: width / 15,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 30,
   },
 });

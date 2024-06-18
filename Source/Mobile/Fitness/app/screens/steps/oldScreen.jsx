@@ -7,7 +7,7 @@ import CustomButton from '../../components/button/buttonComponent';
 import SpaceComponent from '../../components/common/spaceComponent';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
-import {button, step} from '../../constants/text';
+import {button, navigator, step} from '../../constants/text';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
 import {useAuthStore} from '../../store/useAuthStore';
@@ -19,7 +19,7 @@ const OldScreen = () => {
 
   const onSubmit = () => {
     setForm({...form, age});
-    navigation.navigate('Gender');
+    navigation.navigate(navigator['gender']);
   };
   return (
     <SafeAreaView style={common.safeAreaView}>
@@ -61,5 +61,3 @@ const OldScreen = () => {
 };
 
 export default OldScreen;
-
-const styles = StyleSheet.create({});

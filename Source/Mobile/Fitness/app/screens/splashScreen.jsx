@@ -6,7 +6,8 @@ import {fontFamilies} from '../constants/fontFamilies';
 import {colors} from '../constants/colors';
 import TextComponent from '../components/text/textComponent';
 import {useNavigation} from '@react-navigation/native';
-import {title} from '../constants/text';
+import {button, title} from '../constants/text';
+import {navigator} from '../constants/text';
 
 const {width, height} = Dimensions.get('window');
 
@@ -20,34 +21,20 @@ const SplashScreen = () => {
         color={colors['title']}
         size={24}
         font={fontFamilies['bold']}
-        styles={{
-          position: 'absolute',
-          alignSelf: 'center',
-          bottom: 200,
-        }}
+        styles={styles.title}
       />
       <TextComponent
-        text="We train your body to be great and fit."
+        text={title['splash0']}
         color={colors['title']}
         size={16}
         font={fontFamilies['light']}
-        styles={{
-          position: 'absolute',
-          alignSelf: 'center',
-          bottom: 150,
-        }}
+        styles={styles.text}
       />
       <CustomButton
-        title={`LET'S START`}
-        containerStyles={{
-          position: 'absolute',
-          bottom: 50,
-          alignSelf: 'center',
-          width: 200,
-          backgroundColor: colors['title'],
-        }}
+        title={button['start']}
+        containerStyles={styles.button}
         handlePress={() => {
-          navigation.navigate('Introduction');
+          navigation.navigate(navigator['introduction']);
         }}
       />
     </View>
@@ -58,6 +45,23 @@ const styles = StyleSheet.create({
   image: {
     width: width,
     height: height,
+  },
+  title: {
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 200,
+  },
+  text: {
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 150,
+  },
+  button: {
+    position: 'absolute',
+    bottom: 50,
+    alignSelf: 'center',
+    width: 200,
+    backgroundColor: colors['title'],
   },
 });
 

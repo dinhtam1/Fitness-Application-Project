@@ -22,12 +22,9 @@ const HomePageScreen = () => {
   const [meals, setMeals] = useState([]);
 
   const scrollY = new Animated.Value(0);
-  console.log(user);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response1 = await apiExercises(user.userId, token);
-      console.log(response1);
       const response = await apiCategory(user?.userId, token);
       const meal = await apiMeal(user?.userId, token, {
         limit: 2,

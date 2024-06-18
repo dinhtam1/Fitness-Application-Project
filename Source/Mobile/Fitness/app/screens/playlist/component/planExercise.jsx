@@ -11,6 +11,7 @@ import {apiDeletePlaylist, apiGetAllLists} from '../../../apis/exerciseList';
 import {useAuthStore, useUserStore} from '../../../store/useAuthStore';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../../utils/toast';
+import {message, navigator, title} from '../../../constants/text';
 
 const PlanExercise = () => {
   const navigation = useNavigation();
@@ -32,8 +33,6 @@ const PlanExercise = () => {
 
     fetchData();
   }, [isReload]);
-
-  console.log(playlist);
 
   const showAlert = index => {
     setIndex(index);
@@ -68,8 +67,8 @@ const PlanExercise = () => {
       <ModalChoices
         isVisible={isAlertVisible}
         onClose={hideAlert}
-        title="Delete!"
-        message="Are you sure you want to Delete?"
+        title={title['delete']}
+        message={message['delete']}
         onConfirm={handleConfirm}
       />
       {playlist.length > 0 ? (
@@ -79,7 +78,7 @@ const PlanExercise = () => {
               onLongPress={() => showAlert(index)}
               key={index}
               onPress={() =>
-                navigation.navigate('ExercisesInList', {
+                navigation.navigate(navigator['exercises-in-list'], {
                   exerciseListId: item.exerciseListId,
                   list_name: item.list_name,
                 })

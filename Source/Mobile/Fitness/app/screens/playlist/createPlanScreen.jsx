@@ -23,6 +23,13 @@ import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
 import {Controller, useForm} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
+import {
+  button,
+  message,
+  navigator,
+  placeholder,
+  title,
+} from '../../constants/text';
 
 const CreatePlanScreen = () => {
   const navigation = useNavigation();
@@ -50,7 +57,6 @@ const CreatePlanScreen = () => {
   };
 
   const onSubmit = async data => {
-    console.log(data);
     const formData = new FormData();
     formData.append('cover-exercise', {
       type: `image/jpeg`,
@@ -68,7 +74,7 @@ const CreatePlanScreen = () => {
           visibilityTime: 2000,
         }),
       );
-      navigation.navigate('Playlist');
+      navigation.navigate(navigator['playlist']);
       setImage(null);
     } else {
       Toast.show(
@@ -83,17 +89,17 @@ const CreatePlanScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent back black title={'NEW WORKOUT'} />
+        <BackComponent back black title={title['new-workout']} />
         <View style={common.contain}>
           <Controller
             control={control}
             rules={{
-              required: {value: true, message: 'This field cannot empty'},
+              required: {value: true, message: message['required']},
             }}
             render={({field: {onChange, value, name}}) => (
               <FormField
                 title={'Workout Name'}
-                placeholder={'Enter Workout name ...'}
+                placeholder={placeholder['workout']}
                 handleChangeText={onChange}
                 value={value}
                 error={errors[name]?.message}
@@ -110,14 +116,7 @@ const CreatePlanScreen = () => {
             />
             <TouchableOpacity
               onPress={() => pickImage()}
-              style={{
-                backgroundColor: '#ccc',
-                height: 300,
-                marginTop: 10,
-                borderRadius: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+              style={styles.button_image}>
               {image ? (
                 <Image
                   source={{uri: image}}
@@ -131,7 +130,7 @@ const CreatePlanScreen = () => {
           </View>
           <View style={{marginTop: 120}}>
             <CustomButton
-              title={'CREATE WORKOUT'}
+              title={button['create']}
               handlePress={handleSubmit(onSubmit)}
               isLoading={isSubmitting}
             />
@@ -149,5 +148,13 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
+  },
+  button_image: {
+    backgroundColor: '#ccc',
+    height: 300,
+    marginTop: 10,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -28,7 +28,7 @@ import {apiUpdateDashboard} from '../../apis/dashboard';
 import {useNavigation} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
-import {common} from '../../styles/commonStyles';
+import {button, navigator, text} from '../../constants/text';
 
 const {width, height} = Dimensions.get('window');
 
@@ -71,34 +71,18 @@ const DetailMealScreen = ({route}) => {
           visibilityTime: 2000,
         }),
       );
-      navigation.navigate('Main');
+      navigation.navigate(navigator['main']);
     }
   };
 
   return (
     <SafeAreaView style={{backgroundColor: 'white'}}>
-      <BackComponent black back title={meal.meal_name} nav={'Meal'} />
+      <BackComponent black back title={meal.meal_name} />
       <ScrollView style={{backgroundColor: 'white'}}>
         <ImageBackground
           src={meal.meal_image}
-          style={{
-            width: width,
-            height: height / 2.8,
-            backgroundColor: colors['border'],
-          }}></ImageBackground>
-        <View
-          style={{
-            flexDirection: 'row',
-            backgroundColor: colors['background-white'],
-            width: width / 1.15,
-            paddingVertical: 40,
-            position: 'absolute',
-            top: height / 3.5,
-            left: width / 15,
-            borderRadius: 20,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+          style={styles.image_main}></ImageBackground>
+        <View style={styles.content}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <SimpleLineIcons
               name="fire"
@@ -108,7 +92,7 @@ const DetailMealScreen = ({route}) => {
             />
             <TextComponent
               text={`${Math.floor(meal.calories)}`}
-              unit={'kcal'}
+              unit={text['kcal']}
               size={20}
               font={fontFamilies['medium']}
               color={colors['title']}
@@ -127,7 +111,7 @@ const DetailMealScreen = ({route}) => {
             }}>
             <View style={{alignItems: 'center'}}>
               <TextComponent
-                text={'Fat'}
+                text={text['fat']}
                 size={15}
                 styles={{marginBottom: 5}}
                 font={fontFamilies['medium']}
@@ -141,7 +125,7 @@ const DetailMealScreen = ({route}) => {
             </View>
             <View style={{alignItems: 'center'}}>
               <TextComponent
-                text={'Protein'}
+                text={text['protein']}
                 size={15}
                 styles={{marginBottom: 5}}
                 font={fontFamilies['medium']}
@@ -155,7 +139,7 @@ const DetailMealScreen = ({route}) => {
             </View>
             <View style={{alignItems: 'center'}}>
               <TextComponent
-                text={'Carbs'}
+                text={text['carbs']}
                 size={15}
                 styles={{marginBottom: 5}}
                 font={fontFamilies['medium']}
@@ -169,7 +153,7 @@ const DetailMealScreen = ({route}) => {
             </View>
             <View style={{alignItems: 'center'}}>
               <TextComponent
-                text={'Others'}
+                text={text['others']}
                 size={15}
                 styles={{marginBottom: 5}}
                 font={fontFamilies['medium']}
@@ -201,7 +185,7 @@ const DetailMealScreen = ({route}) => {
           <View style={{marginTop: 40}}>
             <MealComponent handlePress={handlePress} />
           </View>
-          <CustomButton handlePress={handleEat} title={'Eat'} />
+          <CustomButton handlePress={handleEat} title={button['eat']} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -222,5 +206,22 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 200,
     marginBottom: 30,
+  },
+  image_main: {
+    width: width,
+    height: height / 2.8,
+    backgroundColor: colors['border'],
+  },
+  content: {
+    flexDirection: 'row',
+    backgroundColor: colors['background-white'],
+    width: width / 1.15,
+    paddingVertical: 40,
+    position: 'absolute',
+    top: height / 3.5,
+    left: width / 15,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -22,6 +22,7 @@ import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import BackComponent from '../../components/header/backComponent';
 import {common} from '../../styles/commonStyles';
 import {apiExerciseDetail} from '../../apis';
+import {button, navigator} from '../../constants/text';
 
 const {width, height} = Dimensions.get('window');
 
@@ -42,9 +43,12 @@ const ProgressExerciseScreen = ({route}) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await apiExerciseDetail(user.userId, token, exerciseId);
+      console.log(response.data);
       if (response.statusCode === 200) {
         setExercise(response.data);
         setCountdown(response.data.duration * 60);
+        setCaloriesBurned(caloriesBurned + response.data.caloriesBurned);
+        setDuration(duration + response.data.duration);
       }
     };
     fetchData();
@@ -70,20 +74,10 @@ const ProgressExerciseScreen = ({route}) => {
       setCurrentExercise(currentExercise + 1);
       setExerciseId(exercises[currentExercise].exerciseId);
       setCountdown(exercises[currentExercise].duration * 60);
-      setCaloriesBurned(caloriesBurned + exercise.caloriesBurned);
-      setDuration(duration + exercise.duration);
       setIsStop(true);
       return;
-    } else if (currentExercise === exercises.length) {
-      setCaloriesBurned(caloriesBurned + exercise.caloriesBurned);
-      setDuration(duration + exercise.duration);
-      navigation.navigate('Result', {
-        caloriesBurned: caloriesBurned,
-        duration: duration,
-        namePlan: namePlan,
-      });
     } else {
-      navigation.navigate('Result', {
+      navigation.navigate(navigator['result'], {
         caloriesBurned: caloriesBurned,
         duration: duration,
         namePlan: namePlan,
@@ -92,7 +86,7 @@ const ProgressExerciseScreen = ({route}) => {
   };
 
   const handleResultSingle = () => {
-    navigation.navigate('Result', {
+    navigation.navigate(navigator['result'], {
       exercise: exercise,
     });
   };
@@ -103,7 +97,7 @@ const ProgressExerciseScreen = ({route}) => {
         black
         back
         title={exercise.name}
-        nav={'FullExercise'}
+        nav={navigator['full-exercise']}
         param={'category'}
         data={exercise.equipmentName}
       />
@@ -166,19 +160,10 @@ const ProgressExerciseScreen = ({route}) => {
             {isStop ? (
               <TouchableOpacity
                 onPress={handleStart}
-                style={{
-                  borderWidth: 1,
-                  paddingVertical: 20,
-                  borderRadius: 10,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginTop: 10,
-                  paddingHorizontal: 30,
-                  justifyContent: 'space-between',
-                }}>
+                style={styles.button_stop}>
                 <FontAwesome name="play" size={24} color="black" />
                 <TextComponent
-                  text={'START'}
+                  text={button['start']}
                   size={30}
                   font={fontFamilies['bebasNeue']}
                   styles={{marginLeft: 20}}
@@ -187,16 +172,7 @@ const ProgressExerciseScreen = ({route}) => {
             ) : (
               <TouchableOpacity
                 onPress={handleStart}
-                style={{
-                  borderWidth: 1,
-                  paddingVertical: 20,
-                  borderRadius: 10,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginTop: 10,
-                  paddingHorizontal: 30,
-                  justifyContent: 'space-between',
-                }}>
+                style={styles.button_stop}>
                 <Entypo name="controller-stop" size={30} color="black" />
                 <TextComponent
                   text={'STOP'}
@@ -228,7 +204,7 @@ const ProgressExerciseScreen = ({route}) => {
           </View>
           <CustomButton
             handlePress={single ? handleResultSingle : handleResult}
-            title={'DONE'}
+            title={button['done']}
             containerStyles={{marginBottom: 20}}
           />
         </View>
@@ -250,5 +226,16 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     backgroundColor: colors['border'],
+  },
+
+  button_stop: {
+    borderWidth: 1,
+    paddingVertical: 20,
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+    paddingHorizontal: 30,
+    justifyContent: 'space-between',
   },
 });

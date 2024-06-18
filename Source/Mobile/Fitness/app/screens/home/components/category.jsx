@@ -12,12 +12,13 @@ import TextComponent from '../../../components/text/textComponent';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import {colors} from '../../../constants/colors';
 import {useNavigation} from '@react-navigation/native';
+import {navigator} from '../../../constants/text';
 
 const Category = ({data, title, nav, ...props}) => {
   const navigation = useNavigation();
 
   const handleSelectCategory = category => {
-    navigation.navigate('FullExercise', {category});
+    navigation.navigate(navigator['full-exercise'], {category});
   };
 
   return (

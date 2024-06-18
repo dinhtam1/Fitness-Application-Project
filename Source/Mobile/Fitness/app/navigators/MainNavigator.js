@@ -8,6 +8,7 @@ import {
   DashboardScreen,
   DetailExerciseScreen,
   DetailMealScreen,
+  FinishExerciseScreen,
   FullExerciseScreen,
   MealPlanScreen,
   NotificationScreen,
@@ -19,6 +20,7 @@ import {
   SettingScreen,
   SleepScreen,
 } from '../screens';
+import {navigator} from '../constants/text';
 
 const MainNavigator = () => {
   const Stack = createStackNavigator();
@@ -27,28 +29,46 @@ const MainNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Main" component={DrawerNavigator} />
-      <Stack.Screen name="FullExercise" component={FullExerciseScreen} />
-      <Stack.Screen name="Category" component={CategoryScreen} />
-      <Stack.Screen name="DetailExercise" component={DetailExerciseScreen} />
-      <Stack.Screen name="DetailMeal" component={DetailMealScreen} />
+      <Stack.Screen name={navigator['main']} component={DrawerNavigator} />
       <Stack.Screen
-        name="ProgressExercise"
+        name={navigator['full-exercise']}
+        component={FullExerciseScreen}
+      />
+      <Stack.Screen name={navigator['category']} component={CategoryScreen} />
+      <Stack.Screen
+        name={navigator['detail-exercise']}
+        component={DetailExerciseScreen}
+      />
+      <Stack.Screen
+        name={navigator['detail-meal']}
+        component={DetailMealScreen}
+      />
+      <Stack.Screen
+        name={navigator['progress-exercise']}
         component={ProgressExerciseScreen}
       />
-      <Stack.Screen name="Result" component={ResultScreen} />
-      <Stack.Screen name="MealPlan" component={MealPlanScreen} />
-      <Stack.Screen name="Notification" component={NotificationScreen} />
-      <Stack.Screen name="Dashboard" component={DashboardScreen} />
-      <Stack.Screen name="Playlist" component={PlaylistScreen} />
-      <Stack.Screen name="Setting" component={SettingScreen} />
-      <Stack.Screen name="Profile" component={ProfileNavigator} />
-      <Stack.Screen name="Sleep" component={SleepScreen} />
-      <Stack.Screen name="Progress" component={ProgressScreen} />
-      <Stack.Screen name="ChangePassword" component={ChangePassword} />
-      <Stack.Screen name="CreatePlan" component={CreatePlanScreen} />
+      <Stack.Screen name={navigator['result']} component={ResultScreen} />
+      <Stack.Screen name={navigator['meal-plan']} component={MealPlanScreen} />
       <Stack.Screen
-        name="ExercisesInList"
+        name={navigator['notification']}
+        component={NotificationScreen}
+      />
+      <Stack.Screen name={navigator['dashboard']} component={DashboardScreen} />
+      <Stack.Screen name={navigator['playlist']} component={PlaylistScreen} />
+      <Stack.Screen name={navigator['setting']} component={SettingScreen} />
+      <Stack.Screen name={navigator['profile']} component={ProfileNavigator} />
+      <Stack.Screen name={navigator['sleep']} component={SleepScreen} />
+      <Stack.Screen name={navigator['progress']} component={ProgressScreen} />
+      <Stack.Screen
+        name={navigator['change-password']}
+        component={ChangePassword}
+      />
+      <Stack.Screen
+        name={navigator['create-plan']}
+        component={CreatePlanScreen}
+      />
+      <Stack.Screen
+        name={navigator['exercises-in-list']}
         component={PlaylistFullExerciseScreen}
       />
     </Stack.Navigator>

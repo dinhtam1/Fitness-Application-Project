@@ -22,6 +22,7 @@ import {apiDeleteExerciseInList} from '../../../apis/exerciseList';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../../utils/toast';
 import {useAuthStore, useUserStore} from '../../../store/useAuthStore';
+import {message, navigator, title} from '../../../constants/text';
 
 const AboutExercise = ({
   data,
@@ -37,7 +38,7 @@ const AboutExercise = ({
   const {token} = useAuthStore();
   const [index, setIndex] = useState(0);
   const handleSelectCategory = index => {
-    navigation.navigate('DetailExercise', {exerciseId: index});
+    navigation.navigate(navigator['detail-exercise'], {exerciseId: index});
   };
 
   const [isAlertVisible, setAlertVisible] = useState(false);
@@ -79,8 +80,8 @@ const AboutExercise = ({
         <ModalChoices
           isVisible={isAlertVisible}
           onClose={hideAlert}
-          title="Delete!"
-          message="Are you sure you want to Delete?"
+          title={title['delete']}
+          message={message['delete']}
           onConfirm={handleConfirm}
         />
       ) : (
@@ -100,12 +101,7 @@ const AboutExercise = ({
                 <ImageBackground
                   source={{uri: item.image}}
                   resizeMode="cover"
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 10,
-                    backgroundColor: colors['border'],
-                  }}
+                  style={styles.image_main}
                   imageStyle={{borderRadius: 10}}></ImageBackground>
                 <View style={{width: 200, minHeight: 120}}>
                   <TextComponent
@@ -144,12 +140,7 @@ const AboutExercise = ({
                       unit={'min'}
                     />
                   </View>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}>
+                  <View style={styles.content_below}>
                     <TextComponent
                       text={item.level}
                       font={fontFamilies['regular']}
@@ -158,14 +149,7 @@ const AboutExercise = ({
                     />
                     {add ? (
                       <TouchableOpacity
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 100,
-                          backgroundColor: colors['primary-color'],
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
+                        style={styles.button_add}
                         onPress={() => handlePress(item.exerciseId)}>
                         <Entypo name="plus" size={24} color="white" />
                       </TouchableOpacity>
@@ -192,5 +176,24 @@ const styles = StyleSheet.create({
     width: 300,
     alignSelf: 'center',
     marginTop: 100,
+  },
+  button_add: {
+    width: 30,
+    height: 30,
+    borderRadius: 100,
+    backgroundColor: colors['primary-color'],
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  content_below: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  image_main: {
+    width: 120,
+    height: 120,
+    borderRadius: 10,
+    backgroundColor: colors['border'],
   },
 });

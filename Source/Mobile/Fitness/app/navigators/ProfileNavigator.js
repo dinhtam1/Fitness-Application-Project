@@ -1,5 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {EditProfileScreen, ProfileScreen} from '../screens';
+import {navigator} from '../constants/text';
 
 const ProfileNavigator = () => {
   const Stack = createStackNavigator();
@@ -8,8 +9,14 @@ const ProfileNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="ProfileUser" component={ProfileScreen} />
-      <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+      <Stack.Screen
+        name={navigator['profile-user']}
+        component={ProfileScreen}
+      />
+      <Stack.Screen
+        name={navigator['edit-profile']}
+        component={EditProfileScreen}
+      />
     </Stack.Navigator>
   );
 };

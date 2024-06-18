@@ -11,14 +11,13 @@ import TextComponent from '../../../components/text/textComponent';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import {colors} from '../../../constants/colors';
 
-const RecommendTime = ({index, hour, minute, onButtonPress}) => {
-  console.log(index);
+const RecommendTime = ({index, hour, minute, onButtonPress, toggle}) => {
   const [isOn, setIsOn] = useState(false);
   const onColor = colors['primary-color'];
   const offColor = colors['toggle'];
 
   return (
-    <View style={{padding: 20}}>
+    <View key={index} style={{padding: 20}}>
       <View
         style={{
           flexDirection: 'row',
@@ -26,7 +25,6 @@ const RecommendTime = ({index, hour, minute, onButtonPress}) => {
           justifyContent: 'space-between',
         }}>
         <AnalogClock
-          key={index}
           size={100}
           hour={hour}
           minutes={minute}
@@ -40,32 +38,38 @@ const RecommendTime = ({index, hour, minute, onButtonPress}) => {
             size={50}
           />
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            LayoutAnimation.easeInEaseOut();
-            let newIsOn = !isOn;
-            setIsOn(newIsOn);
-            if (onButtonPress) {
-              onButtonPress(hour, minute, newIsOn);
-            }
-          }}
-          style={{
-            height: 30,
-            width: 60,
-            borderRadius: 50,
-            borderWidth: 3,
-            borderColor: isOn ? onColor : offColor,
-            backgroundColor: isOn ? onColor : offColor,
-          }}>
-          <View
-            style={{
-              height: '100%',
-              width: '50%',
-              backgroundColor: 'white',
-              borderRadius: 100,
-              alignSelf: isOn ? 'flex-end' : 'flex-start',
-            }}></View>
-        </TouchableOpacity>
+        {toggle ? (
+          <>
+            <TouchableOpacity
+              onPress={() => {
+                LayoutAnimation.easeInEaseOut();
+                let newIsOn = !isOn;
+                setIsOn(newIsOn);
+                if (onButtonPress) {
+                  onButtonPress(hour, minute, newIsOn);
+                }
+              }}
+              style={{
+                height: 30,
+                width: 60,
+                borderRadius: 50,
+                borderWidth: 3,
+                borderColor: isOn ? onColor : offColor,
+                backgroundColor: isOn ? onColor : offColor,
+              }}>
+              <View
+                style={{
+                  height: '100%',
+                  width: '50%',
+                  backgroundColor: 'white',
+                  borderRadius: 100,
+                  alignSelf: isOn ? 'flex-end' : 'flex-start',
+                }}></View>
+            </TouchableOpacity>
+          </>
+        ) : (
+          <View></View>
+        )}
       </View>
     </View>
   );

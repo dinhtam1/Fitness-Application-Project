@@ -14,11 +14,11 @@ import {MaterialIcons} from '@expo/vector-icons';
 import TextComponent from '../../../components/text/textComponent';
 import {colors} from '../../../constants/colors';
 import {fontFamilies} from '../../../constants/fontFamilies';
-import FormField from '../../../components/form/formFieldComponent';
 import {header} from '../../../assets';
 import {useUserStore} from '../../../store/useAuthStore';
 import {useNavigation} from '@react-navigation/native';
 import {FontAwesome} from '@expo/vector-icons';
+import {navigator} from '../../../constants/text';
 
 const {width, height} = Dimensions.get('window');
 
@@ -84,7 +84,8 @@ const HeaderFull = ({background, ...props}) => {
                 color={background ? 'white' : 'black'}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(navigator['profile'])}>
               {user?.avatar_url ? (
                 <Image
                   src={user?.avatar_url}
@@ -96,7 +97,8 @@ const HeaderFull = ({background, ...props}) => {
               )}
             </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(navigator['notification'])}>
             <MaterialIcons
               name="notifications-none"
               size={26}

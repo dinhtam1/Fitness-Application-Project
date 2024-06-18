@@ -7,13 +7,14 @@ import {fontFamilies} from '../../constants/fontFamilies';
 import {useUserStore} from '../../store/useAuthStore';
 import {colors} from '../../constants/colors';
 import {FontAwesome} from '@expo/vector-icons';
+import {text, title} from '../../constants/text';
 
 const ProfileScreen = () => {
   const {user} = useUserStore();
   return (
     <SafeAreaView
       style={{backgroundColor: colors['background-white'], height: '100%'}}>
-      <BackComponent title={'PROFILE'} edit nav={'Main'} />
+      <BackComponent title={title['profile']} edit />
       <View style={{paddingHorizontal: 20}}>
         <View style={{marginTop: 10, alignItems: 'center'}}>
           {user?.avatar_url ? (
@@ -48,7 +49,7 @@ const ProfileScreen = () => {
               size={17}
               styles={{marginBottom: 5}}
             />
-            <TextComponent text={'Weight'} size={14} />
+            <TextComponent text={text['weight']} size={14} />
           </View>
           <View
             style={{
@@ -60,7 +61,7 @@ const ProfileScreen = () => {
               size={17}
               styles={{marginBottom: 5}}
             />
-            <TextComponent text={'Height'} size={14} />
+            <TextComponent text={text['height']} size={14} />
           </View>
           <View style={{alignItems: 'center'}}>
             <TextComponent
@@ -69,7 +70,7 @@ const ProfileScreen = () => {
               size={17}
               styles={{marginBottom: 5}}
             />
-            <TextComponent text={'Age'} size={14} />
+            <TextComponent text={text['age']} size={14} />
           </View>
         </View>
         <View style={{marginTop: 60}}>
@@ -92,7 +93,7 @@ const ProfileScreen = () => {
                 style={styles.image2}
               />
               <TextComponent
-                text={'Protein'}
+                text={text['protein']}
                 size={15}
                 font={fontFamilies['semibold']}
               />
@@ -101,12 +102,12 @@ const ProfileScreen = () => {
                 size={13}
                 font={fontFamilies['medium']}
               />
-              <TextComponent text={'Grams per day'} size={14} />
+              <TextComponent text={text['grams-per-day']} size={14} />
             </View>
             <View style={{alignItems: 'center'}}>
               <Image source={carbs} resizeMode="cover" style={styles.image2} />
               <TextComponent
-                text={'Carbs'}
+                text={text['carbs']}
                 size={15}
                 font={fontFamilies['semibold']}
               />
@@ -115,12 +116,12 @@ const ProfileScreen = () => {
                 size={13}
                 font={fontFamilies['medium']}
               />
-              <TextComponent text={'Grams per day'} size={14} />
+              <TextComponent text={text['grams-per-day']} size={14} />
             </View>
             <View style={{alignItems: 'center'}}>
               <Image source={fat} resizeMode="cover" style={styles.image2} />
               <TextComponent
-                text={'Fat'}
+                text={text['fat']}
                 size={15}
                 font={fontFamilies['semibold']}
               />
@@ -129,7 +130,7 @@ const ProfileScreen = () => {
                 size={13}
                 font={fontFamilies['medium']}
               />
-              <TextComponent text={'Grams per day'} size={14} />
+              <TextComponent text={text['grams-per-day']} size={14} />
             </View>
           </View>
         </View>

@@ -17,6 +17,7 @@ import {common} from '../../styles/commonStyles';
 import ModalExercise from './component/modalExercise';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
+import {title} from '../../constants/text';
 
 const FullExerciseScreen = ({route}) => {
   const {category} = route?.params;
@@ -34,8 +35,6 @@ const FullExerciseScreen = ({route}) => {
     setExerciseId(exerciseId);
     setModalVisible(!isModalVisible);
   };
-
-  console.log(token);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,7 +63,7 @@ const FullExerciseScreen = ({route}) => {
 
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent black back title={'FULL EXERCISE'} nav={'Home'} />
+      <BackComponent black back title={title['full-exercise']} />
       <View style={{paddingHorizontal: 20, height: '100%'}}>
         <View style={styles.container}>
           <Dropdown

@@ -11,14 +11,13 @@ import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import SpaceComponent from '../../components/common/spaceComponent';
 import CustomButton from '../../components/button/buttonComponent';
-import {button, step} from '../../constants/text';
+import {button, navigator, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
 import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import {apiUpdateProfile} from '../../apis/user';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const GoalScreen = () => {
   const buttonTitles = ['Weight_loss', 'Gain_muscle'];
@@ -43,7 +42,7 @@ const GoalScreen = () => {
     );
     if (response?.statusCode === 200) {
       setUser(response.data);
-      navigation.navigate('Start');
+      navigation.navigate(navigator['start']);
     } else {
       Toast.show(
         toastConfig({

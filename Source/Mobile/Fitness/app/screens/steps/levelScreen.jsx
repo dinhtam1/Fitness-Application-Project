@@ -12,7 +12,7 @@ import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import SpaceComponent from '../../components/common/spaceComponent';
 import CustomButton from '../../components/button/buttonComponent';
-import {button, step} from '../../constants/text';
+import {button, navigator, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
 import {useAuthStore} from '../../store/useAuthStore';
@@ -24,7 +24,7 @@ const LevelScreen = () => {
   const {form, setForm} = useAuthStore();
   const onSubmit = () => {
     setForm({...form, level: selectedLevel});
-    navigation.navigate('Goal');
+    navigation.navigate(navigator['goal']);
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -90,5 +90,3 @@ const LevelScreen = () => {
 };
 
 export default LevelScreen;
-
-const styles = StyleSheet.create({});

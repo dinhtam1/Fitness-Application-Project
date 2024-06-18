@@ -14,6 +14,7 @@ import {colors} from '../../../constants/colors';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import CustomButton from '../../../components/button/buttonComponent';
 import {useNavigation} from '@react-navigation/native';
+import {button, title} from '../../../constants/text';
 
 const {width, height} = Dimensions.get('window');
 const Banner = () => {
@@ -26,7 +27,7 @@ const Banner = () => {
         colors={['#5D847D', '#D48103']}></LinearGradient>
       <Image source={banner1} style={styles.people} resizeMode="contain" />
       <TextComponent
-        text={'FIT YOUNG MAN DOING BATTLE STRETCH TRAINING'}
+        text={title['banner']}
         color={colors['text-white']}
         size={15}
         font={fontFamilies['semibold']}
@@ -36,7 +37,7 @@ const Banner = () => {
       />
       <CustomButton
         handlePress={() => navigation.navigate('Exercise')}
-        title={'Start Exercise'}
+        title={button['start-exercise']}
         containerStyles={styles.button}
         textStyles={{fontSize: 14, fontFamily: fontFamilies['medium']}}
       />

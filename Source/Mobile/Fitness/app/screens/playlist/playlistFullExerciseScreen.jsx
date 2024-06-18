@@ -16,6 +16,7 @@ import {apiExerciseInList} from '../../apis/exerciseList';
 import CustomButton from '../../components/button/buttonComponent';
 import {useNavigation} from '@react-navigation/native';
 import {empty} from '../../assets';
+import {button, navigator} from '../../constants/text';
 
 const PlaylistFullExerciseScreen = ({route}) => {
   const navigation = useNavigation();
@@ -43,7 +44,7 @@ const PlaylistFullExerciseScreen = ({route}) => {
   }, [isReload]);
 
   const handlePress = () => {
-    navigation.navigate('ProgressExercise', {
+    navigation.navigate(navigator['progress-exercise'], {
       exercises: exercises,
       single: false,
       namePlan: list_name,
@@ -71,7 +72,7 @@ const PlaylistFullExerciseScreen = ({route}) => {
                 />
                 <View style={{marginBottom: 30}}>
                   <CustomButton
-                    title={'START NOW'}
+                    title={button['start-now']}
                     handlePress={() => handlePress()}
                   />
                 </View>

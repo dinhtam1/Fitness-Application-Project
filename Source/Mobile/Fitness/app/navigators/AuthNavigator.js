@@ -7,6 +7,7 @@ import {
   VerifyScreen,
 } from '../screens';
 import RegisterNavigator from './RegisterNavigator';
+import {navigator} from '../constants/text';
 
 const AuthNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -16,11 +17,17 @@ const AuthNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="SignIn" component={SignInScreen} />
-      <Stack.Screen name="Register" component={RegisterNavigator} />
-      <Stack.Screen name="ForgotPassword" component={ForgotScreen} />
-      <Stack.Screen name="Verify" component={VerifyScreen} />
-      <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name={navigator['sign-in']} component={SignInScreen} />
+      <Stack.Screen name={navigator['sign-up']} component={RegisterNavigator} />
+      <Stack.Screen
+        name={navigator['forgot-password']}
+        component={ForgotScreen}
+      />
+      <Stack.Screen name={navigator['verify']} component={VerifyScreen} />
+      <Stack.Screen
+        name={navigator['change-password']}
+        component={ChangePassword}
+      />
     </Stack.Navigator>
   );
 };

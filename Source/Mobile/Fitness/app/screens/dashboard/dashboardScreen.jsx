@@ -15,6 +15,7 @@ import {apiDashboard} from '../../apis/dashboard';
 import CircleValue from './component/circleValue';
 import {getTimeToString} from '../../utils/helper';
 import {common} from '../../styles/commonStyles';
+import {text, title} from '../../constants/text';
 
 const DashboardScreen = () => {
   const [dashboard, setDashboard] = useState({});
@@ -31,10 +32,9 @@ const DashboardScreen = () => {
     fetchData();
   }, []);
 
-  console.log('dashboard', dashboard);
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent black back title={'DASHBOARD'} nav={'Main'} />
+      <BackComponent black back title={title['dashboard']} />
       <View
         style={{
           paddingHorizontal: 20,
@@ -46,23 +46,31 @@ const DashboardScreen = () => {
         <CircleValue
           data={getTimeToString(dashboard.time_practice)}
           unit={'Hours'}
-          title={'Practice'}
+          title={text['practice']}
         />
         <CircleValue
           data={getTimeToString(dashboard.time_sleep)}
           unit={'Hours'}
-          title={'Sleep'}
+          title={text['sleep']}
         />
-        <CircleValue data={dashboard.weight} unit={'Kg'} title={'Weight'} />
+        <CircleValue
+          data={dashboard.weight}
+          unit={'Kg'}
+          title={text['weight']}
+        />
         <CircleValue
           data={dashboard.calories_burned}
           unit={'Kcal'}
-          title={'Calories'}
+          title={text['calories']}
         />
-        <CircleValue data={dashboard.height} unit={'CM'} title={'Height'} />
+        <CircleValue
+          data={dashboard.height}
+          unit={'CM'}
+          title={text['height']}
+        />
         <CircleValue
           data={dashboard.exercise_complete}
-          title={'Workout'}
+          title={text['workout']}
           exercise
         />
       </View>

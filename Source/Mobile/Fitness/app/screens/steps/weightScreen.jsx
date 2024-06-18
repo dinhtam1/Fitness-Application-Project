@@ -12,7 +12,7 @@ import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import CustomButton from '../../components/button/buttonComponent';
 import FormField from '../../components/form/formFieldComponent';
-import {button, step} from '../../constants/text';
+import {button, navigator, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
 import {useAuthStore} from '../../store/useAuthStore';
@@ -23,12 +23,12 @@ const WeightScreen = () => {
   const {form, setForm} = useAuthStore();
   const onSubmit = () => {
     setForm({...form, weight});
-    navigation.navigate('GoalWeight');
+    navigation.navigate(navigator['goal-weight']);
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
-        <BackComponent back black  />
+        <BackComponent back black />
         <View style={common.contain}>
           <TextComponent
             text={step['step-4']}

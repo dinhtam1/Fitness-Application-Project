@@ -10,7 +10,7 @@ import React, {useState} from 'react';
 import {common} from '../../styles/commonStyles';
 import BackComponent from '../../components/header/backComponent';
 import TextComponent from '../../components/text/textComponent';
-import {button, step} from '../../constants/text';
+import {button, navigator, step} from '../../constants/text';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import SpaceComponent from '../../components/common/spaceComponent';
@@ -25,7 +25,7 @@ const GenderScreen = () => {
   const {form, setForm} = useAuthStore();
   const onSubmit = () => {
     setForm({...form, gender: selected.toLowerCase()});
-    navigation.navigate('Weight');
+    navigation.navigate(navigator['weight']);
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

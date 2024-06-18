@@ -5,9 +5,10 @@ import {useNavigation} from '@react-navigation/native';
 import TextComponent from '../text/textComponent';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
+import {MaterialIcons} from '@expo/vector-icons';
 
 const BackComponent = props => {
-  const {skip, nav, filter, title, edit, back, param, data, black, size} =
+  const {skip, swap, filter, title, edit, back, handleSwap, black, size} =
     props;
   const navigation = useNavigation();
   return (
@@ -58,6 +59,10 @@ const BackComponent = props => {
       ) : edit ? (
         <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
           <AntDesign name="edit" size={24} color="black" />
+        </TouchableOpacity>
+      ) : swap ? (
+        <TouchableOpacity onPress={() => handleSwap()}>
+          <MaterialIcons name="loop" size={24} color="black" />
         </TouchableOpacity>
       ) : (
         <View style={{marginLeft: 20}}></View>

@@ -18,6 +18,7 @@ import {apiAddExercise, apiGetAllLists} from '../../../apis/exerciseList';
 import {useAuthStore, useUserStore} from '../../../store/useAuthStore';
 import Toast from 'react-native-toast-message';
 import {empty} from '../../../assets';
+import {button, title} from '../../../constants/text';
 const {toastConfig} = require('../../../utils/toast');
 
 const ModalExercise = ({isModalVisible, handleToggle, exerciseId}) => {
@@ -26,8 +27,6 @@ const ModalExercise = ({isModalVisible, handleToggle, exerciseId}) => {
   const {token} = useAuthStore();
   const [selectedChoices, setSelectedChoices] = useState([]);
   const [choices, setChoices] = useState([]);
-
-  console.log(selectedChoices);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,7 +78,7 @@ const ModalExercise = ({isModalVisible, handleToggle, exerciseId}) => {
       onBackdropPress={() => handleToggle()}>
       <View style={styles.modalContent}>
         <TextComponent
-          text={'SAVE EXERCISE TO...'}
+          text={title['save-exercise']}
           font={fontFamilies['bebasNeue']}
           size={26}
           styles={{marginTop: 20, alignSelf: 'center'}}
@@ -135,27 +134,13 @@ const ModalExercise = ({isModalVisible, handleToggle, exerciseId}) => {
           onPress={() => {
             navigation.navigate('CreatePlan'), handleToggle();
           }}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingVertical: 24,
-            alignSelf: 'center',
-          }}>
+          style={styles.content_below}>
           <TextComponent
-            text={'CREATE NEW PLAYLIST'}
+            text={button['create-plan']}
             size={27}
             font={fontFamilies['bebasNeue']}
           />
-          <View
-            style={{
-              backgroundColor: colors['primary-color'],
-              width: 25,
-              height: 25,
-              borderRadius: 100,
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginLeft: 5,
-            }}>
+          <View style={styles.content_below_icon}>
             <Entypo name="plus" size={20} color="white" />
           </View>
         </TouchableOpacity>
@@ -194,5 +179,20 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     alignSelf: 'center',
+  },
+  content_below: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 24,
+    alignSelf: 'center',
+  },
+  content_below_icon: {
+    backgroundColor: colors['primary-color'],
+    width: 25,
+    height: 25,
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 5,
   },
 });

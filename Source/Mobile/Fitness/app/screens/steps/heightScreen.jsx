@@ -14,7 +14,7 @@ import {fontFamilies} from '../../constants/fontFamilies';
 import SpaceComponent from '../../components/common/spaceComponent';
 import FormField from '../../components/form/formFieldComponent';
 import CustomButton from '../../components/button/buttonComponent';
-import {button, step} from '../../constants/text';
+import {button, navigator, step} from '../../constants/text';
 import {useNavigation} from '@react-navigation/native';
 import {common} from '../../styles/commonStyles';
 import {useAuthStore} from '../../store/useAuthStore';
@@ -25,7 +25,7 @@ const HeightScreen = () => {
   const {form, setForm} = useAuthStore();
   const onSubmit = () => {
     setForm({...form, height});
-    navigation.navigate('Level');
+    navigation.navigate(navigator['level']);
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -78,5 +78,3 @@ const HeightScreen = () => {
 };
 
 export default HeightScreen;
-
-const styles = StyleSheet.create({});

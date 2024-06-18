@@ -10,19 +10,19 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import BackComponent from '../../components/header/backComponent';
-import FormField from '../../components/form/formFieldComponent';
 import {colors} from '../../constants/colors';
 import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {useCategoriesStore} from '../../store/useAuthStore';
 import {useNavigation} from '@react-navigation/native';
+import {navigator, title} from '../../constants/text';
 
 const CategoryScreen = () => {
   const {categories} = useCategoriesStore();
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{backgroundColor: colors['background-white']}}>
-      <BackComponent black back title={'CATEGORIES'} nav={'Main'} />
+      <BackComponent black back title={title['categories']} />
       <ScrollView>
         <View style={{paddingHorizontal: 20}}>
           <View
@@ -37,7 +37,7 @@ const CategoryScreen = () => {
                 key={index}
                 style={{marginBottom: 20}}
                 onPress={() =>
-                  navigation.navigate('FullExercise', {
+                  navigation.navigate(navigator['full-exercise'], {
                     category: item.equipmentName,
                   })
                 }>

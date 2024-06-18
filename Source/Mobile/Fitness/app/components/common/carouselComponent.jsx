@@ -1,11 +1,11 @@
-import {Dimensions, FlatList, Image, View} from 'react-native';
+import {Dimensions, FlatList, Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {fontFamilies} from '../../constants/fontFamilies';
 import CustomButton from '../button/buttonComponent';
 import {colors} from '../../constants/colors';
-import {useNavigation} from '@react-navigation/native';
 import TextComponent from '../text/textComponent';
 import {useAuthStore} from '../../store/useAuthStore';
+import {button} from '../../constants/text';
 
 const {width, height} = Dimensions.get('window');
 
@@ -15,20 +15,14 @@ const PaginationComponent = props => {
   const {data, flatlistRef, handlePress, handleScroll, activeIndex} = props;
   const renderItem = ({item, index}) => {
     return (
-      <View>
+      <View key={index}>
         <Image source={item.image} style={{height: height, width: width}} />
         <TextComponent
           text={item.title}
           color={colors['title']}
           size={24}
           font={fontFamilies['bold']}
-          styles={{
-            position: 'absolute',
-            alignSelf: 'center',
-            bottom: 150,
-            width: 240,
-            textAlign: 'center',
-          }}
+          styles={styles.item_text}
         />
       </View>
     );
@@ -37,28 +31,9 @@ const PaginationComponent = props => {
   const renderDotIndicators = () => {
     return data.map((dot, index) => {
       if (activeIndex === index) {
-        return (
-          <View
-            style={{
-              backgroundColor: colors['primary-color'],
-              height: 10,
-              width: 10,
-              borderRadius: 5,
-              marginHorizontal: 6,
-            }}></View>
-        );
+        return <View key={index} style={styles.dot_active}></View>;
       } else {
-        return (
-          <View
-            key={index}
-            style={{
-              backgroundColor: colors['primary-color-black'],
-              height: 10,
-              width: 10,
-              borderRadius: 5,
-              marginHorizontal: 6,
-            }}></View>
-        );
+        return <View key={index} style={styles.dot}></View>;
       }
     });
   };
@@ -74,43 +49,19 @@ const PaginationComponent = props => {
         onScroll={handleScroll}
         showsHorizontalScrollIndicator={false}
       />
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          position: 'absolute',
-          bottom: 30,
-          justifyContent: 'space-between',
-          paddingHorizontal: 20,
-          width: '100%',
-        }}>
+      <View style={styles.container}>
         <CustomButton
           handlePress={() => setIsShowSplash(false)}
-          title="SKIP"
-          containerStyles={{backgroundColor: 'transparent'}}
-          textStyles={{
-            color: colors['title'],
-            fontSize: 18,
-            fontFamily: fontFamilies['semibold'],
-          }}
+          title={button['skip']}
+          containerStyles={styles.container_button}
+          textStyles={styles.text_button}
         />
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          {renderDotIndicators()}
-        </View>
+        <View style={styles.container_dot}>{renderDotIndicators()}</View>
         <CustomButton
           handlePress={handlePress}
-          title="NEXT"
-          containerStyles={{backgroundColor: 'transparent'}}
-          textStyles={{
-            color: colors['title'],
-            fontSize: 18,
-            fontFamily: fontFamilies['semibold'],
-          }}
+          title={button['next']}
+          containerStyles={styles.container_button}
+          textStyles={styles.text_button}
         />
       </View>
     </View>
@@ -118,3 +69,47 @@ const PaginationComponent = props => {
 };
 
 export default PaginationComponent;
+
+const styles = StyleSheet.create({
+  item_text: {
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 150,
+    width: 240,
+    textAlign: 'center',
+  },
+  container_dot: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dot_active: {
+    backgroundColor: colors['primary-color'],
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    marginHorizontal: 6,
+  },
+  dot: {
+    backgroundColor: colors['primary-color-black'],
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    marginHorizontal: 6,
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 30,
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    width: '100%',
+  },
+  container_button: {backgroundColor: 'transparent'},
+  text_button: {
+    color: colors['title'],
+    fontSize: 18,
+    fontFamily: fontFamilies['semibold'],
+  },
+});

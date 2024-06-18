@@ -13,7 +13,7 @@ import moment from 'moment';
 import CircleValue from './component/circleValue';
 import {getTimeToString} from '../../utils/helper';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import {common} from '../../styles/commonStyles';
+import {text, title} from '../../constants/text';
 
 const data = [
   {
@@ -90,7 +90,7 @@ const ProgressScreen = () => {
   });
   return (
     <SafeAreaView>
-      <BackComponent black back title={'MY PROGRESS'} />
+      <BackComponent black back title={title['my-progress']} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{paddingHorizontal: 20, marginTop: 10}}>
           <TextComponent
@@ -170,21 +170,21 @@ const ProgressScreen = () => {
               <CircleValue
                 data={getTimeToString(dashboard?.time_practice)}
                 unit={'Hours'}
-                title={'Practice'}
+                title={text['practice']}
               />
               <CircleValue
                 data={getTimeToString(dashboard?.time_sleep)}
                 unit={'Hours'}
-                title={'Sleep'}
+                title={text['sleep']}
               />
               <CircleValue
                 data={dashboard?.calories_burned}
                 unit={'Kcal'}
-                title={'Calories'}
+                title={text['calories']}
               />
               <CircleValue
                 data={dashboard?.exercise_complete}
-                title={'Workout'}
+                title={text['workout']}
                 exercise
               />
             </View>

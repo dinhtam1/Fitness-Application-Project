@@ -4,6 +4,8 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 import FormField from '../../components/form/formFieldComponent';
@@ -15,6 +17,8 @@ import {fontFamilies} from '../../constants/fontFamilies';
 import BackComponent from '../../components/header/backComponent';
 import {
   button,
+  message,
+  navigator,
   placeholder,
   text,
   title,
@@ -25,7 +29,6 @@ import {Controller, useForm} from 'react-hook-form';
 import {EMAIL_REGEX} from '../../constants/regex';
 import {useAuthStore, useUserStore} from '../../store/useAuthStore';
 import {apiRegister} from '../../apis/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
 
@@ -41,7 +44,6 @@ const SignUpScreen = () => {
 
   const onSubmit = async data => {
     const response = await apiRegister(data);
-    console.log(response);
     if (response?.statusCode === 200) {
       setToken(response.data.tokens.accessToken);
       setUser(response.data.user);
@@ -52,7 +54,7 @@ const SignUpScreen = () => {
           visibilityTime: 2000,
         }),
       );
-      navigation.navigate('Old');
+      navigation.navigate(navigator['old']);
     } else {
       Toast.show(
         toastConfig({
@@ -64,124 +66,126 @@ const SignUpScreen = () => {
     }
   };
   return (
-    <SafeAreaView style={common.safeAreaView}>
-      <BackComponent black back />
-      <View style={common.contain}>
-        <View>
-          <TextComponent
-            text={title['sign-up']}
-            color={colors['title']}
-            size={30}
-            font={fontFamilies['bebasNeue']}
-            styles={{
-              paddingBottom: 10,
-            }}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <SafeAreaView style={common.safeAreaView}>
+        <BackComponent black back />
+        <View style={common.contain}>
+          <View>
+            <TextComponent
+              text={title['sign-up']}
+              color={colors['title']}
+              size={30}
+              font={fontFamilies['bebasNeue']}
+              styles={{
+                paddingBottom: 10,
+              }}
+            />
+            <TextComponent
+              text={text['sub-sign-up']}
+              size={15}
+              font={fontFamilies['medium']}
+            />
+          </View>
+          <View style={{paddingVertical: 20}}>
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: message['required']},
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['name']}
+                  title={titleForm['name']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="full_name"
+            />
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: message['required']},
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['phone']}
+                  title={titleForm['phone']}
+                  handleChangeText={onChange}
+                  keyboardType="number-pad"
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="phone_number"
+            />
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: message['required']},
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: message['invalid-email'],
+                },
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['email']}
+                  title={titleForm['email']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="email"
+            />
+            <Controller
+              control={control}
+              rules={{
+                required: {value: true, message: message['required']},
+                minLength: {
+                  value: 8,
+                  message: message['invalid-password'],
+                },
+              }}
+              render={({field: {onChange, value, name}}) => (
+                <FormField
+                  placeholder={placeholder['password']}
+                  title={titleForm['password']}
+                  handleChangeText={onChange}
+                  value={value}
+                  error={errors[name]?.message}
+                />
+              )}
+              name="password"
+            />
+          </View>
+          <CustomButton
+            title={button['sign-up']}
+            handlePress={handleSubmit(onSubmit)}
+            isLoading={isSubmitting}
+            containerStyles={{marginTop: 20}}
           />
-          <TextComponent
-            text={text['sub-sign-up']}
-            size={15}
-            font={fontFamilies['medium']}
-          />
+          <View style={{alignItems: 'center', marginVertical: 40}}>
+            <Text style={{fontSize: 14, fontFamily: fontFamilies['light']}}>
+              Already have an account?{' '}
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate(navigator['sign-in']);
+                }}>
+                <TextComponent
+                  text={'Login!'}
+                  size={14}
+                  font={fontFamilies['bold']}
+                  styles={{transform: [{translateY: 3}]}}
+                />
+              </TouchableOpacity>
+            </Text>
+          </View>
         </View>
-        <View style={{paddingVertical: 20}}>
-          <Controller
-            control={control}
-            rules={{
-              required: {value: true, message: 'This field cannot empty'},
-            }}
-            render={({field: {onChange, value, name}}) => (
-              <FormField
-                placeholder={placeholder['name']}
-                title={titleForm['name']}
-                handleChangeText={onChange}
-                value={value}
-                error={errors[name]?.message}
-              />
-            )}
-            name="full_name"
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: {value: true, message: 'This field cannot empty'},
-            }}
-            render={({field: {onChange, value, name}}) => (
-              <FormField
-                placeholder={placeholder['phone']}
-                title={titleForm['phone']}
-                handleChangeText={onChange}
-                keyboardType="number-pad"
-                value={value}
-                error={errors[name]?.message}
-              />
-            )}
-            name="phone_number"
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: {value: true, message: 'This field cannot empty'},
-              pattern: {
-                value: EMAIL_REGEX,
-                message: 'Not a valid email',
-              },
-            }}
-            render={({field: {onChange, value, name}}) => (
-              <FormField
-                placeholder={placeholder['email']}
-                title={titleForm['email']}
-                handleChangeText={onChange}
-                value={value}
-                error={errors[name]?.message}
-              />
-            )}
-            name="email"
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: {value: true, message: 'This field cannot empty'},
-              minLength: {
-                value: 8,
-                message: 'Password must be at least 8 characters',
-              },
-            }}
-            render={({field: {onChange, value, name}}) => (
-              <FormField
-                placeholder={placeholder['password']}
-                title={titleForm['password']}
-                handleChangeText={onChange}
-                value={value}
-                error={errors[name]?.message}
-              />
-            )}
-            name="password"
-          />
-        </View>
-        <CustomButton
-          title={button['sign-up']}
-          handlePress={handleSubmit(onSubmit)}
-          isLoading={isSubmitting}
-          containerStyles={{marginTop: 20}}
-        />
-        <View style={{alignItems: 'center', marginVertical: 40}}>
-          <Text style={{fontSize: 14, fontFamily: fontFamilies['light']}}>
-            Already have an account?{' '}
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('SignIn');
-              }}>
-              <TextComponent
-                text={'Login!'}
-                size={14}
-                font={fontFamilies['bold']}
-                styles={{transform: [{translateY: 3}]}}
-              />
-            </TouchableOpacity>
-          </Text>
-        </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

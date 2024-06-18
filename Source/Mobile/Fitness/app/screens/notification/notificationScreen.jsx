@@ -14,11 +14,12 @@ import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import SpaceComponent from '../../components/common/spaceComponent';
 import {colors} from '../../constants/colors';
+import {navigator, title} from '../../constants/text';
 
 const NotificationScreen = () => {
   return (
     <SafeAreaView style={{backgroundColor: colors['background-white']}}>
-      <BackComponent black back title={'NOTIFICATIONS'} nav={'Main'} />
+      <BackComponent black back title={title['notification']} />
       <ScrollView style={{paddingHorizontal: 20, height: '100%'}}>
         <View style={{flexDirection: 'row', gap: 30}}>
           <Image source={meal2} resizeMode="cover" style={styles.image} />

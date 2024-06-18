@@ -2,11 +2,10 @@ import {
   View,
   Text,
   SafeAreaView,
-  ScrollView,
-  Alert,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  StyleSheet,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import FormField from '../../components/form/formFieldComponent';
@@ -19,6 +18,7 @@ import {fontFamilies} from '../../constants/fontFamilies';
 import {colors} from '../../constants/colors';
 import {
   button,
+  message,
   placeholder,
   text,
   title,
@@ -30,9 +30,9 @@ import {EMAIL_REGEX} from '../../constants/regex';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../utils/toast';
 import {useAuthStore, useUserStore} from '../../store/useAuthStore';
+import {navigator} from '../../constants/text';
 
 export default function SignInScreen() {
-  // HANDLE DATA
   const navigation = useNavigation();
   const {
     control,
@@ -41,8 +41,8 @@ export default function SignInScreen() {
     formState: {errors, isSubmitting},
   } = useForm({
     defaultValues: {
-      email: 'heloqua110333@gmail.com',
-      password: '123456',
+      email: '',
+      password: '',
     },
   });
 
@@ -50,7 +50,6 @@ export default function SignInScreen() {
   const {setToken, setIsLogin} = useAuthStore();
   const onSubmit = async data => {
     const response = await apiLogin(data);
-    console.log(response);
     if (response.statusCode === 200) {
       setToken(response.data.tokens.accessToken);
       setIsLogin(true);
@@ -71,20 +70,18 @@ export default function SignInScreen() {
       );
     }
   };
-  // VIEW
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={common.safeAreaView}>
         <View style={common.contain}>
-          <View style={{paddingTop: 30}}>
+          <View style={styles.container_title}>
             <TextComponent
               text={title['sign-in']}
               color={colors['title']}
               size={30}
               font={fontFamilies['bebasNeue']}
-              styles={{
-                paddingBottom: 10,
-              }}
+              styles={styles.container_text}
             />
             <TextComponent
               text={text['sub-sign-in']}
@@ -96,10 +93,10 @@ export default function SignInScreen() {
             <Controller
               control={control}
               rules={{
-                required: {value: true, message: 'This field cannot empty'},
+                required: {value: true, message: message['required']},
                 pattern: {
                   value: EMAIL_REGEX,
-                  message: 'Not a valid email',
+                  message: message['invalid-email'],
                 },
               }}
               render={({field: {onChange, value, name}}) => (
@@ -116,11 +113,11 @@ export default function SignInScreen() {
             <Controller
               control={control}
               rules={{
-                required: {value: true, message: 'This field cannot empty'},
-                // minLength: {
-                //   value: 8,
-                //   message: 'Password must be at least 8 characters',
-                // },
+                required: {value: true, message: message['required']},
+                minLength: {
+                  value: 8,
+                  message: message['invalid-password'],
+                },
               }}
               render={({field: {onChange, value, name}}) => (
                 <FormField
@@ -137,7 +134,7 @@ export default function SignInScreen() {
           <View style={{alignItems: 'flex-end'}}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('ForgotPassword');
+                navigation.navigate(navigator['forgot-password']);
               }}>
               <TextComponent
                 text={text['forgot-password']}
@@ -157,7 +154,7 @@ export default function SignInScreen() {
               Don't have an account?{' '}
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('Register');
+                  navigation.navigate(navigator['sign-up']);
                 }}>
                 <TextComponent
                   text={'Register!'}
@@ -173,3 +170,10 @@ export default function SignInScreen() {
     </TouchableWithoutFeedback>
   );
 }
+
+const styles = StyleSheet.create({
+  container_title: {paddingTop: 30},
+  container_text: {
+    paddingBottom: 10,
+  },
+});
