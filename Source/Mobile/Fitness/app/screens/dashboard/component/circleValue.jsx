@@ -48,7 +48,7 @@ const CircleValue = ({data, unit, title, exercise, ...props}) => {
     <View
       style={{
         backgroundColor: colors['border-2'],
-        width: 160,
+        width: 150,
         borderRadius: 10,
         alignItems: 'center',
       }}>

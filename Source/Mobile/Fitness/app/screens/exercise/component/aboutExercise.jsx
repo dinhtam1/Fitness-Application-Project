@@ -103,7 +103,7 @@ const AboutExercise = ({
                   resizeMode="cover"
                   style={styles.image_main}
                   imageStyle={{borderRadius: 10}}></ImageBackground>
-                <View style={{width: 200, minHeight: 120}}>
+                <View style={{width: 180, minHeight: 120}}>
                   <TextComponent
                     text={item.name}
                     size={16}

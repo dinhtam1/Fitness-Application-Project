@@ -160,9 +160,18 @@ const SleepScreen = () => {
     let timeRecommend = [];
 
     for (let i = 1; i <= 5; i++) {
-      totalMinutes -= 90; // Subtract 90 minutes for each cycle
+      totalMinutes -= 90;
       let newHour = Math.floor(totalMinutes / 60);
       let newMinute = totalMinutes % 60;
+
+      if (newHour < 0) {
+        newHour += 24;
+      }
+
+      if (newMinute < 0) {
+        newHour = newHour - 1 < 0 ? 23 : newHour - 1;
+        newMinute += 60;
+      }
 
       let formattedHour = newHour.toString();
       let formattedMinute = newMinute.toString();
@@ -229,6 +238,7 @@ const SleepScreen = () => {
             mode="time"
             onConfirm={handleConfirm}
             onCancel={hideDatePicker}
+            style={styles.customDatePicker}
           />
           <CustomButton
             handlePress={handleEstimate}
@@ -280,5 +290,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors['border-4'],
     paddingVertical: 20,
     borderRadius: 20,
+  },
+  customDatePicker: {
+    backgroundColor: '#f2f2f2',
+    borderRadius: 10,
+    color: '#000',
   },
 });

@@ -23,7 +23,7 @@ const CategoryScreen = () => {
   return (
     <SafeAreaView style={{backgroundColor: colors['background-white']}}>
       <BackComponent black back title={title['categories']} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator="false">
         <View style={{paddingHorizontal: 20}}>
           <View
             style={{
