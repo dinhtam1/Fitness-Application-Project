@@ -27,6 +27,7 @@ export const title = {
   'new-workout': 'NEW WORKOUT',
   playlist: 'PLAYLIST',
   estimate: 'ESTIMATE',
+  
 };
 
 export const button = {

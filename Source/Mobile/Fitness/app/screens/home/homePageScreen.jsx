@@ -14,12 +14,15 @@ import {titleHome} from '../../constants/text';
 import {apiMeal} from '../../apis/meal';
 import MealPlan from './components/mealPlan';
 import Header from './components/header';
+import Playlist from './components/playlist';
+import {apiGetAllLists} from '../../apis/exerciseList';
 
 const HomePageScreen = () => {
   const {user} = useUserStore();
   const {token} = useAuthStore();
   const {categories, setCategories} = useCategoriesStore();
   const [meals, setMeals] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
 
   const scrollY = new Animated.Value(0);
 
@@ -29,9 +32,11 @@ const HomePageScreen = () => {
       const meal = await apiMeal(user?.userId, token, {
         limit: 2,
       });
+      const playlists = await apiGetAllLists(user?.userId, token);
       if (response.statusCode === 200 && meal.statusCode === 200) {
         setCategories(response.data);
         setMeals(meal.data.meals);
+        setPlaylists(playlists.data);
       }
     };
     fetchData();
@@ -80,8 +85,8 @@ const HomePageScreen = () => {
                 data={categories}
                 nav={'Category'}
               />
-
               <MealPlan data={meals} />
+              <Playlist data={playlists} />
             </Animated.View>
           </View>
         </Animated.ScrollView>
