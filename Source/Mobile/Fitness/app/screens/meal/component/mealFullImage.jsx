@@ -48,26 +48,6 @@ const MealFullImage = ({item, ...props}) => {
             color={colors['text']}
           />
         </View>
-        <TextComponent
-          text={'|'}
-          font={fontFamilies['regular']}
-          size={14}
-          styles={{marginHorizontal: 10}}
-        />
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <FontAwesome6
-            name="weight-scale"
-            size={15}
-            color={colors['color-icon-1']}
-          />
-          <TextComponent
-            text={'1 artichoke'}
-            size={16}
-            unit={'g'}
-            styles={styles.text}
-            color={colors['text']}
-          />
-        </View>
       </View>
     </TouchableOpacity>
   );
