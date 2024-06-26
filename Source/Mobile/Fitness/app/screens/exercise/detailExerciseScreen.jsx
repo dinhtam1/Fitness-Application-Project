@@ -151,14 +151,6 @@ const DetailExerciseScreen = ({route}) => {
               styles={{width: width / 1.5, marginBottom: 5}}
               space={-0.8}
             />
-            <TextComponent
-              text={
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.'
-              }
-              size={16}
-              font={fontFamilies['regular']}
-              styles={{width: width / 1.2, marginBottom: 5}}
-            />
           </View>
           <View style={{marginVertical: 40}}>
             <Video

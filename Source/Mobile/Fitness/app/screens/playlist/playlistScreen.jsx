@@ -23,7 +23,7 @@ const PlaylistScreen = () => {
 
   return (
     <SafeAreaView style={common.safeAreaView}>
-      <BackComponent black back title={title['playlist']} />
+      <BackComponent black back title={title['workout-plan']} />
       <View style={{paddingHorizontal: 20, height: '100%'}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{marginBottom: 20}}>

@@ -32,7 +32,7 @@ const data = [
   },
   {
     id: 3,
-    name: 'Playlist',
+    name: 'Workout Plan',
     nav: 'Playlist',
   },
   {
@@ -62,7 +62,7 @@ const renderIcon = name => {
     case 'Dashboard':
       return <AntDesign name="dashboard" size={20} color="black" />;
       break;
-    case 'Playlist':
+    case 'Workout Plan':
       return <FontAwesome6 name="dumbbell" size={18} color="black" />;
       break;
     case 'Progress':

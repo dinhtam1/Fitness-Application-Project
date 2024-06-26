@@ -25,9 +25,8 @@ export const title = {
   dashboard: 'DASHBOARD',
   'my-progress': 'MY PROGRESS',
   'new-workout': 'NEW WORKOUT',
-  playlist: 'PLAYLIST',
+  'workout-plan': 'WORKOUT PLAN',
   estimate: 'ESTIMATE',
-  
 };
 
 export const button = {

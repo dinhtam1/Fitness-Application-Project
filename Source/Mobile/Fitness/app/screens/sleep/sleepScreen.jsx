@@ -15,7 +15,7 @@ import {Audio} from 'expo-av';
 import RecommendTime from './component/recommendTime';
 import {useAlarmStore} from '../../store/useAuthStore';
 import {title} from '../../constants/text';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import DateTimePickerModal from '@react-native-community/datetimepicker';
 
 const SleepScreen = () => {
   const [time, setTime] = useState(new Date());
@@ -23,9 +23,25 @@ const SleepScreen = () => {
   const [sound, setSound] = useState(null);
   const [isLooping, setIsLooping] = useState(true);
   const {alarms, setAlarms} = useAlarmStore();
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [timeSleep, setTimeSleep] = useState('00:00:00');
   const [swap, setSwap] = useState(true);
+  const [show, setShow] = useState(false);
+  const [mode, setMode] = useState('time');
+
+  const onChange = (event, timeSleep) => {
+    let vietnamTime = timeSleep.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'Asia/Ho_Chi_Minh',
+    });
+    vietnamTime = `${vietnamTime}:00`;
+    setTimeSleep(vietnamTime);
+  };
+
+  const showMode = currentMode => {
+    setShow(true);
+    setMode(currentMode);
+  };
 
   async function playSound() {
     const {sound} = await Audio.Sound.createAsync(
@@ -37,66 +53,27 @@ const SleepScreen = () => {
   }
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
+    if (swap) {
+      const timer = setInterval(() => {
+        setTime(new Date());
+      }, 1000);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+      return () => {
+        clearInterval(timer);
+      };
+    }
+  }, [swap]);
   const vietnamTime = time.toLocaleTimeString('en-US', {
     timeZone: 'Asia/Ho_Chi_Minh',
   });
 
-  useEffect(() => {
-    return sound
-      ? () => {
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
-
   // useEffect(() => {
-  //   if (requestUserPermission()) {
-  //     messaging()
-  //       .getToken()
-  //       .then(token => {
-  //         console.log(token);
-  //       });
-  //   } else {
-  //     console.log('error');
-  //   }
-
-  //   messaging()
-  //     .getInitialNotification()
-  //     .then(async remoteMessage => {
-  //       if (remoteMessage) {
-  //         console.log(
-  //           'Notification caused app to open',
-  //           remoteMessage.notification,
-  //         );
-  //         setInitialRoute(remoteMessage.data.type);
+  //   return sound
+  //     ? () => {
+  //         sound.unloadAsync();
   //       }
-  //     });
-
-  //   messaging().onNotificationOpenedApp(async remoteMessage => {
-  //     console.log(
-  //       'Notification caused app to open from',
-  //       remoteMessage.notification,
-  //     );
-  //   });
-
-  //   messaging().setBackgroundMessageHandler(async remoteMessage => {
-  //     console.log('Message handled in the background!', remoteMessage);
-  //   });
-
-  //   const unsubscribe = messaging().onMessage(async remoteMessage => {
-  //     Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
+  //     : undefined;
+  // }, [sound]);
 
   const handlePress = () => {
     let hour = time.getHours();
@@ -123,37 +100,27 @@ const SleepScreen = () => {
     }
   };
 
-  // async function requestUserPermission() {
-  //   const authStatus = await messaging().requestPermission();
-  //   const enabled =
-  //     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-  //     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  // const showDatePicker = () => {
+  //   setDatePickerVisibility(true);
+  // };
 
-  //   if (enabled) {
-  //     console.log('Authorization status:', authStatus);
-  //   }
-  // }
+  // const hideDatePicker = () => {
+  //   setDatePickerVisibility(false);
+  // };
 
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = time => {
-    let newTime = time.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZone: 'Asia/Ho_Chi_Minh',
-    });
-    newTime = `${newTime}:00`;
-    setTimeSleep(newTime);
-    hideDatePicker();
-  };
+  // const handleConfirm = time => {
+  //   let newTime = time.toLocaleTimeString('en-US', {
+  //     hour: '2-digit',
+  //     minute: '2-digit',
+  //     timeZone: 'Asia/Ho_Chi_Minh',
+  //   });
+  //   newTime = `${newTime}:00`;
+  //   setTimeSleep(newTime);
+  //   hideDatePicker();
+  // };
 
   const handleEstimate = () => {
+    setShow(false);
     let hour = parseInt(timeSleep.slice(0, 2), 10);
     let minute = parseInt(timeSleep.slice(3, 5), 10);
     let totalMinutes = hour * 60 + minute - 15;
@@ -224,7 +191,7 @@ const SleepScreen = () => {
       <>
         <View style={{paddingHorizontal: 20, marginTop: 20}}>
           <TouchableOpacity
-            onPress={() => showDatePicker()}
+            onPress={() => showMode('time')}
             style={styles.clock}>
             <TextComponent
               text={timeSleep}
@@ -233,13 +200,15 @@ const SleepScreen = () => {
               font={fontFamilies['semibold']}
             />
           </TouchableOpacity>
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="time"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-            style={styles.customDatePicker}
-          />
+          {show && (
+            <DateTimePickerModal
+              value={time}
+              mode={mode}
+              is24Hour={true}
+              display="spinner"
+              onChange={onChange}
+            />
+          )}
           <CustomButton
             handlePress={handleEstimate}
             title={'Estimate'}

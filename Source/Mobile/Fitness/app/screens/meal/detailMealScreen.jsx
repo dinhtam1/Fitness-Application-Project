@@ -98,7 +98,7 @@ const DetailMealScreen = ({route}) => {
               color={colors['title']}
             />
           </View>
-          <View style={{position: 'absolute', right: 85, bottom: 40}}>
+          <View style={{position: 'absolute', right: 80, bottom: 42}}>
             <TextComponent text={`/100g`} size={12} />
           </View>
         </View>

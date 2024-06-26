@@ -83,7 +83,7 @@ const ProfileScreen = () => {
             style={{
               flexDirection: 'row',
               flexWrap: 'wrap',
-              gap: 10,
+              gap: 8,
               marginTop: 30,
             }}>
             <View style={{alignItems: 'center'}}>
