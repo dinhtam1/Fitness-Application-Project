@@ -24,6 +24,7 @@ import carbs from './images/Carbs.jpg';
 import protein from './images/Protein.jpg';
 import fat from './images/Fat.jpg';
 import empty from './images/empty.png';
+import calorie from '../assets/images/calorie.png';
 
 export {
   back,
@@ -52,4 +53,5 @@ export {
   protein,
   fat,
   empty,
+  calorie,
 };

@@ -1,7 +1,7 @@
 import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import BackComponent from '../../components/header/backComponent';
-import {meal1, meal2, carbs, protein, fat} from '../../assets';
+import {meal1, meal2, carbs, protein, fat, calorie} from '../../assets';
 import TextComponent from '../../components/text/textComponent';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {useUserStore} from '../../store/useAuthStore';
@@ -11,6 +11,7 @@ import {text, title} from '../../constants/text';
 
 const ProfileScreen = () => {
   const {user} = useUserStore();
+  console.log(user);
   return (
     <SafeAreaView
       style={{backgroundColor: colors['background-white'], height: '100%'}}>
@@ -31,12 +32,18 @@ const ProfileScreen = () => {
             size={20}
             font={fontFamilies['semibold']}
           />
+          <TextComponent
+            text={user?.level}
+            size={20}
+            font={fontFamilies['light']}
+            styles={{marginTop: 20}}
+          />
         </View>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'center',
-            marginTop: 60,
+            marginTop: 40,
             gap: 60,
           }}>
           <View
@@ -83,7 +90,7 @@ const ProfileScreen = () => {
             style={{
               flexDirection: 'row',
               flexWrap: 'wrap',
-              gap: 8,
+              gap: 16,
               marginTop: 30,
             }}>
             <View style={{alignItems: 'center'}}>
@@ -105,18 +112,22 @@ const ProfileScreen = () => {
               <TextComponent text={text['grams-per-day']} size={14} />
             </View>
             <View style={{alignItems: 'center'}}>
-              <Image source={carbs} resizeMode="cover" style={styles.image2} />
+              <Image
+                source={calorie}
+                resizeMode="cover"
+                style={styles.image2}
+              />
               <TextComponent
-                text={text['carbs']}
+                text={text['calories']}
                 size={15}
                 font={fontFamilies['semibold']}
               />
               <TextComponent
-                text={'100g'}
+                text={`${Math.floor(user.calories)} kcal`}
                 size={13}
                 font={fontFamilies['medium']}
               />
-              <TextComponent text={text['grams-per-day']} size={14} />
+              <TextComponent text={'Kcal per day'} size={14} />
             </View>
             <View style={{alignItems: 'center'}}>
               <Image source={fat} resizeMode="cover" style={styles.image2} />
